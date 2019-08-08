@@ -6,7 +6,7 @@ public class MagitMain {
             uiConsole.runProgram();
         }
         catch(Exception e){
-            System.out.println("shhhhhh");
+            System.out.println("had issues.....");
         }
     }
 }
