@@ -1,3 +1,5 @@
+import parser.MagitRepository;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -24,10 +26,10 @@ public class MagitMain {
         try {
 
             File file = new File(FILE_NAME);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Magit.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance("parser");
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-//            Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
+            MagitRepository customer = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
 //            System.out.println(customer);
 
         } catch (JAXBException e) {
