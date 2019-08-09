@@ -131,8 +131,14 @@ class UI {
         }
     }
 
-    void showBranches(){
-        myMagit.showAllBranches();
+    private void showBranches(){
+        MagitStringResultObject result = myMagit.showAllBranches();
+        if (result.haveError){
+            System.out.println(result.errorMSG);
+        }
+        else{
+            System.out.println(result.data);
+        }
     }
 
     void createNewBranch(){
