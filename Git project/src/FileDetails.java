@@ -23,7 +23,7 @@ public class FileDetails {
     }
 
     String getSha1(){
-        return this.sha1;
+        return this.sha1; // Throw null pointer exception
     }
 
     public void setSha1(String newSha1){

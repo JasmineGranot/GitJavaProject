@@ -14,12 +14,6 @@ import static java.nio.file.Files.walk;
 
 
 class Repository {
-    /*private final String LAST_CHANGE_DATE = "LastChangeDate";
-    private final String LAST_CHANGER = "LastChanger";
-    private final String SHA1 = "SHA1";
-    private final String TYPE = "FileType";
-    private final String FILE_NAME = "FileName";*/
-
     private String MAGIT_PATH = Paths.get(getRootPath(), ".magit").toString();
     private String BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
     private String OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
@@ -80,7 +74,6 @@ class Repository {
 
 
     // =========================== Creating New Repo ==================================
-    // CHANGED, NEED TO RECHECK
     boolean createNewRepository(String newRepositoryPath) {
         boolean isCreated = false;
         try {
@@ -92,7 +85,9 @@ class Repository {
                     changeRepo(newRepositoryPath);
                 }
             }
-
+            else{
+                System.out.println("Throw repository already exists exception");
+            }
             return isCreated;
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,6 +136,7 @@ class Repository {
         GitObjectsBase obj = currentObjects.get(sha1);
         return (obj != null && obj.isCommit());
     }
+
 
     void createNewCommit(String userName, String commitMsg) {
         try {
@@ -377,7 +373,7 @@ class Repository {
     }
 
     private void changeHeadCommit(String sha1){
-        Path headPath = Paths.get(getRootPath(), ".magit", "Branches", "Head");
+        Path headPath = Paths.get(BRANCHES_PATH, getActiveBranchName());
         MagitUtils.writeToFile(headPath, sha1);
     }
 
@@ -561,7 +557,7 @@ class Repository {
 
     void getHistoryBranchData() {
         String CurrentCommitSha1 = getActiveCommitSha1InBranch(getActiveBranchName());
-        while (!CurrentCommitSha1.equals("")) {
+        while (!CurrentCommitSha1.equals("") ) {
             Commit currentCommit = (Commit) currentObjects.get(CurrentCommitSha1);
             System.out.println("====================");
             System.out.println(currentCommit.exportCommitDataToString());
