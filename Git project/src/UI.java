@@ -84,7 +84,18 @@ class UI {
         System.out.println(String.format("User name was changed to: %s", userName));
     }
 
-    void loadRepository(){}
+    void loadRepository(){
+        System.out.println("Please enter the path of the new Repository xml file:");
+        String repoPath = reader.nextLine();
+        repoPath = reader.nextLine();
+        try {
+            myMagit.loadRepositoryFromXml(repoPath);
+        }
+        catch (Exception e){
+            System.out.println("We still want 100.... ");
+        }
+        System.out.println("Cool!");
+    }
 
     void createNewRepository(){
         System.out.println("Please enter a path for a new Repository:");

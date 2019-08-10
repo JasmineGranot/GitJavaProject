@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 class Magit {
 
     private String userName = "Administrator";
@@ -8,7 +10,16 @@ class Magit {
     }
 
     boolean createNewRepo(String repoPath) {
-        return repo.createNewRepository(repoPath);
+        return repo.createNewRepository(repoPath, true);
+    }
+
+    void loadRepositoryFromXml(String repoPath){
+        try{
+            repo.loadRepoFromXML(repoPath);
+        }
+        catch (IOException e){
+            System.out.println("issue with io");
+        }
     }
 
     void createNewCommit(String commitMsg) {

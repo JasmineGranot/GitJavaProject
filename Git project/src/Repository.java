@@ -1,6 +1,11 @@
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import parser.MagitRepository;
+import parser.MagitSingleBranch;
+import parser.MagitSingleCommit;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -72,15 +77,15 @@ class Repository {
     }
 
 
-    // =========================== Creating New Repo ==================================
-    boolean createNewRepository(String newRepositoryPath) {
+    // =========================== Creating Repo ==================================
+    boolean createNewRepository(String newRepositoryPath, boolean isNewRepo) {
         boolean isCreated = false;
         try {
             File newFile = new File(newRepositoryPath);
             if (!newFile.exists()) {
                 isCreated = newFile.mkdirs();
                 if (isCreated) {
-                    isCreated = addNewFilesToRepo(newRepositoryPath);
+                    isCreated = addNewFilesToRepo(newRepositoryPath, isNewRepo);
                     changeRepo(newRepositoryPath);
                 }
             }
@@ -94,7 +99,7 @@ class Repository {
         }
     }
 
-    private boolean addNewFilesToRepo(String newRepositoryPath) {
+    private boolean addNewFilesToRepo(String newRepositoryPath, boolean isNewRepo) {
         boolean isCreated = false;
         try {
             String magitPath = MagitUtils.joinPaths(newRepositoryPath, ".magit");
@@ -111,13 +116,14 @@ class Repository {
             out1.write("master");
             out1.close();
 
-            HeadPath = Paths.get(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Branches\\master"));
-            out1 = new BufferedWriter(
-                    new OutputStreamWriter(
-                            new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
-            out1.write("");
-            out1.close();
-
+            if(isNewRepo) {
+                HeadPath = Paths.get(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Branches\\master"));
+                out1 = new BufferedWriter(
+                        new OutputStreamWriter(
+                                new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
+                out1.write("");
+                out1.close();
+            }
             newFile = new File(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Objects"));
             isCreated = isCreated && newFile.mkdir();
 
@@ -126,6 +132,185 @@ class Repository {
             e.printStackTrace();
             return isCreated;
         }
+    }
+
+    // ======================= loading Repo from XML ==============================
+
+    void loadRepoFromXML(String repoXMLPath) throws IOException{
+        try{
+            // C:\Users\97250\Desktop\GitJavaProject\master.xml
+            File file = new File(repoXMLPath);
+            JAXBContext jaxbContext = JAXBContext.newInstance("parser");
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            MagitRepository newMagitRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
+            createNewRepository(newMagitRepo.getName(), false);
+            loadBranchesDataFromMagitRepository(newMagitRepo);
+        }
+        catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadBranchesDataFromMagitRepository(MagitRepository repoFromXML) throws IOException{
+        String head = repoFromXML.getMagitBranches().getHead();
+        List<MagitSingleBranch> branches = repoFromXML.getMagitBranches().getMagitSingleBranch();
+        for (MagitSingleBranch curBranch : branches){
+            addBranch(curBranch.getName());
+            String commitId = curBranch.getPointedCommit().getId();
+            List<MagitSingleCommit> commits = repoFromXML.getMagitCommits().getMagitSingleCommit().stream().
+                    filter(x-> x.getId().equals(commitId)).collect(Collectors.toList());
+            if (!commits.isEmpty()){
+                Commit relevantCommit = loadCommitFromMagitSingleCommit(commits.get(0));
+                if (relevantCommit == null) {
+                    System.out.println("throw could not load commit");
+                }
+                else{
+                String commitSha1 = relevantCommit.doSha1();
+
+                // add commit to .magit
+                currentCommit.saveToObjects(commitSha1, getRootPath());
+
+                // add commit to memory
+                currentObjects.put(commitSha1, relevantCommit);
+
+                // update branch to include commit
+                updateCommitInSpecificBranch(commitSha1, curBranch.getName());
+            }}
+            if (curBranch.getName().equals((head))){
+                currentBranch = getBranchByName(curBranch.getName());
+                changeHeadBranch(curBranch.getName());
+                if (currentBranch == null)
+                    System.out.println("error in creating branch");
+                GitObjectsBase BranchCommit = currentObjects.get(currentBranch.getCommitSha1());
+                if (BranchCommit != null){
+                    currentCommit = (Commit) BranchCommit;
+                }
+                else{
+                    currentCommit = null;
+                }
+            }
+
+
+        }
+    }
+
+    private Commit loadCommitFromMagitSingleCommit(MagitSingleCommit commitToLoad){
+        return null;
+    }
+
+    // ========================== Change Repo ==========================
+    private static void deleteWC(String filePath) { // need to check
+        File root = new File(filePath);
+        String[] files = root.list();
+        if (files != null) {
+            for (String f : files) {
+                File childPath = new File(MagitUtils.joinPaths(filePath, f));
+                if (childPath.isDirectory()) {
+                    if (!childPath.getName().equals(".magit")) {
+                        deleteWC(childPath.getAbsolutePath());
+                    }
+                } else {
+                    childPath.delete();
+                }
+            }
+        }
+    }
+
+    private void loadCommitFromSha1(String commitSha1) {
+        deleteWC(getRootPath());
+        Commit curCommit = (Commit) currentObjects.get(commitSha1);
+        loadWCFromRoot(curCommit.getRootSha1(), getRootPath());
+    }
+
+    private void loadWCFromRoot(String sha1, String path) {
+        GitObjectsBase curObj = currentObjects.get(sha1);
+
+        if (curObj.isFolder()) {
+            Folder curObjAsFolder = (Folder) curObj;
+
+            for (FileDetails childDetails : curObjAsFolder.getFilesList()) {
+                GitObjectsBase childObj = currentObjects.get(childDetails.getSha1());
+                childObj.createFileFromObject(Paths.get(path, childDetails.getFileName()).toString());
+                loadWCFromRoot(childDetails.getSha1(),
+                        Paths.get(path, childDetails.getFileName()).toString());
+            }
+        }
+    }
+
+    private void updateMainPaths() {
+        MAGIT_PATH = Paths.get(getRootPath(), ".magit").toString();
+        BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
+        OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
+    }
+
+    void changeRepo(String newRepo) {
+        if (!isValidRepo(newRepo)) {
+            System.out.println("Invalid repository!"); // Throw custom exception
+        }
+
+        setRootPath(newRepo);
+        updateMainPaths();
+        String newHead = getCurrentBranchInRepo();
+        String newCommitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, newHead));
+        Branch headBranch = new Branch(newHead, newCommitSha1);
+        currentBranch = headBranch;
+        currentBranchs.add(headBranch);
+
+        if (!newCommitSha1.equals("")) {
+            currentCommit = (Commit) currentObjects.get(newCommitSha1);
+        }
+        else{
+            currentCommit = null;
+        }
+        loadObjectsFromRepo();
+    }
+
+    private void loadObjectsFromRepo() {
+        currentObjects.clear();
+        String newCommitSha1 = currentBranch.getCommitSha1();
+//            Assuming one commit was made in head branch at some point.
+        while (newCommitSha1 != null && !newCommitSha1.equals("")) {
+            Commit newCommit = new Commit();
+            newCommit.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, newCommitSha1));
+            if (!currentObjects.containsKey(newCommitSha1)) {
+                currentObjects.put(newCommitSha1, newCommit);
+            }
+            String rootSha1 = newCommit.getRootSha1();
+            loadObjectsFromRootFolder(rootSha1, getRootPath());
+            newCommitSha1 = newCommit.getLastCommitSha1();
+        }
+    }
+
+    private void loadObjectsFromRootFolder(String sha1, String path) {
+        File curFile = new File(path);
+        if (curFile.isDirectory()) {
+            Folder newFolder = new Folder();
+            newFolder.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, sha1));
+            currentObjects.put(sha1, newFolder);
+            List<FileDetails> fileDetailsList = newFolder.getFilesList();
+            if (fileDetailsList != null) {
+                for (FileDetails child : fileDetailsList) {
+                    loadObjectsFromRootFolder(child.getSha1(), MagitUtils.joinPaths(path, child.getFileName()));
+                }
+            }
+        } else {
+            Blob newFile = new Blob();
+            newFile.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, sha1));
+            currentObjects.put(sha1, newFile);
+
+        }
+    }
+
+    private boolean isValidRepo(String newRepo) {
+        File newFile = new File(newRepo);
+        String[] listOfRepoFiles = newFile.list();
+        if (listOfRepoFiles != null) {
+            for (String f : listOfRepoFiles) {
+                if (f.contains(".magit"))
+                    return true;
+            }
+        }
+        return false;
     }
 
 
@@ -158,7 +343,7 @@ class Repository {
                 currentCommit = newCommit;
                 currentObjects.put(commitSha1, newCommit);
 
-                updateCommitInCurrentBranch(commitSha1);
+                updateCommitInSpecificBranch(commitSha1, currentBranch.getName());
                 currentCommit.saveToObjects(commitSha1, rootPath);
             }
             else {
@@ -169,8 +354,8 @@ class Repository {
         }
     }
 
-    private void updateCommitInCurrentBranch(String commitSha1) throws IOException {
-        File headFile = new File(MagitUtils.joinPaths(BRANCHES_PATH, currentBranch.getName()));
+    private void updateCommitInSpecificBranch(String commitSha1, String branchName) throws IOException {
+        File headFile = new File(MagitUtils.joinPaths(BRANCHES_PATH, branchName));
         Writer writer = new BufferedWriter(new FileWriter(headFile));
         writer.write(commitSha1);
         writer.flush();
@@ -382,120 +567,6 @@ class Repository {
     }
 
 
-    // ========================== Change Repo ==========================
-    private static void deleteWC(String filePath) { // need to check
-        File root = new File(filePath);
-        String[] files = root.list();
-        if (files != null) {
-            for (String f : files) {
-                File childPath = new File(MagitUtils.joinPaths(filePath, f));
-                if (childPath.isDirectory()) {
-                    if (!childPath.getName().equals(".magit")) {
-                        deleteWC(childPath.getAbsolutePath());
-                    }
-                } else {
-                    childPath.delete();
-                }
-            }
-        }
-    }
-
-    private void loadCommitFromSha1(String commitSha1) {
-        deleteWC(getRootPath());
-        Commit curCommit = (Commit) currentObjects.get(commitSha1);
-        loadWCFromRoot(curCommit.getRootSha1(), getRootPath());
-    }
-
-    private void loadWCFromRoot(String sha1, String path) {
-        GitObjectsBase curObj = currentObjects.get(sha1);
-
-        if (curObj.isFolder()) {
-            Folder curObjAsFolder = (Folder) curObj;
-
-            for (FileDetails childDetails : curObjAsFolder.getFilesList()) {
-                GitObjectsBase childObj = currentObjects.get(childDetails.getSha1());
-                childObj.createFileFromObject(Paths.get(path, childDetails.getFileName()).toString());
-                loadWCFromRoot(childDetails.getSha1(),
-                        Paths.get(path, childDetails.getFileName()).toString());
-            }
-        }
-    }
-
-    private void updateMainPaths() {
-        MAGIT_PATH = Paths.get(getRootPath(), ".magit").toString();
-        BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
-        OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
-    }
-
-    void changeRepo(String newRepo) {
-        if (!isValidRepo(newRepo)) {
-            System.out.println("Invalid repository!"); // Throw custom exception
-        }
-
-        setRootPath(newRepo);
-        updateMainPaths();
-        String newHead = getCurrentBranchInRepo();
-        String newCommitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, newHead));
-        Branch headBranch = new Branch(newHead, newCommitSha1);
-        currentBranch = headBranch;
-        currentBranchs.add(headBranch);
-
-        if (!newCommitSha1.equals("")) {
-            currentCommit = (Commit) currentObjects.get(newCommitSha1);
-        }
-        else{
-            currentCommit = null;
-        }
-        loadObjectsFromRepo();
-    }
-
-    private void loadObjectsFromRepo() {
-        currentObjects.clear();
-        String newCommitSha1 = currentBranch.getCommitSha1();
-//            Assuming one commit was made in head branch at some point.
-        while (newCommitSha1 != null && !newCommitSha1.equals("")) {
-            Commit newCommit = new Commit();
-            newCommit.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, newCommitSha1));
-            if (!currentObjects.containsKey(newCommitSha1)) {
-                currentObjects.put(newCommitSha1, newCommit);
-            }
-            String rootSha1 = newCommit.getRootSha1();
-            loadObjectsFromRootFolder(rootSha1, getRootPath());
-            newCommitSha1 = newCommit.getLastCommitSha1();
-        }
-    }
-
-    private void loadObjectsFromRootFolder(String sha1, String path) {
-        File curFile = new File(path);
-        if (curFile.isDirectory()) {
-            Folder newFolder = new Folder();
-            newFolder.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, sha1));
-            currentObjects.put(sha1, newFolder);
-            List<FileDetails> fileDetailsList = newFolder.getFilesList();
-            if (fileDetailsList != null) {
-                for (FileDetails child : fileDetailsList) {
-                    loadObjectsFromRootFolder(child.getSha1(), MagitUtils.joinPaths(path, child.getFileName()));
-                }
-            }
-        } else {
-            Blob newFile = new Blob();
-            newFile.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, sha1));
-            currentObjects.put(sha1, newFile);
-
-        }
-    }
-
-    private boolean isValidRepo(String newRepo) {
-        File newFile = new File(newRepo);
-        String[] listOfRepoFiles = newFile.list();
-        if (listOfRepoFiles != null) {
-            for (String f : listOfRepoFiles) {
-                if (f.contains(".magit"))
-                    return true;
-            }
-        }
-        return false;
-    }
 
     // ========================= Branches Functions ======================
     String showAllBranchesData() {
