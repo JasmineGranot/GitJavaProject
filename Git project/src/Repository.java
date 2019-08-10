@@ -20,7 +20,9 @@ class Repository {
 
     private String rootPath;
     private Map<String, GitObjectsBase> currentObjects = new HashMap<>();
+    private List<Branch> currentBranchs = new LinkedList<>();
     private Commit currentCommit = null;
+    private Branch currentBranch = null;
     private String currentUser;
 
     private boolean isObjectInRepo(String id) {
@@ -35,31 +37,28 @@ class Repository {
         this.rootPath = path;
     }
 
+//    recheck!
     private String getRootSha1() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
 
-        try {
-            File headFile = getCurrentBranchFile();
+//        try {
+//            Branch headBranch = currentBranch;
+//            String currentCommitSha1 = headBranch.getCommitSha1();
+            return currentCommit.getRootSha1();
+//            if (currentCommitSha1 != null && !currentCommitSha1.equals("")) {
+//
+//                Path commitFile = Paths.get(getRootPath(), ".magit", "Objects", currentCommitSha1);
+//                String commitData = MagitUtils.unZipAndReadFile(commitFile.toString());
+//                if (commitData != null) {
+//                    String[] commitFields = commitData.split(MagitUtils.DELIMITER);
+//                    return commitFields[0];
+//                }
+//                return "";
+//
+//            }
+//        }
+//        catch (IOException e){return "";}
 
-            BufferedReader reader = new BufferedReader(new FileReader(headFile));
-            String currentCommitSha1 = reader.readLine();
-            reader.close();
-
-//        String currentCommitSha1 = unZipAndReadFile(head_branch.toString());
-
-            if (currentCommitSha1 != null && !currentCommitSha1.equals("")) {
-                Path commitFile = Paths.get(getRootPath(), ".magit", "Objects", currentCommitSha1);
-                String commitData = MagitUtils.unZipAndReadFile(commitFile.toString());
-                if (commitData != null) {
-                    String[] commitFields = commitData.split(MagitUtils.DELIMITER);
-                    return commitFields[0];
-                }
-                return "";
-
-            }
-        }
-        catch (IOException e){return "";}
-
-        return "";
+//        return "";
     }
 
     private void printSet(Set<String> setToPrint) {
@@ -131,12 +130,10 @@ class Repository {
 
 
     // =========================== Commit =========================================
-    // NEW - NEED TO RECHECK
     private boolean isValidCommit(String sha1){
         GitObjectsBase obj = currentObjects.get(sha1);
         return (obj != null && obj.isCommit());
     }
-
 
     void createNewCommit(String userName, String commitMsg) {
         try {
@@ -156,7 +153,7 @@ class Repository {
                 String commitSha1 = newCommit.doSha1();
 
                 if (currentCommit != null) {
-                    newCommit.setLastCommitsha1(getActiveCommitSha1InBranch(getActiveBranchName()));
+                    newCommit.setLastCommitsha1(currentBranch.getCommitSha1());
                 }
                 currentCommit = newCommit;
                 currentObjects.put(commitSha1, newCommit);
@@ -173,11 +170,12 @@ class Repository {
     }
 
     private void updateCommitInCurrentBranch(String commitSha1) throws IOException {
-        File headFile = getCurrentBranchFile();
+        File headFile = new File(MagitUtils.joinPaths(BRANCHES_PATH, currentBranch.getName()));
         Writer writer = new BufferedWriter(new FileWriter(headFile));
         writer.write(commitSha1);
         writer.flush();
         writer.close();
+        currentBranch.setCommitSha1(commitSha1);
     }
 
     private boolean isWorkingCopyIsChanged(boolean toPrint) {
@@ -234,7 +232,7 @@ class Repository {
 
     private boolean isFileChanged(String rootPathSha1, String sha1FileToCheck) {
         GitObjectsBase f = currentObjects.get(rootPathSha1);
-        if (f.isFolder()) {
+        if (f != null && f.isFolder()) {
             Folder b = (Folder) f;
             for (FileDetails child : b.getFilesList()) {
                 if (child.getSha1().equals(sha1FileToCheck)) {
@@ -250,6 +248,9 @@ class Repository {
 
     private void getLastCommitFiles(String rootSha1, String rootPath, Map<String, String> commitFiles) {
         GitObjectsBase f = currentObjects.get(rootSha1);
+        if (f == null){
+            System.out.println("throw illegal root folder");
+        }
         if (!f.isFolder()) {
             commitFiles.put(rootPath, rootSha1);
         } else {
@@ -362,7 +363,7 @@ class Repository {
 
     private void getAllCurrentCommitDir(String rootSha1, String rootPath, List<String> commitFiles) {
         GitObjectsBase f = currentObjects.get(rootSha1);
-        if (f.isFolder()) {
+        if (f != null && f.isFolder()) {
             Folder b = (Folder) f;
             for (FileDetails child : b.getFilesList()) {
                 commitFiles.add(child.getToStringWithFullPath(rootPath));
@@ -373,8 +374,11 @@ class Repository {
     }
 
     private void changeHeadCommit(String sha1){
-        Path headPath = Paths.get(BRANCHES_PATH, getActiveBranchName());
-        MagitUtils.writeToFile(headPath, sha1);
+        if (isValidCommit(sha1)) {
+            Path headPath = Paths.get(BRANCHES_PATH, currentBranch.getName());
+            MagitUtils.writeToFile(headPath, sha1);
+            currentBranch.setCommitSha1(sha1);
+        }
     }
 
 
@@ -430,7 +434,12 @@ class Repository {
 
         setRootPath(newRepo);
         updateMainPaths();
-        String newCommitSha1 = getActiveCommitSha1InBranch(getActiveBranchName());
+        String newHead = getCurrentBranchInRepo();
+        String newCommitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, newHead));
+        Branch headBranch = new Branch(newHead, newCommitSha1);
+        currentBranch = headBranch;
+        currentBranchs.add(headBranch);
+
         if (!newCommitSha1.equals("")) {
             currentCommit = (Commit) currentObjects.get(newCommitSha1);
         }
@@ -442,20 +451,17 @@ class Repository {
 
     private void loadObjectsFromRepo() {
         currentObjects.clear();
-        try {
-            String newCommitSha1 = getActiveCommitSha1InBranch(getActiveBranchName());
+        String newCommitSha1 = currentBranch.getCommitSha1();
 //            Assuming one commit was made in head branch at some point.
-            while (newCommitSha1 != null && !newCommitSha1.equals("")) {
-                Commit newCommit = new Commit();
-                newCommit.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, newCommitSha1));
-                if (!currentObjects.containsKey(newCommitSha1)) {
-                    currentObjects.put(newCommitSha1, newCommit);
-                }
-                String rootSha1 = newCommit.getRootSha1();
-                loadObjectsFromRootFolder(rootSha1, getRootPath());
-                newCommitSha1 = newCommit.getLastCommitSha1();
+        while (newCommitSha1 != null && !newCommitSha1.equals("")) {
+            Commit newCommit = new Commit();
+            newCommit.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, newCommitSha1));
+            if (!currentObjects.containsKey(newCommitSha1)) {
+                currentObjects.put(newCommitSha1, newCommit);
             }
-        } catch (Exception e) {
+            String rootSha1 = newCommit.getRootSha1();
+            loadObjectsFromRootFolder(rootSha1, getRootPath());
+            newCommitSha1 = newCommit.getLastCommitSha1();
         }
     }
 
@@ -492,46 +498,42 @@ class Repository {
     }
 
     // ========================= Branches Functions ======================
-    void showAllBranchesData() {
-        Path headPath = Paths.get(getRootPath(), ".magit", "Branches", "Head");
-        String headBranch = MagitUtils.readFileAsString(headPath.toString());
-        try {
-            Path branchesPath = Paths.get(BRANCHES_PATH);
-            Stream<Path> walk = walk(branchesPath);
+    String showAllBranchesData() {
+        String data = "";
+        for (Branch curBranch : currentBranchs) {
+            data = data.concat("\n========================\n");
+            data = data.concat(String.format("Branch's name is: %s ", currentBranch.getName()));
+            if (curBranch.getName().equals(currentBranch.getName())) {
+                data = data.concat("----> Head");
 
-            Set<Path> branchesNames = walk.filter(x -> x.toAbsolutePath().toString().
-                    contains(BRANCHES_PATH)).filter(x -> !(x.toAbsolutePath().toString().
-                    contains(headPath.toString()))).filter(Files::isRegularFile).collect(Collectors.toSet());
-            for (Path currentBranch : branchesNames) {
-                System.out.println("========================");
-                System.out.print(String.format("Branch's name is: %s ", currentBranch.getFileName()));
-                if (currentBranch.getFileName().toString().equals(headBranch)) {
-                    System.out.println("----> Head");
-                } else {
-                    System.out.println();
-                }
-                String commitSha1 = MagitUtils.readFileAsString(currentBranch.toString());
-                System.out.println(String.format("The commit SHA-1: %s", commitSha1));
+                String commitSha1 = curBranch.getCommitSha1();
+                data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
                 Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
-                System.out.println(String.format("The commit message:\n %s", lastComitInBranch.getCommitMessage()));
-                System.out.println("========================");
+                data = data.concat(String.format("\nThe commit message:\n %s",
+                        lastComitInBranch.getCommitMessage()));
+                data = data.concat("\n========================\n");
             }
-        } catch (IOException e) {
-            e.getMessage();
         }
+        return data;
     }
 
     void addBranch(String newBranchName) {
         if (isBranchExist(newBranchName)) {
             System.out.println("Branch already Exist!");
-            return;
         }
-        Path newPath = Paths.get(BRANCHES_PATH, newBranchName);
-        MagitUtils.writeToFile(newPath, getActiveCommitSha1InBranch(getActiveBranchName()));
+        else {
+            // add to objects in .magit
+            Path newPath = Paths.get(BRANCHES_PATH, newBranchName);
+            MagitUtils.writeToFile(newPath, currentBranch.getCommitSha1());
+
+            // add to system memory objects
+            Branch newBranchObj = new Branch(newBranchName, currentBranch.getCommitSha1());
+            currentBranchs.add(newBranchObj);
+        }
     }
 
     void removeBranch(String branchName) {
-        String currentHeadBranch = getActiveBranchName();
+        String currentHeadBranch = currentBranch.getName();
         if (!isBranchExist(branchName)) {
             System.out.println("No such branch Exist!"); // TODO: change to throw custom error
         }
@@ -539,68 +541,87 @@ class Repository {
         if (branchName.equals(currentHeadBranch)) {
             System.out.println("Head Branch cannot be deleted"); // TODO: change to throw custom error
         } else {
+            // delete from objects in .magit
             String branchToDelete = Paths.get(BRANCHES_PATH, branchName).toString();
             File f = new File(branchToDelete);
             f.delete();
+
+            // delete from system memory objects
+            Branch branchObjToDelete = getBranchByName(branchName);
+            currentBranchs.remove(branchObjToDelete);
         }
     }
 
-    private String getActiveBranchName() {
-        Path headPath = Paths.get(BRANCHES_PATH, "Head");
-        return MagitUtils.readFileAsString(headPath.toString());
-    }
+//    private String getActiveBranchName() {
+//        Path headPath = Paths.get(BRANCHES_PATH, "Head");
+//        return MagitUtils.readFileAsString(headPath.toString());
+//    }
 
     private String getActiveCommitSha1InBranch(String branchName) {
-        Path currentCommit = Paths.get(BRANCHES_PATH, branchName);
-        return MagitUtils.readFileAsString(currentCommit.toString());
+        Branch branchObj = getBranchByName(branchName);
+        return branchObj.getCommitSha1();
     }
 
     void getHistoryBranchData() {
-        String CurrentCommitSha1 = getActiveCommitSha1InBranch(getActiveBranchName());
-        while (!CurrentCommitSha1.equals("") ) {
+        String CurrentCommitSha1 = currentBranch.getCommitSha1();
+        while (CurrentCommitSha1 != null && !CurrentCommitSha1.equals("")) {
             Commit currentCommit = (Commit) currentObjects.get(CurrentCommitSha1);
             System.out.println("====================");
             System.out.println(currentCommit.exportCommitDataToString());
             System.out.println("====================");
-
             CurrentCommitSha1 = currentCommit.getLastCommitSha1();
         }
     }
 
+    //To check
     private boolean isBranchExist(String branchName) {
-        try {
-            Path branchesPath = Paths.get(BRANCHES_PATH);
-            Stream<Path> walk = walk(branchesPath);
-
-            Set<Path> branchesNames = walk.filter(x -> x.toAbsolutePath().toString().
-                    contains(branchesPath.toString())).filter(x -> x.getFileName().
-                    toString().equals(branchName)).collect(Collectors.toSet());
-            return !(branchesNames.isEmpty());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        for(Branch currBranch : currentBranchs){
+            if(currBranch.getName().equals(branchName)){
+                return true;
+            }
         }
+        return false;
     }
 
+    private Branch getBranchByName(String branchName){
+        for(Branch currBranch : currentBranchs){
+            if(currBranch.getName().equals(branchName)){
+                return currBranch;
+            }
+        }
+        return null;
+    }
+    //To check
     private void changeHeadBranch(String branchName) {
         Path headPath = Paths.get(BRANCHES_PATH, "Head");
-        try {
-            FileWriter head = new FileWriter(headPath.toString(), false);
-            head.write(branchName);
-            head.close();
-        } catch (IOException e) {
-            System.out.println("Could not change branch");
+        if (!isBranchExist(branchName)){
+            System.out.println("throw branch does not exist");
+        }
+        else {
+            try {
+                FileWriter head = new FileWriter(headPath.toString(), false);
+                head.write(branchName);
+                head.close();
+                currentBranch = getBranchByName(branchName);
+            } catch (IOException e) {
+                System.out.println("Could not change branch");
+            }
         }
     }
 
-    private File getCurrentBranchFile() throws IOException {
-        Path branchs = Paths.get(BRANCHES_PATH, "Head");
+    private String getCurrentBranchInRepo() {
+       String currentBranchInRepo;
+       try{
+           Path branchs = Paths.get(BRANCHES_PATH, "Head");
         File headFile = new File(branchs.toString());
         BufferedReader reader = new BufferedReader(new FileReader(headFile));
-        String currentBranch = reader.readLine();
+        currentBranchInRepo = reader.readLine();
         reader.close();
-        Path head_branch = Paths.get(getRootPath(), ".magit", "Branches", currentBranch);
-        return new File(head_branch.toString());
+       }
+       catch (IOException e){
+           currentBranchInRepo = "";
+       }
+       return currentBranchInRepo;
     }
 
     void checkoutBranch(String newBranchName, boolean ignoreChanges) {
@@ -612,7 +633,7 @@ class Repository {
             System.out.println("Open changes found"); // TODO
         }
         changeHeadBranch(newBranchName);
-        String lastCommitInBranchSha1 = getActiveCommitSha1InBranch(getActiveBranchName());
+        String lastCommitInBranchSha1 = currentBranch.getCommitSha1();
         if (!lastCommitInBranchSha1.equals("")) {
             loadCommitFromSha1(lastCommitInBranchSha1);
         }

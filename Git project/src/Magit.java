@@ -21,8 +21,18 @@ class Magit {
         repo.printWCStatus();
     }
 
-    void showAllBranches() {
-        repo.showAllBranchesData();
+    MagitStringResultObject showAllBranches() {
+        MagitStringResultObject result = new MagitStringResultObject();
+        try{
+            result.data = repo.showAllBranchesData();
+             result.haveError = false;
+        }
+        catch(Exception e){
+            result.haveError = true;
+            result.errorMSG = e.getMessage();
+
+        }
+        return result;
     }
 
     void addNewBranch(String branchName) {
