@@ -84,7 +84,7 @@ class UI {
         System.out.println(String.format("User name was changed to: %s", userName));
     }
 
-    void loadRepository(){
+    private void loadRepository(){
         System.out.println("Please enter the path of the new Repository xml file:");
         String repoPath = reader.nextLine();
         repoPath = reader.nextLine();
@@ -97,7 +97,7 @@ class UI {
         System.out.println("Cool!");
     }
 
-    void createNewRepository(){
+    private void createNewRepository(){
         System.out.println("Please enter a path for a new Repository:");
         String repoPath = reader.nextLine();
         repoPath = reader.nextLine();
@@ -110,14 +110,14 @@ class UI {
         System.out.println("Cool!");
     }
 
-    void switchRepository(){
+    private void switchRepository(){
         System.out.println("Please enter a repository's path to switch to...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
         myMagit.changeRepository(branchName);
     }
 
-    void showCurrentCommit(){
+    private void showCurrentCommit(){
         System.out.println("============================");
         System.out.println("The current commit full data:");
         System.out.println(myMagit.showFullCommitData());
@@ -125,11 +125,11 @@ class UI {
         System.out.println();
     }
 
-    void showWcStatus(){
+    private void showWcStatus(){
         myMagit.showStatus();
     }
 
-    void commit() {
+    private void commit() {
         System.out.println("Please enter a message for this commit of yours...:");
         String msg = reader.nextLine();
         msg = reader.nextLine();
@@ -152,7 +152,7 @@ class UI {
         }
     }
 
-    void createNewBranch(){
+    private void createNewBranch(){
         System.out.println("Please enter a new branch's name...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
@@ -160,25 +160,25 @@ class UI {
 
     }
 
-    void deleteBranch(){
+    private void deleteBranch(){
         System.out.println("Please enter a branch's name to delete...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
         myMagit.deleteBranch(branchName);
     }
 
-    void checkoutABranch(){
+    private void checkoutABranch(){
         System.out.println("Please enter a branch's name to checkout...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
         myMagit.checkoutBranch(branchName);
     }
 
-    void showActiveBranchHistory(){
+    private void showActiveBranchHistory(){
         myMagit.showHistoryDataForActiveBranch();
     }
 
-    void resetBranchToSpecificCommit(){
+    private void resetBranchToSpecificCommit(){
         System.out.println("Please enter a commit's sha1 to checkout...:");
         String commitSha1 = reader.nextLine();
         commitSha1 = reader.nextLine();
@@ -222,7 +222,7 @@ class UI {
         }
     }
 
-    void showMenu(){
+    private void showMenu(){
 
         System.out.println("Welcome to MAGIT!");
         System.out.println("Please choose from the following options: ");

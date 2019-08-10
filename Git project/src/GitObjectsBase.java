@@ -17,7 +17,7 @@ public class GitObjectsBase {
         return org.apache.commons.codec.digest.DigestUtils.sha1Hex(this.toString());
     }
 
-    void saveToObjects(String sha1, String rootPath) {
+    void saveToMagitObjects(String sha1, String rootPath) {
         Path objPath = Paths.get(rootPath, ".magit", "Objects", sha1);
         try {
             File fileToZip = new File(objPath.toString());

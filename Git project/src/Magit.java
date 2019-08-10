@@ -50,7 +50,7 @@ class Magit {
         if (branchName.contains(" ")) {
             System.out.println("Branch name is invalid, please remove all spaces.");
         } else {
-            repo.addBranch(branchName);
+            repo.addNewBranchToRepo(branchName);
         }
     }
 

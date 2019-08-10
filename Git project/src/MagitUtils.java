@@ -23,7 +23,10 @@ class MagitUtils {
             while(reader.hasNextLine())
             {
                 content = content.concat(reader.nextLine());
+                content = content.concat("\n");
             }
+            // Remove last \n
+             content = content.substring(0,content.length() - 1);
             reader.close();
             return content;
         }

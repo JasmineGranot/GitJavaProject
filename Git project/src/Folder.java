@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,4 +43,11 @@ public class Folder extends GitObjectsBase {
             }
         }
     }
+
+    @Override
+    void createFileFromObject(String destinationPath){
+        File newFolder = new File(destinationPath);
+        newFolder.mkdir();
+    }
+
 }
