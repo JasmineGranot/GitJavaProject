@@ -34,7 +34,7 @@ public class Magit {
         MagitStringResultObject result = new MagitStringResultObject();
         try{
             repo.changeRepo(newRepoName);
-            msg = "engine.Repository changed successfully!";
+            msg = "Repository changed successfully!";
             result.data = msg;
             result.haveError = false;
         }
@@ -155,14 +155,14 @@ public class Magit {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         if (branchName.contains(" ")) {
-            msg = "engine.Branch name is invalid, please remove all spaces.";
+            msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
         }
         else {
             try {
                 repo.addBranch(branchName);
                 resultObject.haveError = false;
-                msg = "engine.Branch was added successfully!";
+                msg = "Branch was added successfully!";
                 resultObject.data =  msg;
             }
             catch (DataAlreadyExistsException e) {
@@ -184,13 +184,13 @@ public class Magit {
         MagitStringResultObject resultObject = new MagitStringResultObject();
         String msg;
         if (branchName.contains(" ")) {
-            msg = "engine.Branch name is invalid, please remove all spaces.";
+            msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
         }
         else {
             try {
                 repo.removeBranch(branchName);
-                msg = "engine.Branch deleted successfully!";
+                msg = "Branch deleted successfully!";
                 resultObject.haveError = false;
                 resultObject.data = msg;
             }
@@ -208,7 +208,7 @@ public class Magit {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         if (branchName.contains(" ")) {
-            msg = "engine.Branch name is invalid, please remove all spaces.";
+            msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
         }
         try {
@@ -252,7 +252,7 @@ public class Magit {
         try {
             repo.resetCommitInBranch(commitSha1, ignore);
             resultObject.haveError = false;
-            msg = "Reset engine.Branch successfully!";
+            msg = "Reset Branch successfully!";
             resultObject.data = msg;
         }
         catch (DirectoryNotEmptyException e){
