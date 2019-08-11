@@ -50,6 +50,27 @@ public class Magit {
         return result;
     }
 
+    public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath) {
+        String msg;
+        MagitStringResultObject result = new MagitStringResultObject();
+        try{
+            repo.loadRepoFromXML(xmlFilePath);
+            msg = "Repository loaded successfully!";
+            result.setData(msg);
+            result.setIsHasError(false);
+        }
+        catch (IOException e){
+            msg = "Unhandled IOException!";
+            result.setErrorMSG(msg);
+            result.setIsHasError(true);
+        }
+        catch (Exception e){
+            result.setErrorMSG(e.getMessage());
+            result.setIsHasError(true);
+        }
+        return result;
+    }
+
     public MagitStringResultObject showFullCommitData(){
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();

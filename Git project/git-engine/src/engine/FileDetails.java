@@ -28,7 +28,7 @@ public class FileDetails {
         return this.sha1;
     }
 
-    private void setSha1(String newSha1){
+    void setSha1(String newSha1){
         this.sha1 = newSha1;
     }
 
@@ -36,7 +36,7 @@ public class FileDetails {
         return this.type;
     }
 
-    private void setType(String fileType){
+    void setType(String fileType){
         this.type = fileType;
     }
 
