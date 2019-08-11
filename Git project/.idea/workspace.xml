@@ -7,45 +7,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="new changes in exceptions and checkout branch function2">
-      <change afterPath="$PROJECT_DIR$/../Git UI/.idea/libraries/src.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Git UI/Git UI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Git_UI_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/git_engine_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/git-engine/git-engine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paths.get(getRootPath())/.magit/Branches/Head" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paths.get(getRootPath())/.magit/Branches/master" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/Blob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/Commit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/FileDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/GitObjectsBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/META-INF/Git project.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/Magit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/MagitMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/MagitUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/Repository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Git project/UI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blob.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Blob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/DataAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ErrorCreatingNewFileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/ErrorCreatingNewFileException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/FileDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/FileErrorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjectsBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InvalidDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/InvalidDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MagitMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MagitStringResultObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MagitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WorkingCopyChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java" afterDir="false" />
-    </list>
+    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +123,7 @@
       <workItem from="1565528715140" duration="2235000" />
       <workItem from="1565534370616" duration="5004000" />
       <workItem from="1565542632128" duration="4607000" />
+      <workItem from="1565549865932" duration="262000" />
     </task>
     <task id="LOCAL‎00001" summary="magit main changes with aviad">
       <created>1565344215036</created>
@@ -198,7 +161,13 @@
       <option name="presentableId" value="LOCAL‎00006" />
       <updated>1565538397058</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL‎00007" summary="changes with aviad">
+      <created>1565549928231</created>
+      <option name="number" value="LOCAL‎00007" />
+      <option name="presentableId" value="LOCAL‎00007" />
+      <updated>1565549928231</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +192,8 @@
     <MESSAGE value="fixed error" />
     <MESSAGE value="new changes in exceptions and checkout branch function" />
     <MESSAGE value="new changes in exceptions and checkout branch function2" />
-    <option name="LAST_COMMIT_MESSAGE" value="new changes in exceptions and checkout branch function2" />
+    <MESSAGE value="changes with aviad" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes with aviad" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
