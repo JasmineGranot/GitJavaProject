@@ -40,14 +40,14 @@ public class Repository {
     private String getRootSha1() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
             return currentCommit.getRootSha1();
 //        try {
-//            engine.Branch headBranch = currentBranch;
+//            Branch headBranch = currentBranch;
 //            String currentCommitSha1 = headBranch.getCommitSha1();
 //            if (currentCommitSha1 != null && !currentCommitSha1.equals("")) {
 //
 //                Path commitFile = Paths.get(getRootPath(), ".magit", "Objects", currentCommitSha1);
-//                String commitData = engine.MagitUtils.unZipAndReadFile(commitFile.toString());
+//                String commitData = MagitUtils.unZipAndReadFile(commitFile.toString());
 //                if (commitData != null) {
-//                    String[] commitFields = commitData.split(engine.MagitUtils.DELIMITER);
+//                    String[] commitFields = commitData.split(MagitUtils.DELIMITER);
 //                    return commitFields[0];
 //                }
 //                return "";
@@ -128,7 +128,7 @@ public class Repository {
     }
 
 
-    // =========================== engine.Commit =========================================
+    // =========================== Commit =========================================
     private boolean isValidCommit(String sha1){
         GitObjectsBase obj = currentObjects.get(sha1);
         return (obj != null && obj.isCommit());
@@ -365,7 +365,7 @@ public class Repository {
 
     private FileDetails getNewData(String fileSha1, Path filePath) {
         String name = filePath.getFileName().toString();
-        String fileType = Files.isRegularFile(filePath) ? "File" : "engine.Folder";
+        String fileType = Files.isRegularFile(filePath) ? "File" : "Folder";
         String todayStr;
         todayStr = MagitUtils.getTodayAsStr();
         return new FileDetails(name, fileSha1, fileType, currentUser, todayStr);
@@ -389,7 +389,7 @@ public class Repository {
             if (det.isEmpty()) {
                 Stream<FileDetails> childsStream = parentAsFolder.getFilesList().stream();
                 List<FileDetails> childs = childsStream.filter(x -> x.getType().
-                        equals("engine.Folder")).collect(Collectors.toList());
+                        equals("Folder")).collect(Collectors.toList());
                 for (FileDetails child : childs) {
                     findParentObjByPath(child.getSha1(), destinationSha1);
                 }
@@ -594,7 +594,7 @@ public class Repository {
         String data = "";
         for (Branch curBranch : currentBranchs) {
             data = data.concat("\n========================\n");
-            data = data.concat(String.format("engine.Branch's name is: %s ", curBranch.getName()));
+            data = data.concat(String.format("Branch's name is: %s ", curBranch.getName()));
             if (curBranch.getName().equals(currentBranch.getName())) {
                 data = data.concat("----> Head");
             }
@@ -612,7 +612,7 @@ public class Repository {
     void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException{
         String errorMsg;
         if (isBranchExist(newBranchName)) {
-            errorMsg = "engine.Branch already Exist!";
+            errorMsg = "Branch already Exist!";
             throw new DataAlreadyExistsException(errorMsg);
         }
         else {
@@ -640,7 +640,7 @@ public class Repository {
         }
 
         if (branchName.equals(currentHeadBranch)) {
-            errorMsg = "Head engine.Branch cannot be deleted";
+            errorMsg = "Head Branch cannot be deleted";
             throw new InvalidDataException(errorMsg);
         }
         else {
@@ -717,7 +717,7 @@ public class Repository {
         String errorMsg;
         Path headPath = Paths.get(BRANCHES_PATH, "Head");
         if (!isBranchExist(branchName)){
-            errorMsg = "engine.Branch does not exits in the repository!";
+            errorMsg = "Branch does not exits in the repository!";
             throw new InvalidDataException(errorMsg);
         }
         else {
@@ -748,7 +748,7 @@ public class Repository {
             throws InvalidDataException,  DirectoryNotEmptyException, IOException, FileErrorException{
         String errorMsg;
         if (!isBranchExist(newBranchName)) {
-            errorMsg = "engine.Branch does not exist";
+            errorMsg = "Branch does not exist";
             throw new InvalidDataException(errorMsg);
         }
 
