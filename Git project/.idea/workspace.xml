@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Git UI:jar" />
+      <artifact name="git-engine:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
+    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="new changes in exceptions and checkout branch function2">
+      <change afterPath="$PROJECT_DIR$/../Git UI/.idea/libraries/src.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Git UI/Git UI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Git_UI_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/git_engine_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git-engine/git-engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paths.get(getRootPath())/.magit/Branches/Head" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paths.get(getRootPath())/.magit/Branches/master" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/Blob.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/Commit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/FileDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/Folder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/GitObjectsBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/META-INF/Git project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/Magit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/MagitMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/MagitUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/Repository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Git project/UI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Blob.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Blob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Commit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/DataAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ErrorCreatingNewFileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/ErrorCreatingNewFileException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/FileDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/FileErrorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjectsBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InvalidDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/InvalidDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MagitMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MagitStringResultObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MagitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WorkingCopyChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,86 +70,8 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Repository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="609" column="22" selection-start-line="609" selection-start-column="22" selection-end-line="609" selection-end-column="22" />
-              <folding>
-                <element signature="e#2675#3362#0" />
-                <element signature="e#3403#4813#0" />
-                <element signature="e#4632#4872#0" />
-                <element signature="e#4820#6066#0" />
-                <element signature="e#6072#6358#0" />
-                <element signature="e#6364#8310#0" />
-                <element signature="e#8316#8847#0" />
-                <element signature="e#8853#9382#0" />
-                <element signature="e#9388#9937#0" />
-                <element signature="e#9943#11823#0" />
-                <element signature="e#11829#12187#0" />
-                <element signature="e#12193#12303#0" />
-                <element signature="e#12309#13280#0" />
-                <element signature="e#13286#13547#0" />
-                <element signature="e#13553#14090#0" />
-                <element signature="e#14096#14273#0" />
-                <element signature="e#14280#14949#0" />
-                <element signature="e#15823#16067#0" />
-                <element signature="e#16073#16593#0" />
-                <element signature="e#16599#17459#0" />
-                <element signature="e#16680#17421#0" />
-                <element signature="e#17465#18303#0" />
-                <element signature="e#18309#18660#0" />
-                <element signature="e#18720#20369#0" />
-                <element signature="e#20375#20707#0" />
-                <element signature="e#20713#21301#0" />
-                <element signature="e#21307#21474#0" />
-                <element signature="e#21480#21686#0" />
-                <element signature="e#21692#22209#0" />
-                <element signature="e#22215#22796#0" />
-                <element signature="e#22802#23169#0" />
-                <element signature="e#23175#23639#0" />
-                <element signature="e#23645#24266#0" />
-                <element signature="e#24272#24598#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Magit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="68" column="20" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="20" />
-              <folding>
-                <element signature="method#changeRepository#0;class#Magit#0" />
-                <element signature="e#1831#1832#0" expanded="true" />
-                <element signature="e#1873#1874#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
-              <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
-              <folding>
-                <element signature="method#updateMagitUser#0;class#UI#0" />
-                <element signature="method#createNewRepository#0;class#UI#0" />
-                <element signature="method#switchRepository#0;class#UI#0" />
-                <element signature="method#showCurrentCommit#0;class#UI#0" />
-                <element signature="method#commit#0;class#UI#0" />
-                <element signature="method#createNewBranch#0;class#UI#0" />
-                <element signature="method#deleteBranch#0;class#UI#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="FavoritesManager">
+    <favorites_list name="Git project" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -115,82 +80,27 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>zip</find>
-      <find>zipFile</find>
-      <find>getActiveCommitSha1</find>
-      <find>write</find>
-    </findStrings>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/Utils.java" />
-        <option value="$PROJECT_DIR$/src/MagitMain.java" />
-        <option value="$PROJECT_DIR$/src/GitObjects.java" />
-        <option value="$PROJECT_DIR$/src/MagitUtils.java" />
-        <option value="$PROJECT_DIR$/src/FileDetails.java" />
-        <option value="$PROJECT_DIR$/src/GitObjectsBase.java" />
-        <option value="$PROJECT_DIR$/src/Folder.java" />
-        <option value="$PROJECT_DIR$/src/Blob.java" />
-        <option value="$PROJECT_DIR$/src/Commit.java" />
-        <option value="$PROJECT_DIR$/src/Magit.java" />
-        <option value="$PROJECT_DIR$/src/UI.java" />
-        <option value="$PROJECT_DIR$/src/Repository.java" />
-      </list>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="29" />
-    <option name="y" value="18" />
-    <option name="width" value="1761" />
-    <option name="height" value="1047" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Git project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Git project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="commons-codec-1.12" type="70bed36:NamedLibraryElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1PBMWY9tZBhOH76De4cJVrmXeDO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitGit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Git UI" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.29768044" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -217,8 +127,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MagitMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.MagitMain" />
+      <module name="Git UI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MagitMain" />
+        <item itemvalue="Application.MagitMain" />
+        <item itemvalue="Application.MagitMain" />
         <item itemvalue="Application.MagitMain" />
       </list>
     </recent_temporary>
@@ -234,512 +154,91 @@
       <option name="presentableId" value="Default" />
       <updated>1564809682465</updated>
       <workItem from="1564809685369" duration="71267000" />
+      <workItem from="1565343076092" duration="1192000" />
+      <workItem from="1565349808625" duration="9204000" />
+      <workItem from="1565442612911" duration="16282000" />
+      <workItem from="1565510782932" duration="13234000" />
+      <workItem from="1565528715140" duration="2235000" />
+      <workItem from="1565534370616" duration="5004000" />
+      <workItem from="1565542632128" duration="4607000" />
     </task>
+    <task id="LOCAL‎00001" summary="magit main changes with aviad">
+      <created>1565344215036</created>
+      <option name="number" value="LOCAL‎00001" />
+      <option name="presentableId" value="LOCAL‎00001" />
+      <updated>1565344215036</updated>
+    </task>
+    <task id="LOCAL‎00002" summary="magit main changes with aviad">
+      <created>1565359036455</created>
+      <option name="number" value="LOCAL‎00002" />
+      <option name="presentableId" value="LOCAL‎00002" />
+      <updated>1565359036455</updated>
+    </task>
+    <task id="LOCAL‎00003" summary="added exceptions">
+      <created>1565530798830</created>
+      <option name="number" value="LOCAL‎00003" />
+      <option name="presentableId" value="LOCAL‎00003" />
+      <updated>1565530798830</updated>
+    </task>
+    <task id="LOCAL‎00004" summary="fixed error">
+      <created>1565530849900</created>
+      <option name="number" value="LOCAL‎00004" />
+      <option name="presentableId" value="LOCAL‎00004" />
+      <updated>1565530849900</updated>
+    </task>
+    <task id="LOCAL‎00005" summary="new changes in exceptions and checkout branch function">
+      <created>1565538275127</created>
+      <option name="number" value="LOCAL‎00005" />
+      <option name="presentableId" value="LOCAL‎00005" />
+      <updated>1565538275128</updated>
+    </task>
+    <task id="LOCAL‎00006" summary="new changes in exceptions and checkout branch function2">
+      <created>1565538397058</created>
+      <option name="number" value="LOCAL‎00006" />
+      <option name="presentableId" value="LOCAL‎00006" />
+      <updated>1565538397058</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71267000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Designer" order="0" />
-      <window_info id="UI Designer" order="1" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.127409" />
-      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Database Changes" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5005353" side_tool="true" weight="0.39977092" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.3298969" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.3298969" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49946466" visible="true" weight="0.39862543" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32875144" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.3298969" />
-      <window_info anchor="right" id="Theme Preview" order="0" />
-      <window_info anchor="right" id="Database" order="1" />
-      <window_info anchor="right" id="Capture Analysis" order="2" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>isWorkingCopyIsChanged(false)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>String.join(&quot;\n&quot;, commitFiles)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>join(&quot;\n&quot;, commitFiles)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>&quot;\n&quot;.join(commitFiles)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>commitFiles.toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>commitFiles</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>List&lt;String&gt; commitFiles = new LinkedList&lt;&gt;();
-getAllCurrentCommitDir(getRootSha1(), getRootPath(), commitFiles);
-
-private void getAllCurrentCommitDir(String rootSha1, String rootPath, List&lt;String&gt; commitFiles){
-    GitObjectsBase f = currentObjects.get(rootSha1);
-    if (f.isFolder()) {
-        Folder b = (Folder) f;
-        for (FileDetails child : b.getFilesList()) {
-            commitFiles.add(child.getToStringWithFullPath(rootPath));
-            String name = Paths.get(rootPath, child.getFileName()).toString();
-            getAllCurrentCommitDir(child.getSha1(), name, commitFiles);
-        }
-    }
-}</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>private void getAllCurrentCommitDir(String rootSha1, String rootPath, List&lt;String&gt; commitFiles){
-    GitObjectsBase f = currentObjects.get(rootSha1);
-    if (f.isFolder()) {
-        Folder b = (Folder) f;
-        for (FileDetails child : b.getFilesList()) {
-            commitFiles.add(child.getToStringWithFullPath(rootPath));
-            String name = Paths.get(rootPath, child.getFileName()).toString();
-            getAllCurrentCommitDir(child.getSha1(), name, commitFiles);
-        }
-    }
-}
-List&lt;String&gt; commitFiles = new LinkedList&lt;&gt;();
-getAllCurrentCommitDir(getRootSha1(), getRootPath(), commitFiles);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>private void getAllCurrentCommitDir(String rootSha1, String rootPath, List&lt;String&gt; commitFiles) {
-        GitObjectsBase f = currentObjects.get(rootSha1);
-        if (f.isFolder()) {
-            Folder b = (Folder) f;
-            for (FileDetails child : b.getFilesList()) {
-                commitFiles.add(child.getToStringWithFullPath(rootPath));
-                String name = Paths.get(rootPath, child.getFileName()).toString();
-                getAllCurrentCommitDir(child.getSha1(), name, commitFiles);
-            }
-        }</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="setValue">
-      <expression>
-        <expression-string>&quot;20c560b2bbaa0118940855b44c122928852fa241&quot;</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>walk.filter(x-&gt; !x.toAbsolutePath().toString().contains(&quot;.magit&quot;)).filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toSet())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>walk.filter(x-&gt; !x.toAbsolutePath().toString().contains(&quot;.magit&quot;)).filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toSet()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>newRepositoryPath</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>getRootPath()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Paths.get(getRootPath())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/nio/file/spi/FileSystemProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="807" column="25" selection-start-line="807" selection-start-column="25" selection-end-line="807" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/nio/file/Files.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="1273" column="24" selection-start-line="1273" selection-start-column="24" selection-end-line="1273" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/zip/ZipOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="188" column="32" lean-forward="true" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/zip/ZipEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="1032" column="19" selection-start-line="1032" selection-start-column="19" selection-end-line="1032" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/function/Predicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="239" column="6" selection-start-line="239" selection-start-column="6" selection-end-line="239" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/codegen/OptimisticTypesPersistence.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19538#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="40" column="42" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1374#1375#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="235" column="24" selection-start-line="235" selection-start-column="24" selection-end-line="235" selection-end-column="24" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/Repository (2).java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="355" column="53" lean-forward="true" selection-start-line="355" selection-start-column="53" selection-end-line="355" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MagitMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-          <folding>
-            <element signature="e#644#645#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MagitUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="39" column="43" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="43" />
-          <folding>
-            <element signature="e#885#886#0" expanded="true" />
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#2550#2551#0" expanded="true" />
-            <element signature="e#2583#2584#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjectsBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="39" selection-start-line="39" selection-end-line="42" />
-          <folding>
-            <element signature="e#244#245#0" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-            <element signature="e#1234#1235#0" expanded="true" />
-            <element signature="e#1306#1307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Folder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Blob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#280#281#0" expanded="true" />
-            <element signature="e#326#327#0" expanded="true" />
-            <element signature="e#360#361#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Commit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#317#318#0" expanded="true" />
-            <element signature="e#348#349#0" expanded="true" />
-            <element signature="e#387#388#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#481#482#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#653#654#0" expanded="true" />
-            <element signature="e#685#686#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#745#746#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#861#862#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="68" column="20" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="20" />
-          <folding>
-            <element signature="method#changeRepository#0;class#Magit#0" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
-          <folding>
-            <element signature="method#updateMagitUser#0;class#UI#0" />
-            <element signature="method#createNewRepository#0;class#UI#0" />
-            <element signature="method#switchRepository#0;class#UI#0" />
-            <element signature="method#showCurrentCommit#0;class#UI#0" />
-            <element signature="method#commit#0;class#UI#0" />
-            <element signature="method#createNewBranch#0;class#UI#0" />
-            <element signature="method#deleteBranch#0;class#UI#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="609" column="22" selection-start-line="609" selection-start-column="22" selection-end-line="609" selection-end-column="22" />
-          <folding>
-            <element signature="e#2675#3362#0" />
-            <element signature="e#3403#4813#0" />
-            <element signature="e#4632#4872#0" />
-            <element signature="e#4820#6066#0" />
-            <element signature="e#6072#6358#0" />
-            <element signature="e#6364#8310#0" />
-            <element signature="e#8316#8847#0" />
-            <element signature="e#8853#9382#0" />
-            <element signature="e#9388#9937#0" />
-            <element signature="e#9943#11823#0" />
-            <element signature="e#11829#12187#0" />
-            <element signature="e#12193#12303#0" />
-            <element signature="e#12309#13280#0" />
-            <element signature="e#13286#13547#0" />
-            <element signature="e#13553#14090#0" />
-            <element signature="e#14096#14273#0" />
-            <element signature="e#14280#14949#0" />
-            <element signature="e#15823#16067#0" />
-            <element signature="e#16073#16593#0" />
-            <element signature="e#16599#17459#0" />
-            <element signature="e#16680#17421#0" />
-            <element signature="e#17465#18303#0" />
-            <element signature="e#18309#18660#0" />
-            <element signature="e#18720#20369#0" />
-            <element signature="e#20375#20707#0" />
-            <element signature="e#20713#21301#0" />
-            <element signature="e#21307#21474#0" />
-            <element signature="e#21480#21686#0" />
-            <element signature="e#21692#22209#0" />
-            <element signature="e#22215#22796#0" />
-            <element signature="e#22802#23169#0" />
-            <element signature="e#23175#23639#0" />
-            <element signature="e#23645#24266#0" />
-            <element signature="e#24272#24598#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="magit main changes with aviad" />
+    <MESSAGE value="added exceptions" />
+    <MESSAGE value="fixed error" />
+    <MESSAGE value="new changes in exceptions and checkout branch function" />
+    <MESSAGE value="new changes in exceptions and checkout branch function2" />
+    <option name="LAST_COMMIT_MESSAGE" value="new changes in exceptions and checkout branch function2" />
   </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>commons-codec-1.12</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.31919643" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>286</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../Git UI/src/ui/UI.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Git UI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Git_UI_jar</output-path>
+    <root id="archive" name="Git UI.jar">
+      <element id="module-output" name="Git UI" />
+    </root>
+  </artifact>
+</component>
