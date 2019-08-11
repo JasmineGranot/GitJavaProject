@@ -307,6 +307,7 @@ class Repository {
                 if (childPath.isDirectory()) {
                     if (!childPath.getName().equals(".magit")) {
                         deleteWC(childPath.getAbsolutePath());
+                        childPath.delete();
                     }
                 } else {
                     childPath.delete();
