@@ -197,7 +197,7 @@ class Repository {
     private WorkingCopyChanges isWorkingCopyIsChanged() throws IOException, InvalidDataException {
         try {
             WorkingCopyChanges newChangesSet;
-            boolean isChanged;
+            boolean isChanged = false;
 
             Stream<Path> walk = walk(Paths.get(getRootPath()));
             Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
@@ -217,9 +217,13 @@ class Repository {
             Set<String> deletedFiles = new HashSet<>(lastCommitFiles.keySet());
             deletedFiles.removeAll(WCSet);
 
-            isChanged = getChanged(existsPath, lastCommitFiles);
+            getChanged(existsPath, lastCommitFiles);
 
-            newChangesSet = new WorkingCopyChanges(existsPath, newFiles, deletedFiles, isChanged);
+            if(!existsPath.isEmpty() || !newFiles.isEmpty() || !deletedFiles.isEmpty()){
+                isChanged = true;
+            }
+
+            newChangesSet = new WorkingCopyChanges(existsPath, deletedFiles, newFiles, isChanged);
             return newChangesSet;
 
         } catch (IOException e) {
@@ -264,22 +268,19 @@ class Repository {
         }
     }
 
-    private boolean getChanged(Set<String> filesToCheck, Map<String, String> oldData) throws IOException{
+    private void getChanged(Set<String> filesToCheck, Map<String, String> oldData) throws IOException{
         Set<String> changedFiles = new HashSet<>();
-        boolean isChanged = false;
 
         for (String currentFile : filesToCheck) {
             String content = MagitUtils.readFileAsString(currentFile);
             String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex(content);
             if (!oldData.get(currentFile).equals(sha1)) {
                 changedFiles.add(currentFile);
-                isChanged = true;
             }
         }
 
         filesToCheck.clear();
         filesToCheck.addAll(changedFiles);
-        return isChanged;
     }
 
     private FileDetails updateFilesInSystem(String filePath) throws IOException, FileErrorException{
@@ -388,7 +389,7 @@ class Repository {
                 List<FileDetails> childs = childsStream.filter(x -> x.getType().
                         equals("Folder")).collect(Collectors.toList());
                 for (FileDetails child : childs) {
-                    return findParentObjByPath(child.getSha1(), destinationSha1);
+                    findParentObjByPath(child.getSha1(), destinationSha1);
                 }
             }
             else {
@@ -476,7 +477,7 @@ class Repository {
         OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
     }
 
-    void changeRepo(String newRepo) throws InvalidDataException, IOException, NullPointerException {
+    void changeRepo(String newRepo) throws InvalidDataException, IOException, NullPointerException, ErrorCreatingNewFileException {
         String errorMsg;
 
         if (!isValidRepo(newRepo)) {
@@ -490,9 +491,7 @@ class Repository {
         String newHead = getCurrentBranchInRepo();
         String newCommitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, newHead));
 
-        Branch headBranch = new Branch(newHead, newCommitSha1);
-        currentBranch = headBranch;
-        currentBranchs.add(headBranch);
+        currentBranch = new Branch(newHead, newCommitSha1);;
 
         if (!newCommitSha1.equals("")) {
             if(currentObjects == null){
@@ -510,8 +509,11 @@ class Repository {
         loadObjectsFromRepo();
     }
 
-    private void loadObjectsFromRepo() throws IOException{
+    private void loadObjectsFromRepo() throws IOException, ErrorCreatingNewFileException{
         currentObjects.clear();
+        currentBranchs.clear();
+        loadBranchesObjectsFromBranchs();
+
         String newCommitSha1 = currentBranch.getCommitSha1();
 
 //      ========================================================
@@ -531,6 +533,25 @@ class Repository {
             newCommitSha1 = newCommit.getLastCommitSha1();
         }
     }
+
+    private void loadBranchesObjectsFromBranchs () throws IOException, ErrorCreatingNewFileException{
+        File branchesFolder = new File(BRANCHES_PATH);
+        String[] filesInBranchesFolder = branchesFolder.list();
+        String errorMsg;
+
+        if(filesInBranchesFolder == null){
+            errorMsg = "There are no files in the branches folder!";
+            throw new ErrorCreatingNewFileException(errorMsg);
+        }
+        for (String currentBranchPath : filesInBranchesFolder) {
+            if (!currentBranchPath.equals(MagitUtils.joinPaths(BRANCHES_PATH, "Head"))){
+                String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, currentBranchPath));
+                currentBranchs.add(new Branch(commitSha1));
+            }
+
+        }
+    }
+
 
     private void loadObjectsFromRootFolder(String sha1, String path) throws IOException{
         File curFile = new File(path);
@@ -571,17 +592,17 @@ class Repository {
         String data = "";
         for (Branch curBranch : currentBranchs) {
             data = data.concat("\n========================\n");
-            data = data.concat(String.format("Branch's name is: %s ", currentBranch.getName()));
+            data = data.concat(String.format("Branch's name is: %s ", curBranch.getName()));
             if (curBranch.getName().equals(currentBranch.getName())) {
                 data = data.concat("----> Head");
-
-                String commitSha1 = curBranch.getCommitSha1();
-                data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
-                Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
-                data = data.concat(String.format("\nThe commit message:\n %s",
-                        lastComitInBranch.getCommitMessage()));
-                data = data.concat("\n========================\n");
             }
+            String commitSha1 = curBranch.getCommitSha1();
+            data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
+            Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
+            data = data.concat(String.format("\nThe commit message:\n %s",
+                    lastComitInBranch.getCommitMessage()));
+            data = data.concat("\n========================\n");
+
         }
         return data;
     }
