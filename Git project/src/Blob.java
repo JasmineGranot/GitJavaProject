@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class Blob extends  GitObjectsBase{
     private String fileContent;
@@ -7,7 +8,7 @@ public class Blob extends  GitObjectsBase{
     }
 
     @Override
-    void getDataFromFile(String filePath){
+    void getDataFromFile(String filePath) throws IOException {
         setFileContent(MagitUtils.unZipAndReadFile(filePath));
     }
 

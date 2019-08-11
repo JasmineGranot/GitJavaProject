@@ -15,30 +15,24 @@ class MagitUtils {
     private final static String DATE_PATTERN = "dd.MM.yyyy-hh:mm:ss:sss";
     private static Charset ENCODING = StandardCharsets.UTF_8;
 
-    static String readFileAsString(String filePath){
+    static String readFileAsString(String filePath) throws IOException{
         String content = "";
-        try {
-            File f  = new File(filePath);
-            Scanner reader = new Scanner(f);
-            while(reader.hasNextLine())
-            {
-                content = content.concat(reader.nextLine());
-            }
-            reader.close();
-            return content;
+        File f  = new File(filePath);
+        Scanner reader = new Scanner(f);
+        while(reader.hasNextLine())
+        {
+            content = content.concat(reader.nextLine());
         }
-        catch (Exception e){
-            return content;
-        }
+        reader.close();
+        return content;
     }
 
-    static void writeToFile(Path filePath, String content) {
+    static void writeToFile(Path filePath, String content) throws IOException {
         writeToFile(filePath.toString(), content);
     }
 
-    static void writeToFile(String filePath, String content){
-//    	File newFile = new File(filePath);
-
+    static void writeToFile(String filePath, String content) throws IOException {
+        String errorMsg;
         try {
             Writer out = new BufferedWriter(
                     new OutputStreamWriter(
@@ -48,7 +42,8 @@ class MagitUtils {
             out.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            errorMsg = "Something went wrong while trying to write a content to a file!";
+            throw new IOException(errorMsg);
         }
     }
 
@@ -81,22 +76,22 @@ class MagitUtils {
 
     }
 
-    static String unZipAndReadFile(String filePath) {
-        try {
-            ZipInputStream z = new ZipInputStream(new FileInputStream(filePath));
-            z.getNextEntry();
-            ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-            int len;
-            int INPUT_SIZE = 100;
-            final byte[] buffer = new byte[INPUT_SIZE];
-            while ((len = z.read(buffer)) > 0) {
-                byteStream.write(buffer, 0, len);
-            }
-            z.close();
-            return new String(byteStream.toByteArray(), ENCODING);
-        } catch (IOException e) {
-            return null;
+    static String unZipAndReadFile(String filePath) throws IOException{
+        int len;
+        int INPUT_SIZE = 100;
+        final byte[] buffer = new byte[INPUT_SIZE];
+
+        ZipInputStream z = new ZipInputStream(new FileInputStream(filePath));
+        z.getNextEntry();
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+
+        while ((len = z.read(buffer)) > 0) {
+            byteStream.write(buffer, 0, len);
         }
+
+        z.close();
+        
+        return new String(byteStream.toByteArray(), ENCODING);
     }
 
     static String joinPaths(String path, String fileName){

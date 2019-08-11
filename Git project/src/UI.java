@@ -1,8 +1,10 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Paths;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Set;
 
 class UI {
 
@@ -14,8 +16,7 @@ class UI {
     private Scanner reader = new Scanner(System.in);
     private Magit myMagit = new Magit();
 
-    void runProgram() throws IOException {
-        // testData();
+    void runProgram() {
         int user_input = START_LOOP;
         while (user_input != EXIT){
             showMenu();
@@ -84,56 +85,33 @@ class UI {
         System.out.println(String.format("User name was changed to: %s", userName));
     }
 
-    void loadRepository(){}
+    private void loadRepository(){}
 
-    void createNewRepository(){
+    private void createNewRepository(){
         System.out.println("Please enter a path for a new Repository:");
         String repoPath = reader.nextLine();
         repoPath = reader.nextLine();
-        try {
-            boolean isCreated = myMagit.createNewRepo(repoPath);
+
+        MagitStringResultObject result = myMagit.createNewRepo(repoPath);
+        if(result.haveError){
+            System.out.println(result.errorMSG);
+            System.out.println();
         }
-        catch (Exception e){
-            System.out.println("We still want 100.... ");
+        else{
+            System.out.println(result.data);
+            System.out.println();
         }
-        System.out.println("Cool!");
+
     }
 
-    void switchRepository(){
+    private void switchRepository(){
         System.out.println("Please enter a repository's path to switch to...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
-        myMagit.changeRepository(branchName);
-    }
 
-    void showCurrentCommit(){
-        System.out.println("============================");
-        System.out.println("The current commit full data:");
-        System.out.println(myMagit.showFullCommitData());
-        System.out.println("============================");
-        System.out.println();
-    }
+        MagitStringResultObject result = myMagit.changeRepository(branchName);
 
-    void showWcStatus(){
-        myMagit.showStatus();
-    }
-
-    void commit() {
-        System.out.println("Please enter a message for this commit of yours...:");
-        String msg = reader.nextLine();
-        msg = reader.nextLine();
-
-        try {
-            myMagit.createNewCommit(msg);
-
-        } catch (Exception e) {
-            System.out.println("failed");
-        }
-    }
-
-    private void showBranches(){
-        MagitStringResultObject result = myMagit.showAllBranches();
-        if (result.haveError){
+        if(result.haveError){
             System.out.println(result.errorMSG);
         }
         else{
@@ -141,77 +119,232 @@ class UI {
         }
     }
 
-    void createNewBranch(){
+    private void showCurrentCommit(){
+        MagitStringResultObject result = myMagit.showFullCommitData();
+        if(result.haveError){
+            System.out.println(result.errorMSG);
+        }
+        else{
+            System.out.println("============================");
+            System.out.println("The current commit full data:");
+            System.out.println(result.data);
+            System.out.println("============================");
+            System.out.println();
+        }
+    }
+
+    private void showWcStatus(){
+        WorkingCopyChanges result =  myMagit.showStatus();
+        Set<String> newFiles = result.getNewFiles();
+        Set<String> changedFiles = result.getChangedFiles();
+        Set<String> deletedFiles = result.getDeletedFiles();
+
+        if(result.getHasErrors()){
+            System.out.println(result.getErrorMsg());
+        }
+        else{
+            System.out.println(result.getMsg());
+
+            if(!newFiles.isEmpty()){
+                System.out.println("New files:");
+                for(String curr : result.getNewFiles()){
+                    System.out.println(curr);
+                }
+            }
+            else{
+                System.out.println("No files were added.");
+            }
+
+            if(!changedFiles.isEmpty()){
+                System.out.println("Changed files:");
+                for(String curr : result.getChangedFiles()){
+                    System.out.println(curr);
+                }
+            }
+            else{
+                System.out.println("No files were changed.");
+            }
+
+            if(!deletedFiles.isEmpty()){
+                System.out.println("Deleted files:");
+                for(String curr : result.getDeletedFiles()){
+                    System.out.println(curr);
+                }
+            }
+            else{
+                System.out.println("No files were deleted.");
+            }
+        }
+    }
+
+    private void commit() {
+        System.out.println("Please enter a message for the new commit:");
+        String msg = reader.nextLine();
+        msg = reader.nextLine();
+
+        MagitStringResultObject result = myMagit.createNewCommit(msg);
+        if (result.haveError){
+            System.out.println(result.errorMSG);
+        }
+        else {
+            System.out.println(result.data);
+        }
+    }
+
+    private void showBranches(){
+        MagitStringResultObject result = myMagit.showAllBranches();
+        if (result.haveError){
+            System.out.println(result.errorMSG);
+            System.out.println();
+        }
+        else {
+            System.out.println(result.data);
+            System.out.println();
+        }
+    }
+
+    private void createNewBranch(){
         System.out.println("Please enter a new branch's name...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
-        myMagit.addNewBranch(branchName);
+
+        try {
+            MagitStringResultObject resultObject = myMagit.addNewBranch(branchName);
+            if(resultObject.haveError){
+                System.out.println(resultObject.errorMSG);
+            }
+            else{
+                System.out.println(resultObject.data);
+            }
+        }
+        catch (InvalidDataException e){
+            System.out.println(e.getMessage());
+            createNewBranch();
+        }
+
 
     }
 
-    void deleteBranch(){
+    private void deleteBranch(){
         System.out.println("Please enter a branch's name to delete...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
-        myMagit.deleteBranch(branchName);
+        try {
+            MagitStringResultObject resultObject = myMagit.deleteBranch(branchName);
+            if (resultObject.haveError) {
+                System.out.println(resultObject.errorMSG);
+            } else {
+                System.out.println(resultObject.data);
+            }
+        }
+        catch (InvalidDataException e) {
+            System.out.println(e.getMessage());
+            deleteBranch();
+        }
     }
 
-    void checkoutABranch(){
+    private void checkoutABranch() {
         System.out.println("Please enter a branch's name to checkout...:");
         String branchName = reader.nextLine();
         branchName = reader.nextLine();
-        myMagit.checkoutBranch(branchName);
+
+        checkoutBranch(branchName, false);
     }
 
-    void showActiveBranchHistory(){
-        myMagit.showHistoryDataForActiveBranch();
+    private void checkoutBranch(String branchName, boolean ignoreChanges) {
+        try {
+            MagitStringResultObject resultObject = myMagit.checkoutBranch(branchName, ignoreChanges);
+            if(resultObject.haveError){
+                System.out.println(resultObject.errorMSG);
+            }
+            else {
+                System.out.println(resultObject.data);
+            }
+        }
+        catch (InvalidDataException e){
+            System.out.println(e.getMessage());
+            checkoutABranch();
+        }
+        catch (DirectoryNotEmptyException e){
+            System.out.println(e.getMessage());
+            System.out.println("Please choose from the following options:\n" +
+                    "1 for committing the open changes\n" +
+                    "2 for continuing with the checkout without committing the changes" );
+            try {
+                int input = reader.nextInt();
+                while (input != 1 && input != 2){
+                    System.out.println("Please press only 1 or 2!");
+                    input = reader.nextInt();
+                }
+                if(input == 1){
+                    commit();
+                }
+                if(input == 2){
+                    checkoutBranch(branchName,true);
+                }
+            }
+            catch (InputMismatchException t){
+                System.out.println("You can only insert an integer! starting over!");
+                checkoutABranch();
+            }
+
+        }
     }
 
-    void resetBranchToSpecificCommit(){
+    private void showActiveBranchHistory(){
+        MagitStringResultObject resultObject = myMagit.showHistoryDataForActiveBranch();
+        if(resultObject.haveError){
+            System.out.println(resultObject.errorMSG);
+        }
+        else{
+            System.out.println(resultObject.data);
+        }
+    }
+
+    private void resetBranchToSpecificCommit() {
         System.out.println("Please enter a commit's sha1 to checkout...:");
         String commitSha1 = reader.nextLine();
         commitSha1 = reader.nextLine();
-        myMagit.resetBranch(commitSha1);
-    }
-    void testData() {
-        try{
-            myMagit.createNewRepo("C:\\Users\\97250\\Desktop\\Test");
-        }
-        catch (Exception e){
-            e.getMessage();
-        }
-        String path = Paths.get("C:\\Users\\97250\\Desktop\\Test\\A\\").toString();
-        File newFile = new File(path);
-        newFile.mkdir();
-        path = Paths.get("C:\\Users\\97250\\Desktop\\Test\\A\\a").toString();
-        try{
-            Writer out1 = new BufferedWriter(
-                    new OutputStreamWriter(
-                            new FileOutputStream(path), StandardCharsets.UTF_8));
-            out1.write("stam shit");
-            out1.flush();
-            out1.close();
-        }
-        catch (IOException e){
-            System.out.println("error in closing file");
-        }
 
-        path = Paths.get("C:\\Users\\97250\\Desktop\\Test\\b.txt").toString();
-        newFile = new File(path);
-        try{
-            Writer out1 = new BufferedWriter(
-                    new OutputStreamWriter(
-                            new FileOutputStream(path), StandardCharsets.UTF_8));
-            out1.write("shit aher");
-            out1.flush();
-            out1.close();
-        }
-        catch (IOException e){
-            System.out.println("error in closing file");
-        }
+        resetBranchToASpecificCommit(commitSha1, true);
     }
 
-    void showMenu(){
+    private void resetBranchToASpecificCommit(String sha1, boolean ignore) {
+        try {
+            MagitStringResultObject resultObject = myMagit.resetBranch(sha1, ignore);
+            if (resultObject.haveError) {
+                System.out.println(resultObject.errorMSG);
+            } else {
+                System.out.println(resultObject.data);
+            }
+        }
+        catch(DirectoryNotEmptyException e){
+            System.out.println(e.getMessage());
+            System.out.println("Please choose from the following options:\n" +
+                    "1 for committing the open changes\n" +
+                    "2 for continuing with the reset without committing the changes" );
+            try {
+                int input = reader.nextInt();
+                while (input != 1 && input != 2){
+                    System.out.println("Please press only 1 or 2!");
+                    input = reader.nextInt();
+                }
+                if(input == 1){
+                    commit();
+                }
+                if(input == 2){
+                    resetBranchToASpecificCommit(sha1, false);
+
+                }
+            }
+            catch (InputMismatchException t){
+                System.out.println("You can only insert an integer! starting over!");
+                resetBranchToSpecificCommit();
+            }
+        }
+    }
+
+    private void showMenu(){
 
         System.out.println("Welcome to MAGIT!");
         System.out.println("Please choose from the following options: ");

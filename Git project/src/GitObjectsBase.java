@@ -17,7 +17,8 @@ public class GitObjectsBase {
         return org.apache.commons.codec.digest.DigestUtils.sha1Hex(this.toString());
     }
 
-    void saveToObjects(String sha1, String rootPath) {
+    void saveToObjects(String sha1, String rootPath) throws IOException, FileErrorException {
+        String errorMsg;
         Path objPath = Paths.get(rootPath, ".magit", "Objects", sha1);
         try {
             File fileToZip = new File(objPath.toString());
@@ -27,19 +28,28 @@ public class GitObjectsBase {
             out1.write(this.toString());
             out1.flush();
             out1.close();
+
             MagitUtils.zipFile(objPath.toString(), objPath.toString() + ".zip");
-            fileToZip.delete();
+            if(!fileToZip.delete()){
+                errorMsg = "Had an error while trying to delete a file!";
+               throw new FileErrorException(errorMsg);
+            }
             File newObj = new File(objPath.toString() + ".zip");
-            newObj.renameTo(fileToZip);
+            if(!newObj.renameTo(fileToZip)){
+                errorMsg = "Had an error while trying to change a file name!";
+                throw new FileErrorException(errorMsg);
+            }
 
         } catch (IOException e) {
-            System.out.println("had an issue with the files here......");
+            errorMsg = "Had an issue saving the new blob to objects!\n" +
+                    "Error message: " + e.getMessage();
+            throw new IOException(errorMsg);
         }
     }
 
-    void getDataFromFile(String fileSha1){}
+    void getDataFromFile(String fileSha1) throws IOException{}
 
-    void createFileFromObject(String destinationPath){
+    void createFileFromObject(String destinationPath) throws IOException{
         MagitUtils.writeToFile(destinationPath, this.toString());
     }
 }

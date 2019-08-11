@@ -7,26 +7,26 @@ public class FileDetails {
 
 
     FileDetails(String fileName, String sha1, String type, String lastChanger, String lastChangedDate){
-        this.fileName = fileName;
-        this.sha1 = sha1;
-        this.type = type;
-        this.lastChanger = lastChanger;
-        this.lastChangedDate = lastChangedDate;
+        setFileName(fileName);
+        setSha1(sha1);
+        setType(type);
+        setLastChanger(lastChanger);
+        setLastChangedDate(lastChangedDate);
     }
 
     String getFileName(){
         return this.fileName;
     }
 
-    public void setFileName(String newName){
+    private void setFileName(String newName){
         this.fileName = newName;
     }
 
-    String getSha1(){
-        return this.sha1; // Throw null pointer exception
+    String getSha1() {
+        return this.sha1;
     }
 
-    public void setSha1(String newSha1){
+    private void setSha1(String newSha1){
         this.sha1 = newSha1;
     }
 
@@ -34,7 +34,7 @@ public class FileDetails {
         return this.type;
     }
 
-    public void setType(String fileType){
+    private void setType(String fileType){
         this.type = fileType;
     }
 
@@ -42,7 +42,7 @@ public class FileDetails {
         return this.lastChanger;
     }
 
-    public void setLastChanger(String changerName){
+    private void setLastChanger(String changerName){
         this.lastChanger = changerName;
     }
 
@@ -50,7 +50,7 @@ public class FileDetails {
         return this.lastChangedDate;
     }
 
-    public void setLastChangedDate(String newChangedDate){
+    private void setLastChangedDate(String newChangedDate){
         this.lastChangedDate = newChangedDate;
     }
 

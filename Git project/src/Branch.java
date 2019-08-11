@@ -10,7 +10,7 @@ public class Branch {
         setName(name);
     }
 
-    void setName(String name){
+    private void setName(String name){
         this.name = name;
     }
 

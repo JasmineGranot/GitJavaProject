@@ -1,8 +1,10 @@
+import java.io.IOException;
+
 public class Commit extends GitObjectsBase {
     private String commiter = null;
     private String msg = null;
     private String date = null;
-    private String root_sha1 = null;
+    private String rootSha1 = null;
     private String last = null;
 
     void setCommitCreator(String name) {
@@ -30,14 +32,14 @@ public class Commit extends GitObjectsBase {
     }
 
     void setRootSha1(String sha1) {
-        root_sha1 = sha1;
+        rootSha1 = sha1;
     }
 
     String getRootSha1() {
-        return root_sha1;
+        return rootSha1;
     }
 
-    void setLastCommitsha1(String lastCommit) {
+    void setLastCommitSha1(String lastCommit) {
         last = lastCommit;
     }
 
@@ -63,17 +65,16 @@ public class Commit extends GitObjectsBase {
     }
 
     @Override
-    void getDataFromFile(String filePath) {
+    void getDataFromFile(String filePath) throws IOException {
         String data = MagitUtils.unZipAndReadFile(filePath);
-        if (data != null) {
-            String[] datafields = data.split(MagitUtils.DELIMITER);
-            if (data.length() != 0) {
-                setRootSha1(datafields[0]);
-                setLastCommitsha1(!(datafields[1].equals("null")) ? datafields[1] : null);
-                setCommitMessage(datafields[2]);
-                setCommitDate(datafields[3]);
-                setCommitCreator(datafields[4]);
-            }
+        String[] dataFields = data.split(MagitUtils.DELIMITER);
+
+        if (data.length() != 0) {
+            setRootSha1(dataFields[0]);
+            setLastCommitSha1(!(dataFields[1].equals("null")) ? dataFields[1] : null);
+            setCommitMessage(dataFields[2]);
+            setCommitDate(dataFields[3]);
+            setCommitCreator(dataFields[4]);
         }
     }
 
