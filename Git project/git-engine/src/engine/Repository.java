@@ -681,17 +681,17 @@ public class Repository {
         while (CurrentCommitSha1 != null && !CurrentCommitSha1.equals("")) {
             try {
                 Commit currentCommit = (Commit) currentObjects.get(CurrentCommitSha1);
-                resultObject.data = resultObject.data.concat("=====================\n" +
-                        currentCommit.exportCommitDataToString() + "\n=====================\n\n");
+                resultObject.setData(resultObject.getData().concat("=====================\n" +
+                        currentCommit.exportCommitDataToString() + "\n=====================\n\n"));
 
                 CurrentCommitSha1 = currentCommit.getLastCommitSha1();
             }
             catch (Exception e){
-                resultObject.errorMSG = "Somthing went wrong while trying to cast!";
-                throw new Exception(resultObject.errorMSG);
+                resultObject.setErrorMSG("Somthing went wrong while trying to cast!");
+                throw new Exception(resultObject.getErrorMSG());
             }
         }
-        resultObject.haveError = false;
+        resultObject.setIsHasError(false);
         return resultObject;
     }
 

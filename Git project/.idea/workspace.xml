@@ -7,7 +7,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="" />
+    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Git UI/src/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Git UI/src/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +35,82 @@
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="Git project" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="568">
+              <caret line="365" column="50" selection-start-line="365" selection-start-column="50" selection-end-line="365" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1977">
+              <caret line="693" column="42" selection-start-line="693" selection-start-column="42" selection-end-line="693" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+              <folding>
+                <element signature="e#302#303#0" expanded="true" />
+                <element signature="e#332#333#0" expanded="true" />
+                <element signature="e#375#376#0" expanded="true" />
+                <element signature="e#405#406#0" expanded="true" />
+                <element signature="e#457#458#0" expanded="true" />
+                <element signature="e#499#500#0" expanded="true" />
+                <element signature="e#530#531#0" expanded="true" />
+                <element signature="e#557#558#0" expanded="true" />
+                <element signature="e#592#593#0" expanded="true" />
+                <element signature="e#623#624#0" expanded="true" />
+                <element signature="e#661#662#0" expanded="true" />
+                <element signature="e#693#694#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,15 +120,84 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java" />
+        <option value="$PROJECT_DIR$/git-engine/src/engine/Magit.java" />
+        <option value="$PROJECT_DIR$/git-engine/src/engine/Repository.java" />
+        <option value="$PROJECT_DIR$/../Git UI/src/ui/UI.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="114" />
+    <option name="y" value="-22" />
+    <option name="width" value="1761" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectId" id="1PBMWY9tZBhOH76De4cJVrmXeDO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+              <item name="git-engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+              <item name="git-engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+              <item name="git-engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git UI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git UI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -81,7 +227,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MagitMain (1)">
+    <configuration name="MagitMain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.MagitMain" />
+      <module name="Git UI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MagitMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MagitMain" />
       <module name="Git project" />
@@ -98,6 +257,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MagitMain (1)" />
         <item itemvalue="Application.MagitMain" />
         <item itemvalue="Application.MagitMain" />
         <item itemvalue="Application.MagitMain" />
@@ -124,6 +284,7 @@
       <workItem from="1565534370616" duration="5004000" />
       <workItem from="1565542632128" duration="4607000" />
       <workItem from="1565549865932" duration="262000" />
+      <workItem from="1565553941014" duration="1316000" />
     </task>
     <task id="LOCAL‎00001" summary="magit main changes with aviad">
       <created>1565344215036</created>
@@ -170,6 +331,44 @@
     <option name="localTasksCounter" value="8" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1316000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="114" y="-22" width="1761" height="1047" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24985233" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" weight="0.3298611" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39930555" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -179,8 +378,28 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -201,14 +420,75 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
           <line>286</line>
+          <properties />
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../Git UI/src/ui/UI.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+            <element signature="e#375#376#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#499#500#0" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#592#593#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#661#662#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1977">
+          <caret line="693" column="42" selection-start-line="693" selection-start-column="42" selection-end-line="693" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="365" column="50" selection-start-line="365" selection-start-column="50" selection-end-line="365" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

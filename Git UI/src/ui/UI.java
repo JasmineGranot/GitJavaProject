@@ -100,12 +100,12 @@ class UI {
         repoPath = reader.nextLine();
 
         MagitStringResultObject result = myMagit.createNewRepo(repoPath);
-        if(result.haveError){
-            System.out.println(result.errorMSG);
+        if(result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
             System.out.println();
         }
         else{
-            System.out.println(result.data);
+            System.out.println(result.getData());
             System.out.println();
         }
 
@@ -118,23 +118,23 @@ class UI {
 
         MagitStringResultObject result = myMagit.changeRepository(branchName);
 
-        if(result.haveError){
-            System.out.println(result.errorMSG);
+        if(result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
         }
         else{
-            System.out.println(result.data);
+            System.out.println(result.getData());
         }
     }
 
     private void showCurrentCommit(){
         MagitStringResultObject result = myMagit.showFullCommitData();
-        if(result.haveError){
-            System.out.println(result.errorMSG);
+        if(result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
         }
         else{
             System.out.println("============================");
             System.out.println("The current commit full data:");
-            System.out.println(result.data);
+            System.out.println(result.getData());
             System.out.println("============================");
             System.out.println();
         }
@@ -185,22 +185,22 @@ class UI {
         msg = reader.nextLine();
 
         MagitStringResultObject result = myMagit.createNewCommit(msg);
-        if (result.haveError){
-            System.out.println(result.errorMSG);
+        if (result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
         }
         else {
-            System.out.println(result.data);
+            System.out.println(result.getData());
         }
     }
 
     private void showBranches(){
         MagitStringResultObject result = myMagit.showAllBranches();
-        if (result.haveError){
-            System.out.println(result.errorMSG);
+        if (result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
             System.out.println();
         }
         else {
-            System.out.println(result.data);
+            System.out.println(result.getData());
             System.out.println();
         }
     }
@@ -212,11 +212,11 @@ class UI {
 
         try {
             MagitStringResultObject resultObject = myMagit.addNewBranch(branchName);
-            if(resultObject.haveError){
-                System.out.println(resultObject.errorMSG);
+            if(resultObject.getIsHasError()){
+                System.out.println(resultObject.getErrorMSG());
             }
             else{
-                System.out.println(resultObject.data);
+                System.out.println(resultObject.getData());
             }
         }
         catch (InvalidDataException e){
@@ -233,10 +233,10 @@ class UI {
         branchName = reader.nextLine();
         try {
             MagitStringResultObject resultObject = myMagit.deleteBranch(branchName);
-            if (resultObject.haveError) {
-                System.out.println(resultObject.errorMSG);
+            if (resultObject.getIsHasError()) {
+                System.out.println(resultObject.getErrorMSG());
             } else {
-                System.out.println(resultObject.data);
+                System.out.println(resultObject.getData());
             }
         }
         catch (InvalidDataException e) {
@@ -256,11 +256,11 @@ class UI {
     private void checkoutBranch(String branchName, boolean ignoreChanges) {
         try {
             MagitStringResultObject resultObject = myMagit.checkoutBranch(branchName, ignoreChanges);
-            if(resultObject.haveError){
-                System.out.println(resultObject.errorMSG);
+            if(resultObject.getIsHasError()){
+                System.out.println(resultObject.getErrorMSG());
             }
             else {
-                System.out.println(resultObject.data);
+                System.out.println(resultObject.getData());
             }
         }
         catch (InvalidDataException e){
@@ -295,11 +295,11 @@ class UI {
 
     private void showActiveBranchHistory(){
         MagitStringResultObject resultObject = myMagit.showHistoryDataForActiveBranch();
-        if(resultObject.haveError){
-            System.out.println(resultObject.errorMSG);
+        if(resultObject.getIsHasError()){
+            System.out.println(resultObject.getErrorMSG());
         }
         else{
-            System.out.println(resultObject.data);
+            System.out.println(resultObject.getData());
         }
     }
 
@@ -314,10 +314,10 @@ class UI {
     private void resetBranchToASpecificCommit(String sha1, boolean ignore) {
         try {
             MagitStringResultObject resultObject = myMagit.resetBranch(sha1, ignore);
-            if (resultObject.haveError) {
-                System.out.println(resultObject.errorMSG);
+            if (resultObject.getIsHasError()) {
+                System.out.println(resultObject.getErrorMSG());
             } else {
-                System.out.println(resultObject.data);
+                System.out.println(resultObject.getData());
             }
         }
         catch(DirectoryNotEmptyException e){
@@ -350,22 +350,20 @@ class UI {
 
         System.out.println("Welcome to MAGIT!");
         System.out.println("Please choose from the following options: ");
-        System.out.println(String.format("For changing the userName press %d", UPDATE_USER));
-        System.out.println(String.format("For loading a repository from an XML file press %d", LOAD_REPOSITORY));
-        System.out.println(String.format("For switching the active repository press %d", SWITCH_REPOSITORY));
-        System.out.println(String.format("For showing the current commit press %d", SHOW_CURRENT_COMMIT));
-        System.out.println(String.format("For showing the status of the WC press %d", SHOW_STATUS));
-        System.out.println(String.format("For creating a new commit press %d", COMMIT));
-        System.out.println(String.format("For showing the active branches press %d", SHOW_BRANCHES));
-        System.out.println(String.format("For creating a new branch press %d", CREATE_NEW_BRANCH));
-        System.out.println(String.format("For deleting a branch press %d", DELETE_BRANCH));
-        System.out.println(String.format("For checkout a branch press %d", CHECKOUT_BRANCH));
-        System.out.println(String.format("For showing the active branch's history press %d",
-                SHOW_ACTIVE_BRANCH_HISTORY));
-        System.out.println(String.format("For creating new repo in the system press %d", NEW_REPOSITORY));
-        System.out.println(String.format("For reset head branch to specific commit in the system press %d",
-                RESET_BRANCH));
-        System.out.println(String.format("For exiting the system press %d", EXIT));
+        System.out.println(String.format("%d.\tChanging active username", UPDATE_USER));
+        System.out.println(String.format("%d.\tLoad repository from XML", LOAD_REPOSITORY));
+        System.out.println(String.format("%d.\tSwitch repository", SWITCH_REPOSITORY));
+        System.out.println(String.format("%d.\tShow files of current commit", SHOW_CURRENT_COMMIT));
+        System.out.println(String.format("%d.\tShow WC Status", SHOW_STATUS));
+        System.out.println(String.format("%d.\tCommit", COMMIT));
+        System.out.println(String.format("%d.\tShow all active branchs", SHOW_BRANCHES));
+        System.out.println(String.format("%d.\tCreate new branch", CREATE_NEW_BRANCH));
+        System.out.println(String.format("%d.\tDelete branch", DELETE_BRANCH));
+        System.out.println(String.format("%d.\tCheckout a branch", CHECKOUT_BRANCH));
+        System.out.println(String.format("%d.\tShow head's history", SHOW_ACTIVE_BRANCH_HISTORY));
+        System.out.println(String.format("%d.\tCreate a new repository", NEW_REPOSITORY));
+        System.out.println(String.format("%d.\tReset head to specific commit", RESET_BRANCH));
+        System.out.println(String.format("%d.\tExit", EXIT));
 
     }
 }
