@@ -36,13 +36,13 @@ class Magit {
             result.data = msg;
             result.haveError = false;
         }
-        catch (InvalidDataException e){
-            result.errorMSG = e.getMessage();
-            result.haveError = true;
-        }
         catch (IOException e){
             msg = "Unhandled IOException!";
             result.errorMSG = msg;
+            result.haveError = true;
+        }
+        catch (Exception e){
+            result.errorMSG = e.getMessage();
             result.haveError = true;
         }
         return result;
@@ -81,8 +81,8 @@ class Magit {
 
         try {
             changes = repo.printWCStatus();
-            msg = String.format("The current repository is: %s\n " +
-                    "The current user is: %s\n" + "WC status:\n", rootPath, userName);
+            msg = String.format("The current repository is: %s\n" +
+                    "The current user is: %s\n" + "WC status:", rootPath, userName);
             changes.setMsg(msg);
             changes.setHasErrors(false);
         }

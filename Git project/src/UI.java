@@ -146,30 +146,25 @@ class UI {
                 System.out.println("New files:");
                 for(String curr : result.getNewFiles()){
                     System.out.println(curr);
+                    System.out.println();
                 }
-            }
-            else{
-                System.out.println("No files were added.");
             }
 
             if(!changedFiles.isEmpty()){
                 System.out.println("Changed files:");
                 for(String curr : result.getChangedFiles()){
                     System.out.println(curr);
+                    System.out.println();
                 }
             }
-            else{
-                System.out.println("No files were changed.");
-            }
+
 
             if(!deletedFiles.isEmpty()){
                 System.out.println("Deleted files:");
                 for(String curr : result.getDeletedFiles()){
                     System.out.println(curr);
+                    System.out.println();
                 }
-            }
-            else{
-                System.out.println("No files were deleted.");
             }
         }
     }

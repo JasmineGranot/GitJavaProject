@@ -11,9 +11,6 @@ public class WorkingCopyChanges {
     private String errorMsg;
 
     WorkingCopyChanges(){
-        setChangedFiles(null);
-        setDeletedFiles(null);
-        setNewFiles(null);
         setChanged(false);
         setMsg("");
     }
