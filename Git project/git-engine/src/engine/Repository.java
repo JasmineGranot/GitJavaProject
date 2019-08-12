@@ -1,4 +1,7 @@
 package engine;
+import XMLHandler.XMLUtils;
+import XMLHandler.XMLValidationResult;
+import XMLHandler.XMLValidator;
 import engine.parser.*;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
@@ -78,14 +81,16 @@ class Repository {
 
 
     // =========================== Creating New Repo ==================================
-    void createNewRepository(String newRepositoryPath)
+    void createNewRepository(String newRepositoryPath, boolean addMaster, boolean changeRepo)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException, InvalidDataException{
         String errorMsg;
         File newFile = new File(newRepositoryPath);
         if (!newFile.exists()) {
             if(newFile.mkdirs()){
-                addNewFilesToRepo(newRepositoryPath);
-                changeRepo(newRepositoryPath);
+                addNewFilesToRepo(newRepositoryPath, addMaster);
+                if (changeRepo) {
+                    changeRepo(newRepositoryPath);
+                }
             }
             else{
                 errorMsg = "The system has failed to create the new directory";
@@ -98,7 +103,7 @@ class Repository {
         }
     }
 
-    private void addNewFilesToRepo(String newRepositoryPath) throws IOException, ErrorCreatingNewFileException {
+    private void addNewFilesToRepo(String newRepositoryPath, boolean addMaster) throws IOException, ErrorCreatingNewFileException {
         String errorMsg = "The system has failed to create the new directory";
 
         String magitPath = MagitUtils.joinPaths(newRepositoryPath, ".magit");
@@ -116,15 +121,22 @@ class Repository {
         Writer out1 = new BufferedWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
-        out1.write("master");
+        if (addMaster){
+            out1.write("master");
+        }
+        else{
+            out1.write("");
+        }
         out1.close();
 
-        HeadPath = Paths.get(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Branches\\master"));
-        out1 = new BufferedWriter(
-                new OutputStreamWriter(
-                        new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
-        out1.write("");
-        out1.close();
+        if (addMaster) {
+            HeadPath = Paths.get(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Branches\\master"));
+            out1 = new BufferedWriter(
+                    new OutputStreamWriter(
+                            new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
+            out1.write("");
+            out1.close();
+        }
 
         newFile = new File(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Objects"));
         if(!newFile.mkdir()){
@@ -134,62 +146,43 @@ class Repository {
 
 // ======================= loading Repo from XML ==============================
 
-    void loadRepoFromXML(String repoXMLPath) throws IOException, FileErrorException{
+    void loadRepoFromXML(String repoXMLPath) throws IOException, FileErrorException,
+            DataAlreadyExistsException, InvalidDataException, ErrorCreatingNewFileException {
         try{
-            // C:\Users\97250\Desktop\GitJavaProject\master.xml
             File file = new File(repoXMLPath);
-            JAXBContext jaxbContext = JAXBContext.newInstance("parser");
+            JAXBContext jaxbContext = JAXBContext.newInstance("engine.parser");
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             MagitRepository newMagitRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
-            currentBranchs.clear();
-            currentObjects.clear();
-            createNewRepository(newMagitRepo.getLocation(), false);
-            setRootPath(newMagitRepo.getLocation());
-            updateMainPaths();
-            loadBranchesDataFromMagitRepository(newMagitRepo);
+            XMLValidator validation = new XMLValidator(newMagitRepo, repoXMLPath);
+            XMLValidationResult validationResult = validation.StartChecking();
+            if(validationResult.isValid()) {
+                currentBranchs.clear();
+                currentObjects.clear();
+                createNewRepository(newMagitRepo.getLocation(), false, false);
+                setRootPath(newMagitRepo.getLocation());
+                updateMainPaths();
+                loadBranchesDataFromMagitRepository(newMagitRepo);
+            }
+            else {
+                throw new DataAlreadyExistsException(validationResult.getMessage());
+            }
         }
         catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-    private parser.MagitSingleCommit getMagitSingleCommitByID(MagitRepository repoFromXML, String commitId){
-        List<MagitSingleCommit> commits = repoFromXML.getMagitCommits().getMagitSingleCommit().stream().
-                filter(x-> x.getId().equals(commitId)).collect(Collectors.toList());
-        if (!commits.isEmpty()){
-            return commits.get(0);
-        }
-        else {
-            return null;
-        }
-    }
-    private MagitSingleFolder getMagitFolderByID(MagitRepository repoFromXML, String folderId){
-        List<MagitSingleFolder> folders = repoFromXML.getMagitFolders().getMagitSingleFolder().stream().
-                filter(x-> x.getId().equals(folderId)).collect(Collectors.toList());
-        if (!folders.isEmpty()){
-            return folders.get(0);
-        }
-        return null;
-    }
-    private MagitBlob getMagitBlobByID(MagitRepository repoFromXML, String fileId){
-        List<MagitBlob> files = repoFromXML.getMagitBlobs().getMagitBlob().stream().
-                filter(x-> x.getId().equals(fileId)).collect(Collectors.toList());
-        if (!files.isEmpty()){
-            return files.get(0);
-        }
-        return null;
-    }
-
     private void loadBranchesDataFromMagitRepository(MagitRepository repoFromXML)
-            throws IOException,FileErrorException{
+            throws IOException, FileErrorException, InvalidDataException {
         String head = repoFromXML.getMagitBranches().getHead();
         List<MagitSingleBranch> localBranches = repoFromXML.getMagitBranches().getMagitSingleBranch().stream()
                 .filter(x-> !x.isIsRemote()).collect(Collectors.toList());
         for (MagitSingleBranch curBranch : localBranches){
             String commitId = curBranch.getPointedCommit().getId();
-            MagitSingleCommit relevantCommit = getMagitSingleCommitByID(repoFromXML, commitId);
+            MagitSingleCommit relevantCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, commitId);
             if (relevantCommit == null){
                 System.out.println("throw illegal branch");
+                return;
             }
             Commit newCommit = loadCommitFromMagitSingleCommit(repoFromXML, relevantCommit);
             if (newCommit == null) {
@@ -230,16 +223,22 @@ class Repository {
         newCommit.setCommitDate(commitToLoad.getDateOfCreation());
         newCommit.setCommitCreator(commitToLoad.getAuthor());
         newCommit.setCommitMessage(commitToLoad.getMessage());
-        commitToLoad.getPrecedingCommits().getPrecedingCommit(); // TO Change To Get One
+        //String firstCommitId = commitToLoad.getPrecedingCommits().getPrecedingCommit().get(0).getId(); // TO Change To Get One
+       // MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
 
         String rootFolderId = commitToLoad.getRootFolder().getId();
+
         if (rootFolderId == null){
             System.out.println("throw xml illegal commit");
         }
         else{
-            MagitSingleFolder relevantFolder = getMagitFolderByID(repoFromXML, rootFolderId);
-            if(!relevantFolder.isRoot()){
-                System.out.println("throw commit has non root folder as root");
+            MagitSingleFolder relevantFolder = XMLUtils.getMagitFolderByID(repoFromXML, rootFolderId);
+            if(relevantFolder == null){
+                System.out.println(String.format("throw Folder id %s could not be found", rootFolderId));
+                return null;
+            }
+            if(!relevantFolder.isIsRoot()){
+                System.out.println(String.format("throw Folder id %s sould be root folder", rootFolderId));
                 return null;
             }
             Sha1Obj rootSha1 = new Sha1Obj();
@@ -257,7 +256,7 @@ class Repository {
         Folder currentFolder = new Folder();
         for (Item f : relevantFolder.getItems().getItem()) {
             if (f.getType().equals("blob")) {
-                MagitBlob newMagitBlob = getMagitBlobByID(repoFromXML, f.getId());
+                MagitBlob newMagitBlob = XMLUtils.getMagitBlobByID(repoFromXML, f.getId());
                 Blob newBlob = new Blob();
                 if(newMagitBlob == null){
                     System.out.println("throw commit XML issue- file doesnt exists");
@@ -284,7 +283,7 @@ class Repository {
                 currentFolder.addFile(blobDetails);
             }
             else {
-                MagitSingleFolder newMagitFolder = getMagitFolderByID(repoFromXML, f.getId());
+                MagitSingleFolder newMagitFolder = XMLUtils.getMagitFolderByID(repoFromXML, f.getId());
                 if(newMagitFolder == null){
                     System.out.println("throw commit XML issue- folder doesnt exists");
                     return;
@@ -324,6 +323,8 @@ class Repository {
                 relevantFolder.getLastUpdater(), relevantFolder.getLastUpdateDate());
 
     }
+
+
     // ========================== Change Repo ==========================
     private static void deleteWC(String filePath) throws FileErrorException {
         File root = new File(filePath);
@@ -347,7 +348,7 @@ class Repository {
         }
     }
 
-    private void loadCommitFromSha1(String commitSha1) throws FileErrorException, IOException{
+    private void loadWCFromCommitSha1(String commitSha1) throws FileErrorException, IOException{
         deleteWC(getRootPath());
         Commit curCommit = (Commit) currentObjects.get(commitSha1);
         loadWCFromRoot(curCommit.getRootSha1(), getRootPath());
@@ -662,7 +663,7 @@ class Repository {
         changeHeadBranch(newBranchName);
         String lastCommitInBranchSha1 = currentBranch.getCommitSha1();
         if (!lastCommitInBranchSha1.equals("")) {
-            loadCommitFromSha1(lastCommitInBranchSha1);
+            loadWCFromCommitSha1(lastCommitInBranchSha1);
         }
     }
 
@@ -680,7 +681,7 @@ class Repository {
         }
 
         changeHeadCommit(commitSha1);
-        loadCommitFromSha1(commitSha1);
+        loadWCFromCommitSha1(commitSha1);
     }
 
 

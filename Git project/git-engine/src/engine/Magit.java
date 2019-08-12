@@ -16,7 +16,7 @@ public class Magit {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.createNewRepository(repoPath);
+            repo.createNewRepository(repoPath, true, true);
             msg = "Repository created successfully";
             result.setData(msg);
             result.setIsHasError(false);

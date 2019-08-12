@@ -1,5 +1,6 @@
 package engine;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,5 +43,10 @@ public class Folder extends GitObjectsBase {
                     childDetails[3], childDetails[4]);
             addFile(newDetails);
         }
+    }
+    @Override
+    void createFileFromObject(String destinationPath){
+        File newFolder = new File(destinationPath);
+        newFolder.mkdir();
     }
 }

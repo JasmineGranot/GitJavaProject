@@ -1,7 +1,7 @@
 package engine;
 
 public class InvalidDataException extends Exception {
-    InvalidDataException(String errorMsg){
+    public InvalidDataException(String errorMsg){
         super(errorMsg);
     }
 }
