@@ -174,6 +174,9 @@ class Repository {
 
     private void loadBranchesDataFromMagitRepository(MagitRepository repoFromXML)
             throws IOException, FileErrorException, InvalidDataException {
+        if(XMLUtils.isEmptyRepo(repoFromXML)){
+            return;
+        }
         String head = repoFromXML.getMagitBranches().getHead();
         List<MagitSingleBranch> localBranches = repoFromXML.getMagitBranches().getMagitSingleBranch().stream()
                 .filter(x-> !x.isIsRemote()).collect(Collectors.toList());

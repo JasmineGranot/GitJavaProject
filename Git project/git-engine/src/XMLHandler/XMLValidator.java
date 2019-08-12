@@ -43,41 +43,34 @@ public class XMLValidator {
     private void CheckDoubledId(MagitBranches branches, MagitCommits commits,MagitFolders folders,MagitBlobs blobs )
             throws InvalidDataException //3.2
     {
-        Map<String,MagitSingleCommit> mapCommit = new HashMap<>();
-        for (MagitSingleCommit curr : commits.getMagitSingleCommit())
-        {
-            if (mapCommit.containsKey(curr.getId()) )
-            {
-                throw new InvalidDataException( "Two Commits With same ID");
+        Map<String, MagitSingleCommit> mapCommit = new HashMap<>();
+        for (MagitSingleCommit curr : commits.getMagitSingleCommit()) {
+            if (mapCommit.containsKey(curr.getId())) {
+                throw new InvalidDataException("Two Commits With same ID");
             }
-            mapCommit.put(curr.getId(),curr);
+            mapCommit.put(curr.getId(), curr);
         }
-        Map<String,MagitSingleFolder> mapFolder = new HashMap<>();
-        for (MagitSingleFolder curr : folders.getMagitSingleFolder())
-        {
-            if (mapFolder.containsKey(curr.getId()) )
-            {
-                throw new InvalidDataException( "Two folders With same ID");
+        Map<String, MagitSingleFolder> mapFolder = new HashMap<>();
+        for (MagitSingleFolder curr : folders.getMagitSingleFolder()) {
+            if (mapFolder.containsKey(curr.getId())) {
+                throw new InvalidDataException("Two folders With same ID");
             }
-            mapFolder.put(curr.getId(),curr);
+            mapFolder.put(curr.getId(), curr);
         }
-        Map<String,MagitBlob> mapBlob = new HashMap<>();
-        for (MagitBlob curr : blobs.getMagitBlob())
-        {
-            if (mapBlob.containsKey(curr.getId()))
-            {
-                throw new InvalidDataException( "Two blobs With same ID");
+        Map<String, MagitBlob> mapBlob = new HashMap<>();
+        for (MagitBlob curr : blobs.getMagitBlob()) {
+            if (mapBlob.containsKey(curr.getId())) {
+                throw new InvalidDataException("Two blobs With same ID");
             }
-            mapBlob.put(curr.getId(),curr);
+            mapBlob.put(curr.getId(), curr);
         }
-        for(MagitSingleBranch curr : branches.getMagitSingleBranch())
-        {
-            if(XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId())==null)
-            {
-                throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+        if (!XMLUtils.isEmptyRepo(currentRepo)) {
+            for (MagitSingleBranch curr : branches.getMagitSingleBranch()) {
+                if (XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId()) == null) {
+                    throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+                }
             }
         }
-
     }
 
     private void checkPointedId(MagitFolders folderList) throws InvalidDataException //3.3 //3.4 //3.5
@@ -123,14 +116,16 @@ public class XMLValidator {
         }
     }
     private void CheckIfBranchPointsToCommit (MagitBranches branchList) throws InvalidDataException { //3.8
-        for(MagitSingleBranch curr : branchList.getMagitSingleBranch())
-        {
-            if(XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId())==null)
-            {
-                throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+        if(!XMLUtils.isEmptyRepo(currentRepo)) {
+            for (MagitSingleBranch curr : branchList.getMagitSingleBranch()) {
+                if (XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId()) == null) {
+                    throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+                }
             }
         }
     }
+
+
     private void CheckifHeadExists (MagitBranches magitBranches) throws InvalidDataException { //3.9
         for(MagitSingleBranch curr : magitBranches.getMagitSingleBranch())
         {

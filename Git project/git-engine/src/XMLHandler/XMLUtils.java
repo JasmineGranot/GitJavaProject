@@ -1,9 +1,6 @@
 package XMLHandler;
 
-import engine.parser.MagitBlob;
-import engine.parser.MagitRepository;
-import engine.parser.MagitSingleCommit;
-import engine.parser.MagitSingleFolder;
+import engine.parser.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +32,15 @@ public class XMLUtils {
             return files.get(0);
         }
         return null;
+    }
+    public static boolean isEmptyRepo(MagitRepository repo){
+        MagitBranches branchList = repo.getMagitBranches();
+        if(branchList.getMagitSingleBranch().size() == 1) {
+            MagitSingleBranch onlyBranch = branchList.getMagitSingleBranch().get(0);
+            return onlyBranch.getName().equals(branchList.getHead()) &&
+                    XMLUtils.getMagitSingleCommitByID(repo, onlyBranch.getPointedCommit().getId()) == null;
+        }
+        return false;
     }
 }
 

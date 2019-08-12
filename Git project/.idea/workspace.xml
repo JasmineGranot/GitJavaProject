@@ -10,11 +10,7 @@
     <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/InvalidDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/InvalidDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,21 +41,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="-43">
+              <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#1320#2214#0" />
                 <element signature="e#1478#1493#0" />
                 <element signature="e#2220#2453#0" />
@@ -78,13 +66,6 @@
                 <element signature="e#4629#4674#1" />
                 <element signature="e#4723#5071#1" />
                 <element signature="e#4836#4910#1" />
-                <element signature="e#5783#5827#0" />
-                <element signature="e#7862#7944#1" />
-                <element signature="e#7961#8320#1" />
-                <element signature="e#8372#8995#1" />
-                <element signature="e#8748#8899#1" />
-                <element signature="e#8920#8981#1" />
-                <element signature="e#9601#9672#1" />
                 <element signature="e#9882#12472#0" />
                 <element signature="e#10601#12395#1" />
                 <element signature="e#10647#11795#1" />
@@ -98,7 +79,6 @@
                 <element signature="e#12642#12669#0" />
                 <element signature="e#12478#12702#0" />
                 <element signature="e#12707#13011#0" />
-                <element signature="e#13016#13879#0" />
                 <element signature="e#13697#14276#1" />
                 <element signature="e#13734#14266#1" />
                 <element signature="e#13859#14028#1" />
@@ -239,8 +219,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="269">
+              <caret line="35" column="37" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -249,10 +229,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-519">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="53" selection-start-line="53" selection-end-line="55" selection-end-column="5" />
+            <state relative-caret-position="374">
+              <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
               <folding>
                 <element signature="method#saveToMagitObjects#0;class#GitObjectsBase#0" />
               </folding>
@@ -261,10 +250,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-352">
+              <caret line="31" column="81" lean-forward="true" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
+              <folding>
+                <element signature="e#1883#1884#0" expanded="true" />
+                <element signature="e#1959#1960#0" expanded="true" />
+                <element signature="e#3390#3391#0" expanded="true" />
+                <element signature="e#3449#3450#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Scanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="609" column="11" selection-start-line="609" selection-start-column="11" selection-end-line="609" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Folder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="247">
               <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Blob.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -273,7 +295,7 @@
         <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
-              <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
+              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -282,22 +304,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/parser/MagitRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="179" selection-start-line="179" selection-end-line="179" />
-              <folding>
-                <element signature="e#4699#4700#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-347">
-              <caret line="67" column="47" lean-forward="true" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
+            <state relative-caret-position="221">
+              <caret line="70" selection-start-line="70" selection-end-line="70" />
               <folding>
                 <element signature="method#changeRepository#0;class#Magit#0" />
                 <element signature="method#showFullCommitData#0;class#Magit#0" />
@@ -310,15 +320,6 @@
                 <element signature="method#showHistoryDataForActiveBranch#0;class#Magit#0" />
                 <element signature="method#resetBranch#0;class#Magit#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -361,10 +362,11 @@
         <option value="$PROJECT_DIR$/git-engine/src/engine/FileDetails.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java" />
         <option value="$PROJECT_DIR$/../Git UI/src/ui/UI.java" />
-        <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" />
         <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/Folder.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/Magit.java" />
+        <option value="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" />
+        <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" />
         <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/Repository.java" />
       </list>
@@ -409,6 +411,13 @@
               <item name="git-engine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+              <item name="git-engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="XMLHandler" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
@@ -569,16 +578,30 @@
       <option name="project" value="LOCAL" />
       <updated>1565640153180</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added all XML validation">
+      <created>1565644322650</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1565644322650</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed reading files and XML loading commit recursively">
+      <created>1565647182527</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1565647182527</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7239000" />
+    <option name="totallyTimeSpent" value="11800000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20770878" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20770878" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -588,7 +611,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39862543" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39862543" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -652,7 +675,9 @@
     <MESSAGE value="new changes in exceptions and checkout branch function" />
     <MESSAGE value="new changes in exceptions and checkout branch function2" />
     <MESSAGE value="changes with aviad" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes with aviad" />
+    <MESSAGE value="added all XML validation" />
+    <MESSAGE value="fixed reading files and XML loading commit recursively" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed reading files and XML loading commit recursively" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -671,15 +696,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
-          <line>225</line>
+          <line>213</line>
           <properties />
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>180</line>
+          <properties />
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>getFileContent(targetStream, ENCODING);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>currentObjects</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>String firstCommitId = commitToLoad.getPrecedingCommits().getPrecedingCommit().get(0).getId(); // TO Change To Get One
 MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);</expression-string>
@@ -820,13 +861,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/FileDetails.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
@@ -834,34 +868,10 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="101" column="53" selection-start-line="101" selection-start-column="53" selection-end-line="101" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/parser/MagitSingleFolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="53" selection-start-line="53" selection-end-line="55" selection-end-column="5" />
-          <folding>
-            <element signature="method#saveToMagitObjects#0;class#GitObjectsBase#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Folder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -876,16 +886,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,10 +913,54 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Folder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Blob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="609" column="11" selection-start-line="609" selection-start-column="11" selection-end-line="609" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="31" column="81" lean-forward="true" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
+          <folding>
+            <element signature="e#1883#1884#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#3390#3391#0" expanded="true" />
+            <element signature="e#3449#3450#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+          <folding>
+            <element signature="method#saveToMagitObjects#0;class#GitObjectsBase#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-347">
-          <caret line="67" column="47" lean-forward="true" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
+        <state relative-caret-position="221">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="method#changeRepository#0;class#Magit#0" />
             <element signature="method#showFullCommitData#0;class#Magit#0" />
@@ -932,10 +976,27 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-519">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="35" column="37" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
-          <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
+          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -944,9 +1005,10 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="-43">
+          <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#1320#2214#0" />
             <element signature="e#1478#1493#0" />
             <element signature="e#2220#2453#0" />
@@ -965,13 +1027,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
             <element signature="e#4629#4674#1" />
             <element signature="e#4723#5071#1" />
             <element signature="e#4836#4910#1" />
-            <element signature="e#5783#5827#0" />
-            <element signature="e#7862#7944#1" />
-            <element signature="e#7961#8320#1" />
-            <element signature="e#8372#8995#1" />
-            <element signature="e#8748#8899#1" />
-            <element signature="e#8920#8981#1" />
-            <element signature="e#9601#9672#1" />
             <element signature="e#9882#12472#0" />
             <element signature="e#10601#12395#1" />
             <element signature="e#10647#11795#1" />
@@ -985,7 +1040,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
             <element signature="e#12642#12669#0" />
             <element signature="e#12478#12702#0" />
             <element signature="e#12707#13011#0" />
-            <element signature="e#13016#13879#0" />
             <element signature="e#13697#14276#1" />
             <element signature="e#13734#14266#1" />
             <element signature="e#13859#14028#1" />
