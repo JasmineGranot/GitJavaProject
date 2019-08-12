@@ -7,7 +7,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="" />
+    <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="deleted the engine word">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +125,8 @@
       <workItem from="1565528715140" duration="2235000" />
       <workItem from="1565534370616" duration="5004000" />
       <workItem from="1565542632128" duration="4607000" />
-      <workItem from="1565549865932" duration="262000" />
+      <workItem from="1565549865932" duration="887000" />
+      <workItem from="1565621123220" duration="311000" />
     </task>
     <task id="LOCAL‎00001" summary="magit main changes with aviad">
       <created>1565344215036</created>
@@ -167,7 +170,25 @@
       <option name="presentableId" value="LOCAL‎00007" />
       <updated>1565549928231</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎00008" summary="added files">
+      <created>1565550213749</created>
+      <option name="number" value="LOCAL‎00008" />
+      <option name="presentableId" value="LOCAL‎00008" />
+      <updated>1565550213749</updated>
+    </task>
+    <task id="LOCAL‎00009" summary="deleted the engine word">
+      <created>1565550488349</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1565550488349</updated>
+    </task>
+    <task id="LOCAL‎00010" summary="deleted the engine word">
+      <created>1565550685106</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1565550685106</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +214,9 @@
     <MESSAGE value="new changes in exceptions and checkout branch function" />
     <MESSAGE value="new changes in exceptions and checkout branch function2" />
     <MESSAGE value="changes with aviad" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes with aviad" />
+    <MESSAGE value="added files" />
+    <MESSAGE value="deleted the engine word" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted the engine word" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
