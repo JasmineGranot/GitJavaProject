@@ -223,8 +223,14 @@ class Repository {
         newCommit.setCommitDate(commitToLoad.getDateOfCreation());
         newCommit.setCommitCreator(commitToLoad.getAuthor());
         newCommit.setCommitMessage(commitToLoad.getMessage());
-        //String firstCommitId = commitToLoad.getPrecedingCommits().getPrecedingCommit().get(0).getId(); // TO Change To Get One
-       // MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
+        List<PrecedingCommits.PrecedingCommit> historyCommits = commitToLoad.getPrecedingCommits().getPrecedingCommit();
+        if(historyCommits.size() > 0) {
+            String firstCommitId = historyCommits.get(0).getId();
+            MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
+            if(lastCommit != null && !lastCommit.equals("")) {
+                newCommit.setLastCommitSha1(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1());
+            }
+        }
 
         String rootFolderId = commitToLoad.getRootFolder().getId();
 
