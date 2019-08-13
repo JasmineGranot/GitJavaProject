@@ -92,7 +92,21 @@ class UI {
         System.out.println(String.format("User name was changed to: %s", userName));
     }
 
-    private void loadRepository(){}
+    private void loadRepository(){
+        System.out.println("Please enter the repository XML file path:");
+        String repoPath = reader.nextLine();
+        repoPath = reader.nextLine();
+
+        MagitStringResultObject result = myMagit.loadRepositoryFromXML(repoPath);
+        if(result.getIsHasError()){
+            System.out.println(result.getErrorMSG());
+            System.out.println();
+        }
+        else{
+            System.out.println(result.getData());
+            System.out.println();
+        }
+    }
 
     private void createNewRepository(){
         System.out.println("Please enter a path for a new Repository:");
