@@ -221,7 +221,7 @@ class Repository {
     }
 
     private Commit loadCommitFromMagitSingleCommit(MagitRepository repoFromXML, MagitSingleCommit commitToLoad)
-            throws IOException, FileErrorException{
+            throws IOException, FileErrorException, NullPointerException{
         Commit newCommit = new Commit();
         newCommit.setCommitDate(commitToLoad.getDateOfCreation());
         newCommit.setCommitCreator(commitToLoad.getAuthor());
@@ -231,7 +231,7 @@ class Repository {
             String firstCommitId = historyCommits.get(0).getId();
             MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
             if(lastCommit != null && !lastCommit.equals("")) {
-                String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
+                String commitSha1 = Objects.requireNonNull(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit)).doSha1();
                 if (commitSha1 != null) {
                     newCommit.setLastCommitSha1(commitSha1);
                 }
