@@ -7,6 +7,7 @@ public class Magit {
 
     private String userName = "Administrator";
     private Repository repo = new Repository();
+    private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
 
     public void setUserName(String newName) {
         this.userName = newName;
@@ -74,6 +75,11 @@ public class Magit {
     public MagitStringResultObject showFullCommitData(){
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            result.setIsHasError(true);
+            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return result;
+        }
         try{
             msg = repo.getCurrentCommitFullFilesData();
             result.setData(msg);
@@ -89,23 +95,16 @@ public class Magit {
 
     public WorkingCopyChanges showStatus() {
         String msg;
-        String rootPath;
         WorkingCopyChanges changes = new WorkingCopyChanges();
-
-        try {
-            rootPath = repo.getRootPath();
-        }
-        catch(NullPointerException e){
-            msg = "There was a problem reading the current repository path!";
-            changes.setErrorMsg(msg);
+        if (!isRepositoryConfigured()){
             changes.setHasErrors(true);
+            changes.setErrorMsg(NON_EXISTING_REPO_MSG);
             return changes;
         }
-
         try {
             changes = repo.printWCStatus();
             msg = String.format("The current repository is: %s\n" +
-                    "The current user is: %s\n" + "WC status:", rootPath, userName);
+                    "The current user is: %s\n" + "WC status:", repo.getRootPath(), userName);
             changes.setMsg(msg);
             changes.setHasErrors(false);
         }
@@ -125,6 +124,11 @@ public class Magit {
         MagitStringResultObject result = new MagitStringResultObject();
         boolean success;
         String msg;
+        if (!isRepositoryConfigured()){
+            result.setIsHasError(true);
+            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return result;
+        }
         try {
             success = repo.createNewCommit(userName, commitMsg);
             if(success){
@@ -161,6 +165,11 @@ public class Magit {
 
     public MagitStringResultObject showAllBranches() {
         MagitStringResultObject result = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            result.setIsHasError(true);
+            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return result;
+        }
         try{
             result.setData(repo.showAllBranchesData());
             result.setIsHasError(false);
@@ -175,6 +184,11 @@ public class Magit {
     public MagitStringResultObject addNewBranch(String branchName) throws InvalidDataException {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
         if (branchName.contains(" ")) {
             msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
@@ -204,6 +218,11 @@ public class Magit {
     public MagitStringResultObject deleteBranch(String branchName) throws InvalidDataException {
         MagitStringResultObject resultObject = new MagitStringResultObject();
         String msg;
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
         if (branchName.contains(" ")) {
             msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
@@ -228,6 +247,11 @@ public class Magit {
             throws InvalidDataException, DirectoryNotEmptyException{
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
         if (branchName.contains(" ")) {
             msg = "Branch name is invalid, please remove all spaces.";
             throw new InvalidDataException(msg);
@@ -255,6 +279,11 @@ public class Magit {
 
     public MagitStringResultObject showHistoryDataForActiveBranch() {
         MagitStringResultObject resultObject = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
         try{
             resultObject = repo.getHistoryBranchData();
             resultObject.setIsHasError(false);
@@ -270,6 +299,11 @@ public class Magit {
             throws DirectoryNotEmptyException{
         MagitStringResultObject resultObject = new MagitStringResultObject();
         String msg;
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
         try {
             repo.resetCommitInBranch(commitSha1, ignore);
             resultObject.setIsHasError(false);
@@ -285,6 +319,11 @@ public class Magit {
         }
         return resultObject;
     }
+
+    private boolean isRepositoryConfigured(){
+        return repo.getRootPath() != null;
+    }
+
 }
 
 

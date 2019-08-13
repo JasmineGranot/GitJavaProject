@@ -505,10 +505,15 @@ class Repository {
                 data = data.concat("----> Head");
             }
             String commitSha1 = curBranch.getCommitSha1();
-            data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
-            Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
-            data = data.concat(String.format("\nThe commit message:\n %s",
+            if (!commitSha1.equals("")){ // only for new repo without master commit option
+                data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
+                Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
+                data = data.concat(String.format("\nThe commit message:\n %s",
                     lastComitInBranch.getCommitMessage()));
+            }
+            else{
+                data = data.concat(String.format("\nNo commit was created for %s\n", curBranch.getName()));
+            }
             data = data.concat("\n========================\n");
 
         }
@@ -517,6 +522,9 @@ class Repository {
 
     void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException{
         String errorMsg;
+        if (rootPath == null){
+            errorMsg = "repository ";
+        }
         if (isBranchExist(newBranchName)) {
             errorMsg = "Branch already Exist!";
             throw new DataAlreadyExistsException(errorMsg);
@@ -673,6 +681,10 @@ class Repository {
         String lastCommitInBranchSha1 = currentBranch.getCommitSha1();
         if (!lastCommitInBranchSha1.equals("")) {
             loadWCFromCommitSha1(lastCommitInBranchSha1);
+        }
+        else{ // No commit was never done, meaning this still is an empty repo.
+            deleteWC(getRootPath());
+            currentCommit = null;
         }
     }
 

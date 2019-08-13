@@ -9,8 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,189 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-43">
-              <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1320#2214#0" />
-                <element signature="e#1478#1493#0" />
-                <element signature="e#2220#2453#0" />
-                <element signature="e#2349#2419#1" />
-                <element signature="e#2459#2582#0" />
-                <element signature="e#2660#3628#0" />
-                <element signature="e#3059#3454#1" />
-                <element signature="e#3093#3265#1" />
-                <element signature="e#3181#3251#1" />
-                <element signature="e#3116#3278#1" />
-                <element signature="e#3302#3456#1" />
-                <element signature="e#3645#5269#0" />
-                <element signature="e#3807#3881#1" />
-                <element signature="e#4000#4074#1" />
-                <element signature="e#4571#4616#1" />
-                <element signature="e#4629#4674#1" />
-                <element signature="e#4723#5071#1" />
-                <element signature="e#4836#4910#1" />
-                <element signature="e#9882#12472#0" />
-                <element signature="e#10601#12395#1" />
-                <element signature="e#10647#11795#1" />
-                <element signature="e#10815#10948#1" />
-                <element signature="e#11210#11237#0" />
-                <element signature="e#11405#11432#0" />
-                <element signature="e#11607#11634#0" />
-                <element signature="e#11813#12385#1" />
-                <element signature="e#11952#12087#1" />
-                <element signature="e#12464#12491#0" />
-                <element signature="e#12642#12669#0" />
-                <element signature="e#12478#12702#0" />
-                <element signature="e#12707#13011#0" />
-                <element signature="e#13697#14276#1" />
-                <element signature="e#13734#14266#1" />
-                <element signature="e#13859#14028#1" />
-                <element signature="e#13924#14010#1" />
-                <element signature="e#14034#14252#1" />
-                <element signature="e#14079#14234#1" />
-                <element signature="e#13885#14146#0" />
-                <element signature="e#14152#14804#0" />
-                <element signature="e#14720#15201#1" />
-                <element signature="e#14851#15191#1" />
-                <element signature="e#14810#15054#0" />
-                <element signature="e#15060#16127#0" />
-                <element signature="e#15652#15800#1" />
-                <element signature="e#16119#16434#1" />
-                <element signature="e#16159#16316#1" />
-                <element signature="e#16333#16424#1" />
-                <element signature="e#16447#16492#1" />
-                <element signature="e#16133#17124#0" />
-                <element signature="e#16792#16856#0" />
-                <element signature="e#17057#17521#1" />
-                <element signature="e#17255#17332#1" />
-                <element signature="e#17130#17905#0" />
-                <element signature="e#17817#17960#1" />
-                <element signature="e#18024#18302#1" />
-                <element signature="e#18076#18291#1" />
-                <element signature="e#17912#18777#0" />
-                <element signature="e#18474#18984#1" />
-                <element signature="e#18767#18973#1" />
-                <element signature="e#18827#18959#1" />
-                <element signature="e#18998#19174#1" />
-                <element signature="e#18783#19134#0" />
-                <element signature="e#19362#19509#1" />
-                <element signature="e#19409#19499#1" />
-                <element signature="e#19141#20075#0" />
-                <element signature="e#19724#20451#1" />
-                <element signature="e#19952#20017#1" />
-                <element signature="e#20081#20460#0" />
-                <element signature="e#20636#20755#1" />
-                <element signature="e#20769#20861#1" />
-                <element signature="e#20466#21056#0" />
-                <element signature="e#20985#21017#0" />
-                <element signature="e#21221#21257#0" />
-                <element signature="e#21062#22305#0" />
-                <element signature="e#21677#21791#1" />
-                <element signature="e#21843#21964#1" />
-                <element signature="e#21978#22702#1" />
-                <element signature="e#21992#22024#0" />
-                <element signature="e#22276#22421#1" />
-                <element signature="e#22435#22471#0" />
-                <element signature="e#22311#22663#0" />
-                <element signature="e#22885#23018#1" />
-                <element signature="e#22669#23628#0" />
-                <element signature="e#23357#23953#1" />
-                <element signature="e#23375#23744#0" />
-                <element signature="e#23776#23943#0" />
-                <element signature="e#23634#23871#0" />
-                <element signature="e#24135#24246#1" />
-                <element signature="e#24192#24236#1" />
-                <element signature="e#23877#24119#0" />
-                <element signature="e#24378#24495#1" />
-                <element signature="e#24435#24485#1" />
-                <element signature="e#24125#24936#0" />
-                <element signature="e#24741#24873#1" />
-                <element signature="e#24887#25333#1" />
-                <element signature="e#24905#25129#0" />
-                <element signature="e#25164#25323#0" />
-                <element signature="e#24942#25334#0" />
-                <element signature="e#25979#26092#1" />
-                <element signature="e#26208#26350#1" />
-                <element signature="e#26789#26896#1" />
-                <element signature="e#26957#27096#1" />
-                <element signature="e#26785#27021#0" />
-                <element signature="e#27027#29045#0" />
-                <element signature="e#27657#29331#0" />
-                <element signature="e#27713#29253#1" />
-                <element signature="e#27809#27895#0" />
-                <element signature="e#27933#28153#0" />
-                <element signature="e#28199#28284#0" />
-                <element signature="e#28551#28633#1" />
-                <element signature="e#28655#28807#1" />
-                <element signature="e#28909#29008#1" />
-                <element signature="e#29271#29321#1" />
-                <element signature="e#29354#29416#0" />
-                <element signature="e#29051#29434#0" />
-                <element signature="e#29440#30975#0" />
-                <element signature="e#29950#31198#0" />
-                <element signature="e#30408#30501#1" />
-                <element signature="e#31004#31053#1" />
-                <element signature="e#31221#31372#0" />
-                <element signature="e#30981#31484#0" />
-                <element signature="e#31562#31858#1" />
-                <element signature="e#31654#31848#1" />
-                <element signature="e#31717#31769#1" />
-                <element signature="e#31490#32219#0" />
-                <element signature="e#32138#32250#1" />
-                <element signature="e#32278#32338#1" />
-                <element signature="e#32344#32616#1" />
-                <element signature="e#32436#32606#1" />
-                <element signature="e#32225#32794#0" />
-                <element signature="e#32828#33117#1" />
-                <element signature="e#33045#33107#1" />
-                <element signature="e#32800#36468#0" />
-                <element signature="e#33337#36639#0" />
-                <element signature="e#33397#34851#1" />
-                <element signature="e#33677#33753#1" />
-                <element signature="e#33775#34836#1" />
-                <element signature="e#34070#34177#0" />
-                <element signature="e#34220#34452#0" />
-                <element signature="e#34502#34741#0" />
-                <element signature="e#34869#36629#1" />
-                <element signature="e#35068#36541#1" />
-                <element signature="e#35210#35344#1" />
-                <element signature="e#35503#35582#1" />
-                <element signature="e#35608#36523#1" />
-                <element signature="e#35705#35817#0" />
-                <element signature="e#35864#36114#0" />
-                <element signature="e#36168#36425#0" />
-                <element signature="e#36563#36615#1" />
-                <element signature="e#36669#36865#0" />
-                <element signature="e#36474#36832#0" />
-                <element signature="e#36838#36948#0" />
-                <element signature="e#36954#37952#0" />
-                <element signature="e#37538#38328#1" />
-                <element signature="e#37847#38250#1" />
-                <element signature="e#38142#38236#1" />
-                <element signature="e#38268#38318#1" />
-                <element signature="e#37958#38218#0" />
-                <element signature="e#38224#38774#0" />
-                <element signature="e#38821#39171#1" />
-                <element signature="e#38913#39161#1" />
-                <element signature="e#38780#39071#0" />
-                <element signature="e#39279#39468#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java">
+        <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="35" column="37" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="44">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -231,19 +52,194 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-519">
-              <caret line="99" selection-start-line="99" selection-end-line="99" />
+            <state relative-caret-position="-142">
+              <caret line="200" selection-start-line="200" selection-end-line="200" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="677" column="9" lean-forward="true" selection-start-line="677" selection-start-column="9" selection-end-line="677" selection-end-column="9" />
+              <folding>
+                <element signature="e#1419#2313#0" />
+                <element signature="e#1577#1592#0" />
+                <element signature="e#2319#2552#0" />
+                <element signature="e#2448#2518#1" />
+                <element signature="e#2558#2681#0" />
+                <element signature="e#2688#3667#0" />
+                <element signature="e#3087#3493#1" />
+                <element signature="e#3121#3304#1" />
+                <element signature="e#3220#3290#1" />
+                <element signature="e#3321#3483#1" />
+                <element signature="e#3507#3661#1" />
+                <element signature="e#3673#5289#0" />
+                <element signature="e#4031#4105#1" />
+                <element signature="e#4224#4298#1" />
+                <element signature="e#4599#4644#1" />
+                <element signature="e#4657#4696#1" />
+                <element signature="e#4743#5091#1" />
+                <element signature="e#5209#5283#1" />
+                <element signature="e#5376#6613#0" />
+                <element signature="e#5562#6530#0" />
+                <element signature="e#6069#6402#1" />
+                <element signature="e#6420#6520#1" />
+                <element signature="e#6563#6607#0" />
+                <element signature="e#6619#8747#0" />
+                <element signature="e#6817#6848#1" />
+                <element signature="e#7156#8741#1" />
+                <element signature="e#7370#7469#1" />
+                <element signature="e#7598#7680#1" />
+                <element signature="e#7697#8056#1" />
+                <element signature="e#8108#8731#1" />
+                <element signature="e#8484#8635#1" />
+                <element signature="e#8656#8717#1" />
+                <element signature="e#8753#10687#0" />
+                <element signature="e#9305#9677#1" />
+                <element signature="e#9540#9667#1" />
+                <element signature="e#9781#9852#1" />
+                <element signature="e#9865#10654#1" />
+                <element signature="e#10008#10158#1" />
+                <element signature="e#10201#10353#1" />
+                <element signature="e#10693#13301#0" />
+                <element signature="e#11009#12821#1" />
+                <element signature="e#11055#12212#1" />
+                <element signature="e#11232#11365#1" />
+                <element signature="e#11627#11654#0" />
+                <element signature="e#11822#11849#0" />
+                <element signature="e#12024#12051#0" />
+                <element signature="e#12230#12811#1" />
+                <element signature="e#12378#12513#1" />
+                <element signature="e#12890#12917#0" />
+                <element signature="e#13068#13095#0" />
+                <element signature="e#13307#13531#0" />
+                <element signature="e#13536#13840#0" />
+                <element signature="e#14287#14456#1" />
+                <element signature="e#14352#14438#1" />
+                <element signature="e#14462#14680#1" />
+                <element signature="e#14507#14662#1" />
+                <element signature="e#14985#15637#0" />
+                <element signature="e#15150#15631#1" />
+                <element signature="e#15281#15621#1" />
+                <element signature="e#15643#15887#0" />
+                <element signature="e#15893#16960#0" />
+                <element signature="e#16082#16230#1" />
+                <element signature="e#16549#16864#1" />
+                <element signature="e#16589#16746#1" />
+                <element signature="e#16763#16854#1" />
+                <element signature="e#16877#16922#1" />
+                <element signature="e#16966#17957#0" />
+                <element signature="e#17222#17286#0" />
+                <element signature="e#17487#17951#1" />
+                <element signature="e#17685#17762#1" />
+                <element signature="e#17963#18738#0" />
+                <element signature="e#18247#18390#1" />
+                <element signature="e#18454#18732#1" />
+                <element signature="e#18506#18721#1" />
+                <element signature="e#18745#19610#0" />
+                <element signature="e#18904#19414#1" />
+                <element signature="e#19197#19403#1" />
+                <element signature="e#19257#19389#1" />
+                <element signature="e#19428#19604#1" />
+                <element signature="e#19616#19967#0" />
+                <element signature="e#19792#19939#1" />
+                <element signature="e#19839#19929#1" />
+                <element signature="e#19974#20908#0" />
+                <element signature="e#20154#20881#1" />
+                <element signature="e#20382#20447#1" />
+                <element signature="e#20549#20809#1" />
+                <element signature="e#20940#20979#1" />
+                <element signature="e#21066#21185#1" />
+                <element signature="e#21299#21889#0" />
+                <element signature="e#21415#21447#0" />
+                <element signature="e#21651#21687#0" />
+                <element signature="e#21895#23138#0" />
+                <element signature="e#22107#22221#1" />
+                <element signature="e#22273#22394#1" />
+                <element signature="e#22408#23132#1" />
+                <element signature="e#22422#22454#0" />
+                <element signature="e#22706#22851#1" />
+                <element signature="e#22865#22901#0" />
+                <element signature="e#23144#23496#0" />
+                <element signature="e#23315#23448#1" />
+                <element signature="e#23502#24461#0" />
+                <element signature="e#23787#24383#1" />
+                <element signature="e#23805#24174#0" />
+                <element signature="e#24206#24373#0" />
+                <element signature="e#24467#24704#0" />
+                <element signature="e#24565#24676#1" />
+                <element signature="e#24622#24666#1" />
+                <element signature="e#24710#24952#0" />
+                <element signature="e#24808#24925#1" />
+                <element signature="e#24865#24915#1" />
+                <element signature="e#24958#25769#0" />
+                <element signature="e#25171#25303#1" />
+                <element signature="e#25317#25763#1" />
+                <element signature="e#25335#25559#0" />
+                <element signature="e#25594#25753#0" />
+                <element signature="e#25775#26167#0" />
+                <element signature="e#27023#27615#0" />
+                <element signature="e#27221#27328#1" />
+                <element signature="e#27389#27528#1" />
+                <element signature="e#27622#27858#0" />
+                <element signature="e#28367#28587#0" />
+                <element signature="e#28633#28718#0" />
+                <element signature="e#31655#31806#0" />
+                <element signature="e#31818#32321#0" />
+                <element signature="e#31996#32292#1" />
+                <element signature="e#32088#32282#1" />
+                <element signature="e#32151#32203#1" />
+                <element signature="e#32327#33056#0" />
+                <element signature="e#32572#32684#1" />
+                <element signature="e#32712#32772#1" />
+                <element signature="e#32778#33050#1" />
+                <element signature="e#32870#33040#1" />
+                <element signature="e#33479#33541#1" />
+                <element signature="e#33637#37305#0" />
+                <element signature="e#33771#37073#0" />
+                <element signature="e#33831#35285#1" />
+                <element signature="e#34111#34187#1" />
+                <element signature="e#34209#35270#1" />
+                <element signature="e#34504#34611#0" />
+                <element signature="e#34654#34886#0" />
+                <element signature="e#34936#35175#0" />
+                <element signature="e#35303#37063#1" />
+                <element signature="e#35502#36975#1" />
+                <element signature="e#35644#35778#1" />
+                <element signature="e#35937#36016#1" />
+                <element signature="e#36042#36957#1" />
+                <element signature="e#36139#36251#0" />
+                <element signature="e#36298#36548#0" />
+                <element signature="e#36602#36859#0" />
+                <element signature="e#36997#37049#1" />
+                <element signature="e#37103#37299#0" />
+                <element signature="e#37311#37669#0" />
+                <element signature="e#37675#37785#0" />
+                <element signature="e#37791#38789#0" />
+                <element signature="e#37972#38762#1" />
+                <element signature="e#38281#38684#1" />
+                <element signature="e#38576#38670#1" />
+                <element signature="e#38702#38752#1" />
+                <element signature="e#38795#39055#0" />
+                <element signature="e#39061#39611#0" />
+                <element signature="e#39255#39605#1" />
+                <element signature="e#39347#39595#1" />
+                <element signature="e#39617#39908#0" />
+                <element signature="e#39713#39902#1" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Branch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+            <state relative-caret-position="352">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
-                <element signature="method#saveToMagitObjects#0;class#GitObjectsBase#0" />
+                <element signature="e#383#384#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -252,53 +248,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-352">
-              <caret line="31" column="81" lean-forward="true" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
-              <folding>
-                <element signature="e#1883#1884#0" expanded="true" />
-                <element signature="e#1959#1960#0" expanded="true" />
-                <element signature="e#3390#3391#0" expanded="true" />
-                <element signature="e#3449#3450#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="121">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Scanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="609" column="11" selection-start-line="609" selection-start-column="11" selection-end-line="609" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Folder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Blob.java">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java">
+        <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="154">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -306,19 +275,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="129">
+              <caret line="260" selection-start-line="260" selection-end-line="260" />
               <folding>
+                <element signature="method#createNewRepo#0;class#Magit#0" />
                 <element signature="method#changeRepository#0;class#Magit#0" />
-                <element signature="method#showFullCommitData#0;class#Magit#0" />
+                <element signature="method#loadRepositoryFromXML#0;class#Magit#0" />
                 <element signature="method#showStatus#0;class#Magit#0" />
-                <element signature="method#createNewCommit#0;class#Magit#0" />
-                <element signature="method#showAllBranches#0;class#Magit#0" />
                 <element signature="method#addNewBranch#0;class#Magit#0" />
                 <element signature="method#deleteBranch#0;class#Magit#0" />
-                <element signature="method#checkoutBranch#0;class#Magit#0" />
                 <element signature="method#showHistoryDataForActiveBranch#0;class#Magit#0" />
-                <element signature="method#resetBranch#0;class#Magit#0" />
+                <element signature="e#10136#10137#0" expanded="true" />
+                <element signature="e#10179#10180#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -364,19 +332,19 @@
         <option value="$PROJECT_DIR$/../Git UI/src/ui/UI.java" />
         <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/Folder.java" />
-        <option value="$PROJECT_DIR$/git-engine/src/engine/Magit.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" />
         <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLUtils.java" />
         <option value="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" />
+        <option value="$PROJECT_DIR$/git-engine/src/engine/Magit.java" />
         <option value="$PROJECT_DIR$/git-engine/src/engine/Repository.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="190" />
+    <option name="y" value="135" />
+    <option name="width" value="2203" />
+    <option name="height" value="1310" />
   </component>
   <component name="ProjectId" id="1PBMWY9tZBhOH76De4cJVrmXeDO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -385,7 +353,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -414,13 +381,6 @@
             </path>
             <path>
               <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Git project" type="462c0819:PsiDirectoryNode" />
-              <item name="git-engine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="XMLHandler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Git project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Git UI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -438,6 +398,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -503,7 +464,7 @@
         <item itemvalue="Application.MagitMain" />
         <item itemvalue="Application.MagitMain (1)" />
         <item itemvalue="Application.MagitMain" />
-        <item itemvalue="Application.MagitMain" />
+        <item itemvalue="Application.MagitMain (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -528,6 +489,7 @@
       <workItem from="1565549865932" duration="262000" />
       <workItem from="1565553941014" duration="1316000" />
       <workItem from="1565555885374" duration="2391000" />
+      <workItem from="1565705379133" duration="5306000" />
     </task>
     <task id="LOCAL‎00001" summary="magit main changes with aviad">
       <created>1565344215036</created>
@@ -596,12 +558,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11800000" />
+    <option name="totallyTimeSpent" value="17766000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20770878" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26549864" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -611,16 +574,16 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39862543" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3196347" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.41248098" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3298611" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32876712" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -706,77 +669,105 @@
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Magit.java</url>
+          <line>166</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Magit.java</url>
+          <line>76</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>983</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>672</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>787</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/git-engine/src/engine/Repository.java</url>
+          <line>753</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>getFileContent(targetStream, ENCODING);</expression-string>
+        <expression-string>currentCommit</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>currentObjects</expression-string>
+        <expression-string>currentBranch.commitSha1</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>String firstCommitId = commitToLoad.getPrecedingCommits().getPrecedingCommit().get(0).getId(); // TO Change To Get One
-MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>XMLHandler.XMLUtils</custom-info>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>String firstCommitId = commitToLoad.getPrecedingCommits().getPrecedingCommit().get(0);
-XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>XMLHandler.XMLUtils</custom-info>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>commitToLoad.getPrecedingCommits().getPrecedingCommit()</expression-string>
+        <expression-string>lastCommitFiles</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>magitBranches.getHead()</expression-string>
+        <expression-string>newFiles</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>magitBranches.getMagitSingleBranch()</expression-string>
+        <expression-string>currentObjects
+//Folder b = (Folder) f;
+//b.getFilesList()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>!file.exists()</expression-string>
+        <expression-string>currentObjects.get(getRootSha1())
+//Folder b = (Folder) f;
+//b.getFilesList()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>!file.exists() || !path.endsWith(&quot;.xml&quot;)</expression-string>
+        <expression-string>getRootSha1()
+//Folder b = (Folder) f;
+//b.getFilesList()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>currentObjects.get(getRootSha1());
+//Folder b = (Folder) f;
+//b.getFilesList()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>GitObjectsBase f = currentObjects.get(getRootSha1());
+//Folder b = (Folder) f;
+//b.getFilesList()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/parser/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -875,13 +866,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -934,19 +918,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-352">
-          <caret line="31" column="81" lean-forward="true" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
-          <folding>
-            <element signature="e#1883#1884#0" expanded="true" />
-            <element signature="e#1959#1960#0" expanded="true" />
-            <element signature="e#3390#3391#0" expanded="true" />
-            <element signature="e#3449#3450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/GitObjectsBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -954,32 +925,6 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
           <folding>
             <element signature="method#saveToMagitObjects#0;class#GitObjectsBase#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-          <folding>
-            <element signature="method#changeRepository#0;class#Magit#0" />
-            <element signature="method#showFullCommitData#0;class#Magit#0" />
-            <element signature="method#showStatus#0;class#Magit#0" />
-            <element signature="method#createNewCommit#0;class#Magit#0" />
-            <element signature="method#showAllBranches#0;class#Magit#0" />
-            <element signature="method#addNewBranch#0;class#Magit#0" />
-            <element signature="method#deleteBranch#0;class#Magit#0" />
-            <element signature="method#checkoutBranch#0;class#Magit#0" />
-            <element signature="method#showHistoryDataForActiveBranch#0;class#Magit#0" />
-            <element signature="method#resetBranch#0;class#Magit#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-519">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>
@@ -1003,175 +948,238 @@ XMLUtils.getMagitSingleCommitByID(firstCommitId)</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/MagitMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/WorkingCopyChanges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitStringResultObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Branch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#383#384#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Git UI/src/ui/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Magit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="260" selection-start-line="260" selection-end-line="260" />
+          <folding>
+            <element signature="method#createNewRepo#0;class#Magit#0" />
+            <element signature="method#changeRepository#0;class#Magit#0" />
+            <element signature="method#loadRepositoryFromXML#0;class#Magit#0" />
+            <element signature="method#showStatus#0;class#Magit#0" />
+            <element signature="method#addNewBranch#0;class#Magit#0" />
+            <element signature="method#deleteBranch#0;class#Magit#0" />
+            <element signature="method#showHistoryDataForActiveBranch#0;class#Magit#0" />
+            <element signature="e#10136#10137#0" expanded="true" />
+            <element signature="e#10179#10180#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/git-engine/src/engine/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="177" column="19" selection-start-line="177" selection-start-column="19" selection-end-line="177" selection-end-column="19" />
+        <state relative-caret-position="239">
+          <caret line="677" column="9" lean-forward="true" selection-start-line="677" selection-start-column="9" selection-end-line="677" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1320#2214#0" />
-            <element signature="e#1478#1493#0" />
-            <element signature="e#2220#2453#0" />
-            <element signature="e#2349#2419#1" />
-            <element signature="e#2459#2582#0" />
-            <element signature="e#2660#3628#0" />
-            <element signature="e#3059#3454#1" />
-            <element signature="e#3093#3265#1" />
-            <element signature="e#3181#3251#1" />
-            <element signature="e#3116#3278#1" />
-            <element signature="e#3302#3456#1" />
-            <element signature="e#3645#5269#0" />
-            <element signature="e#3807#3881#1" />
-            <element signature="e#4000#4074#1" />
-            <element signature="e#4571#4616#1" />
-            <element signature="e#4629#4674#1" />
-            <element signature="e#4723#5071#1" />
-            <element signature="e#4836#4910#1" />
-            <element signature="e#9882#12472#0" />
-            <element signature="e#10601#12395#1" />
-            <element signature="e#10647#11795#1" />
-            <element signature="e#10815#10948#1" />
-            <element signature="e#11210#11237#0" />
-            <element signature="e#11405#11432#0" />
-            <element signature="e#11607#11634#0" />
-            <element signature="e#11813#12385#1" />
-            <element signature="e#11952#12087#1" />
-            <element signature="e#12464#12491#0" />
-            <element signature="e#12642#12669#0" />
-            <element signature="e#12478#12702#0" />
-            <element signature="e#12707#13011#0" />
-            <element signature="e#13697#14276#1" />
-            <element signature="e#13734#14266#1" />
-            <element signature="e#13859#14028#1" />
-            <element signature="e#13924#14010#1" />
-            <element signature="e#14034#14252#1" />
-            <element signature="e#14079#14234#1" />
-            <element signature="e#13885#14146#0" />
-            <element signature="e#14152#14804#0" />
-            <element signature="e#14720#15201#1" />
-            <element signature="e#14851#15191#1" />
-            <element signature="e#14810#15054#0" />
-            <element signature="e#15060#16127#0" />
-            <element signature="e#15652#15800#1" />
-            <element signature="e#16119#16434#1" />
-            <element signature="e#16159#16316#1" />
-            <element signature="e#16333#16424#1" />
-            <element signature="e#16447#16492#1" />
-            <element signature="e#16133#17124#0" />
-            <element signature="e#16792#16856#0" />
-            <element signature="e#17057#17521#1" />
-            <element signature="e#17255#17332#1" />
-            <element signature="e#17130#17905#0" />
-            <element signature="e#17817#17960#1" />
-            <element signature="e#18024#18302#1" />
-            <element signature="e#18076#18291#1" />
-            <element signature="e#17912#18777#0" />
-            <element signature="e#18474#18984#1" />
-            <element signature="e#18767#18973#1" />
-            <element signature="e#18827#18959#1" />
-            <element signature="e#18998#19174#1" />
-            <element signature="e#18783#19134#0" />
-            <element signature="e#19362#19509#1" />
-            <element signature="e#19409#19499#1" />
-            <element signature="e#19141#20075#0" />
-            <element signature="e#19724#20451#1" />
-            <element signature="e#19952#20017#1" />
-            <element signature="e#20081#20460#0" />
-            <element signature="e#20636#20755#1" />
-            <element signature="e#20769#20861#1" />
-            <element signature="e#20466#21056#0" />
-            <element signature="e#20985#21017#0" />
-            <element signature="e#21221#21257#0" />
-            <element signature="e#21062#22305#0" />
-            <element signature="e#21677#21791#1" />
-            <element signature="e#21843#21964#1" />
-            <element signature="e#21978#22702#1" />
-            <element signature="e#21992#22024#0" />
-            <element signature="e#22276#22421#1" />
-            <element signature="e#22435#22471#0" />
-            <element signature="e#22311#22663#0" />
-            <element signature="e#22885#23018#1" />
-            <element signature="e#22669#23628#0" />
-            <element signature="e#23357#23953#1" />
-            <element signature="e#23375#23744#0" />
-            <element signature="e#23776#23943#0" />
-            <element signature="e#23634#23871#0" />
-            <element signature="e#24135#24246#1" />
-            <element signature="e#24192#24236#1" />
-            <element signature="e#23877#24119#0" />
-            <element signature="e#24378#24495#1" />
-            <element signature="e#24435#24485#1" />
-            <element signature="e#24125#24936#0" />
-            <element signature="e#24741#24873#1" />
-            <element signature="e#24887#25333#1" />
-            <element signature="e#24905#25129#0" />
-            <element signature="e#25164#25323#0" />
-            <element signature="e#24942#25334#0" />
-            <element signature="e#25979#26092#1" />
-            <element signature="e#26208#26350#1" />
-            <element signature="e#26789#26896#1" />
-            <element signature="e#26957#27096#1" />
-            <element signature="e#26785#27021#0" />
-            <element signature="e#27027#29045#0" />
-            <element signature="e#27657#29331#0" />
-            <element signature="e#27713#29253#1" />
-            <element signature="e#27809#27895#0" />
-            <element signature="e#27933#28153#0" />
-            <element signature="e#28199#28284#0" />
-            <element signature="e#28551#28633#1" />
-            <element signature="e#28655#28807#1" />
-            <element signature="e#28909#29008#1" />
-            <element signature="e#29271#29321#1" />
-            <element signature="e#29354#29416#0" />
-            <element signature="e#29051#29434#0" />
-            <element signature="e#29440#30975#0" />
-            <element signature="e#29950#31198#0" />
-            <element signature="e#30408#30501#1" />
-            <element signature="e#31004#31053#1" />
-            <element signature="e#31221#31372#0" />
-            <element signature="e#30981#31484#0" />
-            <element signature="e#31562#31858#1" />
-            <element signature="e#31654#31848#1" />
-            <element signature="e#31717#31769#1" />
-            <element signature="e#31490#32219#0" />
-            <element signature="e#32138#32250#1" />
-            <element signature="e#32278#32338#1" />
-            <element signature="e#32344#32616#1" />
-            <element signature="e#32436#32606#1" />
-            <element signature="e#32225#32794#0" />
-            <element signature="e#32828#33117#1" />
-            <element signature="e#33045#33107#1" />
-            <element signature="e#32800#36468#0" />
-            <element signature="e#33337#36639#0" />
-            <element signature="e#33397#34851#1" />
-            <element signature="e#33677#33753#1" />
-            <element signature="e#33775#34836#1" />
-            <element signature="e#34070#34177#0" />
-            <element signature="e#34220#34452#0" />
-            <element signature="e#34502#34741#0" />
-            <element signature="e#34869#36629#1" />
-            <element signature="e#35068#36541#1" />
-            <element signature="e#35210#35344#1" />
-            <element signature="e#35503#35582#1" />
-            <element signature="e#35608#36523#1" />
-            <element signature="e#35705#35817#0" />
-            <element signature="e#35864#36114#0" />
-            <element signature="e#36168#36425#0" />
-            <element signature="e#36563#36615#1" />
-            <element signature="e#36669#36865#0" />
-            <element signature="e#36474#36832#0" />
-            <element signature="e#36838#36948#0" />
-            <element signature="e#36954#37952#0" />
-            <element signature="e#37538#38328#1" />
-            <element signature="e#37847#38250#1" />
-            <element signature="e#38142#38236#1" />
-            <element signature="e#38268#38318#1" />
-            <element signature="e#37958#38218#0" />
-            <element signature="e#38224#38774#0" />
-            <element signature="e#38821#39171#1" />
-            <element signature="e#38913#39161#1" />
-            <element signature="e#38780#39071#0" />
-            <element signature="e#39279#39468#1" />
+            <element signature="e#1419#2313#0" />
+            <element signature="e#1577#1592#0" />
+            <element signature="e#2319#2552#0" />
+            <element signature="e#2448#2518#1" />
+            <element signature="e#2558#2681#0" />
+            <element signature="e#2688#3667#0" />
+            <element signature="e#3087#3493#1" />
+            <element signature="e#3121#3304#1" />
+            <element signature="e#3220#3290#1" />
+            <element signature="e#3321#3483#1" />
+            <element signature="e#3507#3661#1" />
+            <element signature="e#3673#5289#0" />
+            <element signature="e#4031#4105#1" />
+            <element signature="e#4224#4298#1" />
+            <element signature="e#4599#4644#1" />
+            <element signature="e#4657#4696#1" />
+            <element signature="e#4743#5091#1" />
+            <element signature="e#5209#5283#1" />
+            <element signature="e#5376#6613#0" />
+            <element signature="e#5562#6530#0" />
+            <element signature="e#6069#6402#1" />
+            <element signature="e#6420#6520#1" />
+            <element signature="e#6563#6607#0" />
+            <element signature="e#6619#8747#0" />
+            <element signature="e#6817#6848#1" />
+            <element signature="e#7156#8741#1" />
+            <element signature="e#7370#7469#1" />
+            <element signature="e#7598#7680#1" />
+            <element signature="e#7697#8056#1" />
+            <element signature="e#8108#8731#1" />
+            <element signature="e#8484#8635#1" />
+            <element signature="e#8656#8717#1" />
+            <element signature="e#8753#10687#0" />
+            <element signature="e#9305#9677#1" />
+            <element signature="e#9540#9667#1" />
+            <element signature="e#9781#9852#1" />
+            <element signature="e#9865#10654#1" />
+            <element signature="e#10008#10158#1" />
+            <element signature="e#10201#10353#1" />
+            <element signature="e#10693#13301#0" />
+            <element signature="e#11009#12821#1" />
+            <element signature="e#11055#12212#1" />
+            <element signature="e#11232#11365#1" />
+            <element signature="e#11627#11654#0" />
+            <element signature="e#11822#11849#0" />
+            <element signature="e#12024#12051#0" />
+            <element signature="e#12230#12811#1" />
+            <element signature="e#12378#12513#1" />
+            <element signature="e#12890#12917#0" />
+            <element signature="e#13068#13095#0" />
+            <element signature="e#13307#13531#0" />
+            <element signature="e#13536#13840#0" />
+            <element signature="e#14287#14456#1" />
+            <element signature="e#14352#14438#1" />
+            <element signature="e#14462#14680#1" />
+            <element signature="e#14507#14662#1" />
+            <element signature="e#14985#15637#0" />
+            <element signature="e#15150#15631#1" />
+            <element signature="e#15281#15621#1" />
+            <element signature="e#15643#15887#0" />
+            <element signature="e#15893#16960#0" />
+            <element signature="e#16082#16230#1" />
+            <element signature="e#16549#16864#1" />
+            <element signature="e#16589#16746#1" />
+            <element signature="e#16763#16854#1" />
+            <element signature="e#16877#16922#1" />
+            <element signature="e#16966#17957#0" />
+            <element signature="e#17222#17286#0" />
+            <element signature="e#17487#17951#1" />
+            <element signature="e#17685#17762#1" />
+            <element signature="e#17963#18738#0" />
+            <element signature="e#18247#18390#1" />
+            <element signature="e#18454#18732#1" />
+            <element signature="e#18506#18721#1" />
+            <element signature="e#18745#19610#0" />
+            <element signature="e#18904#19414#1" />
+            <element signature="e#19197#19403#1" />
+            <element signature="e#19257#19389#1" />
+            <element signature="e#19428#19604#1" />
+            <element signature="e#19616#19967#0" />
+            <element signature="e#19792#19939#1" />
+            <element signature="e#19839#19929#1" />
+            <element signature="e#19974#20908#0" />
+            <element signature="e#20154#20881#1" />
+            <element signature="e#20382#20447#1" />
+            <element signature="e#20549#20809#1" />
+            <element signature="e#20940#20979#1" />
+            <element signature="e#21066#21185#1" />
+            <element signature="e#21299#21889#0" />
+            <element signature="e#21415#21447#0" />
+            <element signature="e#21651#21687#0" />
+            <element signature="e#21895#23138#0" />
+            <element signature="e#22107#22221#1" />
+            <element signature="e#22273#22394#1" />
+            <element signature="e#22408#23132#1" />
+            <element signature="e#22422#22454#0" />
+            <element signature="e#22706#22851#1" />
+            <element signature="e#22865#22901#0" />
+            <element signature="e#23144#23496#0" />
+            <element signature="e#23315#23448#1" />
+            <element signature="e#23502#24461#0" />
+            <element signature="e#23787#24383#1" />
+            <element signature="e#23805#24174#0" />
+            <element signature="e#24206#24373#0" />
+            <element signature="e#24467#24704#0" />
+            <element signature="e#24565#24676#1" />
+            <element signature="e#24622#24666#1" />
+            <element signature="e#24710#24952#0" />
+            <element signature="e#24808#24925#1" />
+            <element signature="e#24865#24915#1" />
+            <element signature="e#24958#25769#0" />
+            <element signature="e#25171#25303#1" />
+            <element signature="e#25317#25763#1" />
+            <element signature="e#25335#25559#0" />
+            <element signature="e#25594#25753#0" />
+            <element signature="e#25775#26167#0" />
+            <element signature="e#27023#27615#0" />
+            <element signature="e#27221#27328#1" />
+            <element signature="e#27389#27528#1" />
+            <element signature="e#27622#27858#0" />
+            <element signature="e#28367#28587#0" />
+            <element signature="e#28633#28718#0" />
+            <element signature="e#31655#31806#0" />
+            <element signature="e#31818#32321#0" />
+            <element signature="e#31996#32292#1" />
+            <element signature="e#32088#32282#1" />
+            <element signature="e#32151#32203#1" />
+            <element signature="e#32327#33056#0" />
+            <element signature="e#32572#32684#1" />
+            <element signature="e#32712#32772#1" />
+            <element signature="e#32778#33050#1" />
+            <element signature="e#32870#33040#1" />
+            <element signature="e#33479#33541#1" />
+            <element signature="e#33637#37305#0" />
+            <element signature="e#33771#37073#0" />
+            <element signature="e#33831#35285#1" />
+            <element signature="e#34111#34187#1" />
+            <element signature="e#34209#35270#1" />
+            <element signature="e#34504#34611#0" />
+            <element signature="e#34654#34886#0" />
+            <element signature="e#34936#35175#0" />
+            <element signature="e#35303#37063#1" />
+            <element signature="e#35502#36975#1" />
+            <element signature="e#35644#35778#1" />
+            <element signature="e#35937#36016#1" />
+            <element signature="e#36042#36957#1" />
+            <element signature="e#36139#36251#0" />
+            <element signature="e#36298#36548#0" />
+            <element signature="e#36602#36859#0" />
+            <element signature="e#36997#37049#1" />
+            <element signature="e#37103#37299#0" />
+            <element signature="e#37311#37669#0" />
+            <element signature="e#37675#37785#0" />
+            <element signature="e#37791#38789#0" />
+            <element signature="e#37972#38762#1" />
+            <element signature="e#38281#38684#1" />
+            <element signature="e#38576#38670#1" />
+            <element signature="e#38702#38752#1" />
+            <element signature="e#38795#39055#0" />
+            <element signature="e#39061#39611#0" />
+            <element signature="e#39255#39605#1" />
+            <element signature="e#39347#39595#1" />
+            <element signature="e#39617#39908#0" />
+            <element signature="e#39713#39902#1" />
           </folding>
         </state>
       </provider>
