@@ -16,7 +16,7 @@ public class Magit {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.createNewRepository(repoPath);
+            repo.createNewRepository(repoPath, true, true);
             msg = "Repository created successfully";
             result.setData(msg);
             result.setIsHasError(false);
@@ -35,6 +35,27 @@ public class Magit {
         try{
             repo.changeRepo(newRepoName);
             msg = "Repository changed successfully!";
+            result.setData(msg);
+            result.setIsHasError(false);
+        }
+        catch (IOException e){
+            msg = "Unhandled IOException!";
+            result.setErrorMSG(msg);
+            result.setIsHasError(true);
+        }
+        catch (Exception e){
+            result.setErrorMSG(e.getMessage());
+            result.setIsHasError(true);
+        }
+        return result;
+    }
+
+    public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath) {
+        String msg;
+        MagitStringResultObject result = new MagitStringResultObject();
+        try{
+            repo.loadRepoFromXML(xmlFilePath);
+            msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
         }

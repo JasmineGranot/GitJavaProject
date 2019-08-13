@@ -3,6 +3,7 @@ package engine;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -18,15 +19,10 @@ public class MagitUtils {
     private static Charset ENCODING = StandardCharsets.UTF_8;
 
     static String readFileAsString(String filePath) throws IOException{
-        String content = "";
-        File f  = new File(filePath);
-        Scanner reader = new Scanner(f);
-        while(reader.hasNextLine())
-        {
-            content = content.concat(reader.nextLine());
-        }
-        reader.close();
-        return content;
+        String data = "";
+        data = new String(Files.readAllBytes(Paths.get(filePath)));
+
+        return data;
     }
 
     static void writeToFile(Path filePath, String content) throws IOException {
@@ -98,5 +94,20 @@ public class MagitUtils {
 
     static String joinPaths(String path, String fileName){
         return Paths.get(path, fileName).toString();
+    }
+
+    static String getFileContent(FileInputStream fis, Charset encoding ) throws IOException
+    {
+        try( BufferedReader br =
+                     new BufferedReader( new InputStreamReader(fis, encoding )))
+        {
+            String content = "";
+            String line;
+            while((line = br.readLine()) != null ) {
+                content = content.concat(line);
+                content = content.concat("\n");
+            }
+            return content;
+        }
     }
 }
