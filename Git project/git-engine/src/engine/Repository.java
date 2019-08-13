@@ -231,7 +231,10 @@ class Repository {
             String firstCommitId = historyCommits.get(0).getId();
             MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
             if(lastCommit != null && !lastCommit.equals("")) {
-                newCommit.setLastCommitSha1(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1());
+                String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
+                if (commitSha1 != null) {
+                    newCommit.setLastCommitSha1(commitSha1);
+                }
             }
         }
 
