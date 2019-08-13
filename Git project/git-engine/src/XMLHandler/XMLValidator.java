@@ -1,8 +1,6 @@
 package XMLHandler;
 import engine.InvalidDataException;
 import engine.parser.*;
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,121 +20,153 @@ public class XMLValidator {
         validationResult.setIsValid(true);
         try{
             checkFileExitsAndXml(xmlPath);
-            CheckDoubledId(currentRepo.getMagitBranches(),currentRepo.getMagitCommits(),
+            checkDoubledId(currentRepo.getMagitBranches(),currentRepo.getMagitCommits(),
                     currentRepo.getMagitFolders(),currentRepo.getMagitBlobs());
             checkPointedId(currentRepo.getMagitFolders());
-            CheckifCommitPointsToFolder(currentRepo.getMagitCommits());
-            CheckIfBranchPointsToCommit(currentRepo.getMagitBranches());
-            CheckifHeadExists(currentRepo.getMagitBranches());
-        } catch (InvalidDataException e) {
+            checkIfCommitPointsToFolder(currentRepo.getMagitCommits());
+            checkIfBranchPointsToCommit(currentRepo.getMagitBranches());
+            checkIfHeadExists(currentRepo.getMagitBranches());
+        }
+        catch (InvalidDataException e) {
             validationResult.setIsValid(false);
             validationResult.setMessage(e.getMessage());
         }
         return validationResult;
     }
-    private void checkFileExitsAndXml(String path) throws InvalidDataException{ // valdation number 3.1
+
+    // =====================
+    // validation number 3.1
+    // =====================
+    private void checkFileExitsAndXml(String path) throws InvalidDataException{
+        String errorMsg;
         File file = new File(path);
-        if (!file.exists() || !path.endsWith(".xml")){
-            throw new InvalidDataException(String.format("Xml File %s does not exist.", path));
+        if (!file.exists() || !path.endsWith(".xml")) {
+            errorMsg = String.format("Xml File %s does not exist.", path);
+            throw new InvalidDataException(errorMsg);
         }
     }
-    private void CheckDoubledId(MagitBranches branches, MagitCommits commits,MagitFolders folders,MagitBlobs blobs )
-            throws InvalidDataException //3.2
-    {
+
+    // =====================
+    // validation number 3.2
+    // =====================
+    private void checkDoubledId(MagitBranches branches, MagitCommits commits,
+                                MagitFolders folders, MagitBlobs blobs)
+            throws InvalidDataException {
+        String errorMsg;
         Map<String, MagitSingleCommit> mapCommit = new HashMap<>();
         for (MagitSingleCommit curr : commits.getMagitSingleCommit()) {
             if (mapCommit.containsKey(curr.getId())) {
-                throw new InvalidDataException("Two Commits With same ID");
+                errorMsg = "Fount two commits with the same ID";
+                throw new InvalidDataException(errorMsg);
             }
             mapCommit.put(curr.getId(), curr);
         }
+
         Map<String, MagitSingleFolder> mapFolder = new HashMap<>();
         for (MagitSingleFolder curr : folders.getMagitSingleFolder()) {
             if (mapFolder.containsKey(curr.getId())) {
-                throw new InvalidDataException("Two folders With same ID");
+                errorMsg = "Found two folders with the same ID";
+                throw new InvalidDataException(errorMsg);
             }
             mapFolder.put(curr.getId(), curr);
         }
+
         Map<String, MagitBlob> mapBlob = new HashMap<>();
         for (MagitBlob curr : blobs.getMagitBlob()) {
             if (mapBlob.containsKey(curr.getId())) {
-                throw new InvalidDataException("Two blobs With same ID");
+                errorMsg = "Fount two blobs with the same ID";
+                throw new InvalidDataException(errorMsg);
             }
             mapBlob.put(curr.getId(), curr);
         }
+
         if (!XMLUtils.isEmptyRepo(currentRepo)) {
             for (MagitSingleBranch curr : branches.getMagitSingleBranch()) {
-                if (XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId()) == null) {
-                    throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+                if (XMLUtils.getMagitSingleCommitByID(currentRepo,
+                        curr.getPointedCommit().getId()) == null) {
+                    errorMsg = "Branch points to commit that doesn't exists";
+                    throw new InvalidDataException(errorMsg);
                 }
             }
         }
     }
 
-    private void checkPointedId(MagitFolders folderList) throws InvalidDataException //3.3 //3.4 //3.5
+    // ===============================
+    // validation number 3.3, 3.4, 3.5
+    // ===============================
+    private void checkPointedId(MagitFolders folderList) throws InvalidDataException
     {
-        for(MagitSingleFolder curr : folderList.getMagitSingleFolder())
-        {
-            for(Item item: curr.getItems().getItem())
-            {
-                if(item.getType().equals("folder"))
-                {
+        String errorMsg;
+        for(MagitSingleFolder curr : folderList.getMagitSingleFolder()) {
+            for(Item item : curr.getItems().getItem()) {
+                if(item.getType().equals("folder")) {
                     MagitSingleFolder folder = XMLUtils.getMagitFolderByID(currentRepo, item.getId());
-                    if(folder == null)
-                    {
-                        throw new InvalidDataException( "Pointed folder id doesnt exist");
+                    if(folder == null) {
+                        errorMsg = "The ID of the pointed folder doesn't exist!";
+                        throw new InvalidDataException(errorMsg);
                     }
-                    if(folder.getId().equals(curr.getId()))
-                    {
-                        throw new InvalidDataException( "folder contain itself (id)");
+                    if(folder.getId().equals(curr.getId())) {
+                        errorMsg = "folder contains itself (id)";
+                        throw new InvalidDataException(errorMsg);
                     }
 
                 }
-                else
-                {
-                    if(XMLUtils.getMagitBlobByID(currentRepo, item.getId())==null)
-                    {
-                        throw new InvalidDataException( "Pointed blob id doesnt exist");
+                else {
+                    if(XMLUtils.getMagitBlobByID(currentRepo, item.getId()) == null) {
+                        errorMsg = "The ID of the pointed blob doesn't exist";
+                        throw new InvalidDataException(errorMsg);
                     }
                 }
             }
         }
-
     }
-    private void CheckifCommitPointsToFolder (MagitCommits commitList) throws InvalidDataException { //3.6 //3.7
+
+    // ==========================
+    // validation number 3.6, 3.7
+    // ==========================
+    private void checkIfCommitPointsToFolder(MagitCommits commitList) throws InvalidDataException {
         for (MagitSingleCommit curr : commitList.getMagitSingleCommit()) {
+            String errorMsg;
             MagitSingleFolder folder = XMLUtils.getMagitFolderByID(currentRepo, curr.getRootFolder().getId());
             if (folder == null) {
-                throw new InvalidDataException("Commit points to Folder that doesnt exist");
+                errorMsg = "Commit points to a folder that doesnt exist";
+                throw new InvalidDataException(errorMsg);
             }
-            if (!folder.isIsRoot())
-            {
-                throw new InvalidDataException("Commit points to Folder that isnt RootFolder");
+            if (!folder.isIsRoot()) {
+                errorMsg = "Commit points to a folder that isn't RootFolder";
+                throw new InvalidDataException(errorMsg);
             }
         }
     }
-    private void CheckIfBranchPointsToCommit (MagitBranches branchList) throws InvalidDataException { //3.8
+
+    // =====================
+    // validation number 3.8
+    // =====================
+    private void checkIfBranchPointsToCommit(MagitBranches branchList) throws InvalidDataException {
+        String errorMsg;
         if(!XMLUtils.isEmptyRepo(currentRepo)) {
             for (MagitSingleBranch curr : branchList.getMagitSingleBranch()) {
-                if (XMLUtils.getMagitSingleCommitByID(currentRepo, curr.getPointedCommit().getId()) == null) {
-                    throw new InvalidDataException("Branch points to Commit that doesnt Exist");
+                if (XMLUtils.getMagitSingleCommitByID(currentRepo,
+                        curr.getPointedCommit().getId()) == null) {
+                    errorMsg = "Branch points to commit that doesn't exists";
+                    throw new InvalidDataException(errorMsg);
                 }
             }
         }
     }
 
-
-    private void CheckifHeadExists (MagitBranches magitBranches) throws InvalidDataException { //3.9
-        for(MagitSingleBranch curr : magitBranches.getMagitSingleBranch())
-        {
-            if(curr.getName().equals(magitBranches.getHead()))
-            {
+    // =====================
+    // validation number 3.9
+    // =====================
+    private void checkIfHeadExists(MagitBranches magitBranches) throws InvalidDataException {
+        String errorMsg;
+        for(MagitSingleBranch curr : magitBranches.getMagitSingleBranch()) {
+            if(curr.getName().equals(magitBranches.getHead())) {
                 return;
             }
         }
-        throw new InvalidDataException("Branch Head doesnt exist");
+        errorMsg = "Branch Head doesn't exists";
+        throw new InvalidDataException(errorMsg);
 
     }
-
-
 }

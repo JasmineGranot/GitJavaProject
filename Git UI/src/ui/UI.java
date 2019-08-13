@@ -25,7 +25,8 @@ class UI {
 
     void runProgram() {
         int user_input = START_LOOP;
-        while (user_input != EXIT){
+        while (user_input != EXIT) {
+            System.out.println("Welcome to MAGIT!");
             showMenu();
             try {
                 user_input = reader.nextInt();
@@ -75,10 +76,12 @@ class UI {
                         break;
                     default:
                         System.out.println("Invalid option, please choose again!");
+                        System.out.println();
                 }
             }
             catch (InputMismatchException e){
                 System.out.println("Input invalid! Please try again...");
+                System.out.println();
                 reader.next();
             }
         }
@@ -90,6 +93,7 @@ class UI {
         userName = reader.nextLine();
         myMagit.setUserName(userName);
         System.out.println(String.format("User name was changed to: %s", userName));
+        System.out.println();
     }
 
     private void loadRepository(){
@@ -134,9 +138,11 @@ class UI {
 
         if(result.getIsHasError()){
             System.out.println(result.getErrorMSG());
+            System.out.println();
         }
         else{
             System.out.println(result.getData());
+            System.out.println();
         }
     }
 
@@ -144,6 +150,7 @@ class UI {
         MagitStringResultObject result = myMagit.showFullCommitData();
         if(result.getIsHasError()){
             System.out.println(result.getErrorMSG());
+            System.out.println();
         }
         else{
             System.out.println("============================");
@@ -162,32 +169,37 @@ class UI {
 
         if(result.getHasErrors()){
             System.out.println(result.getErrorMsg());
+            System.out.println();
         }
-        else{
+        else {
             System.out.println(result.getMsg());
-
-            if(!newFiles.isEmpty()){
-                System.out.println("New files:");
-                for(String curr : result.getNewFiles()){
-                    System.out.println(curr);
-                    System.out.println();
-                }
+            if(newFiles.isEmpty() && changedFiles.isEmpty() && deletedFiles.isEmpty()) {
+                System.out.println("There were no changes in the repository!\n");
             }
-
-            if(!changedFiles.isEmpty()){
-                System.out.println("Changed files:");
-                for(String curr : result.getChangedFiles()){
-                    System.out.println(curr);
-                    System.out.println();
+            else {
+                if (!newFiles.isEmpty()) {
+                    System.out.println("New files:");
+                    for (String curr : result.getNewFiles()) {
+                        System.out.println(curr);
+                        System.out.println();
+                    }
                 }
-            }
+
+                if (!changedFiles.isEmpty()) {
+                    System.out.println("Changed files:");
+                    for (String curr : result.getChangedFiles()) {
+                        System.out.println(curr);
+                        System.out.println();
+                    }
+                }
 
 
-            if(!deletedFiles.isEmpty()){
-                System.out.println("Deleted files:");
-                for(String curr : result.getDeletedFiles()){
-                    System.out.println(curr);
-                    System.out.println();
+                if (!deletedFiles.isEmpty()) {
+                    System.out.println("Deleted files:");
+                    for (String curr : result.getDeletedFiles()) {
+                        System.out.println(curr);
+                        System.out.println();
+                    }
                 }
             }
         }
@@ -201,9 +213,11 @@ class UI {
         MagitStringResultObject result = myMagit.createNewCommit(msg);
         if (result.getIsHasError()){
             System.out.println(result.getErrorMSG());
+            System.out.println();
         }
         else {
             System.out.println(result.getData());
+            System.out.println();
         }
     }
 
@@ -228,9 +242,11 @@ class UI {
             MagitStringResultObject resultObject = myMagit.addNewBranch(branchName);
             if(resultObject.getIsHasError()){
                 System.out.println(resultObject.getErrorMSG());
+                System.out.println();
             }
             else{
                 System.out.println(resultObject.getData());
+                System.out.println();
             }
         }
         catch (InvalidDataException e){
@@ -249,8 +265,11 @@ class UI {
             MagitStringResultObject resultObject = myMagit.deleteBranch(branchName);
             if (resultObject.getIsHasError()) {
                 System.out.println(resultObject.getErrorMSG());
-            } else {
+                System.out.println();
+            }
+            else {
                 System.out.println(resultObject.getData());
+                System.out.println();
             }
         }
         catch (InvalidDataException e) {
@@ -272,9 +291,11 @@ class UI {
             MagitStringResultObject resultObject = myMagit.checkoutBranch(branchName, ignoreChanges);
             if(resultObject.getIsHasError()){
                 System.out.println(resultObject.getErrorMSG());
+                System.out.println();
             }
             else {
                 System.out.println(resultObject.getData());
+                System.out.println();
             }
         }
         catch (InvalidDataException e){
@@ -284,8 +305,8 @@ class UI {
         catch (DirectoryNotEmptyException e){
             System.out.println(e.getMessage());
             System.out.println("Please choose from the following options:\n" +
-                    "1 for committing the open changes\n" +
-                    "2 for continuing with the checkout without committing the changes" );
+                    "1. Commit the open changes\n" +
+                    "2. Continue with the checkout without committing the changes" );
             try {
                 int input = reader.nextInt();
                 while (input != 1 && input != 2){
@@ -311,9 +332,11 @@ class UI {
         MagitStringResultObject resultObject = myMagit.showHistoryDataForActiveBranch();
         if(resultObject.getIsHasError()){
             System.out.println(resultObject.getErrorMSG());
+            System.out.println();
         }
-        else{
+        else {
             System.out.println(resultObject.getData());
+            System.out.println();
         }
     }
 
@@ -330,15 +353,17 @@ class UI {
             MagitStringResultObject resultObject = myMagit.resetBranch(sha1, ignore);
             if (resultObject.getIsHasError()) {
                 System.out.println(resultObject.getErrorMSG());
+                System.out.println();
             } else {
                 System.out.println(resultObject.getData());
+                System.out.println();
             }
         }
         catch(DirectoryNotEmptyException e){
             System.out.println(e.getMessage());
             System.out.println("Please choose from the following options:\n" +
-                    "1 for committing the open changes\n" +
-                    "2 for continuing with the reset without committing the changes" );
+                    "1. Commit the open changes\n" +
+                    "2. Continue with the reset without committing the changes" );
             try {
                 int input = reader.nextInt();
                 while (input != 1 && input != 2){
@@ -350,7 +375,6 @@ class UI {
                 }
                 if(input == 2){
                     resetBranchToASpecificCommit(sha1, false);
-
                 }
             }
             catch (InputMismatchException t){
@@ -362,7 +386,6 @@ class UI {
 
     private void showMenu(){
 
-        System.out.println("Welcome to MAGIT!");
         System.out.println("Please choose from the following options: ");
         System.out.println(String.format("%d.\tChanging active username", UPDATE_USER));
         System.out.println(String.format("%d.\tLoad repository from XML", LOAD_REPOSITORY));
@@ -370,7 +393,7 @@ class UI {
         System.out.println(String.format("%d.\tShow files of current commit", SHOW_CURRENT_COMMIT));
         System.out.println(String.format("%d.\tShow WC Status", SHOW_STATUS));
         System.out.println(String.format("%d.\tCommit", COMMIT));
-        System.out.println(String.format("%d.\tShow all active branchs", SHOW_BRANCHES));
+        System.out.println(String.format("%d.\tShow all active branches", SHOW_BRANCHES));
         System.out.println(String.format("%d.\tCreate new branch", CREATE_NEW_BRANCH));
         System.out.println(String.format("%d.\tDelete branch", DELETE_BRANCH));
         System.out.println(String.format("%d.\tCheckout a branch", CHECKOUT_BRANCH));
@@ -378,6 +401,5 @@ class UI {
         System.out.println(String.format("%d.\tCreate a new repository", NEW_REPOSITORY));
         System.out.println(String.format("%d.\tReset head to specific commit", RESET_BRANCH));
         System.out.println(String.format("%d.\tExit", EXIT));
-
     }
 }
