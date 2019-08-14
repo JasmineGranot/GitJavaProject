@@ -3,6 +3,8 @@ import XMLHandler.XMLUtils;
 import XMLHandler.XMLValidationResult;
 import XMLHandler.XMLValidator;
 import engine.parser.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -247,8 +249,11 @@ class Repository {
         if (historyCommits.size() > 0) {
             String firstCommitId = historyCommits.get(0).getId();
             MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
-            if (lastCommit != null && !lastCommit.equals("")) {
-                newCommit.setLastCommitSha1(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1());
+            if(lastCommit != null && !lastCommit.equals("")) {
+                String commitSha1 = Objects.requireNonNull(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit)).doSha1();
+                if (commitSha1 != null) {
+                    newCommit.setLastCommitSha1(commitSha1);
+                }
             }
         }
 
@@ -528,10 +533,15 @@ class Repository {
                 data = data.concat("----> Head");
             }
             String commitSha1 = curBranch.getCommitSha1();
-            data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
-            Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
-            data = data.concat(String.format("\nThe commit message:\n %s",
+            if (!commitSha1.equals("")){ // only for new repo without master commit option
+                data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
+                Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
+                data = data.concat(String.format("\nThe commit message:\n %s",
                     lastComitInBranch.getCommitMessage()));
+            }
+            else{
+                data = data.concat(String.format("\nNo commit was created for %s\n", curBranch.getName()));
+            }
             data = data.concat("\n========================\n");
 
         }
@@ -540,6 +550,9 @@ class Repository {
 
     void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException{
         String errorMsg;
+        if (rootPath == null){
+            errorMsg = "repository is not configured ";
+        }
         if (isBranchExist(newBranchName)) {
             errorMsg = "Branch already Exist!";
             throw new DataAlreadyExistsException(errorMsg);
@@ -597,7 +610,7 @@ class Repository {
         }
     }
 
-    /*private String getActiveCommitSha1InBranch(String branchName) {
+    private String getActiveCommitSha1InBranch(String branchName) {
         String msg;
         Branch branchObj = getBranchByName(branchName);
         if (branchObj == null) {
@@ -605,7 +618,7 @@ class Repository {
             throw new NullPointerException(msg);
         }
         return branchObj.getCommitSha1();
-    }*/
+    }
 
     MagitStringResultObject getHistoryBranchData() throws Exception{
         MagitStringResultObject resultObject = new MagitStringResultObject();
@@ -696,6 +709,10 @@ class Repository {
         String lastCommitInBranchSha1 = currentBranch.getCommitSha1();
         if (!lastCommitInBranchSha1.equals("")) {
             loadWCFromCommitSha1(lastCommitInBranchSha1);
+        }
+        else{ // No commit was never done, meaning this still is an empty repo.
+            deleteWC(getRootPath());
+            currentCommit = null;
         }
     }
 
