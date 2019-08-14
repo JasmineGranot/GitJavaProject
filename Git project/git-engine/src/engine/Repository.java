@@ -3,8 +3,6 @@ import XMLHandler.XMLUtils;
 import XMLHandler.XMLValidationResult;
 import XMLHandler.XMLValidator;
 import engine.parser.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -250,7 +248,7 @@ class Repository {
             String firstCommitId = historyCommits.get(0).getId();
             MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
             if(lastCommit != null && !lastCommit.equals("")) {
-                String commitSha1 = Objects.requireNonNull(loadCommitFromMagitSingleCommit(repoFromXML, lastCommit)).doSha1();
+                String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
                 if (commitSha1 != null) {
                     newCommit.setLastCommitSha1(commitSha1);
                 }
@@ -548,10 +546,11 @@ class Repository {
         return data;
     }
 
-    void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException{
+    void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException, InvalidDataException{
         String errorMsg;
         if (rootPath == null){
             errorMsg = "repository is not configured ";
+            throw  new InvalidDataException(errorMsg);
         }
         if (isBranchExist(newBranchName)) {
             errorMsg = "Branch already Exist!";
@@ -610,7 +609,7 @@ class Repository {
         }
     }
 
-    private String getActiveCommitSha1InBranch(String branchName) {
+    /*private String getActiveCommitSha1InBranch(String branchName) {
         String msg;
         Branch branchObj = getBranchByName(branchName);
         if (branchObj == null) {
@@ -618,7 +617,7 @@ class Repository {
             throw new NullPointerException(msg);
         }
         return branchObj.getCommitSha1();
-    }
+    }*/
 
     MagitStringResultObject getHistoryBranchData() throws Exception{
         MagitStringResultObject resultObject = new MagitStringResultObject();
@@ -691,7 +690,7 @@ class Repository {
     }
 
     void checkoutBranch(String newBranchName, boolean ignoreChanges)
-            throws InvalidDataException,  DirectoryNotEmptyException, IOException, FileErrorException{
+            throws InvalidDataException, IOException, FileErrorException{
         String errorMsg;
         if (!isBranchExist(newBranchName)) {
             errorMsg = "Branch does not exist";
