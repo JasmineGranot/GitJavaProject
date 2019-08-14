@@ -1,9 +1,6 @@
 package ui;
 
-import engine.InvalidDataException;
-import engine.Magit;
-import engine.MagitStringResultObject;
-import engine.WorkingCopyChanges;
+import engine.*;
 
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.InputMismatchException;
@@ -78,8 +75,7 @@ class UI {
                         System.out.println("Invalid option, please choose again!");
                         System.out.println();
                 }
-            }
-            catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("Input invalid! Please try again...");
                 System.out.println();
                 reader.next();
@@ -87,7 +83,7 @@ class UI {
         }
     }
 
-    private void updateMagitUser(){
+    private void updateMagitUser() {
         System.out.println("Please enter a new user name: ");
         String userName = reader.nextLine();
         userName = reader.nextLine();
@@ -96,21 +92,50 @@ class UI {
         System.out.println();
     }
 
-    private void loadRepository(){
+    private void loadRepository() {
         System.out.println("Please enter the repository XML file path:");
         String repoPath = reader.nextLine();
         repoPath = reader.nextLine();
 
-        MagitStringResultObject result = myMagit.loadRepositoryFromXML(repoPath);
-        if(result.getIsHasError()){
-            System.out.println(result.getErrorMSG());
-            System.out.println();
+        loadARepository(repoPath, false);
+    }
+
+    private void loadARepository(String repoPath, boolean toDeleteExistingRepo) {
+        try {
+            MagitStringResultObject result = myMagit.loadRepositoryFromXML(repoPath, toDeleteExistingRepo);
+            if (result.getIsHasError()) {
+                System.out.println(result.getErrorMSG());
+                System.out.println();
+            } else {
+                System.out.println(result.getData());
+                System.out.println();
+            }
         }
-        else{
-            System.out.println(result.getData());
-            System.out.println();
+        catch (DataAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Please choose from the following options:\n" +
+                        "1. Cancel the procedure\n" +
+                        "2. Continue and delete the existing repository" );
+                try {
+                    int input = reader.nextInt();
+                    while (input != 1 && input != 2){
+                        System.out.println("Please press only 1 or 2!");
+                        input = reader.nextInt();
+                    }
+                    if(input == 1){
+                        return;
+                    }
+                    if(input == 2){
+                        loadARepository(repoPath, true);
+                    }
+                }
+                catch (InputMismatchException t){
+                    System.out.println("You can only insert an integer! starting over!");
+                    checkoutABranch();
+                }
         }
     }
+
 
     private void createNewRepository(){
         System.out.println("Please enter a path for a new Repository:");
@@ -129,18 +154,16 @@ class UI {
 
     }
 
-    private void switchRepository(){
+    private void switchRepository() {
         System.out.println("Please enter a repository's path to switch to...:");
-        String branchName = reader.nextLine();
-        branchName = reader.nextLine();
+        String repoName = reader.nextLine();
+        repoName = reader.nextLine();
 
-        MagitStringResultObject result = myMagit.changeRepository(branchName);
-
-        if(result.getIsHasError()){
+        MagitStringResultObject result = myMagit.changeRepository(repoName);
+        if (result.getIsHasError()) {
             System.out.println(result.getErrorMSG());
             System.out.println();
-        }
-        else{
+        } else {
             System.out.println(result.getData());
             System.out.println();
         }
@@ -315,6 +338,7 @@ class UI {
                 }
                 if(input == 1){
                     commit();
+                    checkoutBranch(branchName,false);
                 }
                 if(input == 2){
                     checkoutBranch(branchName,true);
@@ -372,9 +396,10 @@ class UI {
                 }
                 if(input == 1){
                     commit();
+                    resetBranchToASpecificCommit(sha1, false);
                 }
                 if(input == 2){
-                    resetBranchToASpecificCommit(sha1, false);
+                    resetBranchToASpecificCommit(sha1, true);
                 }
             }
             catch (InputMismatchException t){

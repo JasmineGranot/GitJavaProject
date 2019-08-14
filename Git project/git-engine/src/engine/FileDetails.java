@@ -69,4 +69,9 @@ public class FileDetails {
                 MagitUtils.DELIMITER, getLastChanger(),
                 MagitUtils.DELIMITER, getLastChangedDate());
     }
+
+    public int compareTo(FileDetails other) {
+
+        return this.getFileName().compareTo(other.getFileName());
+    }
 }

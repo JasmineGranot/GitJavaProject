@@ -61,9 +61,12 @@ public class Commit extends GitObjectsBase {
                 getCommitDate(), MagitUtils.DELIMITER, getCommitCreator());
     }
 
-    String exportCommitDataToString() {
-        return String.format("%s%s%s%s%s%s%s", getRootSha1(), MagitUtils.DELIMITER, getCommitMessage(),
-                MagitUtils.DELIMITER, getCommitDate(), MagitUtils.DELIMITER, getCommitCreator());
+    String exportCommitDataToString(String currentCommitSha1) {
+        return String.format("Commit sha1: %s\n" +
+                        "Commit Message: %s \n" +
+                        "Commit Date: %s \n" +
+                        "Commit author: %s", currentCommitSha1, getCommitMessage(), getCommitDate(),
+                getCommitCreator());
     }
 
     @Override

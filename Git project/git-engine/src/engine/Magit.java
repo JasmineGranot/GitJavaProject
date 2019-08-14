@@ -51,14 +51,18 @@ public class Magit {
         return result;
     }
 
-    public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath) {
+    public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath, boolean toDeleteExistingRepo)
+    throws DataAlreadyExistsException{
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.loadRepoFromXML(xmlFilePath);
+            repo.loadRepoFromXML(xmlFilePath, toDeleteExistingRepo);
             msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
+        }
+        catch (DataAlreadyExistsException e){
+            throw e;
         }
         catch (IOException e){
             msg = "Unhandled IOException!";

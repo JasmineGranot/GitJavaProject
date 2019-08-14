@@ -110,4 +110,9 @@ public class MagitUtils {
             return content;
         }
     }
+
+    static boolean isRepositoryExist(String newRepoPath) {
+        File repo = new File(newRepoPath);
+        return repo.exists();
+    }
 }

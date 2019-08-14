@@ -14,6 +14,7 @@ public class Folder extends GitObjectsBase {
     }
 
     List<FileDetails> getFilesList(){
+        orderByAlphaBet();
         return filesList;
     }
 
@@ -24,12 +25,17 @@ public class Folder extends GitObjectsBase {
 
     @Override
     public String toString() {
+        orderByAlphaBet();
         String content = "";
         for (FileDetails child : filesList){
             content = content.concat(child.toString());
             content = content.concat("\r\n");
         }
         return content;
+    }
+
+    public void orderByAlphaBet(){
+        filesList.sort(FileDetails::compareTo);
     }
 
     @Override
@@ -39,10 +45,13 @@ public class Folder extends GitObjectsBase {
 
         for (String child : childsData) {
             String[] childDetails = child.split(MagitUtils.DELIMITER);
-            FileDetails newDetails = new FileDetails(childDetails[0], childDetails[1], childDetails[2],
-                    childDetails[3], childDetails[4]);
-            addFile(newDetails);
+            if (child.length() > 0) {
+                FileDetails newDetails = new FileDetails(childDetails[0], childDetails[1], childDetails[2],
+                        childDetails[3], childDetails[4]);
+                addFile(newDetails);
+            }
         }
+        orderByAlphaBet();
     }
     @Override
     void createFileFromObject(String destinationPath){
