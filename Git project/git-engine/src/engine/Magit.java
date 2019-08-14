@@ -2,25 +2,29 @@ package engine;
 
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Magit {
 
     private String userName = "Administrator";
     private Repository repo = new Repository();
     private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
+    private Map<String, String> repos = new HashMap<>();
 
     public void setUserName(String newName) {
         this.userName = newName;
     }
 
-    public MagitStringResultObject createNewRepo(String repoPath) {
+    public MagitStringResultObject createNewRepo(String repoPath, String repoName) {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.createNewRepository(repoPath, true, true);
+            repo.createNewRepository(repoPath, repoName, true, true);
             msg = "Repository created successfully";
             result.setData(msg);
             result.setIsHasError(false);
+            repos.put(repoPath, repoName);
         }
         catch (Exception e){
             msg = e.getMessage();
@@ -30,11 +34,12 @@ public class Magit {
         return result;
     }
 
-    public MagitStringResultObject changeRepository(String newRepoName) {
+    public MagitStringResultObject changeRepository(String repoPath) {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.changeRepo(newRepoName);
+            String repoName = repos.get(repoPath);
+            repo.changeRepo(repoPath, repoName);
             msg = "Repository changed successfully!";
             result.setData(msg);
             result.setIsHasError(false);
@@ -52,6 +57,7 @@ public class Magit {
     }
 
     public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath, boolean toDeleteExistingRepo)
+
     throws DataAlreadyExistsException{
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
@@ -60,6 +66,7 @@ public class Magit {
             msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
+            repos.put(repo.getRootPath(), repo.getRepoName());
         }
         catch (DataAlreadyExistsException e){
             throw e;

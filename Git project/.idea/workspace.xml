@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Git UI:jar" />
       <artifact name="git-engine:jar" />
+      <artifact name="git-ui:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/git_ui_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Git_UI_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/git_engine_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/git_engine_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/FileDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/FileDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Folder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/git-engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/git-engine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/MagitUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/git_engine_jar/git-engine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/git_engine_jar/git-engine.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../git-ui/git-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../git-ui/git-ui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../git-ui/src/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../git-ui/src/ui/UI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,11 +67,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Git UI" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/git-engine/src/XMLHandler" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.29768044" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -160,6 +163,7 @@
       <workItem from="1565553941014" duration="1316000" />
       <workItem from="1565555885374" duration="2391000" />
       <workItem from="1565705379133" duration="5595000" />
+      <workItem from="1565824062780" duration="852000" />
     </task>
     <task id="LOCAL‎00001" summary="magit main changes with aviad">
       <created>1565344215036</created>
@@ -243,7 +247,13 @@
       <option name="presentableId" value="LOCAL‎00013" />
       <updated>1565786878778</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL‎00014" summary="comlete Exceptions in XMLvalidator">
+      <created>1565820888712</created>
+      <option name="number" value="LOCAL‎00014" />
+      <option name="presentableId" value="LOCAL‎00014" />
+      <updated>1565820888712</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,16 +299,5 @@
     <MESSAGE value="complete the merge" />
     <MESSAGE value="comlete Exceptions in XMLvalidator" />
     <option name="LAST_COMMIT_MESSAGE" value="comlete Exceptions in XMLvalidator" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../git-ui/src/ui/UI.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

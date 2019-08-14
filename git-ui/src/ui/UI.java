@@ -3,9 +3,7 @@ package ui;
 import engine.*;
 
 import java.nio.file.DirectoryNotEmptyException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 
 import static javafx.scene.input.KeyCode.G;
@@ -142,7 +140,11 @@ class UI {
         String repoPath = reader.nextLine();
         repoPath = reader.nextLine();
 
-        MagitStringResultObject result = myMagit.createNewRepo(repoPath);
+        System.out.println("Please enter a name for a new Repository:");
+        String repoName = reader.nextLine();
+        repoName = reader.nextLine();
+
+        MagitStringResultObject result = myMagit.createNewRepo(repoPath, repoName);
         if(result.getIsHasError()){
             System.out.println(result.getErrorMSG());
             System.out.println();
@@ -156,10 +158,10 @@ class UI {
 
     private void switchRepository() {
         System.out.println("Please enter a repository's path to switch to...:");
-        String repoName = reader.nextLine();
-        repoName = reader.nextLine();
+        String repoPath = reader.nextLine();
+        repoPath = reader.nextLine();
 
-        MagitStringResultObject result = myMagit.changeRepository(repoName);
+        MagitStringResultObject result = myMagit.changeRepository(repoPath);
         if (result.getIsHasError()) {
             System.out.println(result.getErrorMSG());
             System.out.println();

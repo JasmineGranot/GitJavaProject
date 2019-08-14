@@ -29,6 +29,12 @@ class Repository {
     private Commit currentCommit = null;
     private Branch currentBranch = null;
     private String currentUser;
+    private String repoName;
+
+
+    String getRepoName() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
+        return repoName;
+    }
 
     private boolean isObjectInRepo(String id) {
         return currentObjects.containsKey(id);
@@ -46,13 +52,17 @@ class Repository {
             return currentCommit.getRootSha1();
     }
 
+    private void setRepoName(String name){
+        repoName = name;
+    }
+
     WorkingCopyChanges printWCStatus() throws IOException, InvalidDataException{
         return isWorkingCopyIsChanged();
     }
 
 
     // =========================== Creating New Repo ==================================
-    void createNewRepository(String newRepositoryPath, boolean addMaster, boolean changeRepo)
+    void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster, boolean changeRepo)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException, InvalidDataException {
         String errorMsg;
         File newFile = new File(newRepositoryPath);
@@ -60,7 +70,7 @@ class Repository {
             if(newFile.mkdirs()){
                 addNewFilesToRepo(newRepositoryPath, addMaster);
                 if (changeRepo) {
-                    changeRepo(newRepositoryPath);
+                    changeRepo(newRepositoryPath, repoName);
                 }
             }
             else{
@@ -129,6 +139,7 @@ class Repository {
             JAXBContext jaxbContext = JAXBContext.newInstance("engine.parser");
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             MagitRepository newMagitRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
+            String repoName = newMagitRepo.getName();
 
             if (MagitUtils.isRepositoryExist(newMagitRepo.getLocation()) && !toDeleteExistingRepo){
                 errorMsg = "The repository already exists in the system!";
@@ -141,15 +152,13 @@ class Repository {
                 rootFile.delete();
             }
 
-
-
             XMLValidator validation = new XMLValidator(newMagitRepo, repoXMLPath);
             XMLValidationResult validationResult = validation.StartChecking();
 
             if(validationResult.isValid()) {
                 currentBranchs.clear();
                 currentObjects.clear();
-                createNewRepository(newMagitRepo.getLocation(), false, false);
+                createNewRepository(newMagitRepo.getLocation(),repoName, false, false);
                 setRootPath(newMagitRepo.getLocation());
                 updateMainPaths();
                 loadBranchesDataFromMagitRepository(newMagitRepo);
@@ -168,7 +177,7 @@ class Repository {
         }
         catch (Exception e){
             if(currentRepo!=null) {
-                changeRepo(currentRepo);
+                changeRepo(currentRepo, repoName);
             }
             errorMsg = "Something went wrong while trying to load a new repository from XML file!\n" +
                     "Error message: " + e.getMessage();
@@ -419,7 +428,7 @@ class Repository {
         OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
     }
 
-    void changeRepo(String newRepo) throws InvalidDataException, IOException, NullPointerException,
+    void changeRepo(String newRepo, String repoName) throws InvalidDataException, IOException, NullPointerException,
             ErrorCreatingNewFileException {
         String errorMsg;
 
@@ -428,6 +437,7 @@ class Repository {
             throw new InvalidDataException(errorMsg);
         }
 
+        setRepoName(repoName);
         setRootPath(newRepo);
         updateMainPaths();
 
