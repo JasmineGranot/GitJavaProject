@@ -9,7 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e6263e9f-efc9-4f97-b33f-47e98db2f6b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/engine/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidationResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/git-engine/src/XMLHandler/XMLValidator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +221,13 @@
       <option name="project" value="LOCAL" />
       <updated>1565710798473</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="complete the merge">
+      <created>1565785891361</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1565785891361</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +270,8 @@
     <MESSAGE value="added all XML validation" />
     <MESSAGE value="fixed reading files and XML loading commit recursively" />
     <MESSAGE value="bug fix in checkout and creating new branch in empty repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix in checkout and creating new branch in empty repo" />
+    <MESSAGE value="complete the merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete the merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
