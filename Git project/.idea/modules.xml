@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Git UI/Git UI.iml" filepath="$PROJECT_DIR$/../Git UI/Git UI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Git project.iml" filepath="$PROJECT_DIR$/Git project.iml" />
       <module fileurl="file://$PROJECT_DIR$/git-engine/git-engine.iml" filepath="$PROJECT_DIR$/git-engine/git-engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../git-ui/git-ui.iml" filepath="$PROJECT_DIR$/../git-ui/git-ui.iml" />
     </modules>
   </component>
 </project>
