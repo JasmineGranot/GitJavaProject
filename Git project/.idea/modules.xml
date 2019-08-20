@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/git-engine/git-engine.iml" filepath="$PROJECT_DIR$/git-engine/git-engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../git-ui/git-ui.iml" filepath="$PROJECT_DIR$/../git-ui/git-ui.iml" />
-    </modules>
-  </component>
-</project>
