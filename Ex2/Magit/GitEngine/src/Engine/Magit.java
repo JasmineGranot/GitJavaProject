@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +15,15 @@ public class Magit {
 
     private StringProperty userName = new SimpleStringProperty("Administrator");
     private Repository repo = new Repository();
+
     private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
     private Map<String, String> repos = new HashMap<>();
 
     public void setUserName(String newName) {
         this.userName.setValue(newName);
     }
+
+    public StringProperty getRepoName() {return this.repo.getRepoName();}
 
     public StringProperty getUserName() {return this.userName;}
 
@@ -46,6 +50,9 @@ public class Magit {
         MagitStringResultObject result = new MagitStringResultObject();
         try{
             String repoName = repos.get(repoPath);
+            if (repoName == null){
+                repoName = Paths.get(repoPath).getFileName().toString();
+            }
             repo.changeRepo(repoPath, repoName);
             msg = "Repository changed successfully!";
             result.setData(msg);
@@ -73,7 +80,7 @@ public class Magit {
             msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
-            repos.put(repo.getRootPath(), repo.getRepoName());
+            repos.put(repo.getRootPath(), repo.getRepoName().toString());
         }
         catch (DataAlreadyExistsException e){
             throw e;
@@ -343,7 +350,7 @@ public class Magit {
     }
 
     public StringProperty getCurrentBranch(){
-        return repo.getCurrentBranchName();
+        return repo.getCurrentBranch().getName();
     }
 
 }

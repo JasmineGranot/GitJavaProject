@@ -1,6 +1,7 @@
 package Controllers;
 
 import Engine.Magit;
+import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Paths;
 import java.util.Optional;
 import UIUtils.CommonUsed;
 
@@ -24,6 +26,8 @@ public class MainController {
     @FXML private Button newBranchButton;
 
     @FXML private Button resetBranchButton;
+
+    @FXML private Button deleteBranchButton;
 
     @FXML private Button ChangeRepoButton;
 
@@ -54,7 +58,7 @@ public class MainController {
     @FXML private Pane InfoBox;
 
     private Magit myMagit = new Magit();
-    private StringProperty myUserName = new SimpleStringProperty();
+//    private StringProperty myUserName = new SimpleStringProperty();
 
     public MainController() {
         //myUserName.setValue(myMagit.getUserName());
@@ -83,7 +87,16 @@ public class MainController {
 
     @FXML
     void createNewBranch(ActionEvent event) {
+        Optional<String> newBranchName = CommonUsed.showDialog("New Branch", "Enter name:",
+                "Name:");
+        newBranchName.ifPresent(name-> {
+            try {
+                myMagit.addNewBranch(name);
+            } catch (InvalidDataException e) {
+                e.printStackTrace();
+            }
 
+        });
     }
 
     @FXML
@@ -93,11 +106,18 @@ public class MainController {
 
     @FXML
     void createNewRepository(ActionEvent event) {
+        Optional<String> xmlRepoPath = CommonUsed.showDialog("New Repository", "Enter path:",
+                "Path:");
+        xmlRepoPath.ifPresent(path-> {
+                myMagit.createNewRepo(path, "just a custom repo");
 
+        });
+        setRepoActionsAvailable();
     }
 
     @FXML
     void deleteBranch(ActionEvent event) {
+
 
     }
 
@@ -107,7 +127,17 @@ public class MainController {
     }
 
     @FXML
-    void loadRepository(ActionEvent event) {
+    void loadRepository(ActionEvent event) { //TODO: change to file chooser with XML Filte
+        Optional<String> xmlRepoPath = CommonUsed.showDialog("Load Repository", "Enter xml path:",
+                "Path:");
+        xmlRepoPath.ifPresent(name-> {
+            try {
+                myMagit.loadRepositoryFromXML(name, false);
+            } catch (DataAlreadyExistsException e) {
+                e.printStackTrace();
+            }
+        });
+        setRepoActionsAvailable();
 
     }
 
@@ -128,7 +158,16 @@ public class MainController {
 
     @FXML
     void resetBranchToSpecificCommit(ActionEvent event) {
+        Optional<String> newCommitSha1 = CommonUsed.showDialog("Reset Head", "Enter commit SHA-1:",
+                "SHA-1:");
+        newCommitSha1.ifPresent(sha1-> {
+            try {
+                myMagit.resetBranch(sha1, false);
+            } catch (DirectoryNotEmptyException e) {
+                e.printStackTrace();
+            }
 
+        });
     }
 
     @FXML
@@ -143,7 +182,11 @@ public class MainController {
 
     @FXML
     void switchRepository(ActionEvent event) {
-
+        Optional<String> RepoPath = CommonUsed.showDialog("Change Repository", "Enter Repository path:",
+                "Path:");
+        RepoPath.ifPresent(name-> myMagit.changeRepository(name)
+        );
+        setRepoActionsAvailable();
     }
 
     @FXML
@@ -157,7 +200,28 @@ public class MainController {
 
     public void initialize() {
         userName.textProperty().bind(myMagit.getUserName());
-        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
+        CurrentRepo.textProperty().bind(myMagit.getRepoName());
+        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch()); // NOT WORKING
+
+
+        newBranchButton.setDisable(true);
+        resetBranchButton.setDisable(true);
+        CommitButton.setDisable(true);
+        showStatusButton.setDisable(true); // NOT WORKING
+        PushButton.setDisable(true);
+        PullButton.setDisable(true);
+        MergeButton.setDisable(true);
+        CloneButton.setDisable(true);
+        FetchButton.setDisable(true);
+        branchesOptionsComboBox.setDisable(true);
+        checkoutButton.setDisable(true);
+        deleteBranchButton.setDisable(true);
+
     }
+
+    private void setRepoActionsAvailable(){
+        showStatusButton.setDisable(false);
+        branchesOptionsComboBox.setDisable(false);
+        newBranchButton.setDisable(false);    }
 
 }

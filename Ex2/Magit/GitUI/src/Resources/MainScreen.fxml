@@ -268,7 +268,7 @@
                   <Font size="10.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="12.0" fitWidth="12.0">
+                  <ImageView fitHeight="10.0" fitWidth="10.0">
                      <image>
                         <Image url="@Images/Commit.png" />
                      </image>
@@ -396,7 +396,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteBranch" prefHeight="9.0" prefWidth="17.0" textAlignment="RIGHT">
+                        <Button fx:id="deleteBranchButton" mnemonicParsing="false" onAction="#deleteBranch" prefHeight="9.0" prefWidth="17.0" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                            </HBox.margin>

@@ -4,19 +4,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Branch {
-    private StringProperty name = new SimpleStringProperty("");
-    private String commitSha1 = "";
+    private StringProperty name;
+    private String commitSha1;
 
     public Branch(String name, String commitSha1){
-        setName(name);
+        this.name = new SimpleStringProperty(name);
         setCommitSha1(commitSha1);
     }
 
     public Branch(String name){
-        setName(name);
+        this.name = new SimpleStringProperty(name);
     }
 
-    private void setName(String name){
+    public void setName(String name){
         this.name.setValue(name);
     }
 

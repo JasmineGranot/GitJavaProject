@@ -4,6 +4,7 @@ import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import javax.xml.bind.JAXBContext;
@@ -30,12 +31,13 @@ class Repository {
     private Map<String, GitObjectsBase> currentObjects = new HashMap<>();
     private List<Branch> currentBranchs = new LinkedList<>();
     private Commit currentCommit = null;
-    private Branch currentBranch = null;
+    private final Branch UNDEFINED_BRANCH = new Branch("Undefined");
+    private Branch currentBranch = UNDEFINED_BRANCH;
     private String currentUser;
-    private String repoName;
+    private StringProperty repoName = new SimpleStringProperty("undefined");
 
 
-    String getRepoName() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
+    StringProperty getRepoName() {
         return repoName;
     }
 
@@ -56,11 +58,11 @@ class Repository {
     }
 
     private void setRepoName(String name){
-        repoName = name;
+        repoName.setValue(name);
     }
 
-    StringProperty getCurrentBranchName(){
-        return currentBranch.getName();
+    Branch getCurrentBranch(){
+        return currentBranch;
     }
 
     WorkingCopyChanges printWCStatus() throws IOException, InvalidDataException {
@@ -79,6 +81,7 @@ class Repository {
                 if (changeRepo) {
                     changeRepo(newRepositoryPath, repoName);
                 }
+
             }
             else{
                 errorMsg = "The system has failed to create the new directory";
@@ -169,6 +172,7 @@ class Repository {
                 setRootPath(newMagitRepo.getLocation());
                 updateMainPaths();
                 loadBranchesDataFromMagitRepository(newMagitRepo);
+                setRepoName(repoName);
             }
             else {
                 throw new InvalidDataException(validationResult.getMessage());
@@ -184,7 +188,7 @@ class Repository {
         }
         catch (Exception e){
             if(currentRepo!=null) {
-                changeRepo(currentRepo, repoName);
+                changeRepo(currentRepo, repoName.toString());
             }
             errorMsg = "Something went wrong while trying to load a new repository from XML file!\n" +
                     "Error message: " + e.getMessage();
@@ -233,7 +237,7 @@ class Repository {
             if (curBranch.getName().equals((head))) {
                 currentBranch = getBranchByName(curBranch.getName());
                 changeHeadBranch(curBranch.getName());
-                if (currentBranch == null) {
+                if (currentBranch == UNDEFINED_BRANCH) {
                     errorMsg = "Error while trying to create the new branch!";
                     throw new FileErrorException(errorMsg);
                 }
@@ -650,7 +654,7 @@ class Repository {
 
     private boolean isBranchExist(String branchName) {
         for(Branch currBranch : currentBranchs){
-            if(currBranch.getName().equals(branchName)){
+            if(currBranch.getName().getValue().equals(branchName)){
                 return true;
             }
         }
@@ -659,7 +663,7 @@ class Repository {
 
     private Branch getBranchByName(String branchName){
         for(Branch currBranch : currentBranchs){
-            if(currBranch.getName().equals(branchName)){
+            if(currBranch.getName().getValue().equals(branchName)){
                 return currBranch;
             }
         }
