@@ -3,81 +3,78 @@ package Controllers;
 import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import GitObjects.Branch;
+import GitObjects.Folder;
+import Utils.MagitStringResultObject;
+import Utils.ResultList;
+import XMLHandler.XMLValidator;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 
+import java.awt.*;
+import java.io.File;
 import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 import UIUtils.CommonUsed;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser;
+import javax.crypto.spec.PSource;
 
 public class MainController {
 
     @FXML private Label userName;
-
     @FXML private Button changeUserButton;
-
     @FXML private Label CurrentBranch;
-
     @FXML private Button newBranchButton;
-
     @FXML private Button resetBranchButton;
-
     @FXML private Button deleteBranchButton;
-
     @FXML private Button ChangeRepoButton;
-
     @FXML private Button LoadRepoButton;
-
     @FXML private Button CreateNewRepoButton;
-
     @FXML private Label CurrentRepo;
-
     @FXML private Button showStatusButton;
-
     @FXML private Button CommitButton;
-
     @FXML private Button PushButton;
-
     @FXML private Button PullButton;
-
     @FXML private Button MergeButton;
-
     @FXML private Button CloneButton;
-
     @FXML private Button FetchButton;
-
-    @FXML private ComboBox<?> branchesOptionsComboBox;
-
+    @FXML private ComboBox<String> branchesOptionsComboBox;
     @FXML private Button checkoutButton;
-
     @FXML private Pane InfoBox;
 
     private Magit myMagit = new Magit();
-//    private StringProperty myUserName = new SimpleStringProperty();
+    private Stage primaryStage;
+    private SimpleBooleanProperty isBranchSelected = new SimpleBooleanProperty(false);
 
-    public MainController() {
-        //myUserName.setValue(myMagit.getUserName());
-    }
 
+    //TODO: Handel exceptions
     @FXML
     void checkoutBranch(ActionEvent event) {
-        Optional<String> res = CommonUsed.showDialog("Checkout branch", "Enter branch name:",
-                "Name:");
-
-        res.ifPresent(name-> {
-            try {
-                myMagit.checkoutBranch(name, false);
-            } catch (InvalidDataException e) {
-                e.printStackTrace();
-            } catch (DirectoryNotEmptyException e) {
-                e.printStackTrace();
-            }
-        });
+        try {
+            myMagit.checkoutBranch(branchesOptionsComboBox.getValue(), false);
+            CurrentBranch.textProperty().unbind();
+            CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        } catch (DirectoryNotEmptyException e) {
+            e.getCause();
+        }
     }
 
     @FXML
@@ -87,15 +84,15 @@ public class MainController {
 
     @FXML
     void createNewBranch(ActionEvent event) {
-        Optional<String> newBranchName = CommonUsed.showDialog("New Branch", "Enter name:",
+        Optional<String> newBranchName = CommonUsed.showDialog("New Branch", "Enter branch's name:",
                 "Name:");
         newBranchName.ifPresent(name-> {
             try {
                 myMagit.addNewBranch(name);
             } catch (InvalidDataException e) {
-                e.printStackTrace();
+                CommonUsed.showError(e.getMessage(), "New Branch", "Enter branch's name:"
+                , "Name: ");
             }
-
         });
     }
 
@@ -113,12 +110,18 @@ public class MainController {
 
         });
         setRepoActionsAvailable();
+        CurrentBranch.textProperty().unbind();
+        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
     }
 
+    //TODO: Handel exceptions
     @FXML
     void deleteBranch(ActionEvent event) {
-
-
+        try {
+            myMagit.deleteBranch(branchesOptionsComboBox.getValue());
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -126,18 +129,51 @@ public class MainController {
 
     }
 
+    //TODO: change to file chooser with XML File
     @FXML
-    void loadRepository(ActionEvent event) { //TODO: change to file chooser with XML Filte
-        Optional<String> xmlRepoPath = CommonUsed.showDialog("Load Repository", "Enter xml path:",
-                "Path:");
-        xmlRepoPath.ifPresent(name-> {
-            try {
-                myMagit.loadRepositoryFromXML(name, false);
-            } catch (DataAlreadyExistsException e) {
-                e.printStackTrace();
+    void loadRepository(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select XML file!");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML file", "*.xml"));
+
+        File selectFile = fileChooser.showOpenDialog(primaryStage);
+        if (selectFile == null) {
+            return;
+        }
+
+        /*ProgressBar progressBar = new ProgressBar(0);
+        ProgressIndicator progressIndicator = new ProgressIndicator(0);
+
+        progressBar.setVisible(true);
+        Button startButton = new Button("Start");
+        Button okButton = new Button("OK");
+        okButton.setVisible(false);
+
+        final Label statusLabel = new Label();
+        statusLabel.setMinWidth(250);
+        statusLabel.setTextFill(Color.BLACK);
+
+
+        startButton.setOnAction(eventThread -> {
+            try{
+                startButton.setDisable(true);
+                startButton.setVisible(false);
+                progressBar.setProgress(0);
+                progressIndicator.setProgress(0);
+                myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
+            }catch(DataAlreadyExistsException e){
+                System.out.println(e.getMessage());
             }
-        });
+        });*/
+        try{
+            myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
+        }
+        catch(DataAlreadyExistsException e){
+            e.getMessage();
+        }
         setRepoActionsAvailable();
+        CurrentBranch.textProperty().unbind();
+        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
 
     }
 
@@ -173,6 +209,7 @@ public class MainController {
     @FXML
     void showBranches(ActionEvent event) {
 
+
     }
 
     @FXML
@@ -182,11 +219,19 @@ public class MainController {
 
     @FXML
     void switchRepository(ActionEvent event) {
-        Optional<String> RepoPath = CommonUsed.showDialog("Change Repository", "Enter Repository path:",
-                "Path:");
-        RepoPath.ifPresent(name-> myMagit.changeRepository(name)
-        );
+        MagitStringResultObject obj;
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select repository!");
+
+        File selectFile = directoryChooser.showDialog(primaryStage);
+        if (selectFile == null) {
+            return;
+        }
+        obj = myMagit.changeRepository(selectFile.getAbsolutePath());
         setRepoActionsAvailable();
+        CurrentBranch.textProperty().unbind();
+        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
+
     }
 
     @FXML
@@ -201,13 +246,12 @@ public class MainController {
     public void initialize() {
         userName.textProperty().bind(myMagit.getUserName());
         CurrentRepo.textProperty().bind(myMagit.getRepoName());
-        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch()); // NOT WORKING
-
+        CurrentBranch.textProperty().bind(myMagit.getCurrentBranch());
 
         newBranchButton.setDisable(true);
         resetBranchButton.setDisable(true);
         CommitButton.setDisable(true);
-        showStatusButton.setDisable(true); // NOT WORKING
+        showStatusButton.setDisable(true);
         PushButton.setDisable(true);
         PullButton.setDisable(true);
         MergeButton.setDisable(true);
@@ -216,12 +260,18 @@ public class MainController {
         branchesOptionsComboBox.setDisable(true);
         checkoutButton.setDisable(true);
         deleteBranchButton.setDisable(true);
-
+        branchesOptionsComboBox.setOnAction(e -> {
+            deleteBranchButton.setDisable(false);
+            checkoutButton.setDisable(false);
+        });
     }
 
     private void setRepoActionsAvailable(){
         showStatusButton.setDisable(false);
         branchesOptionsComboBox.setDisable(false);
-        newBranchButton.setDisable(false);    }
+        newBranchButton.setDisable(false);
+        resetBranchButton.setDisable(false);
 
+        branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+    }
 }

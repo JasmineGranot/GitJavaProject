@@ -1,9 +1,11 @@
 package Engine;
 
+import GitObjects.Branch;
 import Utils.*;
 import Exceptions.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
@@ -24,6 +26,10 @@ public class Magit {
     }
 
     public StringProperty getRepoName() {return this.repo.getRepoName();}
+
+    public ObservableList<String> getCurrentBranchesNames(){
+        return repo.getCurrentBranchesNames();
+    }
 
     public StringProperty getUserName() {return this.userName;}
 
@@ -188,20 +194,20 @@ public class Magit {
         return result;
     }
 
-    public MagitStringResultObject showAllBranches() {
-        MagitStringResultObject result = new MagitStringResultObject();
+    public ResultList<Branch.BrancheData> showAllBranches() {
+        ResultList<Branch.BrancheData> result = new ResultList<>();
         if (!isRepositoryConfigured()){
-            result.setIsHasError(true);
-            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            result.setHasError(true);
+            result.setErrorMsg(NON_EXISTING_REPO_MSG);
             return result;
         }
         try{
-            result.setData(repo.showAllBranchesData());
-            result.setIsHasError(false);
+            result.setRes(repo.showAllBranchesData());
+            result.setHasError(false);
         }
         catch(Exception e){
-            result.setIsHasError(true);
-            result.setErrorMSG("Got EXCEPTION!!! " + e.getMessage());
+            result.setHasError(true);
+            result.setErrorMsg("Got Generic Exception!!!\n Error message: " + e.getMessage());
         }
         return result;
     }

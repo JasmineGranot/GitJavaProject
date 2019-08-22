@@ -31,4 +31,39 @@ public class Branch {
     public String getCommitSha1(){
         return commitSha1;
     }
+
+    public BrancheData getBranchData(){
+       return new BrancheData();
+    }
+
+    public class BrancheData {
+        private String branchName = name.getValue();
+        private boolean isHead = false;
+        private String sha1 = commitSha1;
+        private String commitMsg = "";
+
+        public String getBranchName(){
+            return branchName;
+        }
+
+        public String getSha1(){
+            return sha1;
+        }
+
+        public String getCommitMsg(){
+            return commitMsg;
+        }
+
+        public boolean getIsHead(){
+            return isHead;
+        }
+
+        public void setCommitMsg(String content) {
+            commitMsg = content;
+        }
+
+        public void setHead(boolean isHead) {
+            this.isHead = isHead;
+        }
+    }
 }

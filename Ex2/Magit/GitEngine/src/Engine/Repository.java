@@ -4,9 +4,15 @@ import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.beans.binding.ListBinding;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -35,6 +41,7 @@ class Repository {
     private Branch currentBranch = UNDEFINED_BRANCH;
     private String currentUser;
     private StringProperty repoName = new SimpleStringProperty("undefined");
+    private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
 
 
     StringProperty getRepoName() {
@@ -69,6 +76,9 @@ class Repository {
         return isWorkingCopyIsChanged();
     }
 
+    public ObservableList<String> getCurrentBranchesNames() {
+        return currentBranchesNames;
+    }
 
     // =========================== Creating New Repo ==================================
     void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster, boolean changeRepo)
@@ -168,6 +178,7 @@ class Repository {
             if(validationResult.isValid()) {
                 currentBranchs.clear();
                 currentObjects.clear();
+                currentBranchesNames.clear();
                 createNewRepository(newMagitRepo.getLocation(),repoName, false, false);
                 setRootPath(newMagitRepo.getLocation());
                 updateMainPaths();
@@ -466,6 +477,7 @@ class Repository {
     private void loadObjectsFromRepo() throws IOException, ErrorCreatingNewFileException{
         currentObjects.clear();
         currentBranchs.clear();
+        currentBranchesNames.clear();
         loadBranchesObjectsFromBranchs();
 
 //      ========================================================
@@ -501,7 +513,9 @@ class Repository {
         for (String currentBranchPath : filesInBranchesFolder) {
             if (!currentBranchPath.equals("Head")){
                 String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, currentBranchPath));
-                currentBranchs.add(new Branch(currentBranchPath, commitSha1));
+                Branch newBranch = new Branch(currentBranchPath, commitSha1);
+                currentBranchs.add(newBranch);
+                currentBranchesNames.add(newBranch.getName().getValue());
             }
         }
     }
@@ -544,28 +558,22 @@ class Repository {
 
 
     // ========================= Branches Functions ======================
-    String showAllBranchesData() {
-        String data = "";
+    ObservableList<Branch.BrancheData> showAllBranchesData() {
+        ObservableList<Branch.BrancheData> branchDataList = FXCollections.observableArrayList();
+        Branch.BrancheData data;
         for (Branch curBranch : currentBranchs) {
-            data = data.concat("\n========================\n");
-            data = data.concat(String.format("Branch's name is: %s ", curBranch.getName()));
+            data = curBranch.getBranchData();
             if (curBranch.getName().equals(currentBranch.getName())) {
-                data = data.concat("----> Head");
+                data.setHead(true);
             }
             String commitSha1 = curBranch.getCommitSha1();
             if (!commitSha1.equals("")){ // only for new repo without master commit option
-                data = data.concat(String.format("\nThe commit SHA-1: %s", commitSha1));
                 Commit lastComitInBranch = (Commit) currentObjects.get(commitSha1);
-                data = data.concat(String.format("\nThe commit message:\n %s",
-                    lastComitInBranch.getCommitMessage()));
+                data.setCommitMsg(lastComitInBranch.getCommitMessage());
             }
-            else{
-                data = data.concat(String.format("\nNo commit was created for %s\n", curBranch.getName()));
-            }
-            data = data.concat("\n========================\n");
-
+            branchDataList.add(data);
         }
-        return data;
+        return branchDataList;
     }
 
     void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException, InvalidDataException{
@@ -596,10 +604,11 @@ class Repository {
         // =================================
         Branch newBranchObj = new Branch(newBranchName, commitSha1);
         currentBranchs.add(newBranchObj);
+        currentBranchesNames.add(newBranchObj.getName().getValue());
     }
 
     void removeBranch(String branchName) throws InvalidDataException, FileErrorException {
-        String currentHeadBranch = currentBranch.getName().toString();
+        String currentHeadBranch = currentBranch.getName().getValue();
         String errorMsg;
         if (!isBranchExist(branchName)) {
             errorMsg = "No such branch Exists!";
@@ -628,6 +637,9 @@ class Repository {
 
             Branch branchObjToDelete = getBranchByName(branchName);
             currentBranchs.remove(branchObjToDelete);
+            if (branchObjToDelete != null){
+                currentBranchesNames.remove(branchObjToDelete.getName().getValue());
+            }
         }
     }
 

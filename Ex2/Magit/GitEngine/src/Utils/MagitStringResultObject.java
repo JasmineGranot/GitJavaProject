@@ -1,6 +1,11 @@
 package Utils;
 
+import javafx.concurrent.Task;
+import Engine.Magit;
+
+
 public class MagitStringResultObject {
+    private Magit myMagit = new Magit();
     private String data;
     private boolean haveError;
     private String errorMSG;
