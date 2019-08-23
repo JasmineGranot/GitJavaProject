@@ -5,21 +5,24 @@ import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
-
 import java.io.File;
+import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.Optional;
 import java.util.Set;
-
 import UIUtils.CommonUsed;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
@@ -208,50 +211,37 @@ public class MainController {
 
     @FXML
     void showWCStatus(ActionEvent event) {
-//        WorkingCopyChanges result =  myMagit.showStatus();
-//        Text newF = new Text("New Files:\n");
-//
-//        Set<String> newFiles = result.getNewFiles();
-//        Set<String> changedFiles = result.getChangedFiles();
-//        Set<String> deletedFiles = result.getDeletedFiles();
-//
-//
-//        if(result.getHasErrors()){
-//            System.out.println(result.getErrorMsg());
-//            System.out.println();
-//        }
-//        else {
-//            System.out.println(result.getMsg());
-//            if(newFiles.isEmpty() && changedFiles.isEmpty() && deletedFiles.isEmpty()) {
-//                System.out.println("There were no changes in the repository!\n");
-//            }
-//            else {
-//                if (!newFiles.isEmpty()) {
-//                    System.out.println("New files:");
-//                    for (String curr : result.getNewFiles()) {
-//                        System.out.println(curr);
-//                        System.out.println();
-//                    }
-//                }
-//
-//                if (!changedFiles.isEmpty()) {
-//                    System.out.println("Changed files:");
-//                    for (String curr : result.getChangedFiles()) {
-//                        System.out.println(curr);
-//                        System.out.println();
-//                    }
-//                }
-//
-//
-//                if (!deletedFiles.isEmpty()) {
-//                    System.out.println("Deleted files:");
-//                    for (String curr : result.getDeletedFiles()) {
-//                        System.out.println(curr);
-//                        System.out.println();
-//                    }
-//                }
-//            }
-//        }
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        URL url = getClass().getResource("/Resources/ShowStatusScreen.fxml");
+        fxmlLoader.setLocation(url);
+        try {
+            VBox statusScreen = fxmlLoader.load(url.openStream());
+            //ShowStatusController statusController = fxmlLoader.getController();
+            WorkingCopyChanges result =  myMagit.showStatus();
+            Set<String> newFiles = result.getNewFiles();
+            Set<String> changedFiles = result.getChangedFiles();
+            Set<String> deletedFiles = result.getDeletedFiles();
+            //statusController.setFilesLists(newFiles, changedFiles, deletedFiles);
+            ObservableList<String> newItems = FXCollections.observableArrayList(newFiles);
+            ListView<String> newItemsList = new ListView<>(newItems);
+            newItemsList.setPrefHeight(92);
+            ObservableList<String> changedItems = FXCollections.observableArrayList(changedFiles);
+            ListView<String> changedItemsList = new ListView<>(changedItems);
+            changedItemsList.setPrefHeight(92);
+            ObservableList<String> deletedItems = FXCollections.observableArrayList(deletedFiles);
+            ListView<String> deletedItemsList = new ListView<>(deletedItems);
+            deletedItemsList.setPrefHeight(92);
+            ScrollBar scroller = new ScrollBar();
+            scroller.setOrientation(Orientation.VERTICAL);
+            statusScreen.getChildren().add(1, newItemsList);
+            statusScreen.getChildren().add(3, changedItemsList);
+            statusScreen.getChildren().add(5, deletedItemsList);
+            textPane.getChildren().add(statusScreen);
+
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
     }
 
     @FXML
