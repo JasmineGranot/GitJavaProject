@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="680.0" style="-fx-background-color: #DFE3EE; -fx-border-color: #221F1F; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
@@ -83,7 +84,7 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="CurrentBranch" text="Not selected" textFill="#4499ea">
+                  <Label fx:id="currentBranch" text="Not selected" textFill="#4499ea">
                      <VBox.margin>
                         <Insets left="25.0" right="15.0" />
                      </VBox.margin>
@@ -166,7 +167,7 @@
          <children>
             <HBox pickOnBounds="false" prefHeight="40.0" prefWidth="431.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Button fx:id="ChangeRepoButton" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository" textFill="#1b476d">
+                  <Button fx:id="changeRepoButton" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository" textFill="#1b476d">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -181,7 +182,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="LoadRepoButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository" textFill="#1b476d">
+                  <Button fx:id="loadRepoButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository" textFill="#1b476d">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -196,7 +197,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="CreateNewRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewRepository" prefHeight="20.0" prefWidth="150.0" text="Create New Repository" textFill="#1b476d">
+                  <Button fx:id="createNewRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewRepository" prefHeight="20.0" prefWidth="150.0" text="Create New Repository" textFill="#1b476d">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>
@@ -226,7 +227,7 @@
                         <Insets left="5.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="CurrentRepo" minWidth="-Infinity" prefHeight="17.0" prefWidth="76.0" text="Not Selected" textFill="#4499ea">
+                  <Label fx:id="currentRepo" minWidth="-Infinity" prefHeight="17.0" prefWidth="76.0" text="Not Selected" textFill="#4499ea">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -260,7 +261,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="CommitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewCommit" prefHeight="25.0" prefWidth="65.0" text="Commit" textFill="#1b476d">
+            <Button fx:id="commitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewCommit" prefHeight="25.0" prefWidth="65.0" text="Commit" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -275,7 +276,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="PushButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#push" prefHeight="25.0" prefWidth="65.0" text="Push" textFill="#1b476d">
+            <Button fx:id="pushButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#push" prefHeight="25.0" prefWidth="65.0" text="Push" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -293,7 +294,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="PullButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pull" prefHeight="25.0" prefWidth="65.0" text="Pull" textFill="#1b476d">
+            <Button fx:id="pullButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pull" prefHeight="25.0" prefWidth="65.0" text="Pull" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -311,7 +312,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="MergeButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#merge" prefHeight="25.0" prefWidth="65.0" text="Merge" textFill="#1b476d">
+            <Button fx:id="mergeButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#merge" prefHeight="25.0" prefWidth="65.0" text="Merge" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -329,7 +330,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="CloneButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clone" prefHeight="25.0" prefWidth="65.0" text="Clone" textFill="#1b476d">
+            <Button fx:id="cloneButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clone" prefHeight="25.0" prefWidth="65.0" text="Clone" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -347,7 +348,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="FetchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="65.0" text="Fetch" textFill="#1b476d">
+            <Button fx:id="fetchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="65.0" text="Fetch" textFill="#1b476d">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -386,7 +387,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="branchesOptionsComboBox" onAction="#showBranches" prefHeight="25.0" prefWidth="155.0" promptText="Branches">
+                        <ComboBox fx:id="branchesOptionsComboBox" prefHeight="25.0" prefWidth="155.0" promptText="Branches">
                            <HBox.margin>
                               <Insets bottom="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -417,7 +418,10 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="413.0">
                <children>
-                  <Pane fx:id="InfoBox" layoutX="2.0" layoutY="-1.0" prefHeight="331.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0" />
+                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" prefHeight="331.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0">
+                     <children>
+                        <TextFlow fx:id="textInfoBox" prefHeight="326.0" prefWidth="431.0" />
+                     </children></Pane>
                </children>
             </AnchorPane>
         </items>

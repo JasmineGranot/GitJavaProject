@@ -422,7 +422,6 @@ class Repository {
         }
     }
 
-
     private void loadWCFromCommitSha1(String commitSha1) throws FileErrorException, IOException{
         deleteWC(getRootPath(), false);
         Commit curCommit = (Commit) currentObjects.get(commitSha1);
@@ -822,13 +821,13 @@ class Repository {
     }
 
     private void updateCommitInCurrentBranch(String commitSha1) throws IOException {
-        File headFile = new File(MagitUtils.joinPaths(BRANCHES_PATH, currentBranch.getName().toString()));
+        File headFile = new File(MagitUtils.joinPaths(BRANCHES_PATH, currentBranch.getName().getValue()));
         Writer writer = new BufferedWriter(new FileWriter(headFile));
         writer.write(commitSha1);
         writer.flush();
         writer.close();
         currentBranch.setCommitSha1(commitSha1);
-        Branch branchToAddCommitTo = getBranchByName(currentBranch.getName().toString());
+        Branch branchToAddCommitTo = getBranchByName(currentBranch.getName().getValue());
         if (branchToAddCommitTo != null) {
             branchToAddCommitTo.setCommitSha1(commitSha1);
         }
@@ -1065,7 +1064,7 @@ class Repository {
 
     private void changeHeadCommit(String sha1) throws IOException{
         if (isValidCommit(sha1)) {
-            Path headPath = Paths.get(BRANCHES_PATH, currentBranch.getName().toString());
+            Path headPath = Paths.get(BRANCHES_PATH, currentBranch.getName().getValue());
             MagitUtils.writeToFile(headPath, sha1);
             currentBranch.setCommitSha1(sha1);
         }
