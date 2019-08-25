@@ -17,11 +17,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -210,7 +212,7 @@ class Repository {
     private void loadBranchesDataFromMagitRepository(MagitRepository repoFromXML)
             throws IOException, FileErrorException, InvalidDataException {
         String errorMsg;
-        if(XMLUtils.isEmptyRepo(repoFromXML)){
+        if(XMLUtils.isEmptyRepo(repoFromXML)){//TODO: add head
             return;
         }
         String head = repoFromXML.getMagitBranches().getHead();
@@ -574,6 +576,7 @@ class Repository {
         }
         return branchDataList;
     }
+
 
     void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException, InvalidDataException{
         String errorMsg;
@@ -1068,5 +1071,29 @@ class Repository {
             MagitUtils.writeToFile(headPath, sha1);
             currentBranch.setCommitSha1(sha1);
         }
+    }
+
+    List<Commit.CommitData> currentCommits() {
+        List<Commit.CommitData> commits = new LinkedList<>();
+        for(String sha1 : currentObjects.keySet()){
+            GitObjectsBase currentObj = currentObjects.get(sha1);
+            if (currentObj.isCommit()){
+                Commit curCommit = (Commit) currentObj;
+                commits.add(Commit.getCommitData(sha1, curCommit));
+            }
+        }
+
+        commits.sort(new Comparator<Commit.CommitData>() {
+            @Override
+            public int compare(Commit.CommitData o1, Commit.CommitData o2) {
+                try {
+                    return -o1.getCommitDateAsDate().compareTo(o2.getCommitDateAsDate());
+                }catch(ParseException e){
+                    e.getMessage();
+                }
+                return 0;
+            }
+        });
+        return commits;
     }
 }

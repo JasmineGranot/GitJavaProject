@@ -1,6 +1,7 @@
 package Engine;
 
 import GitObjects.Branch;
+import GitObjects.Commit;
 import Utils.*;
 import Exceptions.*;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Magit {
@@ -357,6 +359,10 @@ public class Magit {
 
     public StringProperty getCurrentBranch(){
         return repo.getCurrentBranch().getName();
+    }
+
+    public List<Commit.CommitData> getCurrentCommits() {
+       return repo.currentCommits();
     }
 
 }

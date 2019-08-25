@@ -1,8 +1,13 @@
 package GitObjects;
 
 import Utils.MagitUtils;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Commit extends GitObjectsBase {
     private String commiter = null;
@@ -23,7 +28,7 @@ public class Commit extends GitObjectsBase {
         this.date = date;
     }
 
-    private String getCommitDate() {
+    public String getCommitDate() {
         return this.date;
     }
 
@@ -92,4 +97,82 @@ public class Commit extends GitObjectsBase {
 
     @Override
     public void createFileFromObject(String destinationPath) {}
+
+    public static CommitData getCommitData(String commitSha1, Commit commitObj){
+        CommitData data = new CommitData();
+        data.getDataFromCommit(commitObj);
+        data.setCommitSha1(commitSha1);
+        return data;
+    }
+
+    public static class CommitData{
+        private String commitSha1 = "";
+        private String commitDate = "";
+        private String commitMsg = "";
+        private String commitWriter = "";
+        private String commitsLastCommit = "";
+        private String commitsRootSha1 = "";
+
+        public CommitData getDataFromCommit(Commit commitToGet){
+            setCommitDate(commitToGet.getCommitDate());
+            setCommitMsg(commitToGet.getCommitMessage());
+            setCommitsLastCommit(commitToGet.getLastCommitSha1());
+            setCommitsRootSha1(commitToGet.getRootSha1());
+            setCommitWriter(commitToGet.getCommitCreator());
+            return this;
+        }
+
+        public String getCommitDate() {
+            return commitDate;
+        }
+
+        public void setCommitDate(String commitDate) {
+            this.commitDate = commitDate;
+        }
+
+        public Date getCommitDateAsDate() throws ParseException {
+            SimpleDateFormat format = new SimpleDateFormat((MagitUtils.DATE_PATTERN));
+            return format.parse(getCommitDate());
+        }
+
+        public String getCommitMsg() {
+            return commitMsg;
+        }
+
+        public void setCommitMsg(String commitMsg) {
+            this.commitMsg = commitMsg;
+        }
+
+        public String getCommitSha1() {
+            return commitSha1;
+        }
+
+        public void setCommitSha1(String commitSha1) {
+            this.commitSha1 = commitSha1;
+        }
+
+        public String getCommitsLastCommit() {
+            return commitsLastCommit;
+        }
+
+        public void setCommitsLastCommit(String commitsLastCommit) {
+            this.commitsLastCommit = commitsLastCommit;
+        }
+
+        public String getCommitsRootSha1() {
+            return commitsRootSha1;
+        }
+
+        public void setCommitsRootSha1(String commitsRootSha1) {
+            this.commitsRootSha1 = commitsRootSha1;
+        }
+
+        public String getCommitWriter() {
+            return commitWriter;
+        }
+
+        public void setCommitWriter(String commitWriter) {
+            this.commitWriter = commitWriter;
+        }
+    }
 }

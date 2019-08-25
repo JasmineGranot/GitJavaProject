@@ -57,4 +57,13 @@ public class GitObjectsBase {
     public void createFileFromObject(String destinationPath) throws IOException{
         MagitUtils.writeToFile(destinationPath, this.toString());
     }
+
+    public Commit convertToCommit(){
+        if (this.isCommit()){
+            return (Commit) this;
+        }
+        else{
+            return null;
+        }
+    }
 }

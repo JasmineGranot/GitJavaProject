@@ -3,6 +3,7 @@ package Controllers;
 import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
+import GitObjects.Commit;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
 import javafx.collections.FXCollections;
@@ -13,12 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
 import java.io.File;
 import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
@@ -59,6 +60,8 @@ public class MainController {
         Optional<String> res = CommonUsed.showDialog("Change user name", "Enter your name:",
                 "Name:");
         res.ifPresent(name-> myMagit.setUserName(name));
+        List<Commit.CommitData> sortedCommits = myMagit.getCurrentCommits();
+
     }
 
     @FXML
@@ -216,12 +219,10 @@ public class MainController {
         fxmlLoader.setLocation(url);
         try {
             VBox statusScreen = fxmlLoader.load(url.openStream());
-            //ShowStatusController statusController = fxmlLoader.getController();
             WorkingCopyChanges result =  myMagit.showStatus();
             Set<String> newFiles = result.getNewFiles();
             Set<String> changedFiles = result.getChangedFiles();
             Set<String> deletedFiles = result.getDeletedFiles();
-            //statusController.setFilesLists(newFiles, changedFiles, deletedFiles);
             ObservableList<String> newItems = FXCollections.observableArrayList(newFiles);
             ListView<String> newItemsList = new ListView<>(newItems);
             newItemsList.setPrefHeight(92);
@@ -237,7 +238,6 @@ public class MainController {
             statusScreen.getChildren().add(3, changedItemsList);
             statusScreen.getChildren().add(5, deletedItemsList);
             textPane.getChildren().add(statusScreen);
-
         }
         catch(Exception e){
             e.getMessage();

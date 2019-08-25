@@ -14,6 +14,4 @@ public class ShowStatusController {
     @FXML
     private ListView<?> deletedFilesListView;
 
-
-    //void setFilesLists()
 }
