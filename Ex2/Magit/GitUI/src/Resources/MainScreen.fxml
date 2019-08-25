@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
 <BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="680.0" style="-fx-background-color: #DFE3EE; -fx-border-color: #221F1F; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
@@ -373,7 +372,7 @@
       </VBox>
    </right>
    <center>
-      <SplitPane dividerPositions="0.10986066452304395" orientation="VERTICAL" prefHeight="394.0" prefWidth="493.0" style="-fx-background-color: #3B5998;" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.10986066452304395" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="380.0" prefWidth="430.0" style="-fx-background-color: #3B5998;" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="38.0" prefWidth="365.0">
                <children>
@@ -418,10 +417,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="413.0">
                <children>
-                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" prefHeight="331.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0">
-                     <children>
-                        <TextFlow fx:id="textInfoBox" prefHeight="326.0" prefWidth="431.0" />
-                     </children></Pane>
+                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>
         </items>

@@ -6,6 +6,8 @@ import Exceptions.InvalidDataException;
 import GitObjects.Commit;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
+import com.sun.deploy.uitoolkit.impl.text.TextWindow;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,9 +26,13 @@ import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
+import sun.plugin2.message.TextEventMessage;
 
 public class MainController {
 
@@ -53,6 +59,7 @@ public class MainController {
 
     private Magit myMagit = new Magit();
     private Stage primaryStage;
+    private ShowStatusController statusController = new ShowStatusController();
 
 
     @FXML
@@ -66,18 +73,22 @@ public class MainController {
 
     @FXML
     void createNewRepository(ActionEvent event) {
-        Optional<String> xmlRepoPath = CommonUsed.showDialog("New Repository", "Enter path:",
+        Optional<String> repoPath = CommonUsed.showDialog("New Repository", "Enter path:",
                 "Path:");
-        xmlRepoPath.ifPresent(path-> {
-                myMagit.createNewRepo(path, "just a custom repo");
-
+        repoPath.ifPresent(path-> {
+            MagitStringResultObject res = myMagit.createNewRepo(path, "just a custom repo");
+            if (!res.getIsHasError()) {
+                CommonUsed.showSuccess(res.getData());
+                setRepoActionsAvailable();
+                currentBranch.textProperty().unbind();
+                currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+            }
+            else {
+                CommonUsed.showError(res.getErrorMSG());
+            }
         });
-        setRepoActionsAvailable();
-        currentBranch.textProperty().unbind();
-        currentBranch.textProperty().bind(myMagit.getCurrentBranch());
     }
 
-    //TODO: change to file chooser with XML File
     @FXML
     void loadRepository(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -113,21 +124,27 @@ public class MainController {
                 System.out.println(e.getMessage());
             }
         });*/
-        try{
-            myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
+
+        try {
+            MagitStringResultObject res =
+                    myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
+            if (!res.getIsHasError()){
+                CommonUsed.showSuccess(res.getData());
+                setRepoActionsAvailable();
+                currentBranch.textProperty().unbind();
+                currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+            }
+            else {
+                CommonUsed.showError(res.getErrorMSG());
+            }
         }
         catch(DataAlreadyExistsException e){
-            e.getMessage();
+            CommonUsed.showError(e.getMessage());
         }
-        setRepoActionsAvailable();
-        currentBranch.textProperty().unbind();
-        currentBranch.textProperty().bind(myMagit.getCurrentBranch());
-
     }
 
     @FXML
     void switchRepository(ActionEvent event) {
-        MagitStringResultObject obj;
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select repository!");
 
@@ -135,20 +152,31 @@ public class MainController {
         if (selectFile == null) {
             return;
         }
-        obj = myMagit.changeRepository(selectFile.getAbsolutePath());
-        setRepoActionsAvailable();
-        currentBranch.textProperty().unbind();
-        currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+        MagitStringResultObject res = myMagit.changeRepository(selectFile.getAbsolutePath());
+        if (!res.getIsHasError()) {
+            CommonUsed.showSuccess(res.getData());
+            setRepoActionsAvailable();
+            currentBranch.textProperty().unbind();
+            currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+        }
+        else {
+            CommonUsed.showError(res.getErrorMSG());
+        }
 
     }
 
-    //TODO: Handel exceptions
     @FXML
     void deleteBranch(ActionEvent event) {
         try {
-            myMagit.deleteBranch(branchesOptionsComboBox.getValue());
+            MagitStringResultObject res = myMagit.deleteBranch(branchesOptionsComboBox.getValue());
+            if (!res.getIsHasError()) {
+                CommonUsed.showSuccess(res.getData());
+            }
+            else {
+                CommonUsed.showError(res.getErrorMSG());
+            }
         } catch (InvalidDataException e) {
-            e.printStackTrace();
+            CommonUsed.showError(e.getMessage());
         }
     }
 
@@ -156,27 +184,59 @@ public class MainController {
     void resetBranchToSpecificCommit(ActionEvent event) {
         Optional<String> newCommitSha1 = CommonUsed.showDialog("Reset Head", "Enter commit SHA-1:",
                 "SHA-1:");
+
+        resetBranchToASpecificCommit(newCommitSha1, false);
+    }
+
+    private void resetBranchToASpecificCommit(Optional<String> newCommitSha1, boolean toIgnoreChanges) {
         newCommitSha1.ifPresent(sha1-> {
             try {
-                myMagit.resetBranch(sha1, false);
+                MagitStringResultObject res = myMagit.resetBranch(sha1, toIgnoreChanges);
+                if (!res.getIsHasError()) {
+                    CommonUsed.showSuccess(res.getData());
+                }
+                else {
+                    CommonUsed.showError(res.getErrorMSG());
+                }
             } catch (DirectoryNotEmptyException e) {
-                e.printStackTrace();
+                boolean toContinue = CommonUsed.showDilemma(e.getMessage());
+                if(toContinue) {
+                    resetBranchToASpecificCommit(newCommitSha1, true);
+                }
+                else {
+                    String errorMsg = "To reset commit first!";
+                    CommonUsed.showSuccess(errorMsg);
+                }
             }
 
         });
     }
 
-    //TODO: Handel exceptions
     @FXML
     void checkoutBranch(ActionEvent event) {
+        checkoutABranch(false);
+    }
+
+    private void checkoutABranch(boolean toIgnoreChanges) {
         try {
-            myMagit.checkoutBranch(branchesOptionsComboBox.getValue(), false);
-            currentBranch.textProperty().unbind();
-            currentBranch.textProperty().bind(myMagit.getCurrentBranch());
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
+            MagitStringResultObject res = myMagit.checkoutBranch(branchesOptionsComboBox.getValue(), toIgnoreChanges);
+            if (!res.getIsHasError()) {
+                CommonUsed.showSuccess(res.getData());
+                currentBranch.textProperty().unbind();
+                currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+            }
+            else {
+                CommonUsed.showError(res.getErrorMSG());
+            }
         } catch (DirectoryNotEmptyException e) {
-            e.getCause();
+            boolean toContinue = CommonUsed.showDilemma(e.getMessage());
+            if(toContinue){
+                checkoutABranch(true);
+            }
+            else {
+                String errorMsg = "To checkout commit first!";
+                CommonUsed.showSuccess(errorMsg);
+            }
         }
     }
 
@@ -186,10 +246,17 @@ public class MainController {
                 "Name:");
         newBranchName.ifPresent(name-> {
             try {
-                myMagit.addNewBranch(name);
+                MagitStringResultObject res = myMagit.addNewBranch(name);
+                if (!res.getIsHasError()){
+                    CommonUsed.showSuccess(res.getData());
+                }
+                else {
+                    CommonUsed.showError(res.getErrorMSG());
+                }
+
             } catch (InvalidDataException e) {
-                CommonUsed.showError(e.getMessage(), "New Branch", "Enter branch's name:"
-                        , "Name: ");
+                CommonUsed.showError(e.getMessage());
+                createNewBranch(event);
             }
         });
     }
@@ -201,47 +268,29 @@ public class MainController {
 
         commitMessage.ifPresent(msg -> {
             MagitStringResultObject result = myMagit.createNewCommit(msg);
-            if (result.getIsHasError()){
-                System.out.println(result.getErrorMSG());
-                System.out.println();
+            if (!result.getIsHasError()){
+                CommonUsed.showSuccess(result.getData());
             }
             else {
-                System.out.println(result.getData());
-                System.out.println();
+                CommonUsed.showError(result.getErrorMSG());
             }
         });
     }
 
     @FXML
     void showWCStatus(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        URL url = getClass().getResource("/Resources/ShowStatusScreen.fxml");
-        fxmlLoader.setLocation(url);
-        try {
-            VBox statusScreen = fxmlLoader.load(url.openStream());
-            WorkingCopyChanges result =  myMagit.showStatus();
+        WorkingCopyChanges result =  myMagit.showStatus();
+        if(!result.getHasErrors()){
             Set<String> newFiles = result.getNewFiles();
             Set<String> changedFiles = result.getChangedFiles();
             Set<String> deletedFiles = result.getDeletedFiles();
-            ObservableList<String> newItems = FXCollections.observableArrayList(newFiles);
-            ListView<String> newItemsList = new ListView<>(newItems);
-            newItemsList.setPrefHeight(92);
-            ObservableList<String> changedItems = FXCollections.observableArrayList(changedFiles);
-            ListView<String> changedItemsList = new ListView<>(changedItems);
-            changedItemsList.setPrefHeight(92);
-            ObservableList<String> deletedItems = FXCollections.observableArrayList(deletedFiles);
-            ListView<String> deletedItemsList = new ListView<>(deletedItems);
-            deletedItemsList.setPrefHeight(92);
-            ScrollBar scroller = new ScrollBar();
-            scroller.setOrientation(Orientation.VERTICAL);
-            statusScreen.getChildren().add(1, newItemsList);
-            statusScreen.getChildren().add(3, changedItemsList);
-            statusScreen.getChildren().add(5, deletedItemsList);
-            textPane.getChildren().add(statusScreen);
+
+            statusController.showWcStatus(newFiles, changedFiles, deletedFiles, textPane);
         }
-        catch(Exception e){
-            e.getMessage();
+        else {
+            CommonUsed.showError(result.getErrorMsg());
         }
+
     }
 
     @FXML

@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowStatusController">
-   <children>
-      <Label text="New Files" />
-      <Label text="Changed Files" />
-      <Label text="Deleted Files" />
-   </children>
-</VBox>
+
+<Accordion fx:id="accodionPane" prefHeight="330.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowStatusController">
+  <panes>
+    <TitledPane fx:id="newFilesTitledPane" prefHeight="92.0" prefWidth="445.0" text="New Files:" textFill="#052f59" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <content>
+            <ListView fx:id="newFilsListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="445.0" style="-fx-background-color: #DFE3EE;" />
+         </content>
+      </TitledPane>
+    <TitledPane fx:id="changedFilesTitledPane" prefHeight="91.0" prefWidth="445.0" text="Changed Files:" textFill="#052f59" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <content>
+            <ListView fx:id="changedFilesListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="91.0" prefWidth="445.0" style="-fx-background-color: #DFE3EE;" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="deletedFilesTitledPane" prefHeight="92.0" prefWidth="445.0" text="Deleted Files:" textFill="#052f59" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <content>
+            <ListView fx:id="deletedFilesListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="445.0" style="-fx-background-color: #DFE3EE;" />
+         </content>
+      </TitledPane>
+  </panes>
+</Accordion>

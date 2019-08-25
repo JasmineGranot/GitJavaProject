@@ -39,7 +39,7 @@ public class Magit {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.createNewRepository(repoPath, repoName, true, true);
+            repo.createNewRepository(repoPath, repoName, true, false);
             msg = "Repository created successfully";
             result.setData(msg);
             result.setIsHasError(false);
@@ -136,8 +136,7 @@ public class Magit {
         }
         try {
             changes = repo.printWCStatus();
-            msg = String.format("The current repository is: %s\n" +
-                    "The current user is: %s\n" + "WC status:", repo.getRootPath(), userName);
+            msg = "Success";
             changes.setMsg(msg);
             changes.setHasErrors(false);
         }
@@ -163,7 +162,7 @@ public class Magit {
             return result;
         }
         try {
-            success = repo.createNewCommit(userName.toString(), commitMsg);
+            success = repo.createNewCommit(userName.getValue(), commitMsg);
             if(success){
                 msg = "The commit was created successfully!";
                 result.setData(msg);
@@ -223,7 +222,7 @@ public class Magit {
             return resultObject;
         }
         if (branchName.contains(" ")) {
-            msg = "Branch name is invalid, please remove all spaces.";
+            msg = "Branch name is invalid, please try again without any spaces.";
             throw new InvalidDataException(msg);
         }
         else {
@@ -256,8 +255,8 @@ public class Magit {
             resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
             return resultObject;
         }
-        if (branchName.contains(" ")) {
-            msg = "Branch name is invalid, please remove all spaces.";
+        if (branchName.contains("(Head)")) {
+            msg = "Head Branch cannot be deleted";
             throw new InvalidDataException(msg);
         }
         else {
@@ -277,7 +276,7 @@ public class Magit {
     }
 
     public MagitStringResultObject checkoutBranch(String branchName, boolean ignoreChanges)
-            throws InvalidDataException, DirectoryNotEmptyException{
+            throws DirectoryNotEmptyException{
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         if (!isRepositoryConfigured()){
@@ -285,18 +284,18 @@ public class Magit {
             resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
             return resultObject;
         }
-        if (branchName.contains(" ")) {
-            msg = "Branch name is invalid, please remove all spaces.";
-            throw new InvalidDataException(msg);
-        }
         try {
+            if(branchName.contains("(Head)")){
+                String[] branchNameSplit = branchName.split(" ");
+                branchName = branchNameSplit[0];
+            }
             repo.checkoutBranch(branchName, ignoreChanges);
             resultObject.setIsHasError(false);
             msg = "Checkout was successful!";
             resultObject.setData(msg);
         }
         catch (DirectoryNotEmptyException e){
-            throw new DirectoryNotEmptyException(e.getMessage());
+            throw e;
         }
         catch (InvalidDataException e){
             msg = "Had an issue while trying to checkout branch!\nError message: " + e.getMessage();
@@ -344,7 +343,7 @@ public class Magit {
             resultObject.setData(msg);
         }
         catch (DirectoryNotEmptyException e){
-            throw new DirectoryNotEmptyException(e.getMessage());
+            throw e;
         }
         catch (Exception e){
             resultObject.setIsHasError(true);

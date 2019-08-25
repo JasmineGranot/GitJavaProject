@@ -221,10 +221,12 @@ class Repository {
         for (MagitSingleBranch curBranch : localBranches){
             String commitId = curBranch.getPointedCommit().getId();
             MagitSingleCommit relevantCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, commitId);
+
             if (relevantCommit == null) {
                 errorMsg = "Illegal branch!";
                 throw new InvalidDataException(errorMsg);
             }
+
             Commit newCommit = loadCommitFromMagitSingleCommit(repoFromXML, relevantCommit);
 
             if (newCommit == null) {
@@ -244,9 +246,12 @@ class Repository {
                 // ====================
                 currentObjects.put(commitSha1, newCommit);
 
+                if(curBranch.getName().equals(head)){
+                    currentBranch.setName(curBranch.getName());
+                }
                 addBranchToFileSystem(curBranch.getName(), commitSha1);
-
             }
+
             if (curBranch.getName().equals((head))) {
                 currentBranch = getBranchByName(curBranch.getName());
                 changeHeadBranch(curBranch.getName());
@@ -516,7 +521,13 @@ class Repository {
                 String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, currentBranchPath));
                 Branch newBranch = new Branch(currentBranchPath, commitSha1);
                 currentBranchs.add(newBranch);
-                currentBranchesNames.add(newBranch.getName().getValue());
+                if(newBranch.getName().getValue().equals(getCurrentBranchInRepo()) ||
+                        newBranch.getName().getValue().equals(currentBranch.getName().getValue())) {
+                    currentBranchesNames.add(newBranch.getName().getValue().concat(" (Head)"));
+                }
+                else {
+                    currentBranchesNames.add(newBranch.getName().getValue());
+                }
             }
         }
     }
@@ -606,7 +617,13 @@ class Repository {
         // =================================
         Branch newBranchObj = new Branch(newBranchName, commitSha1);
         currentBranchs.add(newBranchObj);
-        currentBranchesNames.add(newBranchObj.getName().getValue());
+        if (newBranchObj.getName().getValue().equals(getCurrentBranchInRepo()) ||
+                newBranchObj.getName().getValue().equals(currentBranch.getName().getValue())) {
+            currentBranchesNames.add(newBranchObj.getName().getValue().concat(" (Head)"));
+        }
+        else {
+            currentBranchesNames.add(newBranchObj.getName().getValue());
+        }
     }
 
     void removeBranch(String branchName) throws InvalidDataException, FileErrorException {
@@ -616,32 +633,25 @@ class Repository {
             errorMsg = "No such branch Exists!";
             throw new InvalidDataException(errorMsg);
         }
+        // =============================
+        // delete from objects in .magit
+        // =============================
 
-        if (branchName.equals(currentHeadBranch)) {
-            errorMsg = "Head Branch cannot be deleted";
-            throw new InvalidDataException(errorMsg);
+        String branchToDelete = Paths.get(BRANCHES_PATH, branchName).toString();
+        File f = new File(branchToDelete);
+        if (!f.delete()){
+            errorMsg = "Had an issue while trying to delete a file!";
+            throw new FileErrorException(errorMsg);
         }
-        else {
-            // =============================
-            // delete from objects in .magit
-            // =============================
 
-            String branchToDelete = Paths.get(BRANCHES_PATH, branchName).toString();
-            File f = new File(branchToDelete);
-            if (!f.delete()){
-                errorMsg = "Had an issue while trying to delete a file!";
-                throw new FileErrorException(errorMsg);
-            }
+        // =================================
+        // delete from system memory objects
+        // =================================
 
-            // =================================
-            // delete from system memory objects
-            // =================================
-
-            Branch branchObjToDelete = getBranchByName(branchName);
-            currentBranchs.remove(branchObjToDelete);
-            if (branchObjToDelete != null){
-                currentBranchesNames.remove(branchObjToDelete.getName().getValue());
-            }
+        Branch branchObjToDelete = getBranchByName(branchName);
+        currentBranchs.remove(branchObjToDelete);
+        if (branchObjToDelete != null){
+            currentBranchesNames.remove(branchObjToDelete.getName().getValue());
         }
     }
 
@@ -718,10 +728,6 @@ class Repository {
     void checkoutBranch(String newBranchName, boolean ignoreChanges)
             throws InvalidDataException, IOException, FileErrorException{
         String errorMsg;
-        if (!isBranchExist(newBranchName)) {
-            errorMsg = "Branch does not exist";
-            throw new InvalidDataException(errorMsg);
-        }
 
         boolean changesExist = isWorkingCopyIsChanged().isChanged();
 
@@ -740,6 +746,18 @@ class Repository {
             deleteWC(getRootPath(), false);
             currentCommit = null;
         }
+
+        for(int i=0; i < currentBranchesNames.size(); i++){
+            if(currentBranchesNames.get(i).contains("(Head)")) {
+                String[] splitName = currentBranchesNames.get(i).split(" ");
+                currentBranchesNames.set(i, splitName[0]);
+            }
+            if(currentBranchesNames.get(i).contains(newBranchName)){
+                currentBranchesNames.set(i, newBranchName + " (Head)");
+            }
+        }
+
+
     }
 
     void resetCommitInBranch(String commitSha1, boolean ignore)
