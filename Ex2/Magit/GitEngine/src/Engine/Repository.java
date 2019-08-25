@@ -1,23 +1,18 @@
 package Engine;
+
 import Exceptions.*;
 import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
-import com.sun.javafx.collections.ObservableListWrapper;
-import javafx.beans.binding.ListBinding;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
@@ -78,7 +73,7 @@ class Repository {
         return isWorkingCopyIsChanged();
     }
 
-    public ObservableList<String> getCurrentBranchesNames() {
+    ObservableList<String> getCurrentBranchesNames() {
         return currentBranchesNames;
     }
 

@@ -1,13 +1,11 @@
 package GitObjects;
 
 import Utils.MagitUtils;
-import javafx.beans.property.SimpleBooleanProperty;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+
 
 public class Commit extends GitObjectsBase {
     private String commiter = null;
@@ -113,7 +111,7 @@ public class Commit extends GitObjectsBase {
         private String commitsLastCommit = "";
         private String commitsRootSha1 = "";
 
-        public CommitData getDataFromCommit(Commit commitToGet){
+        CommitData getDataFromCommit(Commit commitToGet){
             setCommitDate(commitToGet.getCommitDate());
             setCommitMsg(commitToGet.getCommitMessage());
             setCommitsLastCommit(commitToGet.getLastCommitSha1());
@@ -122,11 +120,11 @@ public class Commit extends GitObjectsBase {
             return this;
         }
 
-        public String getCommitDate() {
+        String getCommitDate() {
             return commitDate;
         }
 
-        public void setCommitDate(String commitDate) {
+        void setCommitDate(String commitDate) {
             this.commitDate = commitDate;
         }
 
@@ -139,7 +137,7 @@ public class Commit extends GitObjectsBase {
             return commitMsg;
         }
 
-        public void setCommitMsg(String commitMsg) {
+        private void setCommitMsg(String commitMsg) {
             this.commitMsg = commitMsg;
         }
 
@@ -147,7 +145,7 @@ public class Commit extends GitObjectsBase {
             return commitSha1;
         }
 
-        public void setCommitSha1(String commitSha1) {
+        void setCommitSha1(String commitSha1) {
             this.commitSha1 = commitSha1;
         }
 
@@ -155,7 +153,7 @@ public class Commit extends GitObjectsBase {
             return commitsLastCommit;
         }
 
-        public void setCommitsLastCommit(String commitsLastCommit) {
+        void setCommitsLastCommit(String commitsLastCommit) {
             this.commitsLastCommit = commitsLastCommit;
         }
 
@@ -163,7 +161,7 @@ public class Commit extends GitObjectsBase {
             return commitsRootSha1;
         }
 
-        public void setCommitsRootSha1(String commitsRootSha1) {
+        void setCommitsRootSha1(String commitsRootSha1) {
             this.commitsRootSha1 = commitsRootSha1;
         }
 
@@ -171,7 +169,7 @@ public class Commit extends GitObjectsBase {
             return commitWriter;
         }
 
-        public void setCommitWriter(String commitWriter) {
+        void setCommitWriter(String commitWriter) {
             this.commitWriter = commitWriter;
         }
     }

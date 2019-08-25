@@ -35,7 +35,7 @@ public class Folder extends GitObjectsBase {
         return content;
     }
 
-    public void orderByAlphaBet(){
+    private void orderByAlphaBet(){
         filesList.sort(FileDetails::compareTo);
     }
 

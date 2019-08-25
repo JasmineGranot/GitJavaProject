@@ -1,10 +1,5 @@
 package Utils;
 
-import GitObjects.Branch;
-import javafx.beans.property.ListProperty;
-import javafx.collections.ObservableList;
-
-import java.util.LinkedList;
 import java.util.List;
 
 public class ResultList<T> {

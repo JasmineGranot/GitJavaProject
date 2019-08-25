@@ -6,33 +6,21 @@ import Exceptions.InvalidDataException;
 import GitObjects.Commit;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
-import com.sun.deploy.uitoolkit.impl.text.TextWindow;
-import javafx.animation.FadeTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
 import java.io.File;
-import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
-import sun.plugin2.message.TextEventMessage;
 
 public class MainController {
 
@@ -58,12 +46,12 @@ public class MainController {
     @FXML private Pane textPane;
 
     private Magit myMagit = new Magit();
-    private Stage primaryStage;
+    private Stage primaryStage = new Stage();
     private ShowStatusController statusController = new ShowStatusController();
 
 
     @FXML
-    void updateMagitUser(ActionEvent event) {
+    void updateMagitUser() {
         Optional<String> res = CommonUsed.showDialog("Change user name", "Enter your name:",
                 "Name:");
         res.ifPresent(name-> myMagit.setUserName(name));
@@ -72,7 +60,7 @@ public class MainController {
     }
 
     @FXML
-    void createNewRepository(ActionEvent event) {
+    void createNewRepository() {
         Optional<String> repoPath = CommonUsed.showDialog("New Repository", "Enter path:",
                 "Path:");
         repoPath.ifPresent(path-> {
@@ -90,7 +78,7 @@ public class MainController {
     }
 
     @FXML
-    void loadRepository(ActionEvent event) {
+    void loadRepository() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select XML file!");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML file", "*.xml"));
@@ -144,7 +132,7 @@ public class MainController {
     }
 
     @FXML
-    void switchRepository(ActionEvent event) {
+    void switchRepository() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select repository!");
 
@@ -166,7 +154,7 @@ public class MainController {
     }
 
     @FXML
-    void deleteBranch(ActionEvent event) {
+    void deleteBranch() {
         try {
             MagitStringResultObject res = myMagit.deleteBranch(branchesOptionsComboBox.getValue());
             if (!res.getIsHasError()) {
@@ -181,7 +169,7 @@ public class MainController {
     }
 
     @FXML
-    void resetBranchToSpecificCommit(ActionEvent event) {
+    void resetBranchToSpecificCommit() {
         Optional<String> newCommitSha1 = CommonUsed.showDialog("Reset Head", "Enter commit SHA-1:",
                 "SHA-1:");
 
@@ -213,7 +201,7 @@ public class MainController {
     }
 
     @FXML
-    void checkoutBranch(ActionEvent event) {
+    void checkoutBranch() {
         checkoutABranch(false);
     }
 
@@ -241,7 +229,7 @@ public class MainController {
     }
 
     @FXML
-    void createNewBranch(ActionEvent event) {
+    void createNewBranch() {
         Optional<String> newBranchName = CommonUsed.showDialog("New Branch", "Enter branch's name:",
                 "Name:");
         newBranchName.ifPresent(name-> {
@@ -256,13 +244,13 @@ public class MainController {
 
             } catch (InvalidDataException e) {
                 CommonUsed.showError(e.getMessage());
-                createNewBranch(event);
+                createNewBranch();
             }
         });
     }
 
     @FXML
-    void createNewCommit(ActionEvent event) {
+    void createNewCommit() {
         Optional<String> commitMessage = CommonUsed.showDialog("New Commit", "Enter the message of the commit:",
                 "Message:");
 
@@ -278,7 +266,7 @@ public class MainController {
     }
 
     @FXML
-    void showWCStatus(ActionEvent event) {
+    void showWCStatus() {
         WorkingCopyChanges result =  myMagit.showStatus();
         if(!result.getHasErrors()){
             Set<String> newFiles = result.getNewFiles();
@@ -294,22 +282,22 @@ public class MainController {
     }
 
     @FXML
-    void fetch(ActionEvent event) {
+    void fetch() {
 
     }
 
     @FXML
-    void merge(ActionEvent event) {
+    void merge() {
 
     }
 
     @FXML
-    void pull(ActionEvent event) {
+    void pull() {
 
     }
 
     @FXML
-    void push(ActionEvent event) {
+    void push() {
 
     }
 

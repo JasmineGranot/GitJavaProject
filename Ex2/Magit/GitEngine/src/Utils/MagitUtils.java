@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -19,7 +18,7 @@ public class MagitUtils {
     private static Charset ENCODING = StandardCharsets.UTF_8;
 
     public static String readFileAsString(String filePath) throws IOException{
-        String data = "";
+        String data;
         data = new String(Files.readAllBytes(Paths.get(filePath)));
 
         return data;

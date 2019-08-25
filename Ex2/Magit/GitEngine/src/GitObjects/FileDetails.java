@@ -72,7 +72,7 @@ public class FileDetails {
                 MagitUtils.DELIMITER, getLastChangedDate());
     }
 
-    public int compareTo(FileDetails other) {
+    int compareTo(FileDetails other) {
 
         return this.getFileName().compareTo(other.getFileName());
     }

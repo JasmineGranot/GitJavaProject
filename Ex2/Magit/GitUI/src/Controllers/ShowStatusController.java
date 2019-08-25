@@ -1,17 +1,13 @@
 package Controllers;
 
-import Utils.WorkingCopyChanges;
+import UIUtils.CommonUsed;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Orientation;
-import javafx.scene.Group;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Set;
 
@@ -75,8 +71,8 @@ public class ShowStatusController {
             accodionPane.maxHeightProperty().bind(textPane.maxHeightProperty());
             accodionPane.maxWidthProperty().bind(textPane.maxWidthProperty());
 
-        } catch(Exception e) {
-            e.getMessage();
+        } catch(IOException e) {
+            CommonUsed.showError(e.getMessage());
         }
     }
 

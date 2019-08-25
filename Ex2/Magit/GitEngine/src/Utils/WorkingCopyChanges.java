@@ -53,7 +53,7 @@ public class WorkingCopyChanges {
         return isChanged;
     }
 
-    public void setChanged(boolean changed) {
+    private void setChanged(boolean changed) {
         isChanged = changed;
     }
 
