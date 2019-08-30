@@ -17,11 +17,13 @@ public class JavaFXUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        URL url = getClass().getResource("/Resources/MainScreen.fxml");
+        URL url = getClass().getResource("/Resources/MainScreenTest.fxml");
         fxmlLoader.setLocation(url);
         BorderPane head = fxmlLoader.load(url.openStream());
 //        MainController headController = fxmlLoader.getController();
         Scene scene = new Scene(head, 700, 500);
+        scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
+
         primaryStage.setScene(scene);
 //        headController.setPrimaryStage(primaryStage);
         primaryStage.show();

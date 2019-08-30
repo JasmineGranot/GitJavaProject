@@ -4,9 +4,15 @@ import GitObjects.Branch;
 import GitObjects.Commit;
 import Utils.*;
 import Exceptions.*;
+import com.fxgraph.edges.Edge;
+import com.fxgraph.graph.Graph;
+import com.fxgraph.graph.ICell;
+import com.fxgraph.graph.Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Paths;
@@ -18,12 +24,16 @@ public class Magit {
 
     private StringProperty userName = new SimpleStringProperty("Administrator");
     private Repository repo = new Repository();
-
+    private StringProperty path = repo.getRootPath();
     private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
     private Map<String, String> repos = new HashMap<>();
 
     public void setUserName(String newName) {
         this.userName.setValue(newName);
+    }
+
+    public StringProperty getPath(){
+        return path;
     }
 
     public StringProperty getRepoName() {return this.repo.getRepoName();}
@@ -87,7 +97,7 @@ public class Magit {
             msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
-            repos.put(repo.getRootPath(), repo.getRepoName().toString());
+            repos.put(repo.getRootPath().getValue(), repo.getRepoName().toString());
         }
         catch (DataAlreadyExistsException e){
             throw e;
@@ -362,6 +372,20 @@ public class Magit {
     public List<Commit.CommitData> getCurrentCommits() {
        return repo.currentCommits();
     }
+
+    /*public void createNewCommitNode(Graph commitTree, List<Commit.CommitData> sortedCommits, AnchorPane treeAnchorPane) {
+        final Model model = commitTree.getModel();
+
+        commitTree.beginUpdate();
+        ICell node = new Commit.CommitNode(sortedCommits);
+
+        model.addCell(node);
+
+        //final Edge edge = new Edge();
+
+        commitTree.endUpdate();
+        //commitTree.layout();
+    }*/
 
 }
 

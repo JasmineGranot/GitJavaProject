@@ -1,10 +1,19 @@
 package GitObjects;
 
 import Utils.MagitUtils;
+import com.fxgraph.cells.AbstractCell;
+import com.fxgraph.graph.Graph;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+
 import java.io.IOException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 public class Commit extends GitObjectsBase {
@@ -172,5 +181,33 @@ public class Commit extends GitObjectsBase {
         void setCommitWriter(String commitWriter) {
             this.commitWriter = commitWriter;
         }
+
     }
+
+    /*public static class CommitNode extends AbstractCell {
+        List<Commit.CommitData> sortedCommits;
+
+        public CommitNode(List<Commit.CommitData> sortedCommits){
+            setSortedCommits(sortedCommits);
+        }
+
+        private void setSortedCommits(List<CommitData> sortedCommits) {
+            this.sortedCommits = sortedCommits;
+        }
+
+        @Override
+        public Region getGraphic(Graph graph) {
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                URL url = getClass().getResource("CommitNode.fxml");
+                fxmlLoader.setLocation(url);
+                GridPane root = fxmlLoader.load(url.openStream());
+                return root;
+
+            } catch (IOException e) {
+                return new Label("Error when tried to create graphic node !");
+            }
+        }
+    }*/
 }

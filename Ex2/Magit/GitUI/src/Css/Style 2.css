@@ -1,0 +1,110 @@
+.root {
+    -fx-background-color: #bdcebe;
+    -fx-border-color:  #3e4444;
+    -fx-border-width: 5;
+}
+
+/*#menuButtons {*/
+/*    -fx-padding: 25px 65px;*/
+/*    -fx-font-size: 10px;*/
+/*    -fx-text-alignment: center;*/
+/*    -fx-text-fill: #625750;*/
+/*    -fx-background-color: #f0f0f0;*/
+/*}*/
+
+.button {
+    -fx-background-color: #b2c2bf;
+    -fx-border-color: #3b3a30;
+    -fx-border-radius: 5;
+    -fx-background-radius: 7;
+    -fx-text-fill: #484f4f;
+    -fx-font-size: 10px;
+    -fx-text-alignment: center;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, #484f4f, 10, 0.3, 5, 3);
+}
+
+.button:pressed {
+    -fx-background-color:  #8ca3a3;
+    -fx-effect: dropshadow(three-pass-box, #484f4f, 10, 0.3, 5, 3);
+    -fx-translate-y: 2px;
+}
+
+#magitHeader{
+    -fx-font-size: 68px;
+    -fx-font-family: Stencil;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(from 41px 34px to 50px 50px, repeat,  #405d27 20%, #8b6f47 60%, #3b3a30 20%);
+    -fx-effect: innershadow(three-pass-box, #3b3a30, 5.13, 0.55, 0.0, 0.0);
+    -fx-text-alignment: center;
+}
+
+#resetBranchButton {
+    -fx-font-size: 9px;
+}
+
+#newBranchButton {
+    -fx-font-size: 9px;
+}
+
+#userName {
+    -fx-font-size: 10px;
+    -fx-font-family: System;
+    -fx-text-fill: #b9936c;
+}
+
+#magitLargeHeader {
+    -fx-text-fill: #b1cbbb;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #405d27;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+#checkoutButton {
+    -fx-font-size: 12px;
+}
+
+#pinkButton {
+    -fx-font-size: 9px;
+}
+
+#blueButton {
+    -fx-font-size: 9px;
+}
+
+#greenButton {
+    -fx-font-size: 9px;
+}
+
+.split-pane {
+    -fx-background-color:  #405d27;
+    -fx-background-radius: 10px;
+}
+
+#textPane {
+    -fx-background-color:  #eaece5;
+    -fx-background-radius: 7px;
+}
+
+#treeViewPane {
+    -fx-border-color: #405d27;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+}
+
+#treeAnchorPane {
+    -fx-background-color: #eaece5;
+}
+
+#commitTreeHeader {
+    -fx-text-fill: #b1cbbb;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}

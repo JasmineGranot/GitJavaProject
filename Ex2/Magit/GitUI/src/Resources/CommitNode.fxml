@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+
+
+<Pane prefHeight="50.0" prefWidth="104.0" style="-fx-background-color: #8B9DC3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle layoutX="52.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.3771428653172084">
+               <stops>
+                  <Stop color="#2d2b6f" />
+                  <Stop color="#3b5998" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+   </children>
+</Pane>

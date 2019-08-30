@@ -7,33 +7,35 @@ import GitObjects.Commit;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.control.Label;
+import javafx.scene.layout.*;
 import java.io.File;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
+import com.fxgraph.graph.Graph;
+
 
 public class MainController {
 
-    @FXML private Label userName;
+    @FXML private Text userName;
     @FXML private Button changeUserButton;
-    @FXML private Label currentBranch;
+    @FXML private Text currentBranch;
     @FXML private Button newBranchButton;
     @FXML private Button resetBranchButton;
     @FXML private Button deleteBranchButton;
     @FXML private Button changeRepoButton;
     @FXML private Button loadRepoButton;
     @FXML private Button createNewRepoButton;
-    @FXML private Label currentRepo;
     @FXML private Button showStatusButton;
     @FXML private Button commitButton;
     @FXML private Button pushButton;
@@ -44,10 +46,20 @@ public class MainController {
     @FXML private ComboBox<String> branchesOptionsComboBox;
     @FXML private Button checkoutButton;
     @FXML private Pane textPane;
+    @FXML private Text currentRepo;
+    @FXML private Pane treeViewPane;
+    @FXML private SplitPane mainTextWindow;
+    @FXML private ScrollPane treeScrollPane;
+    @FXML private AnchorPane treeAnchorPane;
+    @FXML private HBox layoutHbox;
+    @FXML private Button changeLayoutButton;
+    @FXML private Text pathRepo;
+
 
     private Magit myMagit = new Magit();
     private Stage primaryStage = new Stage();
     private ShowStatusController statusController = new ShowStatusController();
+    private boolean isShowStatusOpen = false;
 
 
     @FXML
@@ -55,8 +67,6 @@ public class MainController {
         Optional<String> res = CommonUsed.showDialog("Change user name", "Enter your name:",
                 "Name:");
         res.ifPresent(name-> myMagit.setUserName(name));
-        List<Commit.CommitData> sortedCommits = myMagit.getCurrentCommits();
-
     }
 
     @FXML
@@ -65,6 +75,10 @@ public class MainController {
                 "Path:");
         repoPath.ifPresent(path-> {
             MagitStringResultObject res = myMagit.createNewRepo(path, "just a custom repo");
+            if(isShowStatusOpen){
+                textPane.getChildren().clear();
+                isShowStatusOpen = false;
+            }
             if (!res.getIsHasError()) {
                 CommonUsed.showSuccess(res.getData());
                 setRepoActionsAvailable();
@@ -114,6 +128,11 @@ public class MainController {
         });*/
 
         try {
+            if(isShowStatusOpen){
+                textPane.getChildren().clear();
+                isShowStatusOpen = false;
+            }
+
             MagitStringResultObject res =
                     myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
             if (!res.getIsHasError()){
@@ -121,6 +140,7 @@ public class MainController {
                 setRepoActionsAvailable();
                 currentBranch.textProperty().unbind();
                 currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+                pathRepo.textProperty().bind(myMagit.getPath());
             }
             else {
                 CommonUsed.showError(res.getErrorMSG());
@@ -140,12 +160,19 @@ public class MainController {
         if (selectFile == null) {
             return;
         }
+
+        if(isShowStatusOpen){
+            textPane.getChildren().clear();
+            isShowStatusOpen = false;
+        }
+
         MagitStringResultObject res = myMagit.changeRepository(selectFile.getAbsolutePath());
         if (!res.getIsHasError()) {
             CommonUsed.showSuccess(res.getData());
             setRepoActionsAvailable();
             currentBranch.textProperty().unbind();
             currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+            pathRepo.textProperty().bind(myMagit.getPath());
         }
         else {
             CommonUsed.showError(res.getErrorMSG());
@@ -156,6 +183,11 @@ public class MainController {
     @FXML
     void deleteBranch() {
         try {
+            if(isShowStatusOpen){
+                textPane.getChildren().clear();
+                isShowStatusOpen = false;
+            }
+
             MagitStringResultObject res = myMagit.deleteBranch(branchesOptionsComboBox.getValue());
             if (!res.getIsHasError()) {
                 CommonUsed.showSuccess(res.getData());
@@ -172,6 +204,11 @@ public class MainController {
     void resetBranchToSpecificCommit() {
         Optional<String> newCommitSha1 = CommonUsed.showDialog("Reset Head", "Enter commit SHA-1:",
                 "SHA-1:");
+
+        if(isShowStatusOpen){
+            textPane.getChildren().clear();
+            isShowStatusOpen = false;
+        }
 
         resetBranchToASpecificCommit(newCommitSha1, false);
     }
@@ -202,6 +239,11 @@ public class MainController {
 
     @FXML
     void checkoutBranch() {
+        if(isShowStatusOpen){
+            textPane.getChildren().clear();
+            isShowStatusOpen = false;
+        }
+
         checkoutABranch(false);
     }
 
@@ -234,6 +276,11 @@ public class MainController {
                 "Name:");
         newBranchName.ifPresent(name-> {
             try {
+                if(isShowStatusOpen){
+                    textPane.getChildren().clear();
+                    isShowStatusOpen = false;
+                }
+
                 MagitStringResultObject res = myMagit.addNewBranch(name);
                 if (!res.getIsHasError()){
                     CommonUsed.showSuccess(res.getData());
@@ -255,6 +302,11 @@ public class MainController {
                 "Message:");
 
         commitMessage.ifPresent(msg -> {
+            if(isShowStatusOpen){
+                textPane.getChildren().clear();
+                isShowStatusOpen = false;
+            }
+
             MagitStringResultObject result = myMagit.createNewCommit(msg);
             if (!result.getIsHasError()){
                 CommonUsed.showSuccess(result.getData());
@@ -267,6 +319,7 @@ public class MainController {
 
     @FXML
     void showWCStatus() {
+        isShowStatusOpen = true;
         WorkingCopyChanges result =  myMagit.showStatus();
         if(!result.getHasErrors()){
             Set<String> newFiles = result.getNewFiles();
@@ -306,10 +359,31 @@ public class MainController {
 
     }
 
+    @FXML
+    void showLayoutButtons(ActionEvent event) {
+        layoutHbox.setVisible(true);
+    }
+
+   /* private void createCommitNode(Graph commitTree) {
+        List<Commit.CommitData> sortedCommits = myMagit.getCurrentCommits();
+        myMagit.createNewCommitNode(commitTree, sortedCommits, treeAnchorPane);
+    }*/
+
+
     public void initialize() {
+        layoutHbox.setVisible(false);
+
+        treeViewPane.visibleProperty().setValue(true);
+
+        currentRepo.wrappingWidthProperty().set(120);
+        userName.wrappingWidthProperty().set(70);
+        currentBranch.wrappingWidthProperty().set(50);
+
         userName.textProperty().bind(myMagit.getUserName());
         currentRepo.textProperty().bind(myMagit.getRepoName());
         currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+
+        treeViewPane.setVisible(false);
 
         newBranchButton.setDisable(true);
         resetBranchButton.setDisable(true);
@@ -337,5 +411,18 @@ public class MainController {
         commitButton.setDisable(false);
 
         branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+        updateCommitTree();
+    }
+
+    private void updateCommitTree(){
+        treeViewPane.setVisible(true);
+        treeViewPane.prefHeightProperty().bind(mainTextWindow.heightProperty());
+        treeScrollPane.prefHeightProperty().bind(textPane.heightProperty());
+        treeAnchorPane.prefHeightProperty().bind(textPane.heightProperty().subtract(2));
+
+        //Graph commitTree = new Graph();
+        //createCommitNode(commitTree);
+
+
     }
 }

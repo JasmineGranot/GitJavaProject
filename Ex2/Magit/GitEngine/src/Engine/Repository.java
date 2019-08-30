@@ -26,18 +26,18 @@ import static java.nio.file.Files.walk;
 
 
 class Repository {
-    private String MAGIT_PATH = Paths.get(getRootPath(), ".magit").toString();
+    private String MAGIT_PATH = Paths.get(getRootPathAsString(), ".magit").toString();
     private String BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
     private String OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
 
-    private String rootPath;
+    private StringProperty rootPath = new SimpleStringProperty("Undefined");
     private Map<String, GitObjectsBase> currentObjects = new HashMap<>();
     private List<Branch> currentBranchs = new LinkedList<>();
     private Commit currentCommit = null;
     private final Branch UNDEFINED_BRANCH = new Branch("Undefined");
     private Branch currentBranch = UNDEFINED_BRANCH;
     private String currentUser;
-    private StringProperty repoName = new SimpleStringProperty("undefined");
+    private StringProperty repoName = new SimpleStringProperty("Undefined");
     private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
 
 
@@ -49,12 +49,19 @@ class Repository {
         return currentObjects.containsKey(id);
     }
 
-    String getRootPath() {
+    StringProperty getRootPath() {
         return rootPath;
     }
 
+    String getRootPathAsString() {
+        if (rootPath != null){
+            return rootPath.getValue();
+        }
+        return null;
+    }
+
     private void setRootPath(String path) {
-        this.rootPath = path;
+        this.rootPath.setValue(path);
     }
 
     private String getRootSha1() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
@@ -148,7 +155,7 @@ class Repository {
             throws DataAlreadyExistsException, ErrorCreatingNewFileException,
             IOException, InvalidDataException, FileErrorException, JAXBException {
         String errorMsg;
-        String currentRepo = getRootPath();
+        String currentRepo = getRootPathAsString();
 
 
         try {
@@ -234,7 +241,7 @@ class Repository {
                 // ====================
                 // add commit to .magit
                 // ====================
-                newCommit.saveToMagitObjects(commitSha1, getRootPath());
+                newCommit.saveToMagitObjects(commitSha1, getRootPathAsString());
 
                 // ====================
                 // add commit to memory
@@ -312,7 +319,7 @@ class Repository {
             newCommit.setRootSha1(rootSha1.sha1String);
             String commitSha1 = newCommit.doSha1();
             currentObjects.put(commitSha1, newCommit);
-            newCommit.saveToMagitObjects(commitSha1, getRootPath());
+            newCommit.saveToMagitObjects(commitSha1, getRootPathAsString());
         }
         return newCommit;
     }
@@ -345,7 +352,7 @@ class Repository {
                 // ========================
                 // add to objects in .magit
                 // ========================
-                newBlob.saveToMagitObjects(blobSha1, getRootPath());
+                newBlob.saveToMagitObjects(blobSha1, getRootPathAsString());
 
                 // ========================
                 // add to containing folder object
@@ -376,7 +383,7 @@ class Repository {
         // ========================
         // add to objects in .magit
         // ========================
-        currentFolder.saveToMagitObjects(currentFolderSha1, getRootPath());
+        currentFolder.saveToMagitObjects(currentFolderSha1, getRootPathAsString());
 
         rootSha1.sha1String = currentFolderSha1;
     }
@@ -425,9 +432,9 @@ class Repository {
     }
 
     private void loadWCFromCommitSha1(String commitSha1) throws FileErrorException, IOException{
-        deleteWC(getRootPath(), false);
+        deleteWC(getRootPathAsString(), false);
         Commit curCommit = (Commit) currentObjects.get(commitSha1);
-        loadWCFromRoot(curCommit.getRootSha1(), getRootPath());
+        loadWCFromRoot(curCommit.getRootSha1(), getRootPathAsString());
     }
 
     private void loadWCFromRoot(String sha1, String path) throws IOException {
@@ -446,7 +453,7 @@ class Repository {
     }
 
     private void updateMainPaths() {
-        MAGIT_PATH = Paths.get(getRootPath(), ".magit").toString();
+        MAGIT_PATH = Paths.get(getRootPathAsString(), ".magit").toString();
         BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
         OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
     }
@@ -496,7 +503,7 @@ class Repository {
                 }
 
                 String rootSha1 = newCommit.getRootSha1();
-                loadObjectsFromRootFolder(rootSha1, getRootPath());
+                loadObjectsFromRootFolder(rootSha1, getRootPathAsString());
                 newCommitSha1 = newCommit.getLastCommitSha1();
             }
         }
@@ -738,7 +745,7 @@ class Repository {
             loadWCFromCommitSha1(lastCommitInBranchSha1);
         }
         else{ // No commit was never done, meaning this still is an empty repo.
-            deleteWC(getRootPath(), false);
+            deleteWC(getRootPathAsString(), false);
             currentCommit = null;
         }
 
@@ -791,9 +798,9 @@ class Repository {
                 try {
                     Map <String, String> commitData = new HashMap<>();
                     if (currentCommit!= null){
-                        getAllCurrentCommitDirWithSha1(getRootSha1(), getRootPath(), commitData);
+                        getAllCurrentCommitDirWithSha1(getRootSha1(), getRootPathAsString(), commitData);
                     }
-                    rootData = updateFilesInSystem(getRootPath(), commitData);
+                    rootData = updateFilesInSystem(getRootPathAsString(), commitData);
                 }
                 catch (IOException e){
                     errorMsg = "Had an issue updating the files in the system!\n" +
@@ -825,7 +832,7 @@ class Repository {
                 currentCommit = newCommit;
                 currentObjects.put(commitSha1, newCommit);
                 updateCommitInCurrentBranch(commitSha1);
-                currentCommit.saveToMagitObjects(commitSha1, rootPath);
+                currentCommit.saveToMagitObjects(commitSha1, rootPath.getValue());
             }
             else {
                 isChanged = false;
@@ -854,13 +861,13 @@ class Repository {
             WorkingCopyChanges newChangesSet;
             boolean isChanged = false;
 
-            Stream<Path> walk = walk(Paths.get(getRootPath()));
+            Stream<Path> walk = walk(Paths.get(getRootPathAsString()));
             Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
                     (Files::isRegularFile).map(Path::toString).collect(Collectors.toSet());
 
             Map<String, String> lastCommitFiles = new HashMap<>();
             if (currentCommit != null) {
-                getLastCommitFiles(getRootSha1(), rootPath, lastCommitFiles);
+                getLastCommitFiles(getRootSha1(), rootPath.getValue(), lastCommitFiles);
             }
 
             Set<String> existsPath = new HashSet<>(WCSet);
@@ -939,7 +946,7 @@ class Repository {
                     currentObjects.put(currentFileSha1, newBlob);
 //                      Path newPath = Paths.get(getRootPath(), ".magit", "Objects", currentFileSha1);
                     try {
-                        newBlob.saveToMagitObjects(currentFileSha1, getRootPath());
+                        newBlob.saveToMagitObjects(currentFileSha1, getRootPathAsString());
                     }
                     catch (IOException e) {
                         errorMsg = "Had an issue saving a blob to the objects!\n" +
@@ -974,7 +981,7 @@ class Repository {
                     else {
                         currentObjects.put(folderSha1, newFolder);
                         try {
-                            newFolder.saveToMagitObjects(folderSha1, getRootPath());
+                            newFolder.saveToMagitObjects(folderSha1, getRootPathAsString());
                         }
                         catch (IOException e) {
                             errorMsg = "Had an issue saving a folder to the objects!\n" +
@@ -1045,7 +1052,8 @@ class Repository {
 
     String getCurrentCommitFullFilesData(){
         List<String> commitFiles = new LinkedList<>();
-        getAllCurrentCommitDir(getRootSha1(), getRootPath(), commitFiles);
+        getAllCurrentCommitDir(getRootSha1(), getRootPathAsString()
+                , commitFiles);
         return String.join("\n", commitFiles);
 
     }

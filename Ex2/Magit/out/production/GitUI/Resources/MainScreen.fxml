@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,6 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="680.0" style="-fx-background-color: #DFE3EE; -fx-border-color: #221F1F; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
@@ -43,14 +45,14 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="userName" text="Undef.." textAlignment="CENTER" textFill="#4499ea">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
+                        <Text fx:id="userName" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Undef..">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
-                        </Label>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
                         <Button fx:id="changeUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateMagitUser" textAlignment="CENTER">
                            <opaqueInsets>
                               <Insets />
@@ -73,24 +75,24 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" prefHeight="100.0" prefWidth="125.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="125.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
                   <Label maxWidth="-Infinity" minWidth="-Infinity" text="Current Branch:" textFill="#4c86c3" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets left="15.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentBranch" text="Not selected" textFill="#4499ea">
-                     <VBox.margin>
-                        <Insets left="25.0" right="15.0" />
-                     </VBox.margin>
+                  <Text fx:id="currentBranch" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected" textAlignment="CENTER">
                      <font>
                         <Font size="10.0" />
                      </font>
-                  </Label>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="newBranchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewBranch" prefHeight="25.0" prefWidth="65.0" text="New" textFill="#386895">
@@ -133,7 +135,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </VBox>
-            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" prefHeight="100.0" prefWidth="437.0" text="M.A.Git" textAlignment="CENTER" textFill="#4c86c3e8" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+            <Label fx:id="magitHeader" alignment="CENTER" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" prefHeight="100.0" prefWidth="437.0" text="M.A.Git" textAlignment="CENTER" textFill="#4c86c3e8" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <font>
                   <Font name="Stencil" size="68.0" />
                </font>
@@ -154,19 +156,19 @@
       </GridPane>
    </top>
    <bottom>
-      <GridPane prefHeight="40.0" prefWidth="679.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="40.0" prefWidth="679.0" BorderPane.alignment="TOP_RIGHT">
         <columnConstraints>
-          <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="ALWAYS" maxWidth="194.0" minWidth="10.0" prefWidth="106.39999389648438" />
-            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="448.80000610351567" />
+          <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="194.0" minWidth="10.0" prefWidth="113.4" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="436.20000000000005" />
           <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="ALWAYS" maxWidth="136.00004882812505" minWidth="10.0" prefWidth="123.79998779296875" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox pickOnBounds="false" prefHeight="40.0" prefWidth="431.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+            <HBox alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Button fx:id="changeRepoButton" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository" textFill="#1b476d">
+                  <Button fx:id="changeRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository" textFill="#1b476d">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -181,7 +183,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="loadRepoButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository" textFill="#1b476d">
+                  <Button fx:id="loadRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository" textFill="#1b476d">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -218,22 +220,22 @@
             </HBox>
             <VBox prefHeight="40.0" prefWidth="118.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Label prefHeight="17.0" prefWidth="116.0" text="Current Repository:" textFill="#4c86c3">
+                  <Label prefHeight="17.0" prefWidth="120.0" text="Current Repository:" textFill="#4c86c3">
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="3.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="currentRepo" minWidth="-Infinity" prefHeight="17.0" prefWidth="76.0" text="Not Selected" textFill="#4499ea">
+                  <Text fx:id="currentRepo" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected">
                      <font>
                         <Font size="10.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" />
+                        <Insets bottom="10.0" left="5.0" />
                      </VBox.margin>
-                  </Label>
+                  </Text>
                </children>
             </VBox>
          </children>
@@ -243,7 +245,7 @@
       </GridPane>
    </bottom>
    <right>
-      <VBox fillWidth="false" maxWidth="-Infinity" prefHeight="409.0" prefWidth="124.0" BorderPane.alignment="CENTER_LEFT">
+      <VBox fillWidth="false" maxWidth="-Infinity" prefHeight="409.0" prefWidth="124.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <Button fx:id="showStatusButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#showWCStatus" prefHeight="25.0" prefWidth="85.0" text="Show Status" textFill="#1b476d">
                <VBox.margin>
@@ -372,7 +374,7 @@
       </VBox>
    </right>
    <center>
-      <SplitPane dividerPositions="0.10986066452304395" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="380.0" prefWidth="430.0" style="-fx-background-color: #3B5998;" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="mainTextWindow" dividerPositions="0.10986066452304395" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="380.0" prefWidth="430.0" style="-fx-background-color: #3B5998; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="38.0" prefWidth="365.0">
                <children>
@@ -415,22 +417,34 @@
                   </HBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="413.0">
+          <AnchorPane minWidth="0.0" prefHeight="330.0" prefWidth="413.0">
                <children>
-                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0" />
+                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3; -fx-background-radius: 7;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
    </center>
-   <left>
-      <Canvas height="377.0" width="106.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets right="5.0" />
-         </BorderPane.margin>
-      </Canvas>
-   </left>
    <padding>
       <Insets top="10.0" />
    </padding>
+   <left>
+      <Pane fx:id="treeViewPane" prefHeight="200.0" prefWidth="118.0" style="-fx-border-color: #3B5998; -fx-border-width: 2; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="treeScrollPane" layoutX="4.0" layoutY="45.0" prefHeight="329.0" prefWidth="110.0">
+               <content>
+                  <AnchorPane fx:id="treeAnchorPane" focusTraversable="true" prefHeight="326.0" prefWidth="108.0" style="-fx-background-color: #DFE3EE;" />
+               </content>
+            </ScrollPane>
+            <Text fill="#052f59" layoutX="7.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commit Tree">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <effect>
+                  <Reflection fraction="0.55" topOpacity="0.33" />
+               </effect>
+            </Text>
+         </children>
+      </Pane>
+   </left>
 </BorderPane>

@@ -1,0 +1,102 @@
+.root {
+    -fx-background-color: #d6d4e0;
+    -fx-border-color: #622569;
+    -fx-border-width: 5;
+}
+
+.button {
+    -fx-background-color: #d6d4e0;
+    -fx-border-color: #622569;
+    -fx-border-radius: 5;
+    -fx-background-radius: 7;
+    -fx-text-fill: #622569;
+    -fx-font-size: 11px;
+    -fx-text-alignment: center;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, #b0aac0, 10, 0.3, 5, 3);
+}
+
+.button:pressed {
+    -fx-background-color:  #f9d5e5;
+    -fx-effect: dropshadow(three-pass-box, #b0aac0, 10, 0.3, 5, 3);
+    -fx-translate-y: 2px;
+}
+
+#magitHeader{
+    -fx-font-size: 68px;
+    -fx-font-family: Stencil;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(from 41px 34px to 50px 50px, reflect,  #e4d1d1 20%, #b0aac0 60%, #f0efef 20%);
+    -fx-effect: innershadow(three-pass-box, #622569, 5.13, 0.55, 0.0, 0.0);
+    -fx-text-alignment: center;
+}
+
+#resetBranchButton {
+    -fx-font-size: 9px;
+}
+
+#newBranchButton {
+    -fx-font-size: 9px;
+}
+
+#pinkButton {
+    -fx-font-size: 9px;
+}
+
+#blueButton {
+    -fx-font-size: 9px;
+}
+
+#greenButton {
+    -fx-font-size: 9px;
+}
+
+#userName {
+    -fx-font-size: 10px;
+    -fx-font-family: System;
+    -fx-text-fill: pink;
+}
+
+#magitLargeHeader {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #6b5b95;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+#checkoutButton {
+    -fx-font-size: 11px;
+}
+
+.split-pane {
+    -fx-background-color:  #622569;
+    -fx-background-radius: 10px;
+}
+
+#textPane {
+    -fx-background-color: #f0efef;
+    -fx-background-radius: 7px;
+}
+
+#treeViewPane {
+    -fx-border-color: #622569;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+}
+
+#treeAnchorPane {
+    -fx-background-color: #f0efef;
+}
+
+#commitTreeHeader {
+    -fx-text-fill: pink;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}

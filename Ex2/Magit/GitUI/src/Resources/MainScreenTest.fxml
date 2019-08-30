@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="680.0" style="-fx-background-color: #DFE3EE; -fx-border-color: #221F1F; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="680.0" styleClass=".root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
       <GridPane prefHeight="60.0" prefWidth="596.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -35,7 +35,7 @@
          <children>
             <VBox maxHeight="-Infinity" prefHeight="100.0" prefWidth="109.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Label text="Logged in as:" textAlignment="CENTER" textFill="#4c86c3f2">
+                  <Label styleClass=".label" text="Logged in as:" textAlignment="CENTER" textFill="#000000f2">
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>
@@ -43,9 +43,9 @@
                         <Insets left="5.0" right="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="33.0" prefWidth="109.0">
                      <children>
-                        <Text fx:id="userName" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Undef..">
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" text="Undef..">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -53,7 +53,7 @@
                               <Font size="10.0" />
                            </font>
                         </Text>
-                        <Button fx:id="changeUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateMagitUser" textAlignment="CENTER">
+                        <Button fx:id="changeUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateMagitUser" styleClass=".button" textAlignment="CENTER">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -77,7 +77,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="125.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Label maxWidth="-Infinity" minWidth="-Infinity" text="Current Branch:" textFill="#4c86c3" VBox.vgrow="ALWAYS">
+                  <Label maxWidth="-Infinity" minWidth="-Infinity" styleClass=".label" text="Current Branch:" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -85,7 +85,7 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Text fx:id="currentBranch" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected" textAlignment="CENTER">
+                  <Text fx:id="currentBranch" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected" textAlignment="CENTER">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -95,7 +95,7 @@
                   </Text>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="newBranchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewBranch" prefHeight="25.0" prefWidth="65.0" text="New" textFill="#386895">
+                        <Button fx:id="newBranchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewBranch" prefHeight="25.0" prefWidth="65.0" styleClass=".button" text="New">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -110,7 +110,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="resetBranchButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetBranchToSpecificCommit" prefHeight="25.0" prefWidth="65.0" text="Reset" textFill="#386895">
+                        <Button fx:id="resetBranchButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetBranchToSpecificCommit" prefHeight="25.0" prefWidth="65.0" styleClass=".button" text="Reset">
                            <HBox.margin>
                               <Insets bottom="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -135,21 +135,18 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </VBox>
-            <Label fx:id="magitHeader" alignment="CENTER" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" prefHeight="100.0" prefWidth="437.0" text="M.A.Git" textAlignment="CENTER" textFill="#4c86c3e8" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+            <Label fx:id="magitHeader" alignment="CENTER" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" prefHeight="100.0" prefWidth="437.0" styleClass="#magitHeader" text="M.A.Git" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <font>
                   <Font name="Stencil" size="68.0" />
                </font>
                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </GridPane.margin>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <effect>
-                  <InnerShadow choke="0.55" height="15.0" radius="5.75" width="10.0" />
-               </effect>
                <padding>
-                  <Insets bottom="15.0" left="50.0" right="50.0" />
+                  <Insets left="50.0" right="50.0" />
                </padding>
             </Label>
          </children>
@@ -168,7 +165,7 @@
          <children>
             <HBox alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Button fx:id="changeRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository" textFill="#1b476d">
+                  <Button fx:id="changeRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#switchRepository" prefHeight="20.0" prefWidth="138.0" text="Change Repository">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -182,8 +179,12 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="#menuButtons" />
+                        <String fx:value=".button" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="loadRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository" textFill="#1b476d">
+                  <Button fx:id="loadRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loadRepository" prefHeight="20.0" prefWidth="130.0" text="Load Repository">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -197,8 +198,12 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="#menuButtons" />
+                        <String fx:value=".button" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="createNewRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewRepository" prefHeight="20.0" prefWidth="150.0" text="Create New Repository" textFill="#1b476d">
+                  <Button fx:id="createNewRepoButton" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#createNewRepository" prefHeight="20.0" prefWidth="150.0" text="Create New Repository">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>
@@ -212,30 +217,120 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="#menuButtons" />
+                        <String fx:value=".button" />
+                     </styleClass>
                   </Button>
                </children>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </HBox>
-            <VBox prefHeight="40.0" prefWidth="118.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+            <VBox prefHeight="77.0" prefWidth="116.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
                <children>
-                  <Label prefHeight="17.0" prefWidth="120.0" text="Current Repository:" textFill="#4c86c3">
+                  <Label prefHeight="33.0" prefWidth="107.0" styleClass=".label" text="Current Repository:">
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="5.0" right="5.0" top="3.0" />
+                        <Insets left="3.0" right="5.0" top="2.0" />
                      </VBox.margin>
                   </Label>
-                  <Text fx:id="currentRepo" fill="#4499ea" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected">
+                  <Text fx:id="currentRepo" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected">
                      <font>
                         <Font size="10.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="5.0" />
+                        <Insets left="5.0" />
                      </VBox.margin>
                   </Text>
+                  <Text fx:id="pathRepo" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Selected">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="130.0" GridPane.columnIndex="2">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Change layout?">
+                           <font>
+                              <Font name="System Bold" size="10.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" right="10.0" top="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="changeLayoutButton" mnemonicParsing="false" onAction="#showLayoutButtons">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@Images/v.png" />
+                                 </image>
+                                 <styleClass>
+                                    <String fx:value=".button" />
+                                    <String fx:value="#menuButtons" />
+                                 </styleClass>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets right="1.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="layoutHbox" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="pinkButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="35.0" text="Pink">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="3.0" right="3.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value=".button" />
+                              <String fx:value="#layoutButtons" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="blueButton" mnemonicParsing="false" prefWidth="35.0" text="Blue">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" right="3.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value=".button" />
+                              <String fx:value="#layoutButtons" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="greenButton" mnemonicParsing="false" prefWidth="40.0" text="Green">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value=".button" />
+                              <String fx:value="#layoutButtons" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
@@ -245,9 +340,9 @@
       </GridPane>
    </bottom>
    <right>
-      <VBox fillWidth="false" maxWidth="-Infinity" prefHeight="409.0" prefWidth="124.0" BorderPane.alignment="TOP_CENTER">
+      <VBox fillWidth="false" maxWidth="-Infinity" prefHeight="350.0" prefWidth="124.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Button fx:id="showStatusButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#showWCStatus" prefHeight="25.0" prefWidth="85.0" text="Show Status" textFill="#1b476d">
+            <Button fx:id="showStatusButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#showWCStatus" prefHeight="25.0" prefWidth="95.0" text="Show Status">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="65.0" />
                </VBox.margin>
@@ -261,8 +356,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="commitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewCommit" prefHeight="25.0" prefWidth="65.0" text="Commit" textFill="#1b476d">
+            <Button fx:id="commitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createNewCommit" prefHeight="25.0" prefWidth="75.0" text="Commit">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -276,8 +375,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="pushButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#push" prefHeight="25.0" prefWidth="65.0" text="Push" textFill="#1b476d">
+            <Button fx:id="pushButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#push" prefHeight="25.0" prefWidth="75.0" text="Push">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -294,8 +397,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="pullButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pull" prefHeight="25.0" prefWidth="65.0" text="Pull" textFill="#1b476d">
+            <Button fx:id="pullButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pull" prefHeight="25.0" prefWidth="75.0" text="Pull">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -312,8 +419,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="mergeButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#merge" prefHeight="25.0" prefWidth="65.0" text="Merge" textFill="#1b476d">
+            <Button fx:id="mergeButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#merge" prefHeight="25.0" prefWidth="75.0" text="Merge">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -330,8 +441,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="cloneButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clone" prefHeight="25.0" prefWidth="65.0" text="Clone" textFill="#1b476d">
+            <Button fx:id="cloneButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clone" prefHeight="25.0" prefWidth="75.0" text="Clone">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -348,8 +463,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
-            <Button fx:id="fetchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="65.0" text="Fetch" textFill="#1b476d">
+            <Button fx:id="fetchButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="75.0" text="Fetch">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -366,21 +485,25 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="#menuButtons" />
+                  <String fx:value=".button" />
+               </styleClass>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets />
+            <Insets bottom="5.0" />
          </BorderPane.margin>
       </VBox>
    </right>
    <center>
-      <SplitPane fx:id="mainTextWindow" dividerPositions="0.10986066452304395" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="380.0" prefWidth="430.0" style="-fx-background-color: #3B5998; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="mainTextWindow" dividerPositions="0.5" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="367.0" prefWidth="438.0" styleClass=".splitPane" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="38.0" prefWidth="365.0">
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="365.0">
                <children>
                   <HBox layoutX="-3.0" prefHeight="38.0" prefWidth="367.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="108.0" text="Select Branch:" textFill="#052f59">
+                        <Label fx:id="magitLargeHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="108.0" text="Select Branch:">
                            <HBox.margin>
                               <Insets bottom="5.0" top="8.0" />
                            </HBox.margin>
@@ -393,12 +516,16 @@
                               <Insets bottom="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#checkoutBranch" prefHeight="23.0" prefWidth="75.0" text="Checkout" textAlignment="RIGHT" textFill="#1b476d">
+                        <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#checkoutBranch" prefHeight="23.0" prefWidth="75.0" text="Checkout" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
+                           <styleClass>
+                              <String fx:value=".button" />
+                              <String fx:value="#checkoutButton" />
+                           </styleClass>
                         </Button>
-                        <Button fx:id="deleteBranchButton" mnemonicParsing="false" onAction="#deleteBranch" prefHeight="9.0" prefWidth="17.0" textAlignment="RIGHT">
+                        <Button fx:id="deleteBranchButton" mnemonicParsing="false" onAction="#deleteBranch" prefHeight="9.0" prefWidth="17.0" styleClass=".button" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                            </HBox.margin>
@@ -417,9 +544,9 @@
                   </HBox>
                </children>
             </AnchorPane>
-          <AnchorPane minWidth="0.0" prefHeight="330.0" prefWidth="413.0">
+          <AnchorPane minWidth="0.0" prefHeight="325.0" prefWidth="436.0">
                <children>
-                  <Pane fx:id="textPane" layoutX="2.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="445.0" style="-fx-background-color: #8B9DC3; -fx-background-radius: 7;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="3.0" />
+                  <Pane fx:id="textPane" layoutX="2.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="432.0" styleClass="#textPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
@@ -429,14 +556,14 @@
       <Insets top="10.0" />
    </padding>
    <left>
-      <Pane fx:id="treeViewPane" prefHeight="200.0" prefWidth="118.0" style="-fx-border-color: #3B5998; -fx-border-width: 2; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+      <Pane fx:id="treeViewPane" prefHeight="404.0" prefWidth="118.0" styleClass="treeViewPane" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fx:id="treeScrollPane" layoutX="4.0" layoutY="45.0" prefHeight="329.0" prefWidth="110.0">
+            <ScrollPane fx:id="treeScrollPane" layoutX="4.0" layoutY="38.0" prefHeight="331.0" prefWidth="110.0">
                <content>
-                  <AnchorPane fx:id="treeAnchorPane" focusTraversable="true" prefHeight="326.0" prefWidth="108.0" style="-fx-background-color: #DFE3EE;" />
+                  <AnchorPane fx:id="treeAnchorPane" focusTraversable="true" prefHeight="325.0" prefWidth="108.0" />
                </content>
             </ScrollPane>
-            <Text fill="#052f59" layoutX="7.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commit Tree">
+            <Text fx:id="commitTreeHeader" layoutX="7.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commit Tree">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
