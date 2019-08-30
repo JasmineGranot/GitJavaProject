@@ -57,10 +57,14 @@ public class MainController {
 
 
     private Magit myMagit = new Magit();
-    private Stage primaryStage = new Stage();
+    private Stage primaryStage;
     private ShowStatusController statusController = new ShowStatusController();
     private boolean isShowStatusOpen = false;
 
+
+    public void setPrimaryStage(Stage primaryStage){
+        this.primaryStage = primaryStage;
+    }
 
     @FXML
     void updateMagitUser() {
@@ -362,6 +366,24 @@ public class MainController {
     @FXML
     void showLayoutButtons(ActionEvent event) {
         layoutHbox.setVisible(true);
+    }
+
+    @FXML
+    void changeStyleToBlue(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
+    }
+
+    @FXML
+    void changeStyleToGreen(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 2.css").toExternalForm());
+    }
+
+    @FXML
+    void changeStyleToPink(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 3.css").toExternalForm());
     }
 
    /* private void createCommitNode(Graph commitTree) {

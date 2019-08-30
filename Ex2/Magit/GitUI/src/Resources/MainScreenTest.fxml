@@ -293,7 +293,7 @@
                   </HBox>
                   <HBox fx:id="layoutHbox" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="pinkButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="35.0" text="Pink">
+                        <Button fx:id="pinkButton" mnemonicParsing="false" onAction="#changeStyleToPink" prefHeight="0.0" prefWidth="35.0" text="Pink">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -305,7 +305,7 @@
                               <String fx:value="#layoutButtons" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="blueButton" mnemonicParsing="false" prefWidth="35.0" text="Blue">
+                        <Button fx:id="blueButton" mnemonicParsing="false" onAction="#changeStyleToBlue" prefWidth="35.0" text="Blue">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -317,7 +317,7 @@
                               <String fx:value="#layoutButtons" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="greenButton" mnemonicParsing="false" prefWidth="40.0" text="Green">
+                        <Button fx:id="greenButton" mnemonicParsing="false" onAction="#changeStyleToGreen" prefWidth="40.0" text="Green">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -546,7 +546,7 @@
             </AnchorPane>
           <AnchorPane minWidth="0.0" prefHeight="325.0" prefWidth="436.0">
                <children>
-                  <Pane fx:id="textPane" layoutX="2.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="432.0" styleClass="#textPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane fx:id="textPane" layoutX="2.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="432.0" styleClass="#textPane" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
                </children>
             </AnchorPane>
         </items>

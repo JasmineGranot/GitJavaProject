@@ -53,7 +53,7 @@ class Repository {
         return rootPath;
     }
 
-    String getRootPathAsString() {
+    private String getRootPathAsString() {
         if (rootPath != null){
             return rootPath.getValue();
         }
@@ -156,7 +156,6 @@ class Repository {
             IOException, InvalidDataException, FileErrorException, JAXBException {
         String errorMsg;
         String currentRepo = getRootPathAsString();
-
 
         try {
             File file = new File(repoXMLPath);
