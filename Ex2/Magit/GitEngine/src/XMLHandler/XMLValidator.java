@@ -26,7 +26,9 @@ public class XMLValidator {
             checkPointedId(currentRepo.getMagitFolders());
             checkIfCommitPointsToFolder(currentRepo.getMagitCommits());
             checkIfBranchPointsToCommit(currentRepo.getMagitBranches());
+            checkIfBranchIsTracking(currentRepo.getMagitBranches());
             checkIfHeadExists(currentRepo.getMagitBranches());
+            checkIfRepoInElementExists(currentRepo.getMagitRemoteReference());
         }
         catch (InvalidDataException e) {
             validationResult.setIsValid(false);
@@ -172,5 +174,38 @@ public class XMLValidator {
         errorMsg = "Head branch doesn't exists";
         throw new InvalidDataException(errorMsg);
 
+    }
+
+    // ====================================================================================================================
+    // check if MagitRemoteReference element appears in the repository and if the location in it points to an existing repo
+    // ====================================================================================================================
+    private void checkIfRepoInElementExists(MagitRepository.MagitRemoteReference magitRemoteReference)
+            throws InvalidDataException{
+        if(magitRemoteReference != null){
+            String location = magitRemoteReference.getLocation();
+            File file = new File(location);
+            if(!file.exists()) {
+                String errorMsg = "There is no such repository in the magit remote reference location!";
+                throw new InvalidDataException(errorMsg);
+            }
+        }
+    }
+
+    // =========================================================================================================
+    // check if a branch is tracking = true, then if tracking-after points to a branch which is is-remote = true
+    // =========================================================================================================
+    private void checkIfBranchIsTracking(MagitBranches magitBranches) throws InvalidDataException {
+        for(MagitSingleBranch curr : magitBranches.getMagitSingleBranch()) {
+            if(curr.isTracking()){
+                String trackingAfter = curr.getTrackingAfter();
+                MagitSingleBranch magitSingleBranch = XMLUtils.getMagitSingleBranchByName(currentRepo, trackingAfter);
+                if(!magitSingleBranch.isIsRemote()){
+                    String errorMsg = String.format("Branch %s is tracking after branch %s but %s is not remote!",
+                            curr.getName(), trackingAfter, trackingAfter);
+                    throw new InvalidDataException(errorMsg);
+                }
+            }
+
+        }
     }
 }

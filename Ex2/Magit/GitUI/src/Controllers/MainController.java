@@ -139,15 +139,15 @@ public class MainController {
 
             MagitStringResultObject res =
                     myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
-            if (!res.getIsHasError()){
+            if (res.getIsHasError()){
+                CommonUsed.showError(res.getErrorMSG());
+            }
+            else {
                 CommonUsed.showSuccess(res.getData());
                 setRepoActionsAvailable();
                 currentBranch.textProperty().unbind();
                 currentBranch.textProperty().bind(myMagit.getCurrentBranch());
                 pathRepo.textProperty().bind(myMagit.getPath());
-            }
-            else {
-                CommonUsed.showError(res.getErrorMSG());
             }
         }
         catch(DataAlreadyExistsException e){

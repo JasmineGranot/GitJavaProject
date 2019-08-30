@@ -14,6 +14,15 @@ public class XMLUtils {
         return null;
     }
 
+    public static MagitSingleBranch getMagitSingleBranchByName(MagitRepository repoFromXML, String branchName){
+        List<MagitSingleBranch> branches = repoFromXML.getMagitBranches().getMagitSingleBranch().stream().
+                filter(x-> x.getName().equals(branchName)).collect(Collectors.toList());
+        if(!branches.isEmpty()){
+            return branches.get(0);
+        }
+        return null;
+    }
+
     public static MagitSingleFolder getMagitFolderByID(MagitRepository repoFromXML, String folderId){
         List<MagitSingleFolder> folders = repoFromXML.getMagitFolders().getMagitSingleFolder().stream().
                 filter(x-> x.getId().equals(folderId)).collect(Collectors.toList());

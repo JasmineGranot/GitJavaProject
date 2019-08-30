@@ -282,19 +282,20 @@ class Repository {
         newCommit.setCommitCreator(commitToLoad.getAuthor());
         newCommit.setCommitMessage(commitToLoad.getMessage());
 
-        List<PrecedingCommits.PrecedingCommit> historyCommits = commitToLoad.getPrecedingCommits().getPrecedingCommit();
+        if(commitToLoad.getPrecedingCommits() != null) {
+            List<PrecedingCommits.PrecedingCommit> historyCommits = commitToLoad.getPrecedingCommits().getPrecedingCommit();
 
-        if (historyCommits.size() > 0) {
-            String firstCommitId = historyCommits.get(0).getId();
-            MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
-            if(lastCommit != null && !lastCommit.equals("")) {
-                String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
-                if (commitSha1 != null) {
-                    newCommit.setLastCommitSha1(commitSha1);
+            if (historyCommits.size() > 0) {
+                String firstCommitId = historyCommits.get(0).getId();
+                MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
+                if (lastCommit != null && !lastCommit.equals("")) {
+                    String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
+                    if (commitSha1 != null) {
+                        newCommit.setLastCommitSha1(commitSha1);
+                    }
                 }
             }
         }
-
         String rootFolderId = commitToLoad.getRootFolder().getId();
 
         if (rootFolderId == null) {
