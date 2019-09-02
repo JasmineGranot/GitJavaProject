@@ -4,15 +4,21 @@ import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import GitObjects.Commit;
+import UIUtils.CommitNode;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
+import com.fxgraph.graph.PannableCanvas;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
+import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
 import java.util.Optional;
@@ -55,11 +61,12 @@ public class MainController {
     @FXML private Button changeLayoutButton;
     @FXML private Text pathRepo;
 
-
+    private Scene scene;
     private Magit myMagit = new Magit();
     private Stage primaryStage;
     private ShowStatusController statusController = new ShowStatusController();
     private boolean isShowStatusOpen = false;
+    private CommitNodeController commitNodeController = new CommitNodeController();
 
 
     public void setPrimaryStage(Stage primaryStage){
@@ -106,6 +113,8 @@ public class MainController {
             return;
         }
 
+
+
         /*ProgressBar progressBar = new ProgressBar(0);
         ProgressIndicator progressIndicator = new ProgressIndicator(0);
 
@@ -148,6 +157,7 @@ public class MainController {
                 currentBranch.textProperty().unbind();
                 currentBranch.textProperty().bind(myMagit.getCurrentBranch());
                 pathRepo.textProperty().bind(myMagit.getPath());
+                showCommitTree();
             }
         }
         catch(DataAlreadyExistsException e){
@@ -177,6 +187,7 @@ public class MainController {
             currentBranch.textProperty().unbind();
             currentBranch.textProperty().bind(myMagit.getCurrentBranch());
             pathRepo.textProperty().bind(myMagit.getPath());
+            showCommitTree();
         }
         else {
             CommonUsed.showError(res.getErrorMSG());
@@ -386,11 +397,32 @@ public class MainController {
         primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 3.css").toExternalForm());
     }
 
-   /* private void createCommitNode(Graph commitTree) {
-        List<Commit.CommitData> sortedCommits = myMagit.getCurrentCommits();
-        myMagit.createNewCommitNode(commitTree, sortedCommits, treeAnchorPane);
-    }*/
+    public void setScene(Scene scene){
+        this.scene = scene;
+    }
 
+    private void showCommitTree(){
+        Graph commitTreeGraph = new Graph();
+        commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
+        commitNodeController.createCommitNode(commitTreeGraph);
+        commitNodeController.setTextPane(textPane);
+
+        PannableCanvas canvas = commitTreeGraph.getCanvas();
+        treeScrollPane.setContent(canvas);
+
+//        Button moreDataButton = commitNodeController.getButton();
+//        moreDataButton.setOnAction(e -> {
+//            commitNodeController.showCommitData(commitTreeGraph.getModel().getAddedCells().get(0));
+//        });
+
+        treeScrollPane.setVisible(true);
+
+        Platform.runLater(() -> {
+            commitTreeGraph.getUseViewportGestures().set(false);
+            commitTreeGraph.getUseNodeGestures().set(false);
+        });
+
+    }
 
     public void initialize() {
         layoutHbox.setVisible(false);
@@ -441,10 +473,5 @@ public class MainController {
         treeViewPane.prefHeightProperty().bind(mainTextWindow.heightProperty());
         treeScrollPane.prefHeightProperty().bind(textPane.heightProperty());
         treeAnchorPane.prefHeightProperty().bind(textPane.heightProperty().subtract(2));
-
-        //Graph commitTree = new Graph();
-        //createCommitNode(commitTree);
-
-
     }
 }

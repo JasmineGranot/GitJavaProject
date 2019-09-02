@@ -1,22 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="50.0" prefWidth="104.0" style="-fx-background-color: #8B9DC3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="47.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommitNodeController">
    <children>
-      <Circle layoutX="52.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.3771428653172084">
-               <stops>
-                  <Stop color="#2d2b6f" />
-                  <Stop color="#3b5998" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Circle>
+      <HBox layoutX="2.0" prefHeight="47.0" prefWidth="415.0">
+         <children>
+            <Circle fx:id="commitNode" radius="8.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.3771428653172084">
+                     <stops>
+                        <Stop color="#2d2b6f" />
+                        <Stop color="#3b5998" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <HBox.margin>
+                  <Insets right="5.0" top="15.0" />
+               </HBox.margin>
+            </Circle>
+            <Separator orientation="VERTICAL" prefHeight="49.0" prefWidth="6.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Separator>
+            <Label fx:id="commitMsg" text="msg">
+               <HBox.margin>
+                  <Insets right="5.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Separator>
+            <Button fx:id="showMoreDataButton" mnemonicParsing="false" text="Show more data">
+               <HBox.margin>
+                  <Insets right="5.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </Pane>

@@ -21,12 +21,15 @@ public class JavaFXUI extends Application {
         URL url = getClass().getResource("/Resources/MainScreenTest.fxml");
         fxmlLoader.setLocation(url);
         BorderPane head = fxmlLoader.load(url.openStream());
-       MainController headController = fxmlLoader.getController();
+
+        MainController mainController = fxmlLoader.getController();
+
         Scene scene = new Scene(head, 700, 500);
         scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
 
         primaryStage.setScene(scene);
-        headController.setPrimaryStage(primaryStage);
+        mainController.setPrimaryStage(primaryStage);
+        mainController.setScene(scene);
         primaryStage.show();
     }
 }

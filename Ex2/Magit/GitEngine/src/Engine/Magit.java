@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
@@ -27,6 +28,7 @@ public class Magit {
     private StringProperty path = repo.getRootPath();
     private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
     private Map<String, String> repos = new HashMap<>();
+
 
     public void setUserName(String newName) {
         this.userName.setValue(newName);
@@ -88,7 +90,6 @@ public class Magit {
     }
 
     public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath, boolean toDeleteExistingRepo)
-
     throws DataAlreadyExistsException{
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
@@ -372,20 +373,6 @@ public class Magit {
     public List<Commit.CommitData> getCurrentCommits() {
        return repo.currentCommits();
     }
-
-    /*public void createNewCommitNode(Graph commitTree, List<Commit.CommitData> sortedCommits, AnchorPane treeAnchorPane) {
-        final Model model = commitTree.getModel();
-
-        commitTree.beginUpdate();
-        ICell node = new Commit.CommitNode(sortedCommits);
-
-        model.addCell(node);
-
-        //final Edge edge = new Edge();
-
-        commitTree.endUpdate();
-        //commitTree.layout();
-    }*/
 
 }
 

@@ -201,12 +201,12 @@ class Repository {
             throw e;
         }
         catch (Exception e){
-            if(currentRepo!=null) {
-                changeRepo(currentRepo, repoName.toString());
+            if(currentRepo.equals("Undefined")) {
+                errorMsg = "Something went wrong while trying to load a new repository from XML file!\n" +
+                        "Error message: " + e.getMessage();
+                throw new FileErrorException(errorMsg);
             }
-            errorMsg = "Something went wrong while trying to load a new repository from XML file!\n" +
-                    "Error message: " + e.getMessage();
-            throw new FileErrorException(errorMsg);
+            changeRepo(currentRepo, repoName.getValue());
         }
     }
 

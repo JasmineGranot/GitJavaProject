@@ -1,0 +1,14 @@
+.root {
+    -fx-background-color: #8B9DC3;
+}
+
+
+.radio-button {
+    -fx-border-color: Black;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+}
+
+#commitNode {
+    -fx-background-color: linear-gradient(from 41px 34px to 50px 50px, #3b5998, white);
+}
