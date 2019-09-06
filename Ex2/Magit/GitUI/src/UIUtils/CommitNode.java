@@ -7,6 +7,7 @@ import com.fxgraph.graph.IEdge;
 import javafx.beans.binding.DoubleBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import Controllers.CommitNodeController;
@@ -38,9 +39,11 @@ public class CommitNode extends AbstractCell {
             FXMLLoader fxmlLoader = new FXMLLoader();
             URL url = getClass().getResource("/Resources/CommitNode.fxml");
             fxmlLoader.setLocation(url);
-            Pane root = fxmlLoader.load(url.openStream());
+            GridPane root = fxmlLoader.load(url.openStream());
             commitNodeController = fxmlLoader.getController();
             commitNodeController.setCommitMessage(commitData.getCommitMsg());
+            commitNodeController.setCommitDate(commitData.getCommitDate());
+            commitNodeController.setCommitWriter(commitData.getCommitWriter());
 
             return root;
 

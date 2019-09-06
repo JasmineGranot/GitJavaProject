@@ -13,8 +13,8 @@ public class CommitTreeLayout implements Layout {
     @Override
     public void execute(Graph graph) {
         final List<ICell> cells = graph.getModel().getAllCells();
-        int startX = 10;
-        int startY = 50;
+        int startX = 5;
+        int startY = 20;
         int every3rdNode = 1;
         for (ICell cell : cells) {
             CommitNode c = (CommitNode) cell;

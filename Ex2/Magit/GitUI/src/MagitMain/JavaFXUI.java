@@ -18,7 +18,7 @@ public class JavaFXUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        URL url = getClass().getResource("/Resources/MainScreenTest.fxml");
+        URL url = getClass().getResource("/Resources/MainScreenTest2.fxml");
         fxmlLoader.setLocation(url);
         BorderPane head = fxmlLoader.load(url.openStream());
 

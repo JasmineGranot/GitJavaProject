@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -496,12 +495,36 @@
          </BorderPane.margin>
       </VBox>
    </right>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+   <left>
+      <Pane prefHeight="370.0" prefWidth="84.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="commitTreeHeader" layoutX="8.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commit Tree" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="67.00283813476562">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <effect>
+                  <Reflection fraction="0.55" topOpacity="0.33" />
+               </effect>
+            </Text>
+            <Text fx:id="wcStatusHeader" layoutX="8.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WC Status" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="67.00283813476562">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <effect>
+                  <Reflection fraction="0.55" topOpacity="0.33" />
+               </effect>
+            </Text>
+         </children></Pane>
+   </left>
    <center>
-      <SplitPane fx:id="mainSplitPane" dividerPositions="0.4673913043478261" orientation="VERTICAL" prefHeight="362.0" prefWidth="481.0">
+      <SplitPane fx:id="mainSplitPane" dividerPositions="0.48097826086956524" orientation="VERTICAL" prefHeight="368.0" prefWidth="469.0" styleClass=".split-pane">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="55.0" prefWidth="446.0">
                <children>
-                  <VBox prefHeight="181.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox prefHeight="181.0" prefWidth="480.0" styleClass="#treeAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="CENTER">
                            <children>
@@ -544,54 +567,13 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Pane fx:id="showStatusPane" prefHeight="200.0" prefWidth="200.0" />
+                        <Pane fx:id="showStatusPane" prefHeight="139.0" prefWidth="442.0" />
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
-            <ScrollPane prefHeight="136.0" prefWidth="478.0">
-               <content>
-                  <Pane fx:id="commitTreePane">
-                     <children>
-                        <VBox>
-                           <children>
-                              <GridPane alignment="CENTER">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Text fx:id="commitTreeHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="Commit Tree" wrappingWidth="104.60284423828125" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font name="System Bold" size="17.0" />
-                                       </font>
-                                       <effect>
-                                          <Reflection fraction="0.55" topOpacity="0.33" />
-                                       </effect>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" right="25.0" />
-                                       </GridPane.margin>
-                                    </Text>
-                                 </children>
-                              </GridPane>
-                              <Pane fx:id="treePane" prefHeight="156.0" prefWidth="490.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </Pane>
-               </content>
-            </ScrollPane>
+            <AnchorPane fx:id="treeAnchorPane" prefHeight="200.0" prefWidth="200.0" />
         </items>
       </SplitPane>
    </center>
-   <padding>
-      <Insets top="10.0" />
-   </padding>
-   <left>
-      <Pane prefHeight="370.0" prefWidth="63.0" BorderPane.alignment="CENTER" />
-   </left>
 </BorderPane>

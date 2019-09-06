@@ -1,37 +1,29 @@
 .timestamp-label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 10px;
 }
 
 .message-label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 12px;
 }
 
 .committer-label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 10px;
 }
 
-/*.single-commit-row-container {*/
-/*    -fx-background-color: #3B5998;*/
-/*}*/
-
 .single-commit-row-container:hover {
     -fx-border-color: black;
-    -fx-background-color: #DFE3EE;
+    -fx-background-color: #d6d4e0;
     -fx-background-radius: 3px;
     -fx-border-radius: 3px;
 }
 
 /*override separator style*/
 .separator .line {
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-border-width: 1;
-}
-
-#commitNode {
-    -fx-background-color: linear-gradient(from 50px 50px to 50px 50px, #1b476d 50%, #386895 60%);
 }
 

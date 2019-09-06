@@ -1,57 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="47.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommitNodeController">
+<GridPane hgap="5.0" maxHeight="60.0" maxWidth="1.7976931348623157E308" minHeight="44.0" minWidth="-Infinity" prefHeight="44.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommitNodeController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" minWidth="-Infinity" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="NEVER" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="50.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="NEVER" />
+      <ColumnConstraints hgrow="ALWAYS" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+    <RowConstraints minHeight="-Infinity" vgrow="NEVER" />
+    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+  </rowConstraints>
    <children>
-      <HBox layoutX="2.0" prefHeight="47.0" prefWidth="415.0">
-         <children>
-            <Circle fx:id="commitNode" radius="8.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.5">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="0.3771428653172084">
-                     <stops>
-                        <Stop color="#2d2b6f" />
-                        <Stop color="#3b5998" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-               <HBox.margin>
-                  <Insets right="5.0" top="15.0" />
-               </HBox.margin>
-            </Circle>
-            <Separator orientation="VERTICAL" prefHeight="49.0" prefWidth="6.0">
-               <HBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </HBox.margin>
-            </Separator>
-            <Label fx:id="commitMsg" text="msg">
-               <HBox.margin>
-                  <Insets right="5.0" top="15.0" />
-               </HBox.margin>
-            </Label>
-            <Separator orientation="VERTICAL" prefHeight="200.0">
-               <HBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </HBox.margin>
-            </Separator>
-            <Button fx:id="showMoreDataButton" mnemonicParsing="false" text="Show more data">
-               <HBox.margin>
-                  <Insets right="5.0" top="15.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
+      <Circle fx:id="commitNode" fill="WHITE" radius="10.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" styleClass=".circle" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="5.0" right="10.0" />
+         </GridPane.margin>
+      </Circle>
+      <Label fx:id="commitDate" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="timestamp-label" text="02.07.2019-22:36:57" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" />
+      <Label fx:id="commitMsg" maxWidth="1.7976931348623157E308" styleClass="message-label" text="bbb" GridPane.columnIndex="5" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="commitWriter" styleClass="committer-label" text="ccc" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
    </children>
-</Pane>
+   <styleClass>
+      <String fx:value="single-commit-row-container" />
+      <String fx:value="commitNodeGridPane" />
+   </styleClass>
+</GridPane>

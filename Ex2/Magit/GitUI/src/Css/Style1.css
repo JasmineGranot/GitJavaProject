@@ -73,26 +73,6 @@
 
 .split-pane {
     -fx-background-color:  #3B5998;
-    -fx-background-radius: 10px;
+    -fx-border-radius: 10;
 }
 
-#textPane {
-    -fx-background-color:  #8B9DC3;
-    -fx-background-radius: 7px;
-}
-
-#treeViewPane {
-    -fx-border-color:  #3B5998;
-    -fx-border-radius: 5;
-    -fx-border-width: 2;
-}
-
-#treeAnchorPane {
-    -fx-background-color:  #DFE3EE;
-}
-
-#commitTreeHeader {
-    -fx-text-fill: #052f59;
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-}

@@ -1,16 +1,8 @@
 .root {
     -fx-background-color: #bdcebe;
-    -fx-border-color:  #3e4444;
+    -fx-border-color: #3e4444;
     -fx-border-width: 5;
 }
-
-/*#menuButtons {*/
-/*    -fx-padding: 25px 65px;*/
-/*    -fx-font-size: 10px;*/
-/*    -fx-text-alignment: center;*/
-/*    -fx-text-fill: #625750;*/
-/*    -fx-background-color: #f0f0f0;*/
-/*}*/
 
 .button {
     -fx-background-color: #b2c2bf;
@@ -84,27 +76,6 @@
 }
 
 .split-pane {
-    -fx-background-color:  #405d27;
+    -fx-background-color: #405d27;
     -fx-background-radius: 10px;
-}
-
-#textPane {
-    -fx-background-color:  #eaece5;
-    -fx-background-radius: 7px;
-}
-
-#treeViewPane {
-    -fx-border-color: #405d27;
-    -fx-border-radius: 5;
-    -fx-border-width: 2;
-}
-
-#treeAnchorPane {
-    -fx-background-color: #eaece5;
-}
-
-#commitTreeHeader {
-    -fx-text-fill: #b1cbbb;
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
 }
