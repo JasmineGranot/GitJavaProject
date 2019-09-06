@@ -24,6 +24,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 import com.fxgraph.graph.Graph;
+import javafx.util.Pair;
 
 
 public class MainController {
@@ -225,7 +226,6 @@ public class MainController {
             currentBranch.textProperty().unbind();
             currentBranch.textProperty().bind(myMagit.getCurrentBranch());
             pathRepo.textProperty().bind(myMagit.getPath());
-            commitTreeGraph = new Graph();
             createCommitTree();
         }
         else {
@@ -273,6 +273,7 @@ public class MainController {
                 MagitStringResultObject res = myMagit.resetBranch(sha1, toIgnoreChanges);
                 if (!res.getIsHasError()) {
                     CommonUsed.showSuccess(res.getData());
+                    createCommitTree();
                 }
                 else {
                     CommonUsed.showError(res.getErrorMSG());
@@ -308,6 +309,7 @@ public class MainController {
                 CommonUsed.showSuccess(res.getData());
                 currentBranch.textProperty().unbind();
                 currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+                createCommitTree();
             }
             else {
                 CommonUsed.showError(res.getErrorMSG());
@@ -326,8 +328,8 @@ public class MainController {
 
     @FXML
     void createNewBranch() {
-        Optional<String> newBranchName = CommonUsed.showDialog("New Branch", "Enter branch's name:",
-                "Name:");
+        Optional<Pair<String, String>> newBranchName = CommonUsed.showMultipleChoiceDialog("New Branch",
+                "Enter the following data:","Name:", "Sha1:");
         newBranchName.ifPresent(name-> {
             try {
                 if(isShowStatusOpen){
@@ -335,7 +337,7 @@ public class MainController {
                     isShowStatusOpen = false;
                 }
 
-                MagitStringResultObject res = myMagit.addNewBranch(name);
+                MagitStringResultObject res = myMagit.addNewBranch(name.getKey(), name.getValue());
                 if (!res.getIsHasError()){
                     CommonUsed.showSuccess(res.getData());
                 }
@@ -364,7 +366,6 @@ public class MainController {
             MagitStringResultObject result = myMagit.createNewCommit(msg);
             if (!result.getIsHasError()){
                 CommonUsed.showSuccess(result.getData());
-                commitTreeGraph = new Graph();
                 addCommitToTree();
             }
             else {
@@ -480,6 +481,7 @@ public class MainController {
     }
 
     private void createCommitTree() {
+        commitTreeGraph = new Graph();
         commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
         commitNodeController.createCommitNode(commitTreeGraph, null);
         showCommitTree();

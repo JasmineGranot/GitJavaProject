@@ -595,7 +595,7 @@ class Repository {
     }
 
 
-    void addBranch(String newBranchName) throws DataAlreadyExistsException, IOException, InvalidDataException{
+    void addBranch(String newBranchName, String sha1) throws DataAlreadyExistsException, IOException, InvalidDataException{
         String errorMsg;
         if (rootPath == null){
             errorMsg = "repository is not configured ";
@@ -606,7 +606,7 @@ class Repository {
             throw new DataAlreadyExistsException(errorMsg);
         }
         else {
-            addBranchToFileSystem(newBranchName, currentBranch.getCommitSha1());
+            addBranchToFileSystem(newBranchName, sha1);
         }
 }
 

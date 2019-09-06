@@ -223,7 +223,7 @@ public class Magit {
         return result;
     }
 
-    public MagitStringResultObject addNewBranch(String branchName) throws InvalidDataException {
+    public MagitStringResultObject addNewBranch(String branchName, String sha1) throws InvalidDataException {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         if (!isRepositoryConfigured()){
@@ -237,7 +237,7 @@ public class Magit {
         }
         else {
             try {
-                repo.addBranch(branchName);
+                repo.addBranch(branchName, sha1);
                 resultObject.setIsHasError(false);
                 msg = "Branch was added successfully!";
                 resultObject.setData(msg);
