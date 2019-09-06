@@ -16,11 +16,17 @@ import UIUtils.CommitNode;
 
 public class CommitNodeController {
 
-    @FXML private Pane commitNodePane;
-    @FXML private Circle commitNode;
-    @FXML private Label commitMsg;
+    @FXML
+    private Circle commitNode;
+
     @FXML private Label commitDate;
     @FXML private Label commitWriter;
+    @FXML private Label commitMsg;
+    @FXML private Label lastCommitSha1;
+    @FXML private Label rootSha1;
+    @FXML private Label isBranch;
+    @FXML private Label commitSha1Label;
+    @FXML private Label rootSha1Label;
 
     private List<Commit.CommitData> sortedCommits;
 
@@ -28,6 +34,14 @@ public class CommitNodeController {
         this.sortedCommits = sortedCommits;
     }
 
+    void addCommitToSortedCommits(Commit.CommitData commitToAdd, String branchName) {
+        this.sortedCommits.add(0, commitToAdd);
+        this.sortedCommits.get(1).setBranchName(null);
+    }
+
+    void addCommitNode(Graph commitTree, Commit.CommitData commitToAdd) {
+        createCommitNode(commitTree, commitToAdd);
+    }
 
     public void setCommitMessage(String commitMessage) {
         commitMsg.setText(commitMessage);
@@ -44,9 +58,42 @@ public class CommitNodeController {
         this.commitWriter.setTooltip(new Tooltip(commitWriter));
     }
 
-    void createCommitNode(Graph commitTree) {
+    public void setIsBranch(String isBranch) {
+        if(isBranch != null) {
+            this.isBranch.setText(isBranch);
+            this.isBranch.setTooltip(new Tooltip(isBranch));
+        }
+        else {
+            this.isBranch.setVisible(false);
+        }
+    }
+
+    public void setLastCommitSha1(String lastCommitSha1) {
+        if(!lastCommitSha1.equals("")) {
+            this.lastCommitSha1.setText(lastCommitSha1);
+            this.lastCommitSha1.setTooltip(new Tooltip(lastCommitSha1));
+        }
+        else {
+            this.lastCommitSha1.setText("None (First commit)");
+        }
+    }
+
+    public void setRootSha1(String rootSha1) {
+        if(!rootSha1.equals("")) {
+            this.rootSha1.setText(rootSha1);
+            this.rootSha1.setTooltip(new Tooltip(rootSha1));
+        }
+        else {
+            this.rootSha1Label.setVisible(false);
+            this.rootSha1.setVisible(false);
+        }
+    }
+
+    void createCommitNode(Graph commitTree, Commit.CommitData newCommitToAdd) {
         final Model model = commitTree.getModel();
-        commitTree.beginUpdate();
+        if(newCommitToAdd == null) {
+            commitTree.beginUpdate();
+        }
 
         for(Commit.CommitData curr : sortedCommits){
             ICell commitNode = new CommitNode(curr);

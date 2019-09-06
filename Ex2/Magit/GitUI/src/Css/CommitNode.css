@@ -31,7 +31,3 @@
     -fx-border-width: 1;
 }
 
-#commitNode {
-    -fx-background-color: linear-gradient(from 50px 50px to 50px 50px, #1b476d 50%, #386895 60%);
-}
-

@@ -76,6 +76,10 @@ class Repository {
         return currentBranch;
     }
 
+    Commit getCurrentCommit() {
+        return currentCommit;
+    }
+
     WorkingCopyChanges printWCStatus() throws IOException, InvalidDataException {
         return isWorkingCopyIsChanged();
     }
@@ -1100,7 +1104,13 @@ class Repository {
             GitObjectsBase currentObj = currentObjects.get(sha1);
             if (currentObj.isCommit()){
                 Commit curCommit = (Commit) currentObj;
-                commits.add(Commit.getCommitData(sha1, curCommit));
+                if(currentBranch.getCommitSha1().equals(curCommit.doSha1()))
+                {
+                    commits.add(Commit.getCommitData(sha1, curCommit, currentBranch.getName().getValue()));
+                }
+                else {
+                    commits.add(Commit.getCommitData(sha1, curCommit, null));
+                }
             }
         }
 

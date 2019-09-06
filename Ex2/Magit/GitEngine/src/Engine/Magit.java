@@ -374,6 +374,10 @@ public class Magit {
        return repo.currentCommits();
     }
 
+    public Commit getCurrentCommit() {
+        return repo.getCurrentCommit();
+    }
+
 }
 
 

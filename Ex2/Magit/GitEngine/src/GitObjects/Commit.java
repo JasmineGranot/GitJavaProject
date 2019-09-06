@@ -107,9 +107,9 @@ public class Commit extends GitObjectsBase {
     @Override
     public void createFileFromObject(String destinationPath) {}
 
-    public static CommitData getCommitData(String commitSha1, Commit commitObj){
+    public static CommitData getCommitData(String commitSha1, Commit commitObj, String branchName){
         CommitData data = new CommitData();
-        data.getDataFromCommit(commitObj);
+        data.getDataFromCommit(commitObj, branchName);
         data.setCommitSha1(commitSha1);
         return data;
     }
@@ -121,14 +121,24 @@ public class Commit extends GitObjectsBase {
         private String commitWriter = "";
         private String commitsLastCommit = "";
         private String commitsRootSha1 = "";
+        private String branchName = "";
 
-        CommitData getDataFromCommit(Commit commitToGet){
+        CommitData getDataFromCommit(Commit commitToGet, String branchName){
             setCommitDate(commitToGet.getCommitDate());
             setCommitMsg(commitToGet.getCommitMessage());
             setCommitsLastCommit(commitToGet.getLastCommitSha1());
             setCommitsRootSha1(commitToGet.getRootSha1());
             setCommitWriter(commitToGet.getCommitCreator());
+            setBranchName(branchName);
             return this;
+        }
+
+        public void setBranchName(String branchName) {
+            this.branchName = branchName;
+        }
+
+        public String getBranchName() {
+            return branchName;
         }
 
         public String getCommitDate() {
@@ -161,6 +171,10 @@ public class Commit extends GitObjectsBase {
         }
 
         public String getCommitsLastCommit() {
+            if(commitsLastCommit == null)
+            {
+                return "";
+            }
             return commitsLastCommit;
         }
 

@@ -4,23 +4,18 @@ import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import GitObjects.Commit;
-import UIUtils.CommitNode;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
 import com.fxgraph.graph.PannableCanvas;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
-import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
@@ -105,10 +100,15 @@ public class MainController {
     private boolean isBlueButtonPressed = true;
     private boolean isPinkButtonPressed = false;
     private String style;
+    private Graph commitTreeGraph = new Graph();
 
 
     public void setPrimaryStage(Stage primaryStage){
         this.primaryStage = primaryStage;
+    }
+
+    public void setScene(Scene scene){
+        this.scene = scene;
     }
 
     @FXML
@@ -195,8 +195,7 @@ public class MainController {
                 currentBranch.textProperty().unbind();
                 currentBranch.textProperty().bind(myMagit.getCurrentBranch());
                 pathRepo.textProperty().bind(myMagit.getPath());
-                clearCommitTree();
-                showCommitTree();
+                createCommitTree();
             }
         }
         catch(DataAlreadyExistsException e){
@@ -226,8 +225,8 @@ public class MainController {
             currentBranch.textProperty().unbind();
             currentBranch.textProperty().bind(myMagit.getCurrentBranch());
             pathRepo.textProperty().bind(myMagit.getPath());
-            clearCommitTree();
-            showCommitTree();
+            commitTreeGraph = new Graph();
+            createCommitTree();
         }
         else {
             CommonUsed.showError(res.getErrorMSG());
@@ -353,7 +352,7 @@ public class MainController {
 
     @FXML
     void createNewCommit() {
-        Optional<String> commitMessage = CommonUsed.showDialog("New Commit", "Enter the message of the commit:",
+        Optional<String> commitMessage = CommonUsed.showDialog("New Commit", "Enter a message for the commit:",
                 "Message:");
 
         commitMessage.ifPresent(msg -> {
@@ -365,6 +364,8 @@ public class MainController {
             MagitStringResultObject result = myMagit.createNewCommit(msg);
             if (!result.getIsHasError()){
                 CommonUsed.showSuccess(result.getData());
+                commitTreeGraph = new Graph();
+                addCommitToTree();
             }
             else {
                 CommonUsed.showError(result.getErrorMSG());
@@ -478,56 +479,38 @@ public class MainController {
         isBlueButtonPressed = false;
     }
 
-    public void setScene(Scene scene){
-        this.scene = scene;
+    private void createCommitTree() {
+        commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
+        commitNodeController.createCommitNode(commitTreeGraph, null);
+        showCommitTree();
     }
 
-    private void clearCommitTree() {
-        treeAnchorPane.getChildren().clear();
+    private void addCommitToTree() {
+        Commit newCommit = myMagit.getCurrentCommit();
+        Commit.CommitData newCommitData =
+                Commit.getCommitData(newCommit.doSha1(), newCommit, myMagit.getCurrentBranch().getValue());
+        commitNodeController.addCommitToSortedCommits(newCommitData, myMagit.getCurrentBranch().getValue());
+        commitNodeController.addCommitNode(commitTreeGraph, newCommitData);
+        showCommitTree();
     }
 
     private void showCommitTree(){
-        Graph commitTreeGraph = new Graph();
-        commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
-        commitNodeController.createCommitNode(commitTreeGraph);
-
         canvas = commitTreeGraph.getCanvas();
         canvas.setBackground(Background.EMPTY);
 
         if(isPinkButtonPressed) {
             style = "-fx-background-color: #622569";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            scrollPane.setStyle(style);
-            treeAnchorPane.getChildren().clear();
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode3.css").toExternalForm());
+            addTreeToAnchorPane(style);
         }
 
         if (isGreenButtonPressed) {
             style = "-fx-background-color: #405d27";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            treeAnchorPane.getChildren().clear();
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode2.css").toExternalForm());
+            addTreeToAnchorPane(style);
         }
         if (isBlueButtonPressed) {
             style = "-fx-background-color: #3B5998";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
+            addTreeToAnchorPane(style);
         }
-
-//        Button moreDataButton = commitNodeController.getButton();
-//        moreDataButton.setOnAction(e -> {
-//            commitNodeController.showCommitData(commitTreeGraph.getModel().getAddedCells().get(0));
-//        });
-
 
         Platform.runLater(() -> {
             commitTreeGraph.getUseViewportGestures().set(false);
@@ -536,17 +519,24 @@ public class MainController {
 
     }
 
+    private void addTreeToAnchorPane(String style) {
+        canvas.setStyle(style);
+        scrollPane.setContent(canvas);
+        treeAnchorPane.getChildren().clear();
+        treeAnchorPane.getChildren().add(scrollPane);
+        setTreeBoundaries();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
+    }
+
     private void setTreeBoundaries() {
         scrollPane.prefHeightProperty().unbind();
         scrollPane.prefWidthProperty().unbind();
-
         scrollPane.prefWidthProperty().bind(treeAnchorPane.widthProperty());
         scrollPane.prefHeightProperty().bind(treeAnchorPane.heightProperty());
+        scrollPane.pannableProperty().set(true);
 
-        canvas.prefHeightProperty().bind(treeAnchorPane.heightProperty());
-        canvas.prefWidthProperty().bind(treeAnchorPane.widthProperty());
-
-        //scrollPane.setMinViewportHeight(canvas.getHeight());
+        canvas.minHeightProperty().bind(treeAnchorPane.heightProperty());
+        canvas.minWidthProperty().bind(treeAnchorPane.widthProperty());
     }
 
     public void initialize() {
@@ -586,7 +576,6 @@ public class MainController {
         newBranchButton.setDisable(false);
         resetBranchButton.setDisable(false);
         commitButton.setDisable(false);
-
         branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
     }
 }
