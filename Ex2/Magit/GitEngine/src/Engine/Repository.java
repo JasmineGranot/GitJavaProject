@@ -93,22 +93,21 @@ class Repository {
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException, InvalidDataException {
         String errorMsg;
         File newFile = new File(newRepositoryPath);
-        if (!newFile.exists()) {
-            if(newFile.mkdirs()){
+        if (newFile.exists()) {
+            if(!isValidRepo(newRepositoryPath)){
                 addNewFilesToRepo(newRepositoryPath, addMaster);
                 if (changeRepo) {
                     changeRepo(newRepositoryPath, repoName);
                 }
-
             }
-            else{
-                errorMsg = "The system has failed to create the new directory";
-                throw new ErrorCreatingNewFileException(errorMsg);
+            else {
+                errorMsg = "The repository you were trying to create already exists!";
+                throw new DataAlreadyExistsException(errorMsg);
             }
         }
         else {
-            errorMsg = "The repository you were trying to create already exists!";
-            throw new DataAlreadyExistsException(errorMsg);
+            errorMsg = "The system has failed to create the new directory";
+            throw new ErrorCreatingNewFileException(errorMsg);
         }
     }
 

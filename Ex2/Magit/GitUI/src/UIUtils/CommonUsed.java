@@ -1,6 +1,5 @@
 package UIUtils;
 
-import com.sun.deploy.uitoolkit.impl.text.TextWindow;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -8,17 +7,12 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import sun.plugin2.message.TextEventMessage;
-
-import javax.security.auth.callback.TextOutputCallback;
-import java.awt.*;
 import java.util.Optional;
 
 public class CommonUsed {
-    public static Optional<Pair<String, String>> showMultipleChoiceDialog(String title, String headerText, String contentText1,
-                                                            String contentText2){
+    public static Optional<Pair<String, String>>
+    showMultipleChoiceDialog(String title, String headerText, String contentText1, String contentText2){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle(title);
         dialog.setHeaderText(headerText);

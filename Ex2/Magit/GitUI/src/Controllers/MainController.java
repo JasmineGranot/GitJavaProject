@@ -4,6 +4,7 @@ import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import GitObjects.Commit;
+import UIUtils.LoadFromXMLTask;
 import Utils.MagitStringResultObject;
 import Utils.WorkingCopyChanges;
 import com.fxgraph.graph.PannableCanvas;
@@ -28,34 +29,6 @@ import javafx.util.Pair;
 
 
 public class MainController {
-
-//    @FXML private Text userName;
-//    @FXML private Button changeUserButton;
-//    @FXML private Text currentBranch;
-//    @FXML private Button newBranchButton;
-//    @FXML private Button resetBranchButton;
-//    @FXML private Button deleteBranchButton;
-//    @FXML private Button changeRepoButton;
-//    @FXML private Button loadRepoButton;
-//    @FXML private Button createNewRepoButton;
-//    @FXML private Button showStatusButton;
-//    @FXML private Button commitButton;
-//    @FXML private Button pushButton;
-//    @FXML private Button pullButton;
-//    @FXML private Button mergeButton;
-//    @FXML private Button cloneButton;
-//    @FXML private Button fetchButton;
-//    @FXML private ComboBox<String> branchesOptionsComboBox;
-//    @FXML private Button checkoutButton;
-//    @FXML private Pane textPane;
-//    @FXML private Text currentRepo;
-//    @FXML private Pane treeViewPane;
-//    @FXML private SplitPane mainTextWindow;
-//    @FXML private ScrollPane treeScrollPane;
-//    @FXML private AnchorPane treeAnchorPane;
-//    @FXML private HBox layoutHbox;
-//    @FXML private Button changeLayoutButton;
-//    @FXML private Text pathRepo;
 
     @FXML private Text userName;
     @FXML private Button changeUserButton;
@@ -121,24 +94,28 @@ public class MainController {
 
     @FXML
     void createNewRepository() {
-        Optional<String> repoPath = CommonUsed.showDialog("New Repository", "Enter path:",
-                "Path:");
-        repoPath.ifPresent(path-> {
-            MagitStringResultObject res = myMagit.createNewRepo(path, "just a custom repo");
-            if(isShowStatusOpen){
-                showStatusPane.getChildren().clear();
-                isShowStatusOpen = false;
-            }
-            if (!res.getIsHasError()) {
-                CommonUsed.showSuccess(res.getData());
-                setRepoActionsAvailable();
-                currentBranch.textProperty().unbind();
-                currentBranch.textProperty().bind(myMagit.getCurrentBranch());
-            }
-            else {
-                CommonUsed.showError(res.getErrorMSG());
-            }
-        });
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Create new repository!");
+
+        File selectFile = directoryChooser.showDialog(primaryStage);
+        if (selectFile == null) {
+            return;
+        }
+
+        MagitStringResultObject res = myMagit.createNewRepo(selectFile.getAbsolutePath(), "just a custom repo");
+        if(isShowStatusOpen){
+            showStatusPane.getChildren().clear();
+            isShowStatusOpen = false;
+        }
+        if (!res.getIsHasError()) {
+            CommonUsed.showSuccess(res.getData());
+            setRepoActionsAvailable();
+            currentBranch.textProperty().unbind();
+            currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+        }
+        else {
+            CommonUsed.showError(res.getErrorMSG());
+        }
     }
 
     @FXML
@@ -152,32 +129,18 @@ public class MainController {
             return;
         }
 
-
-
-        /*ProgressBar progressBar = new ProgressBar(0);
-        ProgressIndicator progressIndicator = new ProgressIndicator(0);
-
-        progressBar.setVisible(true);
-        Button startButton = new Button("Start");
-        Button okButton = new Button("OK");
-        okButton.setVisible(false);
-
-        final Label statusLabel = new Label();
-        statusLabel.setMinWidth(250);
-        statusLabel.setTextFill(Color.BLACK);
-
-
-        startButton.setOnAction(eventThread -> {
-            try{
-                startButton.setDisable(true);
-                startButton.setVisible(false);
-                progressBar.setProgress(0);
-                progressIndicator.setProgress(0);
-                myMagit.loadRepositoryFromXML(selectFile.getAbsolutePath(), false);
-            }catch(DataAlreadyExistsException e){
-                System.out.println(e.getMessage());
-            }
-        });*/
+//        else{
+//            new Thread(new LoadFromXMLTask(isShowStatusOpen, myMagit, selectFile, currentBranch,
+//                    pathRepo, showStatusPane)).start();
+//
+//            isShowStatusOpen = false;
+//            setRepoActionsAvailable();
+//            currentBranch.textProperty().unbind();
+//            currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+//            pathRepo.textProperty().bind(myMagit.getPath());
+//            createCommitTree();
+//
+//        }
 
         try {
             if(isShowStatusOpen){
