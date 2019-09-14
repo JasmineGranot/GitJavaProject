@@ -73,7 +73,7 @@ public class MagitUtils {
 
     }
 
-    public static String unZipAndReadFile(String filePath) throws IOException{
+    public static String unZipAndReadFile(String filePath) throws IOException {
         int len;
         int INPUT_SIZE = 100;
         final byte[] buffer = new byte[INPUT_SIZE];
@@ -113,5 +113,46 @@ public class MagitUtils {
     public static boolean isRepositoryExist(String newRepoPath) {
         File repo = new File(newRepoPath);
         return repo.exists();
+    }
+
+    static void writeFileToRepository(String filePath, MergeResult res) {
+        try {
+            res.writeFileToRepository(filePath);
+            res.setSucceeded(true);
+            res.setHasConflict(false);
+            res.setFileName(filePath);
+            res.setFilePath(filePath);
+        } catch (IOException e) {
+            res.setSucceeded(false);
+            String errorMsg = "An error occurred while trying to write the new file to the repository!\n" +
+                    "Error message: " + e.getMessage();
+            res.setErrorMsg(errorMsg);
+        }
+    }
+
+    static void deleteFileFromRepository(String filePath, MergeResult res) {
+        res.setHasConflict(false);
+        res.setFileName(filePath);
+        res.setFilePath(filePath);
+        if(res.deleteFileFromRepository(filePath)) {
+            res.setSucceeded(true);
+        }
+        else {
+            res.setSucceeded(false);
+        }
+    }
+
+    static void success(MergeResult res, String fileName) {
+        res.setSucceeded(true);
+        res.setHasConflict(false);
+        res.setFileName(fileName);
+        res.setFilePath(fileName);
+    }
+
+    static void conflict(MergeResult res, String fileName) {
+        res.setSucceeded(false);
+        res.setHasConflict(true);
+        res.setFileName(fileName);
+        res.setFilePath(fileName);
     }
 }

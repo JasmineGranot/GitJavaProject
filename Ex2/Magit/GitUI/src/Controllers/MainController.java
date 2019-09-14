@@ -3,20 +3,29 @@ package Controllers;
 import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
+import GitObjects.Branch;
 import GitObjects.Commit;
 import UIUtils.LoadFromXMLTask;
 import Utils.MagitStringResultObject;
+import Utils.MergeResult;
 import Utils.WorkingCopyChanges;
 import com.fxgraph.graph.PannableCanvas;
+import com.sun.scenario.effect.Merge;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
+import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import UIUtils.CommonUsed;
@@ -361,7 +370,54 @@ public class MainController {
 
     @FXML
     void merge() {
+            Optional<String> mergeMessage = CommonUsed.showDialog("Merge",
+                    "Please insert the name of the branch you want to merge with", "Name: ");
+            mergeMessage.ifPresent(branchName -> {
+                try {
+                    Branch branchToMerge = myMagit.getBranchByName(branchName);
+                    if(branchToMerge != null) {
+                        List<MergeResult> mergeResultList = new LinkedList<>();
+                        String isFFMerge = myMagit.merge(branchToMerge, mergeResultList);
+                        if (isFFMerge == null) {
+                            List<String> filesStatus = new LinkedList<>();
+                            for (MergeResult curr : mergeResultList) {
+                                if (curr.getSucceeded()) {
+                                    filesStatus.add(curr.getSuccessMsg());
+                                }
+                                if (curr.getHasConflicts()) {
+                                    filesStatus.add(curr.getConflictMsg());
+                                }
+                            }
 
+                            FXMLLoader fxmlLoader = new FXMLLoader();
+                            URL url = getClass().getResource("/Resources/ShowMergeCase.fxml");
+                            fxmlLoader.setLocation(url);
+                            GridPane mergeGridPane = fxmlLoader.load(url.openStream());
+
+                            ShowMergeCaseController showMergeCaseController = fxmlLoader.getController();
+                            Scene scene = new Scene(mergeGridPane, 600, 400);
+//                            scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
+
+                            Stage newStage = new Stage();
+                            newStage.setScene(scene);
+
+                            showMergeCaseController.setMergeResultList(mergeResultList);
+                            showMergeCaseController.setStage(newStage);
+                            showMergeCaseController.showMergeCase(filesStatus);
+
+                            newStage.show();
+                        }
+                        else {
+                            CommonUsed.showSuccess(isFFMerge);
+                        }
+                    }
+                    else {
+                        CommonUsed.showError("Branch does not exist!");
+                    }
+                } catch (Exception e) {
+                    CommonUsed.showError(e.getMessage());
+                }
+            });
     }
 
     @FXML
@@ -446,16 +502,17 @@ public class MainController {
     private void createCommitTree() {
         commitTreeGraph = new Graph();
         commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
-        commitNodeController.createCommitNode(commitTreeGraph, null);
+        commitNodeController.createCommitNode(commitTreeGraph);
         showCommitTree();
     }
 
     private void addCommitToTree() {
+        commitTreeGraph = new Graph();
         Commit newCommit = myMagit.getCurrentCommit();
         Commit.CommitData newCommitData =
                 Commit.getCommitData(newCommit.doSha1(), newCommit, myMagit.getCurrentBranch().getValue());
         commitNodeController.addCommitToSortedCommits(newCommitData, myMagit.getCurrentBranch().getValue());
-        commitNodeController.addCommitNode(commitTreeGraph, newCommitData);
+        commitNodeController.createCommitNode(commitTreeGraph);
         showCommitTree();
     }
 
@@ -542,5 +599,6 @@ public class MainController {
         resetBranchButton.setDisable(false);
         commitButton.setDisable(false);
         branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+        mergeButton.setDisable(false);
     }
 }

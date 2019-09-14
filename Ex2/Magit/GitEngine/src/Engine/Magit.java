@@ -8,6 +8,7 @@ import com.fxgraph.edges.Edge;
 import com.fxgraph.graph.Graph;
 import com.fxgraph.graph.ICell;
 import com.fxgraph.graph.Model;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -50,7 +51,7 @@ public class Magit {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            repo.createNewRepository(repoPath, repoName, true, false);
+            repo.createNewRepository(repoPath, repoName, true);
             msg = "Repository created successfully";
             result.setData(msg);
             result.setIsHasError(false);
@@ -376,6 +377,15 @@ public class Magit {
 
     public Commit getCurrentCommit() {
         return repo.getCurrentCommit();
+    }
+
+    public String merge(Branch branchToMerge, List<MergeResult> res)
+            throws InvalidDataException, IOException, FileErrorException {
+        return repo.merge(branchToMerge, res);
+    }
+
+    public Branch getBranchByName(String name) {
+        return repo.getBranchByName(name);
     }
 
 }

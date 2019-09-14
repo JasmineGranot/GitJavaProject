@@ -181,7 +181,7 @@ public class XMLValidator {
     // ====================================================================================================================
     private void checkIfRepoInElementExists(MagitRepository.MagitRemoteReference magitRemoteReference)
             throws InvalidDataException{
-        if(magitRemoteReference != null){
+        if(magitRemoteReference.getName() != null && magitRemoteReference.getLocation() != null){
             String location = magitRemoteReference.getLocation();
             File file = new File(location);
             if(!file.exists()) {

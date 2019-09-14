@@ -9,6 +9,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import puk.team.course.magit.ancestor.finder.AncestorFinder;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -22,6 +24,7 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import static java.nio.file.Files.walk;
 
 
@@ -39,7 +42,6 @@ class Repository {
     private String currentUser;
     private StringProperty repoName = new SimpleStringProperty("Undefined");
     private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
-
 
     StringProperty getRepoName() {
         return repoName;
@@ -89,26 +91,29 @@ class Repository {
     }
 
     // =========================== Creating New Repo ==================================
-    void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster, boolean changeRepo)
+    void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException, InvalidDataException {
         String errorMsg;
         File newFile = new File(newRepositoryPath);
         if (newFile.exists()) {
-            if(!isValidRepo(newRepositoryPath)){
+            if (!isValidRepo(newRepositoryPath)) {
                 addNewFilesToRepo(newRepositoryPath, addMaster);
-                if (changeRepo) {
-                    changeRepo(newRepositoryPath, repoName);
-                }
             }
             else {
                 errorMsg = "The repository you were trying to create already exists!";
                 throw new DataAlreadyExistsException(errorMsg);
             }
         }
-        else {
-            errorMsg = "The system has failed to create the new directory";
-            throw new ErrorCreatingNewFileException(errorMsg);
+        else{
+            if(newFile.mkdirs()){
+                addNewFilesToRepo(newRepositoryPath, addMaster);
+            }
+            else{
+                errorMsg = "The system has failed to create the new directory";
+                throw new ErrorCreatingNewFileException(errorMsg);
+            }
         }
+
     }
 
     private void addNewFilesToRepo(String newRepositoryPath, boolean addMaster) throws IOException, ErrorCreatingNewFileException {
@@ -185,7 +190,7 @@ class Repository {
                 currentBranchs.clear();
                 currentObjects.clear();
                 currentBranchesNames.clear();
-                createNewRepository(newMagitRepo.getLocation(),repoName, false, false);
+                createNewRepository(newMagitRepo.getLocation(),repoName, false);
                 setRootPath(newMagitRepo.getLocation());
                 updateMainPaths();
                 loadBranchesDataFromMagitRepository(newMagitRepo);
@@ -294,7 +299,7 @@ class Repository {
                 if (lastCommit != null && !lastCommit.equals("")) {
                     String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
                     if (commitSha1 != null) {
-                        newCommit.setLastCommitSha1(commitSha1);
+                        newCommit.setFirstPrecedingSha1(commitSha1);
                     }
                 }
             }
@@ -507,7 +512,7 @@ class Repository {
 
                 String rootSha1 = newCommit.getRootSha1();
                 loadObjectsFromRootFolder(rootSha1, getRootPathAsString());
-                newCommitSha1 = newCommit.getLastCommitSha1();
+                newCommitSha1 = newCommit.getFirstPrecedingSha1();
             }
         }
     }
@@ -670,7 +675,7 @@ class Repository {
                 resultObject.setData(resultObject.getData().concat("=====================\n" +
                         currentCommit.exportCommitDataToString(currentCommitSha1) + "\n=====================\n\n"));
 
-                currentCommitSha1 = currentCommit.getLastCommitSha1();
+                currentCommitSha1 = currentCommit.getFirstPrecedingSha1();
             }
             catch (Exception e){
                 resultObject.setErrorMSG("Something went wrong while trying to cast!");
@@ -690,7 +695,7 @@ class Repository {
         return false;
     }
 
-    private Branch getBranchByName(String branchName){
+    public Branch getBranchByName(String branchName){
         for(Branch currBranch : currentBranchs){
             if(currBranch.getName().getValue().equals(branchName)){
                 return currBranch;
@@ -830,7 +835,7 @@ class Repository {
                 String commitSha1 = newCommit.doSha1();
 
                 if (currentCommit != null) {
-                    newCommit.setLastCommitSha1(currentBranch.getCommitSha1());
+                    newCommit.setFirstPrecedingSha1(currentBranch.getCommitSha1());
                 }
                 currentCommit = newCommit;
                 currentObjects.put(commitSha1, newCommit);
@@ -947,7 +952,6 @@ class Repository {
                     Blob newBlob = new Blob();
                     newBlob.setFileContent(content);
                     currentObjects.put(currentFileSha1, newBlob);
-//                      Path newPath = Paths.get(getRootPath(), ".magit", "Objects", currentFileSha1);
                     try {
                         newBlob.saveToMagitObjects(currentFileSha1, getRootPathAsString());
                     }
@@ -1113,17 +1117,166 @@ class Repository {
             }
         }
 
-        commits.sort(new Comparator<Commit.CommitData>() {
-            @Override
-            public int compare(Commit.CommitData o1, Commit.CommitData o2) {
-                try {
-                    return -o1.getCommitDateAsDate().compareTo(o2.getCommitDateAsDate());
-                }catch(ParseException e){
-                    e.getMessage();
-                }
-                return 0;
+        commits.sort((o1, o2) -> {
+            try {
+                return -o1.getCommitDateAsDate().compareTo(o2.getCommitDateAsDate());
+            }catch(ParseException e){
+                e.getMessage();
             }
+            return 0;
         });
         return commits;
+    }
+
+    // =========================== Merge =========================================
+
+    String merge(Branch branchToMerge, List<MergeResult> mergeResultList)
+            throws InvalidDataException, IOException, FileErrorException{
+        try {
+            AncestorFinder ancestorFinder = new AncestorFinder(this::sha1ToCommit);
+            String ancestorSha1 = ancestorFinder.traceAncestor(currentBranch.getCommitSha1(), branchToMerge.getCommitSha1());
+            Commit ancestor = (Commit) currentObjects.get(ancestorSha1);
+            Commit firstCommit = (Commit) currentObjects.get(currentBranch.getCommitSha1());
+            Commit secondCommit = (Commit) currentObjects.get(branchToMerge.getCommitSha1());
+
+            String fastForwardMerge = findIfFFMerge(branchToMerge, ancestor.getSha1());
+
+            if(fastForwardMerge == null) {
+                Map<String, String> firstCommitFiles = makeMap(firstCommit);
+                Map<String, String> secondCommitFiles = makeMap(secondCommit);
+                Map<String, String> ancestorCommitFiles = makeMap(ancestor);
+
+                Set<String> allCommitsFiles = new HashSet<>();
+                allCommitsFiles.addAll(firstCommitFiles.keySet());
+                allCommitsFiles.addAll(secondCommitFiles.keySet());
+                allCommitsFiles.addAll(ancestorCommitFiles.keySet());
+
+                for (String curr : allCommitsFiles) {
+                    String fileSha1InFirstCommit = "";
+                    String fileSha1InSecondCommit = "";
+                    String fileSha1InAncestorCommit = "";
+
+                    for (String file1 : firstCommitFiles.keySet()) {
+                        if (curr.equals(file1)) {
+                            fileSha1InFirstCommit = firstCommitFiles.get(file1);
+                        }
+                    }
+
+                    for (String file2 : secondCommitFiles.keySet()) {
+                        if (curr.equals(file2)) {
+                            fileSha1InSecondCommit = secondCommitFiles.get(file2);
+                        }
+                    }
+
+                    for (String file3 : ancestorCommitFiles.keySet()) {
+                        if (curr.equals(file3)) {
+                            fileSha1InAncestorCommit = ancestorCommitFiles.get(file3);
+                        }
+                    }
+
+                    FileToMerge fileToMerge = new FileToMerge(curr, fileSha1InFirstCommit,
+                            fileSha1InSecondCommit, fileSha1InAncestorCommit);
+
+                    Optional<FindCurrentFileState> currMergeCase = findMergeCase(fileToMerge);
+
+                    if (currMergeCase.isPresent()) {
+                        FindCurrentFileState state = currMergeCase.get();
+                        MergeResult mergeResult = new MergeResult();
+                        state.merge(curr, mergeResult, currentBranch.getName().getValue(), branchToMerge.getName().getValue());
+
+                        String firstContent = MagitUtils.unZipAndReadFile
+                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InFirstCommit));
+                        String secondContent = MagitUtils.unZipAndReadFile
+                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InSecondCommit));
+                        String ancestorContent = MagitUtils.unZipAndReadFile
+                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InAncestorCommit));
+
+                        mergeResult.setAncestorContent(ancestorContent);
+                        mergeResult.setFirstContent(firstContent);
+                        mergeResult.setSecondContent(secondContent);
+
+                        mergeResultList.add(mergeResult);
+                    }
+                }
+                return null;
+            }
+            else {
+                return fastForwardMerge;
+            }
+        } catch (InvalidDataException e) {
+            String errorMsg = "Something went wrong while trying to merge two branches!\n" +
+                    "Error message:" + e.getMessage();
+            throw new InvalidDataException(errorMsg);
+        }
+    }
+
+    private Commit sha1ToCommit(String sha1) {
+        try { return (Commit) currentObjects.get(sha1); }
+        catch (Exception e) { return null; }
+    }
+
+    private Map<String, String> makeMap(Commit currentCommit) throws InvalidDataException {
+        Map<String, String> currentCommitFiles = new HashMap<>();
+        try {
+            getLastCommitFiles(currentCommit.getRootSha1(), rootPath.getValue(), currentCommitFiles);
+            return currentCommitFiles;
+
+        } catch (InvalidDataException e) {
+            String errorMsg = "Something went wrong while trying to get the commit files!" +
+                    "Error message: " + e.getMessage();
+            throw new InvalidDataException(errorMsg);
+        }
+    }
+
+    private Optional<FindCurrentFileState> findMergeCase(FileToMerge file) {
+        boolean inFirst = true;
+        boolean inSecond = true;
+        boolean inAncestor = true;
+        boolean firstSha1EqualsSeconds = false;
+        boolean secondSha1EqualsAncestors = false;
+        boolean firstSha1EqualsAncestors = false;
+
+        String sha1InFirstCommit = file.getSha1InFirstCommit();
+        String sha1InSecondCommit = file.getSha1InSecondCommit();
+        String sha1InAncestorCommit = file.getSha1InAncestor();
+
+        if(sha1InFirstCommit.equals("")) { inFirst = false; }
+        if(sha1InSecondCommit.equals("")) { inSecond = false; }
+        if(sha1InAncestorCommit.equals("")) { inAncestor = false; }
+
+        if(sha1InFirstCommit.equals(sha1InSecondCommit)) { firstSha1EqualsSeconds = true;}
+        if(sha1InSecondCommit.equals(sha1InAncestorCommit)) { secondSha1EqualsAncestors = true;}
+        if(sha1InFirstCommit.equals(sha1InAncestorCommit)) { firstSha1EqualsAncestors = true;}
+
+
+        boolean[] mergeCase = new boolean[6];
+        mergeCase[0] = inFirst;
+        mergeCase[1] = inSecond;
+        mergeCase[2] = inAncestor;
+        mergeCase[3] = firstSha1EqualsSeconds;
+        mergeCase[4] = secondSha1EqualsAncestors;
+        mergeCase[5] = firstSha1EqualsAncestors;
+
+        return Arrays.stream(FindCurrentFileState.values()).
+                filter(currentMergeCase -> currentMergeCase.isItMe(mergeCase[0], mergeCase[1],
+                        mergeCase[2], mergeCase[3], mergeCase[4],
+                        mergeCase[5])).findFirst();
+    }
+
+    private String findIfFFMerge(Branch branchToMerge, String ancestorSha1)
+            throws InvalidDataException, IOException, FileErrorException{
+        String mergeMsg;
+        if(currentBranch.getCommitSha1().equals(ancestorSha1)) {
+            resetCommitInBranch(branchToMerge.getCommitSha1(), false);
+            mergeMsg = String.format("Changed branch %s commit to branch %s commit in a FF merge successfully!",
+                    currentBranch.getName().getValue(), branchToMerge.getName().getValue());
+            return mergeMsg;
+        }
+        else if(branchToMerge.getCommitSha1().equals(ancestorSha1)) {
+            mergeMsg = String.format("Head branch %s contains branch %s. There is no data to merge!",
+                    currentBranch.getName().getValue(), branchToMerge.getName().getValue());
+            return mergeMsg;
+        }
+        return null;
     }
 }

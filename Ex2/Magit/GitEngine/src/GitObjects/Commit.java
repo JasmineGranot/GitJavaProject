@@ -1,29 +1,21 @@
 package GitObjects;
 
-import Engine.Magit;
 import Utils.MagitUtils;
-import com.fxgraph.cells.AbstractCell;
-import com.fxgraph.graph.Graph;
-import com.fxgraph.graph.IEdge;
-import javafx.beans.binding.DoubleBinding;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import puk.team.course.magit.ancestor.finder.CommitRepresentative;
 
 import java.io.IOException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Commit extends GitObjectsBase {
+public class Commit extends GitObjectsBase implements CommitRepresentative {
     private String commiter = null;
     private String msg = null;
     private String date = null;
     private String rootSha1 = null;
     private String last = null;
+    private String last2 = null;
 
     public void setCommitCreator(String name) {
         commiter = name;
@@ -57,17 +49,17 @@ public class Commit extends GitObjectsBase {
         return rootSha1;
     }
 
-    public void setLastCommitSha1(String lastCommit) {
+    public void setFirstPrecedingSha1(String lastCommit) {
         last = lastCommit;
     }
 
-    public String getLastCommitSha1() {
-        return last;
+    public void setSecondPrecedingSha1(String last2) {
+        this.last2 = last2;
     }
 
     @Override
     public String toString() {
-        String lastCommit = getLastCommitSha1();
+        String lastCommit = getFirstPrecedingSha1();
         if (lastCommit == null) {
             lastCommit = "";
         }
@@ -92,10 +84,19 @@ public class Commit extends GitObjectsBase {
 
         if (data.length() != 0) {
             setRootSha1(dataFields[0]);
-            setLastCommitSha1(!(dataFields[1].equals("null")) ? dataFields[1] : null);
-            setCommitMessage(dataFields[2]);
-            setCommitDate(dataFields[3]);
-            setCommitCreator(dataFields[4]);
+            setFirstPrecedingSha1(!(dataFields[1].equals("null")) ? dataFields[1] : null);
+
+            if(dataFields.length == 6) {
+                setSecondPrecedingSha1(!(dataFields[2].equals("null")) ? dataFields[2] : null);
+                setCommitMessage(dataFields[3]);
+                setCommitDate(dataFields[4]);
+                setCommitCreator(dataFields[5]);
+            }
+            else {
+                setCommitMessage(dataFields[2]);
+                setCommitDate(dataFields[3]);
+                setCommitCreator(dataFields[4]);
+            }
         }
     }
 
@@ -114,23 +115,57 @@ public class Commit extends GitObjectsBase {
         return data;
     }
 
+    @Override
+    public String getSha1() {
+        return this.doSha1();
+    }
+
+    @Override
+    public String getFirstPrecedingSha1() {
+        if(last != null) {
+            return last;
+        }
+        return "";
+    }
+
+    @Override
+    public String getSecondPrecedingSha1() {
+        if(last2 != null) {
+            return last2;
+        }
+        return "";
+    }
+
     public static class CommitData{
         private String commitSha1 = "";
         private String commitDate = "";
         private String commitMsg = "";
         private String commitWriter = "";
         private String commitsLastCommit = "";
+        private String commitsLast2Commit = "";
         private String commitsRootSha1 = "";
         private String branchName = "";
 
         CommitData getDataFromCommit(Commit commitToGet, String branchName){
             setCommitDate(commitToGet.getCommitDate());
             setCommitMsg(commitToGet.getCommitMessage());
-            setCommitsLastCommit(commitToGet.getLastCommitSha1());
+            setCommitsLastCommit(commitToGet.getFirstPrecedingSha1());
+            setCommitsLast2Commit(commitToGet.getSecondPrecedingSha1());
             setCommitsRootSha1(commitToGet.getRootSha1());
             setCommitWriter(commitToGet.getCommitCreator());
             setBranchName(branchName);
             return this;
+        }
+
+        private void setCommitsLast2Commit(String commitsLast2Commit) {
+            this.commitsLast2Commit = commitsLast2Commit;
+        }
+
+        public String getCommitsLast2Commit() {
+            if(commitsLast2Commit == null) {
+                return "";
+            }
+            return commitsLast2Commit;
         }
 
         public void setBranchName(String branchName) {

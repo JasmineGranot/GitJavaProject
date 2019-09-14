@@ -39,10 +39,6 @@ public class CommitNodeController {
         this.sortedCommits.get(1).setBranchName(null);
     }
 
-    void addCommitNode(Graph commitTree, Commit.CommitData commitToAdd) {
-        createCommitNode(commitTree, commitToAdd);
-    }
-
     public void setCommitMessage(String commitMessage) {
         commitMsg.setText(commitMessage);
         commitMsg.setTooltip(new Tooltip(commitMessage));
@@ -89,11 +85,9 @@ public class CommitNodeController {
         }
     }
 
-    void createCommitNode(Graph commitTree, Commit.CommitData newCommitToAdd) {
+    void createCommitNode(Graph commitTree) {
         final Model model = commitTree.getModel();
-        if(newCommitToAdd == null) {
-            commitTree.beginUpdate();
-        }
+        commitTree.beginUpdate();
 
         for(Commit.CommitData curr : sortedCommits){
             ICell commitNode = new CommitNode(curr);
