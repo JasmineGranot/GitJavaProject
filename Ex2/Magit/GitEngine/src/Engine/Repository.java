@@ -794,7 +794,7 @@ class Repository {
         return (obj != null && obj.isCommit());
     }
 
-    boolean createNewCommit(String userName, String commitMsg)
+    boolean createNewCommit(String userName, String commitMsg, String secondCommitSha1)
             throws InvalidDataException, IOException, FileErrorException{
         String errorMsg;
         boolean isChanged;
@@ -836,6 +836,9 @@ class Repository {
 
                 if (currentCommit != null) {
                     newCommit.setFirstPrecedingSha1(currentBranch.getCommitSha1());
+                }
+                if(secondCommitSha1 != null) {
+                    newCommit.setSecondPrecedingSha1(secondCommitSha1);
                 }
                 currentCommit = newCommit;
                 currentObjects.put(commitSha1, newCommit);
@@ -1179,21 +1182,38 @@ class Repository {
 
                     Optional<FindCurrentFileState> currMergeCase = findMergeCase(fileToMerge);
 
+                    boolean directory = isFileDirectoryInCurrentBranch(curr);
+
                     if (currMergeCase.isPresent()) {
                         FindCurrentFileState state = currMergeCase.get();
                         MergeResult mergeResult = new MergeResult();
-                        state.merge(curr, mergeResult, currentBranch.getName().getValue(), branchToMerge.getName().getValue());
+                        state.merge(curr, mergeResult, currentBranch.getName().getValue(),
+                                branchToMerge.getName().getValue(), OBJECTS_PATH,
+                                fileSha1InFirstCommit, fileSha1InSecondCommit, fileSha1InAncestorCommit);
 
-                        String firstContent = MagitUtils.unZipAndReadFile
-                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InFirstCommit));
-                        String secondContent = MagitUtils.unZipAndReadFile
-                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InSecondCommit));
-                        String ancestorContent = MagitUtils.unZipAndReadFile
-                                (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InAncestorCommit));
+                        String firstContent = "";
+                        String secondContent = "";
+                        String ancestorContent = "";
+
+                        if(!fileSha1InFirstCommit.equals("")) {
+                            firstContent = MagitUtils.unZipAndReadFile
+                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InFirstCommit));
+                        }
+
+                        if(!fileSha1InSecondCommit.equals("")) {
+                            secondContent = MagitUtils.unZipAndReadFile
+                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InSecondCommit));
+                        }
+
+                        if(!fileSha1InAncestorCommit.equals("")) {
+                            ancestorContent = MagitUtils.unZipAndReadFile
+                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InAncestorCommit));
+                        }
 
                         mergeResult.setAncestorContent(ancestorContent);
                         mergeResult.setFirstContent(firstContent);
                         mergeResult.setSecondContent(secondContent);
+                        mergeResult.setSecondSha1(fileSha1InSecondCommit);
 
                         mergeResultList.add(mergeResult);
                     }
@@ -1278,5 +1298,9 @@ class Repository {
             return mergeMsg;
         }
         return null;
+    }
+
+    private boolean isFileDirectoryInCurrentBranch(String filePath) { //TODO
+        return false;
     }
 }

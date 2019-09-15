@@ -10,14 +10,19 @@ public class MergeResult {
     private String firstContent = null;
     private String secondContent = null;
     private String ancestorContent = null;
-//    private String firstBranchName = null;
-//    private String secondBranchName = null;
-//    private String ancestorBranchName = null;
+    private String secondSha1 = null;
     private String successMsg = null;
     private String conflictMsg = null;
     private String fileName = null;
     private String filePath = null;
 
+    public void setSecondSha1(String secondSha1) {
+        this.secondSha1 = secondSha1;
+    }
+
+    public String getSecondSha1() {
+        return secondSha1;
+    }
 
     void setConflictMsg(String conflictMsg) {
         this.conflictMsg = conflictMsg;
@@ -27,32 +32,7 @@ public class MergeResult {
         return conflictMsg;
     }
 
-//    public void setAncestorBranchName(String ancestorBranchName) {
-//        this.ancestorBranchName = ancestorBranchName;
-//    }
-//
-//    public String getAncestorBranchName() {
-//        return ancestorBranchName;
-//    }
-//
-//    public void setFirstBranchName(String firstBranchName) {
-//        this.firstBranchName = firstBranchName;
-//    }
-//
-//    public String getFirstBranchName() {
-//        return firstBranchName;
-//    }
-//
-//    public void setSecondBranchName(String secondBranchName) {
-//        this.secondBranchName = secondBranchName;
-//    }
-//
-//    public String getSecondBranchName() {
-//        return secondBranchName;
-//    }
-
-
-    public void setFilePath(String filePath) {
+    void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
@@ -125,10 +105,24 @@ public class MergeResult {
         return errorMsg;
     }
 
-    void writeFileToRepository(String filePath) throws IOException {
-        String data = MagitUtils.unZipAndReadFile(filePath);
+    void writeFileToRepository(String filePath, String fileSha1) throws IOException {
+        String data;
+        if(fileSha1 != null) {
+            data = MagitUtils.unZipAndReadFile(fileSha1);
+        }
+        else{
+            data = MagitUtils.unZipAndReadFile(filePath);
+        }
         File newFile = new File(filePath);
-        if(newFile.delete()){
+
+        if(newFile.exists()) {
+            if(newFile.delete()){
+                if(newFile.createNewFile()) {
+                    MagitUtils.writeToFile(filePath, data);
+                }
+            }
+        }
+        else {
             if(newFile.createNewFile()) {
                 MagitUtils.writeToFile(filePath, data);
             }

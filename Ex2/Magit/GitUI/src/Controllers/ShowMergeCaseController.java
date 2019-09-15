@@ -1,9 +1,5 @@
 package Controllers;
 
-import Engine.Magit;
-import Exceptions.FileErrorException;
-import Exceptions.InvalidDataException;
-import GitObjects.Branch;
 import UIUtils.CommonUsed;
 import Utils.MergeResult;
 import javafx.collections.FXCollections;
@@ -14,15 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javax.print.DocFlavor;
 import java.io.IOException;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class ShowMergeCaseController {
 
@@ -31,7 +24,7 @@ public class ShowMergeCaseController {
     private List<MergeResult> mergeResultList;
     private Stage stage;
 
-    public void setStage(Stage stage) {
+    void setStage(Stage stage) {
         this.stage = stage;
     }
 
@@ -58,7 +51,7 @@ public class ShowMergeCaseController {
                     MergeNodeController mergeNodeController = fxmlLoader.getController();
 
                     Scene scene = new Scene(head, 600, 400);
-        //                            scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
+//                  scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
 
                     Stage newStage = new Stage();
                     newStage.setScene(scene);

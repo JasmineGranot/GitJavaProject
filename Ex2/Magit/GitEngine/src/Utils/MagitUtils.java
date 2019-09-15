@@ -115,9 +115,9 @@ public class MagitUtils {
         return repo.exists();
     }
 
-    static void writeFileToRepository(String filePath, MergeResult res) {
+    static void writeFileToRepository(String filePath, String fileSha1, MergeResult res) {
         try {
-            res.writeFileToRepository(filePath);
+            res.writeFileToRepository(filePath, fileSha1);
             res.setSucceeded(true);
             res.setHasConflict(false);
             res.setFileName(filePath);

@@ -84,6 +84,7 @@ public class MainController {
     private boolean isPinkButtonPressed = false;
     private String style;
     private Graph commitTreeGraph = new Graph();
+    private String secondBranchCommitSha1 = null;
 
 
     public void setPrimaryStage(Stage primaryStage){
@@ -331,19 +332,25 @@ public class MainController {
 
         commitMessage.ifPresent(msg -> {
             if(isShowStatusOpen){
-                showStatusPane.getChildren().clear();
-                isShowStatusOpen = false;
+            showStatusPane.getChildren().clear();
+            isShowStatusOpen = false;
             }
 
-            MagitStringResultObject result = myMagit.createNewCommit(msg);
+            MagitStringResultObject result;
+            if (secondBranchCommitSha1 != null) {
+                result = myMagit.createNewCommit(msg, secondBranchCommitSha1);
+                secondBranchCommitSha1 = null;
+            }
+            else {
+                result = myMagit.createNewCommit(msg, null);
+            }
             if (!result.getIsHasError()){
                 CommonUsed.showSuccess(result.getData());
                 addCommitToTree();
             }
             else {
                 CommonUsed.showError(result.getErrorMSG());
-            }
-        });
+            } });
     }
 
     @FXML
@@ -370,54 +377,55 @@ public class MainController {
 
     @FXML
     void merge() {
-            Optional<String> mergeMessage = CommonUsed.showDialog("Merge",
-                    "Please insert the name of the branch you want to merge with", "Name: ");
-            mergeMessage.ifPresent(branchName -> {
-                try {
-                    Branch branchToMerge = myMagit.getBranchByName(branchName);
-                    if(branchToMerge != null) {
-                        List<MergeResult> mergeResultList = new LinkedList<>();
-                        String isFFMerge = myMagit.merge(branchToMerge, mergeResultList);
-                        if (isFFMerge == null) {
-                            List<String> filesStatus = new LinkedList<>();
-                            for (MergeResult curr : mergeResultList) {
-                                if (curr.getSucceeded()) {
-                                    filesStatus.add(curr.getSuccessMsg());
-                                }
-                                if (curr.getHasConflicts()) {
-                                    filesStatus.add(curr.getConflictMsg());
-                                }
+        Optional<String> mergeMessage = CommonUsed.showDialog("Merge",
+                "Please insert the name of the branch you want to merge with", "Name: ");
+        mergeMessage.ifPresent(branchName -> {
+            try {
+                Branch branchToMerge = myMagit.getBranchByName(branchName);
+                secondBranchCommitSha1 = branchToMerge.getCommitSha1();
+                if(branchToMerge != null) {
+                    List<MergeResult> mergeResultList = new LinkedList<>();
+                    String isFFMerge = myMagit.merge(branchToMerge, mergeResultList);
+                    if (isFFMerge == null) {
+                        List<String> filesStatus = new LinkedList<>();
+                        for (MergeResult curr : mergeResultList) {
+                            if (curr.getSucceeded()) {
+                                filesStatus.add(curr.getSuccessMsg());
                             }
+                            if (curr.getHasConflicts()) {
+                                filesStatus.add(curr.getConflictMsg());
+                            }
+                        }
 
-                            FXMLLoader fxmlLoader = new FXMLLoader();
-                            URL url = getClass().getResource("/Resources/ShowMergeCase.fxml");
-                            fxmlLoader.setLocation(url);
-                            GridPane mergeGridPane = fxmlLoader.load(url.openStream());
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        URL url = getClass().getResource("/Resources/ShowMergeCase.fxml");
+                        fxmlLoader.setLocation(url);
+                        GridPane mergeGridPane = fxmlLoader.load(url.openStream());
 
-                            ShowMergeCaseController showMergeCaseController = fxmlLoader.getController();
-                            Scene scene = new Scene(mergeGridPane, 600, 400);
+                        ShowMergeCaseController showMergeCaseController = fxmlLoader.getController();
+                        Scene scene = new Scene(mergeGridPane, 600, 400);
 //                            scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
 
-                            Stage newStage = new Stage();
-                            newStage.setScene(scene);
+                        Stage newStage = new Stage();
+                        newStage.setScene(scene);
 
-                            showMergeCaseController.setMergeResultList(mergeResultList);
-                            showMergeCaseController.setStage(newStage);
-                            showMergeCaseController.showMergeCase(filesStatus);
+                        showMergeCaseController.setMergeResultList(mergeResultList);
+                        showMergeCaseController.setStage(newStage);
+                        showMergeCaseController.showMergeCase(filesStatus);
 
-                            newStage.show();
-                        }
-                        else {
-                            CommonUsed.showSuccess(isFFMerge);
-                        }
+                        newStage.show();
                     }
                     else {
-                        CommonUsed.showError("Branch does not exist!");
+                        CommonUsed.showSuccess(isFFMerge);
                     }
-                } catch (Exception e) {
-                    CommonUsed.showError(e.getMessage());
                 }
-            });
+                else {
+                    CommonUsed.showError("Branch does not exist!");
+                }
+            } catch (Exception e) {
+                CommonUsed.showError(e.getMessage());
+            }
+        });
     }
 
     @FXML

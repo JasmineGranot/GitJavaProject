@@ -15,7 +15,7 @@
     <RowConstraints maxHeight="194.4000244140625" minHeight="0.0" prefHeight="38.80000305175781" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="resolveConflictsButton" mnemonicParsing="false" onAction="#showResolveWindow" text="Resolve conflicts!" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Button fx:id="resolveConflictsButton" mnemonicParsing="false" onAction="#showResolveWindow" text="OK" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </GridPane>

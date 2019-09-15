@@ -1,23 +1,19 @@
 package Controllers;
 
+import GitObjects.Branch;
 import UIUtils.CommonUsed;
 import Utils.MagitUtils;
 import Utils.MergeResult;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Optional;
 
 public class MergeNodeController {
 
@@ -35,7 +31,7 @@ public class MergeNodeController {
     private String filePath;
     private Stage stage;
 
-    public void setStage(Stage stage) {
+    void setStage(Stage stage) {
         this.stage = stage;
     }
 

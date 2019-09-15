@@ -163,7 +163,7 @@ public class Magit {
         return changes;
     }
 
-    public MagitStringResultObject createNewCommit(String commitMsg) {
+    public MagitStringResultObject createNewCommit(String commitMsg, String secondCommitSha1) {
         MagitStringResultObject result = new MagitStringResultObject();
         boolean success;
         String msg;
@@ -173,7 +173,7 @@ public class Magit {
             return result;
         }
         try {
-            success = repo.createNewCommit(userName.getValue(), commitMsg);
+            success = repo.createNewCommit(userName.getValue(), commitMsg, secondCommitSha1);
             if(success){
                 msg = "The commit was created successfully!";
                 result.setData(msg);

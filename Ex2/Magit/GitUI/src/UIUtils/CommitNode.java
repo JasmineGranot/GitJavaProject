@@ -44,6 +44,7 @@ public class CommitNode extends AbstractCell {
             commitNodeController.setCommitDate(commitData.getCommitDate());
             commitNodeController.setCommitWriter(commitData.getCommitWriter());
             commitNodeController.setLastCommitSha1(commitData.getCommitsLastCommit());
+            commitNodeController.setSecondLastCommitSha1(commitData.getCommitsLast2Commit());
             commitNodeController.setRootSha1(commitData.getCommitSha1());
             commitNodeController.setIsBranch(commitData.getBranchName());
 

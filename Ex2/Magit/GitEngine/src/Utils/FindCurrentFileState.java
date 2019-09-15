@@ -10,8 +10,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                     "did not change in branch \"%s\" and was updated in branch %s.\n" +
@@ -31,8 +31,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.conflict(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was updated in branch \"%s\" and in branch \"%s\".\n" +
@@ -52,9 +52,9 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
-            MagitUtils.writeFileToRepository(filePath, res);
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
+            MagitUtils.writeFileToRepository(filePath, MagitUtils.joinPaths(ObjectsPath, secondSha1), res);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was updated in branch \"%s\" and did not change in branch \"%s\".\n" +
                             "There was no conflict therefor added the file to the repository successfully!",
@@ -73,8 +73,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "did not change in branch \"%s\" and in branch \"%s\".\n" +
@@ -94,8 +94,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "did not change in branch \"%s\" and was deleted in branch \"%s\".\n" +
@@ -115,8 +115,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.conflict(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was updated in branch \"%s\" and was deleted in branch \"%s\".\n" +
@@ -136,8 +136,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.deleteFileFromRepository(filePath, res);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was deleted in branch \"%s\" and did not change in branch \"%s\".\n" +
@@ -157,8 +157,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.conflict(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was deleted in branch \"%s\" and was updated in branch \"%s\".\n" +
@@ -178,8 +178,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s was originally in ancestor, " +
                             "was deleted in branch \"%s\" and branch \"%s\".\n" +
@@ -199,8 +199,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s wasn't originally in ancestor, " +
                             "same version was added to branch \"%s\" and branch \"%s\".\n" +
@@ -220,8 +220,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.conflict(res, filePath);
             String resMsg = String.format("File %s wasn't originally in ancestor, " +
                             "different versions were added to branch \"%s\" and branch \"%s\".\n" +
@@ -241,8 +241,8 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
             MagitUtils.success(res, filePath);
             String resMsg = String.format("File %s wasn't originally in ancestor, " +
                             "wasn't added to branch \"%s\" and was added to branch \"%s\".\n" +
@@ -262,9 +262,9 @@ public enum FindCurrentFileState implements FileState{
         }
 
         @Override
-        public void merge(String filePath, MergeResult res,
-                                 String headBranchName, String branchToMergeName) {
-            MagitUtils.writeFileToRepository(filePath, res);
+        public void merge(String filePath, MergeResult res, String headBranchName, String branchToMergeName,
+                          String ObjectsPath, String firstSha1, String secondSha1, String ancestorSha1) {
+            MagitUtils.writeFileToRepository(filePath, MagitUtils.joinPaths(ObjectsPath, secondSha1), res);
             String resMsg = String.format("File %s wasn't originally in ancestor, " +
                             "was added to branch \"%s\" and wasn't added to branch \"%s\".\n" +
                             "There was no conflict therefor added the file to the repository successfully!",

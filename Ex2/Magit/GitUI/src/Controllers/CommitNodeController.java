@@ -27,6 +27,8 @@ public class CommitNodeController {
     @FXML private Label isBranch;
     @FXML private Label commitSha1Label;
     @FXML private Label rootSha1Label;
+    @FXML private Label commitSha1Label2;
+    @FXML private Label secondLastCommitSha1;
 
     private List<Commit.CommitData> sortedCommits;
 
@@ -85,6 +87,16 @@ public class CommitNodeController {
         }
     }
 
+    public void setSecondLastCommitSha1(String secondLastCommitSha1) {
+        if(!secondLastCommitSha1.equals("")) {
+            this.secondLastCommitSha1.setText(secondLastCommitSha1);
+            this.lastCommitSha1.setTooltip(new Tooltip(secondLastCommitSha1));
+        }
+        else {
+            this.lastCommitSha1.setText("");
+        }
+    }
+
     void createCommitNode(Graph commitTree) {
         final Model model = commitTree.getModel();
         commitTree.beginUpdate();
@@ -108,6 +120,7 @@ public class CommitNodeController {
         }
 
         commitTree.endUpdate();
+
         commitTree.layout(new CommitTreeLayout());
     }
 
