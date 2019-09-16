@@ -23,6 +23,11 @@ public class ShowMergeCaseController {
     @FXML private ListView<String> listView;
     private List<MergeResult> mergeResultList;
     private Stage stage;
+    private MainController mainController;
+
+    void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
     void setStage(Stage stage) {
         this.stage = stage;
@@ -59,6 +64,7 @@ public class ShowMergeCaseController {
 
                     mergeNodeController.setStage(newStage);
                     mergeNodeController.setFilePath(curr.getFilePath());
+                    mergeNodeController.setMainController(mainController);
                     mergeNodeController.resolveConflicts(curr);
                 }
             }

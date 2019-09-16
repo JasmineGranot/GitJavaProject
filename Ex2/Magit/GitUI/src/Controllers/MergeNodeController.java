@@ -30,6 +30,11 @@ public class MergeNodeController {
     @FXML private Button submitChangesButton;
     private String filePath;
     private Stage stage;
+    private MainController mainController;
+
+    void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
     void setStage(Stage stage) {
         this.stage = stage;
@@ -51,6 +56,7 @@ public class MergeNodeController {
             }
             stage.close();
             CommonUsed.showSuccess("File changed successfully!");
+            mainController.createNewCommit();
 
         } catch (IOException e) {
             CommonUsed.showError(e.getMessage());

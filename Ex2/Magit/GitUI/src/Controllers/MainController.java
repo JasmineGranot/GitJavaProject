@@ -411,6 +411,7 @@ public class MainController {
 
                         showMergeCaseController.setMergeResultList(mergeResultList);
                         showMergeCaseController.setStage(newStage);
+                        showMergeCaseController.setMainController(this);
                         showMergeCaseController.showMergeCase(filesStatus);
 
                         newStage.show();
