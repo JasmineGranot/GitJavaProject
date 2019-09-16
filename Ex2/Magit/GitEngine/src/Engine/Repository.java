@@ -10,7 +10,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import puk.team.course.magit.ancestor.finder.AncestorFinder;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -24,7 +23,6 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import static java.nio.file.Files.walk;
 
 
@@ -92,7 +90,7 @@ class Repository {
 
     // =========================== Creating New Repo ==================================
     void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster)
-            throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException, InvalidDataException {
+            throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException {
         String errorMsg;
         File newFile = new File(newRepositoryPath);
         if (newFile.exists()) {
@@ -473,9 +471,12 @@ class Repository {
     }
 
     private void updateMainPaths() {
-        MAGIT_PATH = Paths.get(getRootPathAsString(), ".magit").toString();
-        BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
-        OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
+        String rootPathAsString = getRootPathAsString();
+        if(rootPathAsString != null) {
+            MAGIT_PATH = Paths.get(getRootPathAsString(), ".magit").toString();
+            BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
+            OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
+        }
     }
 
     void changeRepo(String newRepo, String repoName) throws InvalidDataException, IOException, NullPointerException,
@@ -649,7 +650,6 @@ class Repository {
     }
 
     void removeBranch(String branchName) throws InvalidDataException, FileErrorException {
-        String currentHeadBranch = currentBranch.getName().getValue();
         String errorMsg;
         if (!isBranchExist(branchName)) {
             errorMsg = "No such branch Exists!";
@@ -707,7 +707,7 @@ class Repository {
         return false;
     }
 
-    public Branch getBranchByName(String branchName){
+    Branch getBranchByName(String branchName){
         for(Branch currBranch : currentBranchs){
             if(currBranch.getName().getValue().equals(branchName)){
                 return currBranch;
@@ -884,37 +884,42 @@ class Repository {
             WorkingCopyChanges newChangesSet;
             boolean isChanged = false;
 
-            Stream<Path> walk = walk(Paths.get(getRootPathAsString()));
-            Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
-                    (Files::isRegularFile).map(Path::toString).collect(Collectors.toSet());
+            String rootPathAsString = getRootPathAsString();
+            if(rootPathAsString != null) {
+                Stream<Path> walk = walk(Paths.get(rootPathAsString));
+                Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
+                        (Files::isRegularFile).map(Path::toString).collect(Collectors.toSet());
 
-            Map<String, String> lastCommitFiles = new HashMap<>();
-            if (currentCommit != null) {
-                getLastCommitFiles(getRootSha1(), rootPath.getValue(), lastCommitFiles);
+
+                Map<String, String> lastCommitFiles = new HashMap<>();
+                if (currentCommit != null) {
+                    getLastCommitFiles(getRootSha1(), rootPath.getValue(), lastCommitFiles);
+                }
+
+                Set<String> existsPath = new HashSet<>(WCSet);
+                existsPath.retainAll(lastCommitFiles.keySet());
+
+                Set<String> newFiles = new HashSet<>(WCSet);
+                newFiles.removeAll(lastCommitFiles.keySet());
+
+                Set<String> deletedFiles = new HashSet<>(lastCommitFiles.keySet());
+                deletedFiles.removeAll(WCSet);
+
+                getChanged(existsPath, lastCommitFiles);
+
+                if (!existsPath.isEmpty() || !newFiles.isEmpty() || !deletedFiles.isEmpty()) {
+                    isChanged = true;
+                }
+
+                newChangesSet = new WorkingCopyChanges(existsPath, deletedFiles, newFiles, isChanged);
+                return newChangesSet;
             }
-
-            Set<String> existsPath = new HashSet<>(WCSet);
-            existsPath.retainAll(lastCommitFiles.keySet());
-
-            Set<String> newFiles = new HashSet<>(WCSet);
-            newFiles.removeAll(lastCommitFiles.keySet());
-
-            Set<String> deletedFiles = new HashSet<>(lastCommitFiles.keySet());
-            deletedFiles.removeAll(WCSet);
-
-            getChanged(existsPath, lastCommitFiles);
-
-            if(!existsPath.isEmpty() || !newFiles.isEmpty() || !deletedFiles.isEmpty()){
-                isChanged = true;
-            }
-
-            newChangesSet = new WorkingCopyChanges(existsPath, deletedFiles, newFiles, isChanged);
-            return newChangesSet;
 
         } catch (IOException e) {
             String errorMsg = "Unhandled IOException!\n Exception message: " + e.getMessage();
             throw new IOException(errorMsg);
         }
+        return null;
     }
 
     private void getLastCommitFiles(String rootSha1, String rootPath, Map<String, String> commitFiles)
@@ -1072,11 +1077,11 @@ class Repository {
         return null;
     }
 
-    String getCurrentCommitFullFilesData(){
+    List<String> getCurrentCommitFullFilesData(){
         List<String> commitFiles = new LinkedList<>();
         getAllCurrentCommitDir(getRootSha1(), getRootPathAsString()
                 , commitFiles);
-        return String.join("\n", commitFiles);
+        return commitFiles;
 
     }
 

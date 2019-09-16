@@ -117,7 +117,7 @@ public class Magit {
     }
 
     public MagitStringResultObject showFullCommitData(){
-        String msg;
+        List<String> msg;
         MagitStringResultObject result = new MagitStringResultObject();
         if (!isRepositoryConfigured()){
             result.setIsHasError(true);
@@ -126,12 +126,12 @@ public class Magit {
         }
         try{
             msg = repo.getCurrentCommitFullFilesData();
-            result.setData(msg);
+            result.setDataList(msg);
             result.setIsHasError(false);
         }
         catch (Exception e){
-            msg = "There was an unhandled exception!";
-            result.setErrorMSG(msg + "\nException msg: " + e.getMessage());
+            String errorMsg = "There was an unhandled exception!";
+            result.setErrorMSG(errorMsg + "\nException msg: " + e.getMessage());
             result.setIsHasError(true);
         }
         return result;

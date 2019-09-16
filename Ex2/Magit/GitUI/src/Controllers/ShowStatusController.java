@@ -57,9 +57,9 @@ public class ShowStatusController {
 
             accodionPane.getPanes().addAll(newFilesTitledPane, changedFilesTitledPane, deletedFilesTitledPane);
 
+            textPane.getChildren().clear();
             textPane.getChildren().add(accodionPane);
             accodionPane.prefWidthProperty().bind(textPane.widthProperty());
-            accodionPane.prefHeightProperty().bind(textPane.heightProperty());
 
         } catch(IOException e) {
             CommonUsed.showError(e.getMessage());

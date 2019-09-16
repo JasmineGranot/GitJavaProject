@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 
 public class ShowMergeCaseController {
 
@@ -56,7 +55,6 @@ public class ShowMergeCaseController {
                     MergeNodeController mergeNodeController = fxmlLoader.getController();
 
                     Scene scene = new Scene(head, 600, 400);
-//                  scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
 
                     Stage newStage = new Stage();
                     newStage.setScene(scene);

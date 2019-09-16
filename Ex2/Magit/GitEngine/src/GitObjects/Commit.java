@@ -68,7 +68,7 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
             secondLastCommit = "";
         }
 
-        return String.format("%s%s%s%s%s%s%s%s%s%s", getRootSha1(), MagitUtils.DELIMITER, lastCommit,
+        return String.format("%s%s%s%s%s%s%s%s%s%s%s", getRootSha1(), MagitUtils.DELIMITER, lastCommit,
                 MagitUtils.DELIMITER, secondLastCommit, MagitUtils.DELIMITER, getCommitMessage(), MagitUtils.DELIMITER,
                 getCommitDate(), MagitUtils.DELIMITER, getCommitCreator());
     }
@@ -88,10 +88,10 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
 
         if (data.length() != 0) {
             setRootSha1(dataFields[0]);
-            setFirstPrecedingSha1(!(dataFields[1].equals("null")) ? dataFields[1] : null);
+            setFirstPrecedingSha1(!(dataFields[1].equals("")) ? dataFields[1] : null);
 
             if(dataFields.length == 6) {
-                setSecondPrecedingSha1(!(dataFields[2].equals("null")) ? dataFields[2] : null);
+                setSecondPrecedingSha1(!(dataFields[2].equals("")) ? dataFields[2] : null);
                 setCommitMessage(dataFields[3]);
                 setCommitDate(dataFields[4]);
                 setCommitCreator(dataFields[5]);

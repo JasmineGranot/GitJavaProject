@@ -70,6 +70,7 @@ public class MainController {
     @FXML private Button mergeButton;
     @FXML private Button cloneButton;
     @FXML private Button fetchButton;
+    @FXML private Button showCommitData;
 
     private ScrollPane scrollPane = new ScrollPane();
     private PannableCanvas canvas;
@@ -77,6 +78,7 @@ public class MainController {
     private Magit myMagit = new Magit();
     private Stage primaryStage;
     private ShowStatusController statusController = new ShowStatusController();
+    private ShowCommitData commitDataController = new ShowCommitData();
     private boolean isShowStatusOpen = false;
     private CommitNodeController commitNodeController = new CommitNodeController();
     private boolean isGreenButtonPressed = false;
@@ -139,18 +141,8 @@ public class MainController {
             return;
         }
 
-//        else{
-//            new Thread(new LoadFromXMLTask(isShowStatusOpen, myMagit, selectFile, currentBranch,
-//                    pathRepo, showStatusPane)).start();
-//
-//            isShowStatusOpen = false;
-//            setRepoActionsAvailable();
-//            currentBranch.textProperty().unbind();
-//            currentBranch.textProperty().bind(myMagit.getCurrentBranch());
-//            pathRepo.textProperty().bind(myMagit.getPath());
-//            createCommitTree();
-//
-//        }
+//        Thread thread = new Thread(new LoadFromXMLTask(isShowStatusOpen, myMagit, selectFile, currentBranch,
+//                    pathRepo, showStatusPane));
 
         try {
             if(isShowStatusOpen){
@@ -327,8 +319,8 @@ public class MainController {
 
     @FXML
     void createNewCommit() {
-        Optional<String> commitMessage = CommonUsed.showDialog("New Commit", "Enter a message for the commit:",
-                "Message:");
+        Optional<String> commitMessage = CommonUsed.showDialog("New Commit",
+                "Enter a message for the commit:", "Message:");
 
         commitMessage.ifPresent(msg -> {
             if(isShowStatusOpen){
@@ -371,8 +363,17 @@ public class MainController {
     }
 
     @FXML
-    void fetch() {
+    void showCommitData(ActionEvent event) {
+        Optional<String> commitSha1 = CommonUsed.showDialog("Show commit data",
+                "Please enter the commit's sha1:", "Sha1:");
 
+        commitSha1.ifPresent(sha1 -> {
+            MagitStringResultObject commitData = myMagit.showFullCommitData();
+            List<String> fullCommitData = commitData.getDataList();
+
+            commitDataController.setMyMagit(myMagit);
+            commitDataController.showCommitData(fullCommitData, showStatusPane);
+        });
     }
 
     @FXML
@@ -404,7 +405,6 @@ public class MainController {
 
                         ShowMergeCaseController showMergeCaseController = fxmlLoader.getController();
                         Scene scene = new Scene(mergeGridPane, 600, 400);
-//                            scene.getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
 
                         Stage newStage = new Stage();
                         newStage.setScene(scene);
@@ -427,6 +427,11 @@ public class MainController {
                 CommonUsed.showError(e.getMessage());
             }
         });
+    }
+
+    @FXML
+    void fetch() {
+
     }
 
     @FXML
