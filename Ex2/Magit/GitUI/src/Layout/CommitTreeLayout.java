@@ -13,7 +13,7 @@ public class CommitTreeLayout implements Layout {
     @Override
     public void execute(Graph graph) {
         final List<ICell> cells = graph.getModel().getAllCells();
-        int startX = 5;
+        int startX = 15;
         int startY = 20;
         int every3rdNode = 1;
         for (ICell cell : cells) {
@@ -22,6 +22,10 @@ public class CommitTreeLayout implements Layout {
                 graph.getGraphic(c).relocate(startX + 50, startY);
             } else {
                 graph.getGraphic(c).relocate(startX, startY);
+            }
+
+            if(!c.getCommitData().getCommitsLast2Commit().equals("")) {
+                graph.getGraphic(c).relocate(startX - 20, startY);
             }
             startY += 50;
             every3rdNode++;

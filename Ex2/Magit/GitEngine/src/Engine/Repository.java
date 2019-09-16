@@ -295,9 +295,21 @@ class Repository {
 
             if (historyCommits.size() > 0) {
                 String firstCommitId = historyCommits.get(0).getId();
+                MagitSingleCommit secondLastCommit = null;
+                newCommit.setSecondPrecedingSha1(null);
+                if(historyCommits.size() == 2) {
+                    String secondCommitId = historyCommits.get(1).getId();
+                    secondLastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, secondCommitId);
+                }
                 MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
                 if (lastCommit != null && !lastCommit.equals("")) {
                     String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
+                    if(secondLastCommit != null) {
+                        String secondCommitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, secondLastCommit).doSha1();
+                        if(secondCommitSha1 != null) {
+                            newCommit.setSecondPrecedingSha1(secondCommitSha1);
+                        }
+                    }
                     if (commitSha1 != null) {
                         newCommit.setFirstPrecedingSha1(commitSha1);
                     }

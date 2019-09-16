@@ -1,5 +1,6 @@
 package Controllers;
 
+import GitObjects.Branch;
 import GitObjects.Commit;
 import Layout.CommitTreeLayout;
 import com.fxgraph.edges.Edge;
@@ -8,10 +9,11 @@ import com.fxgraph.graph.ICell;
 import com.fxgraph.graph.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import UIUtils.CommitNode;
 
 public class CommitNodeController {
@@ -32,13 +34,24 @@ public class CommitNodeController {
 
     private List<Commit.CommitData> sortedCommits;
 
-    void setSortedCommits(List<Commit.CommitData> sortedCommits) {
+    void setSortedCommits(List<Commit.CommitData> sortedCommits, Branch branchName) {
         this.sortedCommits = sortedCommits;
+        for(Commit.CommitData curr : sortedCommits) {
+            if(curr.getCommitSha1().equals(branchName.getCommitSha1())) {
+                curr.setBranchName(branchName.getName().getValue());
+            }
+        }
+
     }
 
-    void addCommitToSortedCommits(Commit.CommitData commitToAdd, String branchName) {
+    void addCommitToSortedCommits(Commit.CommitData commitToAdd, Branch branchName) {
         this.sortedCommits.add(0, commitToAdd);
-        this.sortedCommits.get(1).setBranchName(null);
+        for(Commit.CommitData curr : sortedCommits) {
+            if(curr.getBranchName() != null) {
+                curr.setBranchName("");
+            }
+        }
+        this.sortedCommits.get(0).setBranchName(branchName.getName().getValue());
     }
 
     public void setCommitMessage(String commitMessage) {
@@ -90,10 +103,10 @@ public class CommitNodeController {
     public void setSecondLastCommitSha1(String secondLastCommitSha1) {
         if(!secondLastCommitSha1.equals("")) {
             this.secondLastCommitSha1.setText(secondLastCommitSha1);
-            this.lastCommitSha1.setTooltip(new Tooltip(secondLastCommitSha1));
+            this.secondLastCommitSha1.setTooltip(new Tooltip(secondLastCommitSha1));
         }
         else {
-            this.lastCommitSha1.setText("");
+            this.secondLastCommitSha1.setText("None");
         }
     }
 
@@ -101,9 +114,18 @@ public class CommitNodeController {
         final Model model = commitTree.getModel();
         commitTree.beginUpdate();
 
+        Map<String, ICell> commitNodes = new HashMap<>();
+        Map<String, ICell> commitSha1s = new HashMap<>();
+        int index1 = 0;
+        int index2 = 0;
+
         for(Commit.CommitData curr : sortedCommits){
             ICell commitNode = new CommitNode(curr);
             model.addCell(commitNode);
+            commitNodes.put(curr.getCommitSha1(), model.getAddedCells().get(index1++));
+            if(!curr.getCommitsLast2Commit().equals("")) {
+                commitSha1s.put(curr.getCommitsLast2Commit(), model.getAddedCells().get(index2++));
+            }
         }
 
         int sizeOfModelNodes = model.getAddedCells().size();
@@ -117,6 +139,13 @@ public class CommitNodeController {
         for(int i = sizeOfModelNodes - 1; i > 0;) {
             final Edge newEdge = new Edge(modelCellsArray[i], modelCellsArray[--i]);
             model.addEdge(newEdge);
+        }
+
+        for(String curr : commitSha1s.keySet()) {
+            if(commitNodes.containsKey(curr)) {
+                final Edge newEdge = new Edge(commitNodes.get(curr), commitSha1s.get(curr));
+                model.addEdge(newEdge);
+            }
         }
 
         commitTree.endUpdate();

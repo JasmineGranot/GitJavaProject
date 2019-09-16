@@ -14,9 +14,11 @@
     -fx-font-size: 10px;
 }
 
-/*.single-commit-row-container {*/
-/*    -fx-background-color: #3B5998;*/
-/*}*/
+.branch-label {
+    -fx-text-fill: #DFE3EE;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
 
 .single-commit-row-container:hover {
     -fx-border-color: black;

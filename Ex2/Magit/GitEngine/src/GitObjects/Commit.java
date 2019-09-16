@@ -60,12 +60,16 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
     @Override
     public String toString() {
         String lastCommit = getFirstPrecedingSha1();
-        if (lastCommit == null) {
+        String secondLastCommit = getSecondPrecedingSha1();
+        if (lastCommit == null || lastCommit.equals("")) {
             lastCommit = "";
         }
+        if(secondLastCommit == null || secondLastCommit.equals("")) {
+            secondLastCommit = "";
+        }
 
-        return String.format("%s%s%s%s%s%s%s%s%s", getRootSha1(), MagitUtils.DELIMITER, lastCommit,
-                MagitUtils.DELIMITER, getCommitMessage(), MagitUtils.DELIMITER,
+        return String.format("%s%s%s%s%s%s%s%s%s%s", getRootSha1(), MagitUtils.DELIMITER, lastCommit,
+                MagitUtils.DELIMITER, secondLastCommit, MagitUtils.DELIMITER, getCommitMessage(), MagitUtils.DELIMITER,
                 getCommitDate(), MagitUtils.DELIMITER, getCommitCreator());
     }
 

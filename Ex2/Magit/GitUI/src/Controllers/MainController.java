@@ -382,8 +382,8 @@ public class MainController {
         mergeMessage.ifPresent(branchName -> {
             try {
                 Branch branchToMerge = myMagit.getBranchByName(branchName);
-                secondBranchCommitSha1 = branchToMerge.getCommitSha1();
                 if(branchToMerge != null) {
+                    secondBranchCommitSha1 = branchToMerge.getCommitSha1();
                     List<MergeResult> mergeResultList = new LinkedList<>();
                     String isFFMerge = myMagit.merge(branchToMerge, mergeResultList);
                     if (isFFMerge == null) {
@@ -509,7 +509,8 @@ public class MainController {
 
     private void createCommitTree() {
         commitTreeGraph = new Graph();
-        commitNodeController.setSortedCommits(myMagit.getCurrentCommits());
+        commitNodeController.setSortedCommits(myMagit.getCurrentCommits(),
+                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
         commitNodeController.createCommitNode(commitTreeGraph);
         showCommitTree();
     }
@@ -519,7 +520,8 @@ public class MainController {
         Commit newCommit = myMagit.getCurrentCommit();
         Commit.CommitData newCommitData =
                 Commit.getCommitData(newCommit.doSha1(), newCommit, myMagit.getCurrentBranch().getValue());
-        commitNodeController.addCommitToSortedCommits(newCommitData, myMagit.getCurrentBranch().getValue());
+        commitNodeController.addCommitToSortedCommits(newCommitData,
+                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
         commitNodeController.createCommitNode(commitTreeGraph);
         showCommitTree();
     }

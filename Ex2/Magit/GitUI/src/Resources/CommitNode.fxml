@@ -63,27 +63,27 @@
             <Insets />
          </GridPane.margin></Label>
       <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-      <Label fx:id="lastCommitSha1" alignment="CENTER" styleClass="message-label" text="..." GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label fx:id="lastCommitSha1" alignment="CENTER" styleClass="timestamp-label" text="..." GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-      <Label fx:id="rootSha1Label" alignment="CENTER" styleClass="message-label" text="Root Sha1:" underline="true" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Label fx:id="rootSha1Label" alignment="CENTER" styleClass="timestamp-label" text="Root Sha1:" underline="true" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
       <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="15" GridPane.rowIndex="1" />
-      <Label fx:id="isBranch" alignment="CENTER" styleClass="message-label" text="currentBranch" GridPane.columnIndex="16" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Label fx:id="commitSha1Label" alignment="CENTER" styleClass="message-label" text="First Last Commit Sha1:" underline="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+      <Label fx:id="isBranch" alignment="CENTER" styleClass="branch-label" text="currentBranch" GridPane.columnIndex="16" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label fx:id="commitSha1Label" alignment="CENTER" styleClass="timestamp-label" text="First Last Commit Sha1:" underline="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="rootSha1" alignment="CENTER" styleClass="message-label" text="..." GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Label fx:id="commitSha1Label2" alignment="CENTER" styleClass="message-label" text="Second Last Commit Sha1:" underline="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
+      <Label fx:id="rootSha1" alignment="CENTER" styleClass="timestamp-label" text="..." GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label fx:id="commitSha1Label2" alignment="CENTER" styleClass="timestamp-label" text="Second Last Commit Sha1:" underline="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="secondLastCommitSha1" alignment="CENTER" styleClass="message-label" text="..." GridPane.columnIndex="11" GridPane.rowIndex="1" />
+      <Label fx:id="secondLastCommitSha1" alignment="CENTER" styleClass="timestamp-label" text="..." GridPane.columnIndex="11" GridPane.rowIndex="1" />
       <Separator maxHeight="20.0" minHeight="20.0" orientation="VERTICAL" prefHeight="20.0" GridPane.columnIndex="12" GridPane.rowIndex="1" />
    </children>
    <styleClass>
