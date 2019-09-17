@@ -9,6 +9,7 @@ import com.fxgraph.graph.Graph;
 import com.fxgraph.graph.ICell;
 import com.fxgraph.graph.Model;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -99,7 +100,7 @@ public class Magit {
             msg = "Repository loaded successfully!";
             result.setData(msg);
             result.setIsHasError(false);
-            repos.put(repo.getRootPath().getValue(), repo.getRepoName().toString());
+            repos.put(repo.getRootPath().getValue(), repo.getRepoName().getValue());
         }
         catch (DataAlreadyExistsException e){
             throw e;
@@ -386,6 +387,15 @@ public class Magit {
 
     public Branch getBranchByName(String name) {
         return repo.getBranchByName(name);
+    }
+
+    public boolean isValidRepository(String path) {
+        return repo.isValidRepo(path);
+    }
+
+    public void cloneRemoteToLocal(String remotePath, String localPath, String repoName)  throws IOException, FileErrorException{
+        repo.clone(remotePath, localPath, repoName);
+        repos.put(StringUtils.capitalize(localPath), repoName);
     }
 
 }

@@ -5,6 +5,7 @@ import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -15,10 +16,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -170,6 +168,7 @@ class Repository {
             MagitRepository newMagitRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
             String repoName = newMagitRepo.getName();
 
+
             if (MagitUtils.isRepositoryExist(newMagitRepo.getLocation()) && !toDeleteExistingRepo){
                 errorMsg = "The repository already exists in the system!";
                 throw new DataAlreadyExistsException(errorMsg);
@@ -189,7 +188,7 @@ class Repository {
                 currentObjects.clear();
                 currentBranchesNames.clear();
                 createNewRepository(newMagitRepo.getLocation(),repoName, false);
-                setRootPath(newMagitRepo.getLocation());
+                setRootPath(StringUtils.capitalize(newMagitRepo.getLocation()));
                 updateMainPaths();
                 loadBranchesDataFromMagitRepository(newMagitRepo);
                 setRepoName(repoName);
@@ -270,7 +269,7 @@ class Repository {
 
                 if (BranchCommit != null) {
                     currentCommit = (Commit) BranchCommit;
-                    loadWCFromCommitSha1(currentBranch.getCommitSha1());
+                    loadWCFromCommitSha1(currentBranch.getCommitSha1(), null);
                 }
                 else {
                     currentCommit = null;
@@ -449,10 +448,20 @@ class Repository {
         }
     }
 
-    private void loadWCFromCommitSha1(String commitSha1) throws FileErrorException, IOException{
-        deleteWC(getRootPathAsString(), false);
+    private void loadWCFromCommitSha1(String commitSha1, String path) throws FileErrorException, IOException{
+        if(path!= null) {
+            deleteWC(path, false);
+        }
+        else {
+            deleteWC(getRootPathAsString(), false);
+        }
         Commit curCommit = (Commit) currentObjects.get(commitSha1);
-        loadWCFromRoot(curCommit.getRootSha1(), getRootPathAsString());
+        if(path != null) {
+            loadWCFromRoot(curCommit.getRootSha1(), path);
+        }
+        else {
+            loadWCFromRoot(curCommit.getRootSha1(), getRootPathAsString());
+        }
     }
 
     private void loadWCFromRoot(String sha1, String path) throws IOException {
@@ -531,8 +540,19 @@ class Repository {
     }
 
     private void loadBranchesObjectsFromBranchs () throws IOException, ErrorCreatingNewFileException{
-        File branchesFolder = new File(BRANCHES_PATH);
-        String[] filesInBranchesFolder = branchesFolder.list();
+        String branchesPath = BRANCHES_PATH;
+        File branchesFolder = new File(branchesPath);
+        String remoteBranchFolder = Paths.get(branchesFolder.getAbsolutePath(), repoName.getValue()).toString();
+        File isRemoteRepo = new File(remoteBranchFolder);
+        String[] filesInBranchesFolder;
+        if(isRemoteRepo.exists())
+        {
+            filesInBranchesFolder = isRemoteRepo.list();
+            branchesPath = Paths.get(branchesFolder.getAbsolutePath(), repoName.getValue()).toString();
+        }
+        else {
+            filesInBranchesFolder = branchesFolder.list();
+        }
         String errorMsg;
 
         if(filesInBranchesFolder == null){
@@ -541,7 +561,7 @@ class Repository {
         }
         for (String currentBranchPath : filesInBranchesFolder) {
             if (!currentBranchPath.equals("Head")){
-                String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, currentBranchPath));
+                String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(branchesPath, currentBranchPath));
                 Branch newBranch = new Branch(currentBranchPath, commitSha1);
                 currentBranchs.add(newBranch);
                 if(newBranch.getName().getValue().equals(getCurrentBranchInRepo()) ||
@@ -579,7 +599,7 @@ class Repository {
         }
     }
 
-    private boolean isValidRepo(String newRepo) {
+    boolean isValidRepo(String newRepo) {
         File newFile = new File(newRepo);
         String[] listOfRepoFiles = newFile.list();
         if (listOfRepoFiles != null) {
@@ -762,7 +782,7 @@ class Repository {
         String lastCommitInBranchSha1 = currentBranch.getCommitSha1();
         if (!lastCommitInBranchSha1.equals("")) {
             currentCommit = (Commit)currentObjects.get(lastCommitInBranchSha1);
-            loadWCFromCommitSha1(lastCommitInBranchSha1);
+            loadWCFromCommitSha1(lastCommitInBranchSha1, null);
         }
         else{ // No commit was never done, meaning this still is an empty repo.
             deleteWC(getRootPathAsString(), false);
@@ -796,7 +816,7 @@ class Repository {
         }
 
         changeHeadCommit(commitSha1);
-        loadWCFromCommitSha1(commitSha1);
+        loadWCFromCommitSha1(commitSha1, null);
     }
 
 
@@ -1199,7 +1219,9 @@ class Repository {
 
                     Optional<FindCurrentFileState> currMergeCase = findMergeCase(fileToMerge);
 
-                    boolean directory = isFileDirectoryInCurrentBranch(curr);
+
+                    isFileDirectoryInCurrentBranch(curr);
+
 
                     if (currMergeCase.isPresent()) {
                         FindCurrentFileState state = currMergeCase.get();
@@ -1317,7 +1339,141 @@ class Repository {
         return null;
     }
 
-    private boolean isFileDirectoryInCurrentBranch(String filePath) { //TODO
-        return false;
+    private void isFileDirectoryInCurrentBranch(String filePath) throws IOException{ //TODO
+        File f = new File(filePath);
+        if(!f.exists()) {
+            Path path = Paths.get(f.getAbsolutePath());
+            String parentPath = path.getParent().toString();
+            isFileDirectoryInCurrentBranch(parentPath);
+            if(f.isDirectory()) {
+                f.mkdir();
+            }
+            else {
+                f.createNewFile();
+            }
+        }
     }
+
+    // =========================== Clone =========================================
+
+    void clone(String remote, String local, String repoName)
+            throws IOException, FileErrorException {
+        List<String> headContent = new LinkedList<>();
+        String content = "";
+        cloneRepository(remote, local, repoName, local, headContent);
+
+        if(!headContent.isEmpty()) {
+            content = headContent.get(0);
+        }
+
+        File head = new File(Paths.get(MagitUtils.joinPaths(local, ".magit\\Branches\\Head")).toString());
+        if(!head.exists()) {
+            if (head.createNewFile()) {
+                Writer out1 = new BufferedWriter(
+                        new OutputStreamWriter(
+                                new FileOutputStream(head), StandardCharsets.UTF_8));
+                out1.write(content);
+                out1.flush();
+                out1.close();
+            }
+        }
+
+        String headSha1 = addRTBHeadBranchToRepo(Paths.get(MagitUtils.joinPaths
+                (remote, ".magit\\Branches")).toString(), content, Paths.get(MagitUtils.joinPaths
+                (local, ".magit\\Branches")).toString());
+
+        if (headSha1 != null) {
+            loadWCFromCommitSha1(headSha1, local);
+        }
+
+    }
+
+    private void cloneRepository(String remote, String local, String repoName, String localUnchanged, List<String> headContent)
+            throws IOException, FileErrorException {
+        File remoteFolder = new File(remote);
+        File[] remoteFolderFiles = remoteFolder.listFiles();
+        if(remoteFolderFiles != null) {
+            for (File remoteFolderFile : remoteFolderFiles) {
+                if (remoteFolderFile.getAbsolutePath().contains(".magit")) {
+                    if (remoteFolderFile.isDirectory()) {
+                        String newPath;
+                        if (remoteFolderFile.getAbsolutePath().contains("Branches")) {
+                            newPath = Paths.get(local, remoteFolderFile.getName()).toString();
+                            File file = new File(newPath);
+                            if (file.mkdir()) {
+                                newPath = Paths.get(newPath, repoName).toString();
+                            }
+                        } else {
+                            newPath = Paths.get(local, remoteFolderFile.getName()).toString();
+                        }
+                        File newFile = new File(newPath);
+                        if (newFile.mkdir()) {
+                            cloneRepository(remoteFolderFile.getAbsolutePath(), newPath, repoName, localUnchanged, headContent);
+                        }
+                    } else {
+                        String newPath = Paths.get(local, remoteFolderFile.getName()).toString();
+                        File newFile = new File(newPath);
+
+                        if (newFile.createNewFile()) {
+                            if (!newFile.getAbsolutePath().contains("Objects")) {
+                                String content = new String
+                                        (Files.readAllBytes(Paths.get(remoteFolderFile.getAbsolutePath())));
+                                if (newFile.getAbsolutePath().contains("Head")) {
+                                    headContent.add(content);
+                                }
+                                Writer writer = new BufferedWriter(new FileWriter(newFile));
+                                writer.write(content);
+                                writer.flush();
+                                writer.close();
+                            } else {
+                                String content = MagitUtils.unZipAndReadFile(remoteFolderFile.getAbsolutePath());
+                                Writer out1 = new BufferedWriter(
+                                        new OutputStreamWriter(
+                                                new FileOutputStream(newFile), StandardCharsets.UTF_8));
+                                out1.write(content);
+                                out1.flush();
+                                out1.close();
+
+                                MagitUtils.zipFile(newPath, newPath + ".zip");
+                                if (!newFile.delete()) {
+                                    String errorMsg = "Had an error while trying to delete a file!";
+                                    throw new FileErrorException(errorMsg);
+                                }
+                                File newObj = new File(newPath + ".zip");
+                                if (!newObj.renameTo(newFile)) {
+                                    String errorMsg = "Had an error while trying to change a file name!";
+                                    throw new FileErrorException(errorMsg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private String addRTBHeadBranchToRepo(String remoteWithBranchPath, String content, String localWithBranchPath)
+            throws IOException{
+        File f = new File(remoteWithBranchPath);
+        File[] files = f.listFiles();
+        if (files != null) {
+            for (File curr : files) {
+                if(curr.getName().equals(content)) {
+                    File headBranch = new File(Paths.get(localWithBranchPath, curr.getName()).toString());
+                    String headSha1 = MagitUtils.readFileAsString(curr.getAbsolutePath());
+                    if (headBranch.createNewFile()) {
+                        Writer out1 = new BufferedWriter(
+                                new OutputStreamWriter(
+                                        new FileOutputStream(headBranch), StandardCharsets.UTF_8));
+                        out1.write(headSha1);
+                        out1.flush();
+                        out1.close();
+                        return headSha1;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 }

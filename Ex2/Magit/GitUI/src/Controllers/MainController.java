@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.LinkedList;
@@ -446,7 +447,52 @@ public class MainController {
 
     @FXML
     void clone(ActionEvent event) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select repository to clone from!");
 
+        File selectFile = directoryChooser.showDialog(primaryStage);
+        if (selectFile == null) {
+            return;
+        }
+
+        if(myMagit.isValidRepository(selectFile.getAbsolutePath())) {
+            Optional<String> localRepositoryPath = CommonUsed.showDialog("Local-Repository",
+                    "Please insert the full path of the local repository", "Path:");
+
+            localRepositoryPath.ifPresent( y -> {
+
+                Optional<String> repoName = CommonUsed.showDialog("Local-Repository",
+                        "Please insert the name of the local repository", "Name:");
+
+                repoName.ifPresent(z-> {
+                    if(!myMagit.isValidRepository(y)) {
+                        File file = new File(y);
+                        if(!file.exists()) {
+                            if (file.mkdir()) {
+                                try {
+                                    myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y, z);
+                                    CommonUsed.showSuccess(String.format
+                                            ("Cloned repository %s to repository %s successfully!",
+                                                    selectFile.getAbsolutePath(), y));
+                                } catch (Exception e) {
+                                    CommonUsed.showError(e.getMessage());
+                                }
+                            }
+                        }
+                        else {
+                            CommonUsed.showError("There is a folder with tha same name in the given path!");
+                        }
+                    }
+                    else {
+                        CommonUsed.showError("The local repository already exists!\n" +
+                                "Cannot clone to an existing repository!");
+                    }
+                });
+            });
+        }
+        else {
+            CommonUsed.showError("Remote repository doesn't exists!");
+        }
     }
 
     @FXML
@@ -602,6 +648,7 @@ public class MainController {
         branchesOptionsComboBox.setDisable(true);
         checkoutButton.setDisable(true);
         deleteBranchButton.setDisable(true);
+        showCommitData.setDisable(true);
         branchesOptionsComboBox.setOnAction(e -> {
             deleteBranchButton.setDisable(false);
             checkoutButton.setDisable(false);
@@ -616,5 +663,7 @@ public class MainController {
         commitButton.setDisable(false);
         branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
         mergeButton.setDisable(false);
+        cloneButton.setDisable(false);
+        showCommitData.setDisable(false);
     }
 }
