@@ -117,15 +117,15 @@ public class CommitNodeController {
         Map<String, ICell> commitNodes = new HashMap<>();
         Map<String, ICell> commitSha1s = new HashMap<>();
         int index1 = 0;
-        int index2 = 0;
 
         for(Commit.CommitData curr : sortedCommits){
             ICell commitNode = new CommitNode(curr);
             model.addCell(commitNode);
-            commitNodes.put(curr.getCommitSha1(), model.getAddedCells().get(index1++));
+            commitNodes.put(curr.getCommitSha1(), model.getAddedCells().get(index1));
             if(!curr.getCommitsLast2Commit().equals("")) {
-                commitSha1s.put(curr.getCommitsLast2Commit(), model.getAddedCells().get(index2++));
+                commitSha1s.put(curr.getCommitsLast2Commit(), model.getAddedCells().get(index1));
             }
+            index1++;
         }
 
         int sizeOfModelNodes = model.getAddedCells().size();

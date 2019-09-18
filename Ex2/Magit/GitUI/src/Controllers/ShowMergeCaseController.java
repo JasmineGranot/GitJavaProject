@@ -45,6 +45,7 @@ public class ShowMergeCaseController {
     @FXML
     void showResolveWindow(ActionEvent event) {
         try {
+            boolean hasOpend = false;
             for (MergeResult curr : mergeResultList) {
                 if (curr.getHasConflicts()) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -54,11 +55,13 @@ public class ShowMergeCaseController {
 
                     MergeNodeController mergeNodeController = fxmlLoader.getController();
 
-                    Scene scene = new Scene(head, 600, 400);
+                    Scene scene = new Scene(head, 700, 500);
 
                     Stage newStage = new Stage();
                     newStage.setScene(scene);
                     newStage.show();
+
+                    hasOpend = true;
 
                     mergeNodeController.setStage(newStage);
                     mergeNodeController.setFilePath(curr.getFilePath());
@@ -67,6 +70,9 @@ public class ShowMergeCaseController {
                 }
             }
             stage.close();
+            if (!hasOpend) {
+                mainController.createNewCommit();
+            }
         } catch (IOException e) {
             CommonUsed.showError(e.getMessage());
         }

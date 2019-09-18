@@ -7,12 +7,22 @@ public class MagitStringResultObject {
     private boolean haveError;
     private String errorMSG;
     private List<String> dataList;
+    private boolean isChanged;
 
     public MagitStringResultObject() {
         this.data = "";
         this.haveError = false;
         this.errorMSG = "";
         this.dataList = null;
+        this.isChanged = false;
+    }
+
+    public void setChanged(boolean changed) {
+        isChanged = changed;
+    }
+
+    public boolean getChanged() {
+        return this.isChanged;
     }
 
     public void setDataList(List<String> dataList) {

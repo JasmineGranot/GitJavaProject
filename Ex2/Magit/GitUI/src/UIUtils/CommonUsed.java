@@ -92,5 +92,15 @@ public class CommonUsed {
         return result.get() == buttonTypeOne;
     }
 
+    public static boolean showConfirmation(String msg) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("");
+        alert.setContentText(msg);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.filter(buttonType -> buttonType == ButtonType.OK).isPresent();
+    }
+
 
 }

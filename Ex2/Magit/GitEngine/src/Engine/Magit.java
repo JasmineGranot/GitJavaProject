@@ -4,18 +4,10 @@ import GitObjects.Branch;
 import GitObjects.Commit;
 import Utils.*;
 import Exceptions.*;
-import com.fxgraph.edges.Edge;
-import com.fxgraph.graph.Graph;
-import com.fxgraph.graph.ICell;
-import com.fxgraph.graph.Model;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
-
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Paths;
@@ -25,28 +17,53 @@ import java.util.Map;
 
 public class Magit {
 
-    private StringProperty userName = new SimpleStringProperty("Administrator");
-    private Repository repo = new Repository();
-    private StringProperty path = repo.getRootPath();
     private final String NON_EXISTING_REPO_MSG = "No repository is configured at the moment." ;
+    private Repository repo = new Repository();
     private Map<String, String> repos = new HashMap<>();
+    private StringProperty path = repo.getRootPath();
+    private StringProperty userName = new SimpleStringProperty("Administrator");
 
+//  ======================== General Functions =============================
 
     public void setUserName(String newName) {
         this.userName.setValue(newName);
     }
 
-    public StringProperty getPath(){
-        return path;
+    public StringProperty getUserName() {return this.userName;}
+
+    public WorkingCopyChanges showStatus() {
+        String msg;
+        WorkingCopyChanges changes = new WorkingCopyChanges();
+        if (!isRepositoryConfigured()){
+            changes.setHasErrors(true);
+            changes.setErrorMsg(NON_EXISTING_REPO_MSG);
+            return changes;
+        }
+        try {
+            changes = repo.printWCStatus();
+            msg = "Success";
+            changes.setMsg(msg);
+            changes.setHasErrors(false);
+        }
+        catch (IOException e){
+            msg = "The was an unhandled IOException! Exception message: " + e.getMessage();
+            changes.setHasErrors(true);
+            changes.setErrorMsg(msg);
+        }
+        catch (InvalidDataException e){
+            changes.setHasErrors(true);
+            changes.setErrorMsg(e.getMessage());
+        }
+        return changes;
     }
+
+//  ======================== Repository Functions ==========================
+
+    public StringProperty getPath(){
+    return path;
+}
 
     public StringProperty getRepoName() {return this.repo.getRepoName();}
-
-    public ObservableList<String> getCurrentBranchesNames(){
-        return repo.getCurrentBranchesNames();
-    }
-
-    public StringProperty getUserName() {return this.userName;}
 
     public MagitStringResultObject createNewRepo(String repoPath, String repoName) {
         String msg;
@@ -92,7 +109,7 @@ public class Magit {
     }
 
     public MagitStringResultObject loadRepositoryFromXML(String xmlFilePath, boolean toDeleteExistingRepo)
-    throws DataAlreadyExistsException{
+            throws DataAlreadyExistsException{
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
@@ -117,115 +134,22 @@ public class Magit {
         return result;
     }
 
-    public MagitStringResultObject showFullCommitData(){
-        List<String> msg;
-        MagitStringResultObject result = new MagitStringResultObject();
-        if (!isRepositoryConfigured()){
-            result.setIsHasError(true);
-            result.setErrorMSG(NON_EXISTING_REPO_MSG);
-            return result;
-        }
-        try{
-            msg = repo.getCurrentCommitFullFilesData();
-            result.setDataList(msg);
-            result.setIsHasError(false);
-        }
-        catch (Exception e){
-            String errorMsg = "There was an unhandled exception!";
-            result.setErrorMSG(errorMsg + "\nException msg: " + e.getMessage());
-            result.setIsHasError(true);
-        }
-        return result;
+    private boolean isRepositoryConfigured(){
+        return repo.getRootPath() != null;
     }
 
-    public WorkingCopyChanges showStatus() {
-        String msg;
-        WorkingCopyChanges changes = new WorkingCopyChanges();
-        if (!isRepositoryConfigured()){
-            changes.setHasErrors(true);
-            changes.setErrorMsg(NON_EXISTING_REPO_MSG);
-            return changes;
-        }
-        try {
-            changes = repo.printWCStatus();
-            msg = "Success";
-            changes.setMsg(msg);
-            changes.setHasErrors(false);
-        }
-        catch (IOException e){
-            msg = "The was an unhandled IOException! Exception message: " + e.getMessage();
-            changes.setHasErrors(true);
-            changes.setErrorMsg(msg);
-        }
-        catch (InvalidDataException e){
-            changes.setHasErrors(true);
-            changes.setErrorMsg(e.getMessage());
-        }
-        return changes;
+    public boolean isValidRepository(String path) {
+        return repo.isValidRepo(path);
     }
 
-    public MagitStringResultObject createNewCommit(String commitMsg, String secondCommitSha1) {
-        MagitStringResultObject result = new MagitStringResultObject();
-        boolean success;
-        String msg;
-        if (!isRepositoryConfigured()){
-            result.setIsHasError(true);
-            result.setErrorMSG(NON_EXISTING_REPO_MSG);
-            return result;
-        }
-        try {
-            success = repo.createNewCommit(userName.getValue(), commitMsg, secondCommitSha1);
-            if(success){
-                msg = "The commit was created successfully!";
-                result.setData(msg);
-                result.setIsHasError(false);
-            }
-            else{
-                msg = "Nothing has changed in the repository!";
-                result.setData(msg);
-                result.setIsHasError(false);
-            }
-        }
-        catch (InvalidDataException e){
-            result.setIsHasError(true);
-            result.setErrorMSG(e.getMessage());
-        }
-        catch (FileErrorException e)
-        {
-            msg = "Something went wrong while trying to update the files in the system!" +
-                    "Error message: " + e.getMessage();
-            result.setIsHasError(true);
-            result.setErrorMSG(msg);
-        }
-        catch (IOException e)
-        {
-            msg = "There was an unhandled IOException!\n" +
-                    "Error message: " + e.getMessage();
-            result.setIsHasError(true);
-            result.setErrorMSG(msg);
-        }
-        return result;
+//  ======================== Branch Functions ==============================
+
+    public ObservableList<String> getCurrentBranchesNames(){
+        return repo.getCurrentBranchesNames();
     }
 
-    public ResultList<Branch.BrancheData> showAllBranches() {
-        ResultList<Branch.BrancheData> result = new ResultList<>();
-        if (!isRepositoryConfigured()){
-            result.setHasError(true);
-            result.setErrorMsg(NON_EXISTING_REPO_MSG);
-            return result;
-        }
-        try{
-            result.setRes(repo.showAllBranchesData());
-            result.setHasError(false);
-        }
-        catch(Exception e){
-            result.setHasError(true);
-            result.setErrorMsg("Got Generic Exception!!!\n Error message: " + e.getMessage());
-        }
-        return result;
-    }
-
-    public MagitStringResultObject addNewBranch(String branchName, String sha1) throws InvalidDataException {
+    public MagitStringResultObject addNewBranch(String branchName, String sha1, boolean isRemoteTracking)
+            throws InvalidDataException, DataAlreadyExistsException {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         if (!isRepositoryConfigured()){
@@ -233,13 +157,22 @@ public class Magit {
             resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
             return resultObject;
         }
-        if (branchName.contains(" ")) {
+        else if (branchName.contains(" ")) {
             msg = "Branch name is invalid, please try again without any spaces.";
             throw new InvalidDataException(msg);
         }
+
+        else if(repo.isRemote(sha1)) {
+            msg = "The sha1 is currently pointed by a remote branch.\n" +
+                    "Would you like to add the branch as a remote tracking branch?\n" +
+                    "OK for yes\n" +
+                    "Cancel for abort";
+            throw new DataAlreadyExistsException(msg);
+        }
+
         else {
             try {
-                repo.addBranch(branchName, sha1);
+                repo.addBranch(branchName, sha1, isRemoteTracking);
                 resultObject.setIsHasError(false);
                 msg = "Branch was added successfully!";
                 resultObject.setData(msg);
@@ -321,24 +254,6 @@ public class Magit {
         return resultObject;
     }
 
-    public MagitStringResultObject showHistoryDataForActiveBranch() {
-        MagitStringResultObject resultObject = new MagitStringResultObject();
-        if (!isRepositoryConfigured()){
-            resultObject.setIsHasError(true);
-            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
-            return resultObject;
-        }
-        try{
-            resultObject = repo.getHistoryBranchData();
-            resultObject.setIsHasError(false);
-        }
-        catch (Exception e) {
-            resultObject.setIsHasError(true);
-            resultObject.setErrorMSG(e.getMessage());
-        }
-        return resultObject;
-    }
-
     public MagitStringResultObject resetBranch(String commitSha1, boolean ignore)
             throws DirectoryNotEmptyException{
         MagitStringResultObject resultObject = new MagitStringResultObject();
@@ -364,43 +279,137 @@ public class Magit {
         return resultObject;
     }
 
-    private boolean isRepositoryConfigured(){
-        return repo.getRootPath() != null;
-    }
-
     public StringProperty getCurrentBranch(){
         return repo.getCurrentBranch().getName();
-    }
-
-    public List<Commit.CommitData> getCurrentCommits() {
-       return repo.currentCommits();
-    }
-
-    public Commit getCurrentCommit() {
-        return repo.getCurrentCommit();
-    }
-
-    public String merge(Branch branchToMerge, List<MergeResult> res)
-            throws InvalidDataException, IOException, FileErrorException {
-        return repo.merge(branchToMerge, res);
     }
 
     public Branch getBranchByName(String name) {
         return repo.getBranchByName(name);
     }
 
-    public boolean isValidRepository(String path) {
-        return repo.isValidRepo(path);
+    public ResultList<Branch.BrancheData> showAllBranches() {
+        ResultList<Branch.BrancheData> result = new ResultList<>();
+        if (!isRepositoryConfigured()){
+            result.setHasError(true);
+            result.setErrorMsg(NON_EXISTING_REPO_MSG);
+            return result;
+        }
+        try{
+            result.setRes(repo.showAllBranchesData());
+            result.setHasError(false);
+        }
+        catch(Exception e){
+            result.setHasError(true);
+            result.setErrorMsg("Got Generic Exception!!!\n Error message: " + e.getMessage());
+        }
+        return result;
     }
 
-    public void cloneRemoteToLocal(String remotePath, String localPath, String repoName)  throws IOException, FileErrorException{
+    public MagitStringResultObject showHistoryDataForActiveBranch() {
+        MagitStringResultObject resultObject = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
+        try{
+            resultObject = repo.getHistoryBranchData();
+            resultObject.setIsHasError(false);
+        }
+        catch (Exception e) {
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(e.getMessage());
+        }
+        return resultObject;
+    }
+
+//  ======================== Commit Functions ==============================
+
+    public MagitStringResultObject showFullCommitData(){
+        List<String> msg;
+        MagitStringResultObject result = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            result.setIsHasError(true);
+            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return result;
+        }
+        try{
+            msg = repo.getCurrentCommitFullFilesData();
+            result.setDataList(msg);
+            result.setIsHasError(false);
+        }
+        catch (Exception e){
+            String errorMsg = "There was an unhandled exception!";
+            result.setErrorMSG(errorMsg + "\nException msg: " + e.getMessage());
+            result.setIsHasError(true);
+        }
+        return result;
+    }
+
+    public MagitStringResultObject createNewCommit(String commitMsg, String secondCommitSha1) {
+        MagitStringResultObject result = new MagitStringResultObject();
+        boolean success;
+        String msg;
+        if (!isRepositoryConfigured()){
+            result.setIsHasError(true);
+            result.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return result;
+        }
+        try {
+            success = repo.createNewCommit(userName.getValue(), commitMsg, secondCommitSha1);
+            if(success){
+                msg = "The commit was created successfully!";
+                result.setData(msg);
+                result.setIsHasError(false);
+                result.setChanged(true);
+            }
+            else{
+                msg = "Nothing has changed in the repository!";
+                result.setData(msg);
+                result.setIsHasError(false);
+                result.setChanged(false);
+            }
+        }
+        catch (InvalidDataException e){
+            result.setIsHasError(true);
+            result.setErrorMSG(e.getMessage());
+        }
+        catch (FileErrorException e)
+        {
+            msg = "Something went wrong while trying to update the files in the system!" +
+                    "Error message: " + e.getMessage();
+            result.setIsHasError(true);
+            result.setErrorMSG(msg);
+        }
+        catch (IOException e)
+        {
+            msg = "There was an unhandled IOException!\n" +
+                    "Error message: " + e.getMessage();
+            result.setIsHasError(true);
+            result.setErrorMSG(msg);
+        }
+        return result;
+    }
+
+    public List<Commit.CommitData> getCurrentCommits() {
+        return repo.currentCommits();
+    }
+
+    public Commit getCurrentCommit() {
+        return repo.getCurrentCommit();
+    }
+
+//  ======================== Collaborations Functions ======================
+
+    public String merge(Branch branchToMerge, List<MergeResult> res)
+            throws InvalidDataException, IOException, FileErrorException, DataAlreadyExistsException {
+        return repo.merge(branchToMerge, res);
+    }
+
+    public void cloneRemoteToLocal(String remotePath, String localPath, String repoName)
+            throws IOException, FileErrorException{
         repo.clone(remotePath, localPath, repoName);
         repos.put(StringUtils.capitalize(localPath), repoName);
     }
 
 }
-
-
-
-
-

@@ -5,6 +5,7 @@ import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -28,16 +29,25 @@ class Repository {
     private String MAGIT_PATH = Paths.get(getRootPathAsString(), ".magit").toString();
     private String BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
     private String OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
-
     private StringProperty rootPath = new SimpleStringProperty("Undefined");
+
     private Map<String, GitObjectsBase> currentObjects = new HashMap<>();
     private List<Branch> currentBranchs = new LinkedList<>();
     private Commit currentCommit = null;
+
     private final Branch UNDEFINED_BRANCH = new Branch("Undefined");
     private Branch currentBranch = UNDEFINED_BRANCH;
-    private String currentUser;
-    private StringProperty repoName = new SimpleStringProperty("Undefined");
     private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
+    private Map<String, String> sha1OfRemoteBranchInRemoteRepo = new HashMap<>();
+    private Map<Boolean, String> isRemoteTrackingBranchInLocalRepo = new HashMap<>();
+
+    private String currentUser;
+
+    private StringProperty repoName = new SimpleStringProperty("Undefined");
+    private Map<String, String> localAndRemote = new HashMap<>();
+    private String remoteRepository;
+
+//  ====================================== Utils =======================================
 
     StringProperty getRepoName() {
         return repoName;
@@ -86,7 +96,7 @@ class Repository {
         return currentBranchesNames;
     }
 
-    // =========================== Creating New Repo ==================================
+//  =========================== Creating New Repo ==================================
     void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException {
         String errorMsg;
@@ -153,7 +163,7 @@ class Repository {
         }
     }
 
-// ======================= loading Repo from XML ==============================
+//  ====================== loading Repo from XML ==============================
 
     void loadRepoFromXML(String repoXMLPath, boolean toDeleteExistingRepo)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException,
@@ -421,6 +431,34 @@ class Repository {
 
 
     // ========================== Change Repo ==========================
+
+    void changeRepo(String newRepo, String repoName) throws InvalidDataException, IOException, NullPointerException,
+            ErrorCreatingNewFileException {
+        String errorMsg;
+
+        if (!isValidRepo(newRepo)) {
+            errorMsg = "The repository you entered is missing the .magit library";
+            throw new InvalidDataException(errorMsg);
+        }
+
+        setRepoName(repoName);
+        setRootPath(newRepo);
+        if(!localAndRemote.isEmpty()) {
+            remoteRepository = localAndRemote.get(newRepo);
+        }
+        updateMainPaths();
+
+        loadObjectsFromRepo();
+        String newHead = getCurrentBranchInRepo();
+        Branch headBranch = getBranchByName(newHead);
+        currentBranch = headBranch;
+        if (headBranch != null) {
+            String newCommitSha1 = headBranch.getCommitSha1();
+            currentCommit = (Commit) currentObjects.get(newCommitSha1);
+        }
+
+    }
+
     private static void deleteWC(String filePath, boolean deleteMagit) throws FileErrorException {
         File root = new File(filePath);
         String[] files = root.list();
@@ -486,30 +524,6 @@ class Repository {
             BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
             OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
         }
-    }
-
-    void changeRepo(String newRepo, String repoName) throws InvalidDataException, IOException, NullPointerException,
-            ErrorCreatingNewFileException {
-        String errorMsg;
-
-        if (!isValidRepo(newRepo)) {
-            errorMsg = "The repository you entered is missing the .magit library";
-            throw new InvalidDataException(errorMsg);
-        }
-
-        setRepoName(repoName);
-        setRootPath(newRepo);
-        updateMainPaths();
-
-        loadObjectsFromRepo();
-        String newHead = getCurrentBranchInRepo();
-        Branch headBranch = getBranchByName(newHead);
-        currentBranch = headBranch;
-        if (headBranch != null) {
-            String newCommitSha1 = headBranch.getCommitSha1();
-            currentCommit = (Commit) currentObjects.get(newCommitSha1);
-        }
-
     }
 
     private void loadObjectsFromRepo() throws IOException, ErrorCreatingNewFileException{
@@ -613,6 +627,7 @@ class Repository {
 
 
     // ========================= Branches Functions ======================
+
     ObservableList<Branch.BrancheData> showAllBranchesData() {
         ObservableList<Branch.BrancheData> branchDataList = FXCollections.observableArrayList();
         Branch.BrancheData data;
@@ -631,24 +646,25 @@ class Repository {
         return branchDataList;
     }
 
-
-    void addBranch(String newBranchName, String sha1) throws DataAlreadyExistsException, IOException, InvalidDataException{
+    void addBranch(String newBranchName, String sha1, boolean isRemoteTracking)
+            throws DataAlreadyExistsException, IOException, InvalidDataException {
         String errorMsg;
-        if (rootPath == null){
+        if (rootPath == null) {
             errorMsg = "repository is not configured ";
-            throw  new InvalidDataException(errorMsg);
+            throw new InvalidDataException(errorMsg);
         }
         if (isBranchExist(newBranchName)) {
             errorMsg = "Branch already Exist!";
             throw new DataAlreadyExistsException(errorMsg);
-        }
-        else {
+        } else {
             addBranchToFileSystem(newBranchName, sha1);
+            if(isRemoteTracking) {
+                isRemoteTrackingBranchInLocalRepo.put(true, Paths.get(BRANCHES_PATH, newBranchName).toString());
+            }
         }
-}
+    }
 
-    private void addBranchToFileSystem(String newBranchName, String commitSha1)
-            throws IOException{
+    private void addBranchToFileSystem(String newBranchName, String commitSha1) throws IOException{
         // =============================
         // add to objects in .magit
         // =============================
@@ -819,6 +835,13 @@ class Repository {
         loadWCFromCommitSha1(commitSha1, null);
     }
 
+    boolean isRemote(String sha1) {
+        if(sha1OfRemoteBranchInRemoteRepo.isEmpty()) {
+            String branch = sha1OfRemoteBranchInRemoteRepo.get(sha1);
+            return branch != null;
+        }
+        return false;
+    }
 
     // =========================== Commit =========================================
     private boolean isValidCommit(String sha1){
@@ -1171,96 +1194,101 @@ class Repository {
     // =========================== Merge =========================================
 
     String merge(Branch branchToMerge, List<MergeResult> mergeResultList)
-            throws InvalidDataException, IOException, FileErrorException{
+            throws InvalidDataException, IOException, FileErrorException, DataAlreadyExistsException{
         try {
-            AncestorFinder ancestorFinder = new AncestorFinder(this::sha1ToCommit);
-            String ancestorSha1 = ancestorFinder.traceAncestor(currentBranch.getCommitSha1(), branchToMerge.getCommitSha1());
-            Commit ancestor = (Commit) currentObjects.get(ancestorSha1);
-            Commit firstCommit = (Commit) currentObjects.get(currentBranch.getCommitSha1());
-            Commit secondCommit = (Commit) currentObjects.get(branchToMerge.getCommitSha1());
+            boolean changesExist = isWorkingCopyIsChanged().isChanged();
+            if (!changesExist) {
+                AncestorFinder ancestorFinder = new AncestorFinder(this::sha1ToCommit);
+                String ancestorSha1 = ancestorFinder.traceAncestor(currentBranch.getCommitSha1(), branchToMerge.getCommitSha1());
+                Commit ancestor = (Commit) currentObjects.get(ancestorSha1);
+                Commit firstCommit = (Commit) currentObjects.get(currentBranch.getCommitSha1());
+                Commit secondCommit = (Commit) currentObjects.get(branchToMerge.getCommitSha1());
 
-            String fastForwardMerge = findIfFFMerge(branchToMerge, ancestor.getSha1());
+                String fastForwardMerge = findIfFFMerge(branchToMerge, ancestor.getSha1());
 
-            if(fastForwardMerge == null) {
-                Map<String, String> firstCommitFiles = makeMap(firstCommit);
-                Map<String, String> secondCommitFiles = makeMap(secondCommit);
-                Map<String, String> ancestorCommitFiles = makeMap(ancestor);
+                if (fastForwardMerge == null) {
+                    Map<String, String> firstCommitFiles = makeMap(firstCommit);
+                    Map<String, String> secondCommitFiles = makeMap(secondCommit);
+                    Map<String, String> ancestorCommitFiles = makeMap(ancestor);
 
-                Set<String> allCommitsFiles = new HashSet<>();
-                allCommitsFiles.addAll(firstCommitFiles.keySet());
-                allCommitsFiles.addAll(secondCommitFiles.keySet());
-                allCommitsFiles.addAll(ancestorCommitFiles.keySet());
+                    Set<String> allCommitsFiles = new HashSet<>();
+                    allCommitsFiles.addAll(firstCommitFiles.keySet());
+                    allCommitsFiles.addAll(secondCommitFiles.keySet());
+                    allCommitsFiles.addAll(ancestorCommitFiles.keySet());
 
-                for (String curr : allCommitsFiles) {
-                    String fileSha1InFirstCommit = "";
-                    String fileSha1InSecondCommit = "";
-                    String fileSha1InAncestorCommit = "";
+                    for (String curr : allCommitsFiles) {
+                        String fileSha1InFirstCommit = "";
+                        String fileSha1InSecondCommit = "";
+                        String fileSha1InAncestorCommit = "";
 
-                    for (String file1 : firstCommitFiles.keySet()) {
-                        if (curr.equals(file1)) {
-                            fileSha1InFirstCommit = firstCommitFiles.get(file1);
+                        for (String file1 : firstCommitFiles.keySet()) {
+                            if (curr.equals(file1)) {
+                                fileSha1InFirstCommit = firstCommitFiles.get(file1);
+                            }
+                        }
+
+                        for (String file2 : secondCommitFiles.keySet()) {
+                            if (curr.equals(file2)) {
+                                fileSha1InSecondCommit = secondCommitFiles.get(file2);
+                            }
+                        }
+
+                        for (String file3 : ancestorCommitFiles.keySet()) {
+                            if (curr.equals(file3)) {
+                                fileSha1InAncestorCommit = ancestorCommitFiles.get(file3);
+                            }
+                        }
+
+                        FileToMerge fileToMerge = new FileToMerge(curr, fileSha1InFirstCommit,
+                                fileSha1InSecondCommit, fileSha1InAncestorCommit);
+
+                        Optional<FindCurrentFileState> currMergeCase = findMergeCase(fileToMerge);
+
+
+                        isFileDirectoryInCurrentBranch(curr);
+
+
+                        if (currMergeCase.isPresent()) {
+                            FindCurrentFileState state = currMergeCase.get();
+                            MergeResult mergeResult = new MergeResult();
+                            state.merge(curr, mergeResult, currentBranch.getName().getValue(),
+                                    branchToMerge.getName().getValue(), OBJECTS_PATH,
+                                    fileSha1InFirstCommit, fileSha1InSecondCommit, fileSha1InAncestorCommit);
+
+                            String firstContent = "";
+                            String secondContent = "";
+                            String ancestorContent = "";
+
+                            if (!fileSha1InFirstCommit.equals("")) {
+                                firstContent = MagitUtils.unZipAndReadFile
+                                        (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InFirstCommit));
+                            }
+
+                            if (!fileSha1InSecondCommit.equals("")) {
+                                secondContent = MagitUtils.unZipAndReadFile
+                                        (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InSecondCommit));
+                            }
+
+                            if (!fileSha1InAncestorCommit.equals("")) {
+                                ancestorContent = MagitUtils.unZipAndReadFile
+                                        (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InAncestorCommit));
+                            }
+
+                            mergeResult.setAncestorContent(ancestorContent);
+                            mergeResult.setFirstContent(firstContent);
+                            mergeResult.setSecondContent(secondContent);
+                            mergeResult.setSecondSha1(fileSha1InSecondCommit);
+
+                            mergeResultList.add(mergeResult);
                         }
                     }
-
-                    for (String file2 : secondCommitFiles.keySet()) {
-                        if (curr.equals(file2)) {
-                            fileSha1InSecondCommit = secondCommitFiles.get(file2);
-                        }
-                    }
-
-                    for (String file3 : ancestorCommitFiles.keySet()) {
-                        if (curr.equals(file3)) {
-                            fileSha1InAncestorCommit = ancestorCommitFiles.get(file3);
-                        }
-                    }
-
-                    FileToMerge fileToMerge = new FileToMerge(curr, fileSha1InFirstCommit,
-                            fileSha1InSecondCommit, fileSha1InAncestorCommit);
-
-                    Optional<FindCurrentFileState> currMergeCase = findMergeCase(fileToMerge);
-
-
-                    isFileDirectoryInCurrentBranch(curr);
-
-
-                    if (currMergeCase.isPresent()) {
-                        FindCurrentFileState state = currMergeCase.get();
-                        MergeResult mergeResult = new MergeResult();
-                        state.merge(curr, mergeResult, currentBranch.getName().getValue(),
-                                branchToMerge.getName().getValue(), OBJECTS_PATH,
-                                fileSha1InFirstCommit, fileSha1InSecondCommit, fileSha1InAncestorCommit);
-
-                        String firstContent = "";
-                        String secondContent = "";
-                        String ancestorContent = "";
-
-                        if(!fileSha1InFirstCommit.equals("")) {
-                            firstContent = MagitUtils.unZipAndReadFile
-                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InFirstCommit));
-                        }
-
-                        if(!fileSha1InSecondCommit.equals("")) {
-                            secondContent = MagitUtils.unZipAndReadFile
-                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InSecondCommit));
-                        }
-
-                        if(!fileSha1InAncestorCommit.equals("")) {
-                            ancestorContent = MagitUtils.unZipAndReadFile
-                                    (MagitUtils.joinPaths(OBJECTS_PATH, fileSha1InAncestorCommit));
-                        }
-
-                        mergeResult.setAncestorContent(ancestorContent);
-                        mergeResult.setFirstContent(firstContent);
-                        mergeResult.setSecondContent(secondContent);
-                        mergeResult.setSecondSha1(fileSha1InSecondCommit);
-
-                        mergeResultList.add(mergeResult);
-                    }
+                    return null;
+                } else {
+                    return fastForwardMerge;
                 }
-                return null;
             }
             else {
-                return fastForwardMerge;
+                throw new DataAlreadyExistsException("WC has open changes!\nCommit first then merge");
             }
         } catch (InvalidDataException e) {
             String errorMsg = "Something went wrong while trying to merge two branches!\n" +
@@ -1339,17 +1367,13 @@ class Repository {
         return null;
     }
 
-    private void isFileDirectoryInCurrentBranch(String filePath) throws IOException{ //TODO
+    private void isFileDirectoryInCurrentBranch(String filePath) throws IOException{
         File f = new File(filePath);
         if(!f.exists()) {
-            Path path = Paths.get(f.getAbsolutePath());
-            String parentPath = path.getParent().toString();
-            isFileDirectoryInCurrentBranch(parentPath);
-            if(f.isDirectory()) {
-                f.mkdir();
-            }
-            else {
-                f.createNewFile();
+            if (f.mkdirs()) {
+                if(f.delete()) {
+                    f.createNewFile();
+                }
             }
         }
     }
@@ -1360,6 +1384,7 @@ class Repository {
             throws IOException, FileErrorException {
         List<String> headContent = new LinkedList<>();
         String content = "";
+        localAndRemote.put(local, remote);
         cloneRepository(remote, local, repoName, local, headContent);
 
         if(!headContent.isEmpty()) {
@@ -1375,6 +1400,8 @@ class Repository {
                 out1.write(content);
                 out1.flush();
                 out1.close();
+                isRemoteTrackingBranchInLocalRepo.put(true,
+                        Paths.get(MagitUtils.joinPaths(local, ".magit\\Branches\\"), content).toString());
             }
         }
 
@@ -1475,5 +1502,4 @@ class Repository {
         }
         return null;
     }
-
 }

@@ -5,15 +5,11 @@ import Exceptions.DataAlreadyExistsException;
 import Exceptions.InvalidDataException;
 import GitObjects.Branch;
 import GitObjects.Commit;
-import UIUtils.LoadFromXMLTask;
 import Utils.MagitStringResultObject;
 import Utils.MergeResult;
 import Utils.WorkingCopyChanges;
 import com.fxgraph.graph.PannableCanvas;
-import com.sun.scenario.effect.Merge;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.LinkedList;
@@ -72,23 +67,111 @@ public class MainController {
     @FXML private Button cloneButton;
     @FXML private Button fetchButton;
     @FXML private Button showCommitData;
+    @FXML private Text wcStatusHeader;
 
+//  =========================== Controllers ==================================
+    private ShowCommitData commitDataController = new ShowCommitData();
+    private ShowStatusController statusController = new ShowStatusController();
+    private CommitNodeController commitNodeController = new CommitNodeController();
+//  =========================== Scene Builder ================================
     private ScrollPane scrollPane = new ScrollPane();
     private PannableCanvas canvas;
-    private Scene scene;
+//  ================================ Utils ===================================
+    private Graph commitTreeGraph = new Graph();
     private Magit myMagit = new Magit();
+    private Scene scene;
     private Stage primaryStage;
-    private ShowStatusController statusController = new ShowStatusController();
-    private ShowCommitData commitDataController = new ShowCommitData();
+    private String style;
+    private String secondBranchCommitSha1 = null;
     private boolean isShowStatusOpen = false;
-    private CommitNodeController commitNodeController = new CommitNodeController();
     private boolean isGreenButtonPressed = false;
     private boolean isBlueButtonPressed = true;
     private boolean isPinkButtonPressed = false;
-    private String style;
-    private Graph commitTreeGraph = new Graph();
-    private String secondBranchCommitSha1 = null;
 
+
+//  ============================= Util Functions ===============================
+
+    @FXML
+    void showWCStatus() {
+        isShowStatusOpen = true;
+        WorkingCopyChanges result =  myMagit.showStatus();
+        if(!result.getHasErrors()){
+            Set<String> newFiles = result.getNewFiles();
+            Set<String> changedFiles = result.getChangedFiles();
+            Set<String> deletedFiles = result.getDeletedFiles();
+
+            statusController.showWcStatus(newFiles, changedFiles, deletedFiles, showStatusPane);
+            wcStatusHeader.setText("WC Status");
+        }
+        else {
+            CommonUsed.showError(result.getErrorMsg());
+        }
+
+    }
+
+    @FXML
+    void showLayoutButtons(ActionEvent event) {
+        layoutHbox.setVisible(true);
+    }
+
+    @FXML
+    void changeStyleToBlue(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
+        if(canvas != null) {
+            canvas.setBackground(Background.EMPTY);
+            style = "-fx-background-color: #3B5998";
+            canvas.setStyle(style);
+            scrollPane.setContent(canvas);
+            treeAnchorPane.getChildren().clear();
+            treeAnchorPane.getChildren().add(scrollPane);
+            setTreeBoundaries();
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
+        }
+
+        isBlueButtonPressed = true;
+        isGreenButtonPressed = false;
+        isPinkButtonPressed = false;
+    }
+
+    @FXML
+    void changeStyleToGreen(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 2.css").toExternalForm());
+        if(canvas != null) {
+            canvas.setBackground(Background.EMPTY);
+            style = "-fx-background-color: #405d27";
+            canvas.setStyle(style);
+            scrollPane.setContent(canvas);
+            treeAnchorPane.getChildren().clear();
+            treeAnchorPane.getChildren().add(scrollPane);
+            setTreeBoundaries();
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode2.css").toExternalForm());
+        }
+        isGreenButtonPressed = true;
+        isBlueButtonPressed = false;
+        isPinkButtonPressed = false;
+    }
+
+    @FXML
+    void changeStyleToPink(ActionEvent event) {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 3.css").toExternalForm());
+        if(canvas != null) {
+            canvas.setBackground(Background.EMPTY);
+            style = "-fx-background-color: #622569";
+            canvas.setStyle(style);
+            scrollPane.setContent(canvas);
+            treeAnchorPane.getChildren().clear();
+            treeAnchorPane.getChildren().add(scrollPane);
+            setTreeBoundaries();
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode3.css").toExternalForm());
+        }
+
+        isPinkButtonPressed = true;
+        isGreenButtonPressed = false;
+        isBlueButtonPressed = false;
+    }
 
     public void setPrimaryStage(Stage primaryStage){
         this.primaryStage = primaryStage;
@@ -98,6 +181,71 @@ public class MainController {
         this.scene = scene;
     }
 
+    private void addTreeToAnchorPane(String style) {
+        canvas.setStyle(style);
+        scrollPane.setContent(canvas);
+        treeAnchorPane.getChildren().clear();
+        treeAnchorPane.getChildren().add(scrollPane);
+        setTreeBoundaries();
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
+    }
+
+    private void setTreeBoundaries() {
+        scrollPane.prefHeightProperty().unbind();
+        scrollPane.prefWidthProperty().unbind();
+        scrollPane.prefWidthProperty().bind(treeAnchorPane.widthProperty());
+        scrollPane.prefHeightProperty().bind(treeAnchorPane.heightProperty());
+        scrollPane.pannableProperty().set(true);
+
+        canvas.minHeightProperty().bind(treeAnchorPane.heightProperty());
+        canvas.minWidthProperty().bind(treeAnchorPane.widthProperty());
+    }
+
+    public void initialize() {
+        layoutHbox.setVisible(false);
+
+        currentRepo.wrappingWidthProperty().set(120);
+        userName.wrappingWidthProperty().set(70);
+        currentBranch.wrappingWidthProperty().set(50);
+
+        userName.textProperty().bind(myMagit.getUserName());
+        currentRepo.textProperty().bind(myMagit.getRepoName());
+        currentBranch.textProperty().bind(myMagit.getCurrentBranch());
+
+        treeAnchorPane.prefWidthProperty().bind(mainSplitPane.widthProperty());
+
+        newBranchButton.setDisable(true);
+        resetBranchButton.setDisable(true);
+        commitButton.setDisable(true);
+        showStatusButton.setDisable(true);
+        pushButton.setDisable(true);
+        pullButton.setDisable(true);
+        mergeButton.setDisable(true);
+        cloneButton.setDisable(true);
+        fetchButton.setDisable(true);
+        branchesOptionsComboBox.setDisable(true);
+        checkoutButton.setDisable(true);
+        deleteBranchButton.setDisable(true);
+        showCommitData.setDisable(true);
+        branchesOptionsComboBox.setOnAction(e -> {
+            deleteBranchButton.setDisable(false);
+            checkoutButton.setDisable(false);
+        });
+    }
+
+    private void setRepoActionsAvailable(){
+        showStatusButton.setDisable(false);
+        branchesOptionsComboBox.setDisable(false);
+        newBranchButton.setDisable(false);
+        resetBranchButton.setDisable(false);
+        commitButton.setDisable(false);
+        branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+        mergeButton.setDisable(false);
+        cloneButton.setDisable(false);
+        showCommitData.setDisable(false);
+    }
+
+//  ============================= Repo Functions ===============================
     @FXML
     void updateMagitUser() {
         Optional<String> res = CommonUsed.showDialog("Change user name", "Enter your name:",
@@ -200,6 +348,7 @@ public class MainController {
 
     }
 
+//  ============================ Branch Functions ==============================
     @FXML
     void deleteBranch() {
         try {
@@ -294,6 +443,10 @@ public class MainController {
 
     @FXML
     void createNewBranch() {
+        createBranch(false);
+    };
+
+    private void createBranch(boolean isRemoteTracking) {
         Optional<Pair<String, String>> newBranchName = CommonUsed.showMultipleChoiceDialog("New Branch",
                 "Enter the following data:","Name:", "Sha1:");
         newBranchName.ifPresent(name-> {
@@ -303,7 +456,7 @@ public class MainController {
                     isShowStatusOpen = false;
                 }
 
-                MagitStringResultObject res = myMagit.addNewBranch(name.getKey(), name.getValue());
+                MagitStringResultObject res = myMagit.addNewBranch(name.getKey(), name.getValue(), isRemoteTracking);
                 if (!res.getIsHasError()){
                     CommonUsed.showSuccess(res.getData());
                 }
@@ -314,10 +467,16 @@ public class MainController {
             } catch (InvalidDataException e) {
                 CommonUsed.showError(e.getMessage());
                 createNewBranch();
+            } catch (DataAlreadyExistsException e) {
+                boolean isOk = CommonUsed.showConfirmation(e.getMessage());
+                if(isOk) {
+                    createBranch(true);
+                }
             }
         });
     }
 
+//  ============================ Branch Functions ==============================
     @FXML
     void createNewCommit() {
         Optional<String> commitMessage = CommonUsed.showDialog("New Commit",
@@ -339,28 +498,13 @@ public class MainController {
             }
             if (!result.getIsHasError()){
                 CommonUsed.showSuccess(result.getData());
-                addCommitToTree();
+                if(result.getChanged()) {
+                    addCommitToTree();
+                }
             }
             else {
                 CommonUsed.showError(result.getErrorMSG());
             } });
-    }
-
-    @FXML
-    void showWCStatus() {
-        isShowStatusOpen = true;
-        WorkingCopyChanges result =  myMagit.showStatus();
-        if(!result.getHasErrors()){
-            Set<String> newFiles = result.getNewFiles();
-            Set<String> changedFiles = result.getChangedFiles();
-            Set<String> deletedFiles = result.getDeletedFiles();
-
-            statusController.showWcStatus(newFiles, changedFiles, deletedFiles, showStatusPane);
-        }
-        else {
-            CommonUsed.showError(result.getErrorMsg());
-        }
-
     }
 
     @FXML
@@ -374,8 +518,54 @@ public class MainController {
 
             commitDataController.setMyMagit(myMagit);
             commitDataController.showCommitData(fullCommitData, showStatusPane);
+            wcStatusHeader.setText("Commit Data");
         });
     }
+
+    private void createCommitTree() {
+        commitTreeGraph = new Graph();
+        commitNodeController.setSortedCommits(myMagit.getCurrentCommits(),
+                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
+        commitNodeController.createCommitNode(commitTreeGraph);
+        showCommitTree();
+    }
+
+    private void addCommitToTree() {
+        commitTreeGraph = new Graph();
+        Commit newCommit = myMagit.getCurrentCommit();
+        Commit.CommitData newCommitData =
+                Commit.getCommitData(newCommit.doSha1(), newCommit, myMagit.getCurrentBranch().getValue());
+        commitNodeController.addCommitToSortedCommits(newCommitData,
+                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
+        commitNodeController.createCommitNode(commitTreeGraph);
+        showCommitTree();
+    }
+
+    private void showCommitTree(){
+        canvas = commitTreeGraph.getCanvas();
+        canvas.setBackground(Background.EMPTY);
+
+        if(isPinkButtonPressed) {
+            style = "-fx-background-color: #622569";
+            addTreeToAnchorPane(style);
+        }
+
+        if (isGreenButtonPressed) {
+            style = "-fx-background-color: #405d27";
+            addTreeToAnchorPane(style);
+        }
+        if (isBlueButtonPressed) {
+            style = "-fx-background-color: #3B5998";
+            addTreeToAnchorPane(style);
+        }
+
+        Platform.runLater(() -> {
+            commitTreeGraph.getUseViewportGestures().set(false);
+            commitTreeGraph.getUseNodeGestures().set(false);
+        });
+
+    }
+//  ======================== Collaboration Functions ===========================
 
     @FXML
     void merge() {
@@ -424,7 +614,12 @@ public class MainController {
                 else {
                     CommonUsed.showError("Branch does not exist!");
                 }
-            } catch (Exception e) {
+            }
+            catch (DataAlreadyExistsException e) {
+                CommonUsed.showError(e.getMessage());
+                createNewCommit();
+            }
+            catch (Exception e) {
                 CommonUsed.showError(e.getMessage());
             }
         });
@@ -493,177 +688,5 @@ public class MainController {
         else {
             CommonUsed.showError("Remote repository doesn't exists!");
         }
-    }
-
-    @FXML
-    void showLayoutButtons(ActionEvent event) {
-        layoutHbox.setVisible(true);
-    }
-
-    @FXML
-    void changeStyleToBlue(ActionEvent event) {
-        primaryStage.getScene().getStylesheets().clear();
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style1.css").toExternalForm());
-        if(canvas != null) {
-            canvas.setBackground(Background.EMPTY);
-            style = "-fx-background-color: #3B5998";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            treeAnchorPane.getChildren().clear();
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
-        }
-
-        isBlueButtonPressed = true;
-        isGreenButtonPressed = false;
-        isPinkButtonPressed = false;
-    }
-
-    @FXML
-    void changeStyleToGreen(ActionEvent event) {
-        primaryStage.getScene().getStylesheets().clear();
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 2.css").toExternalForm());
-        if(canvas != null) {
-            canvas.setBackground(Background.EMPTY);
-            style = "-fx-background-color: #405d27";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            treeAnchorPane.getChildren().clear();
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode2.css").toExternalForm());
-        }
-        isGreenButtonPressed = true;
-        isBlueButtonPressed = false;
-        isPinkButtonPressed = false;
-    }
-
-    @FXML
-    void changeStyleToPink(ActionEvent event) {
-        primaryStage.getScene().getStylesheets().clear();
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/Style 3.css").toExternalForm());
-        if(canvas != null) {
-            canvas.setBackground(Background.EMPTY);
-            style = "-fx-background-color: #622569";
-            canvas.setStyle(style);
-            scrollPane.setContent(canvas);
-            treeAnchorPane.getChildren().clear();
-            treeAnchorPane.getChildren().add(scrollPane);
-            setTreeBoundaries();
-            primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode3.css").toExternalForm());
-        }
-
-        isPinkButtonPressed = true;
-        isGreenButtonPressed = false;
-        isBlueButtonPressed = false;
-    }
-
-    private void createCommitTree() {
-        commitTreeGraph = new Graph();
-        commitNodeController.setSortedCommits(myMagit.getCurrentCommits(),
-                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
-        commitNodeController.createCommitNode(commitTreeGraph);
-        showCommitTree();
-    }
-
-    private void addCommitToTree() {
-        commitTreeGraph = new Graph();
-        Commit newCommit = myMagit.getCurrentCommit();
-        Commit.CommitData newCommitData =
-                Commit.getCommitData(newCommit.doSha1(), newCommit, myMagit.getCurrentBranch().getValue());
-        commitNodeController.addCommitToSortedCommits(newCommitData,
-                myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()));
-        commitNodeController.createCommitNode(commitTreeGraph);
-        showCommitTree();
-    }
-
-    private void showCommitTree(){
-        canvas = commitTreeGraph.getCanvas();
-        canvas.setBackground(Background.EMPTY);
-
-        if(isPinkButtonPressed) {
-            style = "-fx-background-color: #622569";
-            addTreeToAnchorPane(style);
-        }
-
-        if (isGreenButtonPressed) {
-            style = "-fx-background-color: #405d27";
-            addTreeToAnchorPane(style);
-        }
-        if (isBlueButtonPressed) {
-            style = "-fx-background-color: #3B5998";
-            addTreeToAnchorPane(style);
-        }
-
-        Platform.runLater(() -> {
-            commitTreeGraph.getUseViewportGestures().set(false);
-            commitTreeGraph.getUseNodeGestures().set(false);
-        });
-
-    }
-
-    private void addTreeToAnchorPane(String style) {
-        canvas.setStyle(style);
-        scrollPane.setContent(canvas);
-        treeAnchorPane.getChildren().clear();
-        treeAnchorPane.getChildren().add(scrollPane);
-        setTreeBoundaries();
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/Css/CommitNode.css").toExternalForm());
-    }
-
-    private void setTreeBoundaries() {
-        scrollPane.prefHeightProperty().unbind();
-        scrollPane.prefWidthProperty().unbind();
-        scrollPane.prefWidthProperty().bind(treeAnchorPane.widthProperty());
-        scrollPane.prefHeightProperty().bind(treeAnchorPane.heightProperty());
-        scrollPane.pannableProperty().set(true);
-
-        canvas.minHeightProperty().bind(treeAnchorPane.heightProperty());
-        canvas.minWidthProperty().bind(treeAnchorPane.widthProperty());
-    }
-
-    public void initialize() {
-        layoutHbox.setVisible(false);
-
-        currentRepo.wrappingWidthProperty().set(120);
-        userName.wrappingWidthProperty().set(70);
-        currentBranch.wrappingWidthProperty().set(50);
-
-        userName.textProperty().bind(myMagit.getUserName());
-        currentRepo.textProperty().bind(myMagit.getRepoName());
-        currentBranch.textProperty().bind(myMagit.getCurrentBranch());
-
-        treeAnchorPane.prefWidthProperty().bind(mainSplitPane.widthProperty());
-
-        newBranchButton.setDisable(true);
-        resetBranchButton.setDisable(true);
-        commitButton.setDisable(true);
-        showStatusButton.setDisable(true);
-        pushButton.setDisable(true);
-        pullButton.setDisable(true);
-        mergeButton.setDisable(true);
-        cloneButton.setDisable(true);
-        fetchButton.setDisable(true);
-        branchesOptionsComboBox.setDisable(true);
-        checkoutButton.setDisable(true);
-        deleteBranchButton.setDisable(true);
-        showCommitData.setDisable(true);
-        branchesOptionsComboBox.setOnAction(e -> {
-            deleteBranchButton.setDisable(false);
-            checkoutButton.setDisable(false);
-        });
-    }
-
-    private void setRepoActionsAvailable(){
-        showStatusButton.setDisable(false);
-        branchesOptionsComboBox.setDisable(false);
-        newBranchButton.setDisable(false);
-        resetBranchButton.setDisable(false);
-        commitButton.setDisable(false);
-        branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
-        mergeButton.setDisable(false);
-        cloneButton.setDisable(false);
-        showCommitData.setDisable(false);
     }
 }

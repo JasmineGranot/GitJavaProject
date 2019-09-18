@@ -2,6 +2,7 @@ package Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class MergeResult {
     private boolean hasConflict = false;
@@ -131,6 +132,16 @@ public class MergeResult {
 
     boolean deleteFileFromRepository(String filePath) {
         File toDeleteFile = new File(filePath);
+        String parent = toDeleteFile.getParent();
+        File parentFolder = new File(parent);
+        File[] parentFolderFiles = parentFolder.listFiles();
+        if(parentFolderFiles != null) {
+            if (parentFolderFiles.length == 1) {
+                if (toDeleteFile.delete()) {
+                    return parentFolder.delete();
+                }
+            }
+        }
         return toDeleteFile.delete();
     }
 }

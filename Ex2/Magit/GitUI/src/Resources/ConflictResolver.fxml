@@ -17,8 +17,8 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="101.0" minHeight="0.0" prefHeight="17.599990844726562" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="214.0" minHeight="10.0" prefHeight="196.80000915527344" vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="fileInCurrentBranch" text="File in current branch" GridPane.halignment="CENTER" />
@@ -29,19 +29,19 @@
             <TextArea fx:id="secondBranchTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <GridPane fx:id="resGridPane" prefHeight="186.0" prefWidth="608.0">
+      <GridPane fx:id="resGridPane" prefHeight="200.0" prefWidth="200.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="86.19998168945312" minHeight="10.0" prefHeight="26.599990844726562" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="159.40000915527344" minHeight="10.0" prefHeight="141.6" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="159.40000915527344" minHeight="10.0" prefHeight="33.599999999999994" vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="finalResultLabel" text="Final result" GridPane.halignment="CENTER" />
-            <TextArea fx:id="finalResultTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Button fx:id="submitChangesButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeRepositoryToFinalResult" text="Submit changes" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextArea fx:id="finalResultTextArea" GridPane.rowIndex="1" />
+            <Button fx:id="submitChangesButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeRepositoryToFinalResult" text="Submit changes" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
          </children>
       </GridPane>
    </children>

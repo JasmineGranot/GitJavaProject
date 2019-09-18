@@ -131,8 +131,8 @@ public enum FindCurrentFileState implements FileState{
         public boolean isItMe(boolean inFirst, boolean inSecond, boolean inAncestor,
                               boolean firstSha1EqualsSecond, boolean secondSha1EqualsAncestor,
                               boolean firstSha1EqualsAncestor) {
-            return (inFirst && inSecond && inAncestor &&
-                    !firstSha1EqualsSecond && !secondSha1EqualsAncestor && !firstSha1EqualsAncestor);
+            return (inFirst && !inSecond && inAncestor &&
+                    !firstSha1EqualsSecond && !secondSha1EqualsAncestor && firstSha1EqualsAncestor);
         }
 
         @Override
