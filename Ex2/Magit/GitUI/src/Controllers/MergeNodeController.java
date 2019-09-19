@@ -50,8 +50,10 @@ public class MergeNodeController {
             String finalData = finalResultTextArea.getText();
             File newFile = new File(filePath);
             if (newFile.delete()) {
-                if (newFile.createNewFile()) {
-                    MagitUtils.writeToFile(filePath, finalData);
+                if(!finalData.isEmpty()) {
+                    if (newFile.createNewFile()) {
+                        MagitUtils.writeToFile(filePath, finalData);
+                    }
                 }
             }
             stage.close();

@@ -2,6 +2,7 @@ package Controllers;
 
 import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
+import Exceptions.FileErrorException;
 import Exceptions.InvalidDataException;
 import GitObjects.Branch;
 import GitObjects.Commit;
@@ -18,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.LinkedList;
@@ -243,6 +245,9 @@ public class MainController {
         mergeButton.setDisable(false);
         cloneButton.setDisable(false);
         showCommitData.setDisable(false);
+        fetchButton.setDisable(false);
+        pullButton.setDisable(false);
+        pushButton.setDisable(false);
     }
 
 //  ============================= Repo Functions ===============================
@@ -443,37 +448,48 @@ public class MainController {
 
     @FXML
     void createNewBranch() {
-        createBranch(false);
-    };
-
-    private void createBranch(boolean isRemoteTracking) {
         Optional<Pair<String, String>> newBranchName = CommonUsed.showMultipleChoiceDialog("New Branch",
                 "Enter the following data:","Name:", "Sha1:");
-        newBranchName.ifPresent(name-> {
-            try {
-                if(isShowStatusOpen){
-                    showStatusPane.getChildren().clear();
-                    isShowStatusOpen = false;
-                }
-
-                MagitStringResultObject res = myMagit.addNewBranch(name.getKey(), name.getValue(), isRemoteTracking);
-                if (!res.getIsHasError()){
-                    CommonUsed.showSuccess(res.getData());
-                }
-                else {
-                    CommonUsed.showError(res.getErrorMSG());
-                }
-
-            } catch (InvalidDataException e) {
-                CommonUsed.showError(e.getMessage());
-                createNewBranch();
-            } catch (DataAlreadyExistsException e) {
-                boolean isOk = CommonUsed.showConfirmation(e.getMessage());
-                if(isOk) {
-                    createBranch(true);
-                }
+        newBranchName.ifPresent(name -> {
+            if(!name.getValue().isEmpty()) {
+                createBranch(false, name.getKey(),
+                        myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()).getCommitSha1(), false);
+            } else {
+                createBranch(false, name.getKey(), name.getValue(), false);
             }
         });
+    };
+
+    private void createBranch(boolean isRemoteTracking, String branchName, String branchSha1, boolean toIgnoreSha1) {
+        try {
+            if(isShowStatusOpen){
+                showStatusPane.getChildren().clear();
+                isShowStatusOpen = false;
+            }
+
+            MagitStringResultObject res = myMagit.addNewBranch(branchName, branchSha1, isRemoteTracking, toIgnoreSha1);
+            if (!res.getIsHasError()){
+                CommonUsed.showSuccess(res.getData());
+            }
+            else {
+                CommonUsed.showError(res.getErrorMSG());
+            }
+
+        } catch (InvalidDataException e) {
+            CommonUsed.showError(e.getMessage());
+            createNewBranch();
+        } catch (DataAlreadyExistsException e) {
+            boolean isOk = CommonUsed.showConfirmation(e.getMessage());
+            if(isOk) {
+                String branch = myMagit.findBranchBySha1(branchSha1);
+                if(branch != null) {
+                    createBranch(true, branch, branchSha1, true);
+                }
+            }
+            else {
+                createBranch(false, branchName, branchSha1, true);
+            }
+        }
     }
 
 //  ============================ Branch Functions ==============================
@@ -609,6 +625,7 @@ public class MainController {
                     }
                     else {
                         CommonUsed.showSuccess(isFFMerge);
+                        createNewCommit();
                     }
                 }
                 else {
@@ -627,7 +644,11 @@ public class MainController {
 
     @FXML
     void fetch() {
-
+        try {
+            myMagit.fetch();
+        } catch (Exception e) {
+            CommonUsed.showError(e.getMessage());
+        }
     }
 
     @FXML
@@ -665,7 +686,8 @@ public class MainController {
                         if(!file.exists()) {
                             if (file.mkdir()) {
                                 try {
-                                    myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y, z);
+                                    myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y,
+                                            myMagit.getRepoNameByPath(selectFile.getAbsolutePath()));
                                     CommonUsed.showSuccess(String.format
                                             ("Cloned repository %s to repository %s successfully!",
                                                     selectFile.getAbsolutePath(), y));

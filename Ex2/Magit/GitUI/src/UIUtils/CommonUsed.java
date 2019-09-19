@@ -95,7 +95,7 @@ public class CommonUsed {
     public static boolean showConfirmation(String msg) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("");
+        alert.setHeaderText("Warning! Branch name will be changed to remote branch's name.");
         alert.setContentText(msg);
 
         Optional<ButtonType> result = alert.showAndWait();

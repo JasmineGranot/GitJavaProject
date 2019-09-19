@@ -65,6 +65,10 @@ public class Magit {
 
     public StringProperty getRepoName() {return this.repo.getRepoName();}
 
+    public String getRepoNameByPath(String path) {
+        return repos.get(path);
+    }
+
     public MagitStringResultObject createNewRepo(String repoPath, String repoName) {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
@@ -144,11 +148,16 @@ public class Magit {
 
 //  ======================== Branch Functions ==============================
 
+    public String findBranchBySha1(String branchSha1) {
+        return repo.findBranchBySha1(branchSha1);
+    }
+
     public ObservableList<String> getCurrentBranchesNames(){
         return repo.getCurrentBranchesNames();
     }
 
-    public MagitStringResultObject addNewBranch(String branchName, String sha1, boolean isRemoteTracking)
+    public MagitStringResultObject addNewBranch(String branchName, String sha1,
+                                                boolean isRemoteTracking, boolean toIgnoreRemoteBranchsSha1)
             throws InvalidDataException, DataAlreadyExistsException {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
@@ -162,7 +171,7 @@ public class Magit {
             throw new InvalidDataException(msg);
         }
 
-        else if(repo.isRemote(sha1)) {
+        else if(repo.isRemote(sha1) && !toIgnoreRemoteBranchsSha1) {
             msg = "The sha1 is currently pointed by a remote branch.\n" +
                     "Would you like to add the branch as a remote tracking branch?\n" +
                     "OK for yes\n" +
@@ -411,5 +420,10 @@ public class Magit {
         repo.clone(remotePath, localPath, repoName);
         repos.put(StringUtils.capitalize(localPath), repoName);
     }
+
+    public void fetch() throws IOException, FileErrorException {
+        repo.fetch();
+    }
+
 
 }

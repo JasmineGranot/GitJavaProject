@@ -52,7 +52,8 @@ public class GitObjectsBase {
         }
     }
 
-    public void getDataFromFile(String fileSha1) throws IOException{}
+    public void getDataFromFile(String fileSha1) throws IOException{
+    }
 
     public void createFileFromObject(String destinationPath) throws IOException{
         MagitUtils.writeToFile(destinationPath, this.toString());

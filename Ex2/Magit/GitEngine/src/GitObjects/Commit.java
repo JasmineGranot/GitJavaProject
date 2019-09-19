@@ -20,6 +20,9 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
     public void setCommitCreator(String name) {
         commiter = name;
     }
+     public boolean isEmpty(){
+        return commiter == null && msg == null && date == null && rootSha1 == null;
+     }
 
     private String getCommitCreator() {
         return commiter;

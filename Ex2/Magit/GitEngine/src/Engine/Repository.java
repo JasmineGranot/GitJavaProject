@@ -5,6 +5,7 @@ import GitObjects.*;
 import Utils.*;
 import XMLHandler.*;
 import Parser.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
@@ -39,7 +40,7 @@ class Repository {
     private Branch currentBranch = UNDEFINED_BRANCH;
     private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
     private Map<String, String> sha1OfRemoteBranchInRemoteRepo = new HashMap<>();
-    private Map<Boolean, String> isRemoteTrackingBranchInLocalRepo = new HashMap<>();
+    private Map<String, Boolean> isRemoteTrackingBranchInLocalRepo = new HashMap<>();
 
     private String currentUser;
 
@@ -94,6 +95,49 @@ class Repository {
 
     ObservableList<String> getCurrentBranchesNames() {
         return currentBranchesNames;
+    }
+
+    String findBranchBySha1(String sha1) {
+        if(!sha1OfRemoteBranchInRemoteRepo.isEmpty()) {
+            return sha1OfRemoteBranchInRemoteRepo.get(sha1);
+        }
+        return null;
+    }
+
+    private Branch getCurrentBranchInGivenRepo(String path) {
+        try {
+
+            String head = MagitUtils.joinPaths(path, MagitUtils.joinPaths(
+                    ".magit", MagitUtils.joinPaths("Branches", "Head")));
+            String headContent = MagitUtils.readFileAsString(head);
+
+            return getBranchByName(headContent);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    private Commit getCurrentCommitInGivenRepo(String path){
+        try {
+            Branch head = getCurrentBranchInGivenRepo(path);
+            if (head != null) {
+                Commit commit = new Commit();
+                commit.getDataFromFile(MagitUtils.joinPaths(MagitUtils.joinPaths(
+                        path, MagitUtils.joinPaths(".magit", "Objects")),
+                        head.getCommitSha1()));
+                return commit;
+            } else {
+                return null;
+            }
+        }
+        catch (IOException e) {
+            return null;
+        }
+    }
+
+    private String getRootPathSha1OfGivenRepo(String path) throws IOException {
+        Commit commit = getCurrentCommitInGivenRepo(path);
+        return commit.getRootSha1();
+
     }
 
 //  =========================== Creating New Repo ==================================
@@ -659,7 +703,7 @@ class Repository {
         } else {
             addBranchToFileSystem(newBranchName, sha1);
             if(isRemoteTracking) {
-                isRemoteTrackingBranchInLocalRepo.put(true, Paths.get(BRANCHES_PATH, newBranchName).toString());
+                isRemoteTrackingBranchInLocalRepo.put(Paths.get(BRANCHES_PATH, newBranchName).toString(), true);
             }
         }
     }
@@ -923,46 +967,47 @@ class Repository {
     }
 
     private WorkingCopyChanges isWorkingCopyIsChanged() throws IOException, InvalidDataException {
+        return isGivenWorkingCopyIsChanged(rootPath.getValue());
+    }
+
+    private WorkingCopyChanges isGivenWorkingCopyIsChanged(String path) throws IOException, InvalidDataException {
         try {
             WorkingCopyChanges newChangesSet;
             boolean isChanged = false;
 
-            String rootPathAsString = getRootPathAsString();
-            if(rootPathAsString != null) {
-                Stream<Path> walk = walk(Paths.get(rootPathAsString));
-                Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
-                        (Files::isRegularFile).map(Path::toString).collect(Collectors.toSet());
+            Stream<Path> walk = walk(Paths.get(path));
+            Set<String> WCSet = walk.filter(x -> !x.toAbsolutePath().toString().contains(".magit")).filter
+                    (Files::isRegularFile).map(Path::toString).collect(Collectors.toSet());
 
 
-                Map<String, String> lastCommitFiles = new HashMap<>();
-                if (currentCommit != null) {
-                    getLastCommitFiles(getRootSha1(), rootPath.getValue(), lastCommitFiles);
-                }
-
-                Set<String> existsPath = new HashSet<>(WCSet);
-                existsPath.retainAll(lastCommitFiles.keySet());
-
-                Set<String> newFiles = new HashSet<>(WCSet);
-                newFiles.removeAll(lastCommitFiles.keySet());
-
-                Set<String> deletedFiles = new HashSet<>(lastCommitFiles.keySet());
-                deletedFiles.removeAll(WCSet);
-
-                getChanged(existsPath, lastCommitFiles);
-
-                if (!existsPath.isEmpty() || !newFiles.isEmpty() || !deletedFiles.isEmpty()) {
-                    isChanged = true;
-                }
-
-                newChangesSet = new WorkingCopyChanges(existsPath, deletedFiles, newFiles, isChanged);
-                return newChangesSet;
+            Map<String, String> lastCommitFiles = new HashMap<>();
+            Commit curCommit = getCurrentCommitInGivenRepo(path);
+            if ( curCommit!= null && !curCommit.isEmpty()) {
+                getLastCommitFiles(getRootPathSha1OfGivenRepo(path), path, lastCommitFiles);
             }
+
+            Set<String> existsPath = new HashSet<>(WCSet);
+            existsPath.retainAll(lastCommitFiles.keySet());
+
+            Set<String> newFiles = new HashSet<>(WCSet);
+            newFiles.removeAll(lastCommitFiles.keySet());
+
+            Set<String> deletedFiles = new HashSet<>(lastCommitFiles.keySet());
+            deletedFiles.removeAll(WCSet);
+
+            getChanged(existsPath, lastCommitFiles);
+
+            if (!existsPath.isEmpty() || !newFiles.isEmpty() || !deletedFiles.isEmpty()) {
+                isChanged = true;
+            }
+
+            newChangesSet = new WorkingCopyChanges(existsPath, deletedFiles, newFiles, isChanged);
+            return newChangesSet;
 
         } catch (IOException e) {
             String errorMsg = "Unhandled IOException!\n Exception message: " + e.getMessage();
             throw new IOException(errorMsg);
         }
-        return null;
     }
 
     private void getLastCommitFiles(String rootSha1, String rootPath, Map<String, String> commitFiles)
@@ -1400,8 +1445,8 @@ class Repository {
                 out1.write(content);
                 out1.flush();
                 out1.close();
-                isRemoteTrackingBranchInLocalRepo.put(true,
-                        Paths.get(MagitUtils.joinPaths(local, ".magit\\Branches\\"), content).toString());
+                isRemoteTrackingBranchInLocalRepo.put(Paths.get(MagitUtils.joinPaths(
+                        local, ".magit\\Branches\\"), content).toString(), true);
             }
         }
 
@@ -1502,4 +1547,105 @@ class Repository {
         }
         return null;
     }
+
+    // =========================== Fetch =========================================
+    void fetch() throws IOException, FileErrorException {
+        String remoteRepository = localAndRemote.get(rootPath.getValue());
+        copyRemoteRepositoryBranchesToLocal(remoteRepository, rootPath.getValue());
+        copyRemoteRepositoryObjectsToLocal(remoteRepository, rootPath.getValue());
+    }
+
+    private void copyRemoteRepositoryBranchesToLocal(String remoteRepository, String localRepository)
+            throws IOException {
+        File remote = new File(Paths.get(MagitUtils.joinPaths(remoteRepository, ".magit\\Branches")).toString());
+        File local = new File(Paths.get(MagitUtils.joinPaths(localRepository,
+                MagitUtils.joinPaths(".magit\\Branches\\", repoName.getValue()))).toString());
+        File[] remoteFolderFiles = remote.listFiles();
+        if (remoteFolderFiles != null) {
+            for (File curr : remoteFolderFiles) {
+                File newBranch = new File(Paths.get(local.getAbsolutePath(), curr.getName()).toString());
+                if (!newBranch.exists()) {
+                    if (newBranch.createNewFile()) {
+                        MagitUtils.writeToFile(newBranch.getAbsolutePath(),
+                                MagitUtils.readFileAsString(curr.getAbsolutePath()));
+                        isRemoteTrackingBranchInLocalRepo.put(newBranch.getAbsolutePath(), true);
+                    }
+                }
+                else {
+                    File remoteBranch = new File(Paths.get(remote.getAbsolutePath(), curr.getName()).toString());
+                    String branchContent = MagitUtils.readFileAsString(remoteBranch.getAbsolutePath());
+                    MagitUtils.writeToFile(newBranch.getAbsolutePath(), branchContent);
+                }
+            }
+        }
+    }
+
+    private void copyRemoteRepositoryObjectsToLocal(String remoteRepository, String localRepository)
+            throws IOException, FileErrorException{
+        File remote = new File(Paths.get(MagitUtils.joinPaths(remoteRepository, ".magit\\Objects")).toString());
+        File local = new File(Paths.get(MagitUtils.joinPaths(localRepository, ".magit\\Objects")).toString());
+
+        File[] remoteFolderFiles = remote.listFiles();
+        if (remoteFolderFiles != null) {
+            for (File curr : remoteFolderFiles) {
+                File newObject = new File(Paths.get(local.getAbsolutePath(), curr.getName()).toString());
+                if (!newObject.exists()) {
+                    String content = MagitUtils.unZipAndReadFile(curr.getAbsolutePath());
+                    Writer out1 = new BufferedWriter(
+                            new OutputStreamWriter(
+                                    new FileOutputStream(newObject), StandardCharsets.UTF_8));
+                    out1.write(content);
+                    out1.flush();
+                    out1.close();
+
+                    MagitUtils.zipFile(newObject.getAbsolutePath(), newObject.getAbsolutePath() + ".zip");
+                    if (!newObject.delete()) {
+                        String errorMsg = "Had an error while trying to delete a file!";
+                        throw new FileErrorException(errorMsg);
+                    }
+                    File newObj = new File(newObject.getAbsolutePath() + ".zip");
+                    if (!newObj.renameTo(newObject)) {
+                        String errorMsg = "Had an error while trying to change a file name!";
+                        throw new FileErrorException(errorMsg);
+                    }
+                }
+            }
+        }
+    }
+
+    // =========================== Push =========================================
+
+    void push(String repoName) throws IOException, InvalidDataException, FileErrorException {
+        boolean isTracking = isRemoteTrackingBranchInLocalRepo.get(currentBranch.getName().getValue());
+
+        String remoteRepo = localAndRemote.get(rootPath.getValue());
+        if (remoteRepo != null) {
+            WorkingCopyChanges isWcHasOpenChanges = isGivenWorkingCopyIsChanged(remoteRepo);
+            if (!isWcHasOpenChanges.isChanged()) {
+                Branch head = getCurrentBranchInGivenRepo(remoteRepo);
+                if (head != null) {
+                    String headName = head.getName().getName();
+                    boolean isBranchRemoteTracking = isRemoteTrackingBranchInLocalRepo.get(headName);
+                    if (isBranchRemoteTracking) {
+                        String rtHeadPath = MagitUtils.joinPaths(MagitUtils.joinPaths(BRANCHES_PATH, repoName), headName);
+                        String rtHeadContent = MagitUtils.readFileAsString(rtHeadPath);
+                        if (rtHeadContent.equals(head.getCommitSha1())) {
+                            MagitUtils.writeToFile(rtHeadPath, currentBranch.getCommitSha1());
+                            MagitUtils.writeToFile(MagitUtils.joinPaths(remoteRepo,
+                                    MagitUtils.joinPaths(".magit", MagitUtils.joinPaths(
+                                            "Branches", headName))), currentBranch.getCommitSha1());
+                            copyRemoteRepositoryObjectsToLocal(getRootPathAsString(), remoteRepo);
+                        }
+                    } else {
+                        String errorMsg = "Cannot push from a non-tracking branch!";
+                        throw new InvalidDataException(errorMsg);
+                    }
+                } else {
+                    String errorMsg = "Cannot push data to remote repository! Changes were found";
+                    throw new InvalidDataException(errorMsg);
+                }
+            }
+        }
+    }
 }
+
