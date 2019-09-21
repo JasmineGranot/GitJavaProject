@@ -518,7 +518,6 @@ class Repository {
         newRepo = newRepo.replace("C:", "c:");
         setRootPath(newRepo);
         updateMainPaths();
-
         loadObjectsFromRepo();
         String newHead = getCurrentBranchInRepo();
         Branch headBranch = getBranchByName(newHead);
@@ -1599,9 +1598,12 @@ class Repository {
                 File newBranch = new File(Paths.get(local.getAbsolutePath(), curr.getName()).toString());
                 if (!newBranch.exists()) {
                     if (newBranch.createNewFile()) {
+                        String branchData = MagitUtils.readFileAsString(curr.getAbsolutePath());
                         MagitUtils.writeToFile(newBranch.getAbsolutePath(),
-                                MagitUtils.readFileAsString(curr.getAbsolutePath()));
+                                branchData);
                         isRemoteTrackingBranchInLocalRepo.put(newBranch.getAbsolutePath(), true);
+                        currentBranchesNames.add(curr.getName());
+                        currentBranchs.add(new Branch(curr.getName(), branchData));
                     }
                 }
                 else {
@@ -1641,9 +1643,13 @@ class Repository {
                         String errorMsg = "Had an error while trying to change a file name!";
                         throw new FileErrorException(errorMsg);
                     }
+                    if(getRootPathAsString() != null) {
+                        if (local.getAbsolutePath().contains(getRootPathAsString())) {
+                            currentObjects.put(newObjectFile.getName(),
+                                    GitObjectsBase.getGitObjectFromFile(curr.getAbsolutePath()));
+                        }
+                    }
                 }
-                currentObjects.put(newObjectFile.getName(),
-                        GitObjectsBase.getGitObjectFromFile(curr.getAbsolutePath()));
             }
         }
     }
@@ -1686,10 +1692,11 @@ class Repository {
                         String errorMsg = "Cannot push from a non-tracking branch!";
                         throw new InvalidDataException(errorMsg);
                     }
-                } else {
-                    String errorMsg = "Cannot push data to remote repository! Changes were found.";
-                    throw new InvalidDataException(errorMsg);
                 }
+            }
+            else {
+                String errorMsg = "Cannot push data to remote repository! Changes were found.\nCommit first!";
+                throw new InvalidDataException(errorMsg);
             }
         }
     }
@@ -1726,11 +1733,12 @@ class Repository {
                         String errorMsg = "Cannot pull from a non-tracking branch!";
                         throw new InvalidDataException(errorMsg);
                     }
-                } else {
-                    String errorMsg = "Cannot pull data from remote repository! " +
-                            "Changes were found";
-                    throw new InvalidDataException(errorMsg);
                 }
+            }
+            else {
+                String errorMsg = "Cannot pull data from remote repository! " +
+                        "Changes were found.\nCommit first!";
+                throw new InvalidDataException(errorMsg);
             }
         }
     }

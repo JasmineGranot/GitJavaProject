@@ -296,9 +296,6 @@ public class MainController {
             return;
         }
 
-//        Thread thread = new Thread(new LoadFromXMLTask(isShowStatusOpen, myMagit, selectFile, currentBranch,
-//                    pathRepo, showStatusPane));
-
         try {
             if(isShowStatusOpen){
                 showStatusPane.getChildren().clear();
@@ -454,9 +451,12 @@ public class MainController {
         newBranchName.ifPresent(name -> {
             if(!name.getValue().isEmpty()) {
                 createBranch(false, name.getKey(),
-                        myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()).getCommitSha1(), false);
+                        name.getValue(), false);
+                branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+
             } else {
-                createBranch(false, name.getKey(), name.getValue(), false);
+                createBranch(false, name.getKey(),
+                        myMagit.getBranchByName(myMagit.getCurrentBranch().getValue()).getCommitSha1(), false);
             }
         });
     };
@@ -493,7 +493,7 @@ public class MainController {
         }
     }
 
-//  ============================ Branch Functions ==============================
+//  ============================ Commit Functions ==============================
     @FXML
     void createNewCommit() {
         Optional<String> commitMessage = CommonUsed.showDialog("New Commit",
@@ -645,28 +645,34 @@ public class MainController {
 
     @FXML
     void fetch() {
-        try {
-            myMagit.fetch();
-        } catch (Exception e) {
-            CommonUsed.showError(e.getMessage());
+        MagitStringResultObject res = myMagit.fetch();
+        if (!res.getIsHasError()) {
+            branchesOptionsComboBox.setItems(myMagit.getCurrentBranchesNames());
+            CommonUsed.showSuccess(res.getData());
+        } else {
+            CommonUsed.showError(res.getErrorMSG());
         }
     }
 
     @FXML
     void pull() {
-        try {
-            myMagit.pull();
-        } catch (Exception e) {
-            CommonUsed.showError(e.getMessage());
+        MagitStringResultObject res = myMagit.pull();
+        if(!res.getIsHasError()) {
+            CommonUsed.showSuccess(res.getData());
+        }
+        else {
+            CommonUsed.showError(res.getErrorMSG());
         }
     }
 
     @FXML
     void push() {
-        try {
-            myMagit.push();
-        } catch (Exception e) {
-            CommonUsed.showError(e.getMessage());
+        MagitStringResultObject res = myMagit.push();
+        if(!res.getIsHasError()) {
+            CommonUsed.showSuccess(res.getData());
+        }
+        else {
+            CommonUsed.showError(res.getErrorMSG());
         }
     }
 
@@ -694,14 +700,15 @@ public class MainController {
                         File file = new File(y);
                         if(!file.exists()) {
                             if (file.mkdir()) {
-                                try {
-                                    myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y,
-                                            myMagit.getRepoNameByPath(selectFile.getAbsolutePath()));
+                                MagitStringResultObject res =
+                                        myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y,
+                                        myMagit.getRepoNameByPath(selectFile.getAbsolutePath()));
+                                if(!res.getIsHasError()) {
                                     CommonUsed.showSuccess(String.format
                                             ("Cloned repository %s to repository %s successfully!",
                                                     selectFile.getAbsolutePath(), y));
-                                } catch (Exception e) {
-                                    CommonUsed.showError(e.getMessage());
+                                } else {
+                                    CommonUsed.showError(res.getErrorMSG());
                                 }
                             }
                         }

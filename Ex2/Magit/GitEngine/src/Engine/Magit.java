@@ -8,6 +8,8 @@ import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+
+import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Paths;
@@ -415,22 +417,65 @@ public class Magit {
         return repo.merge(branchToMerge, res);
     }
 
-    public void cloneRemoteToLocal(String remotePath, String localPath, String repoName)
-            throws IOException, FileErrorException{
-        repo.clone(remotePath, localPath, repoName);
-        repos.put(StringUtils.capitalize(localPath), repoName);
+    public MagitStringResultObject cloneRemoteToLocal(String remotePath, String localPath, String repoName) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        try {
+            repo.clone(remotePath, localPath, repoName);
+            repos.put(StringUtils.capitalize(localPath), repoName);
+            res.setData("Repository cloned successfully!");
+            res.setIsHasError(false);
+        } catch (Exception e) {
+            String errorMessage = "Something went wrong while trying to clone the repository!\n" +
+                    "Error message: " + e.getMessage();
+            res.setIsHasError(true);
+            res.setData(errorMessage);
+        }
+        return res;
     }
 
-    public void fetch() throws IOException, FileErrorException {
-        repo.fetch(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+    public MagitStringResultObject fetch() {
+        MagitStringResultObject res = new MagitStringResultObject();
+        try {
+            repo.fetch(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            res.setIsHasError(false);
+            res.setData("Fetched successfully!");
+        } catch (Exception e) {
+            String errorMsg = "Something went wrong while trying to fetch!\n" +
+                    "Error message: " + e.getMessage();
+            res.setIsHasError(true);
+            res.setErrorMSG(errorMsg);
+        }
+        return res;
     }
-    public void pull() throws IOException, FileErrorException,
-            InvalidDataException, DataAlreadyExistsException {
-        repo.pull(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+
+    public MagitStringResultObject pull() {
+        MagitStringResultObject res = new MagitStringResultObject();
+        try {
+            repo.pull(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            res.setIsHasError(false);
+            res.setData("Pulled from remote repository successfully!");
+        } catch (Exception e) {
+            String errorMsg = "Something went wrong while trying to pull from remote repository!\n" +
+                    "Error message: " + e.getMessage();
+            res.setIsHasError(true);
+            res.setErrorMSG(errorMsg);
+        }
+        return res;
     }
-    public void push() throws IOException, FileErrorException,
-            InvalidDataException {
-        repo.push(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+
+    public MagitStringResultObject push() {
+        MagitStringResultObject res = new MagitStringResultObject();
+        try {
+            repo.push(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            res.setIsHasError(false);
+            res.setData("Pulled successfully!");
+        } catch (Exception e) {
+            res.setIsHasError(true);
+            String errorMessage = "Something went wrong while trying to pull!\n" +
+                    "Error message:" + e.getMessage();
+            res.setErrorMSG(errorMessage);
+        }
+        return res;
     }
 
 

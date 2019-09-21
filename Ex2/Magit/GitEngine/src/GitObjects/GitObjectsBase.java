@@ -70,22 +70,26 @@ public class GitObjectsBase {
         }
         else{
             String[] fields = content[0].split(MagitUtils.DELIMITER);
-            if(fields[3].equals("Folder")){
-                Folder newFolder = new Folder();
-                newFolder.getDataFromFile(path);
-                return newFolder;
+            if(fields.length == 5 || fields.length == 6) {
+                if (fields[3].equals("Folder")) {
+                    Folder newFolder = new Folder();
+                    newFolder.getDataFromFile(path);
+                    return newFolder;
+                }
+                if (fields[3].equals("File")) {
+                    Blob newFile = new Blob();
+                    newFile.getDataFromFile(path);
+                    return newFile;
+                }
+                Commit newCommit = new Commit();
+                newCommit.getDataFromFile(path);
+                return newCommit;
             }
-            if(fields[3].equals("File")){
+            else {
                 Blob newFile = new Blob();
                 newFile.getDataFromFile(path);
                 return newFile;
             }
-            Commit newCommit = new Commit();
-            newCommit.getDataFromFile(path);
-            return newCommit;
-
-
-
         }
     }
     public Commit convertToCommit(){
