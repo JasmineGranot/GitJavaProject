@@ -91,8 +91,14 @@ public class MagitUtils {
         return new String(byteStream.toByteArray(), ENCODING);
     }
 
-    public static String joinPaths(String path, String fileName){
-        return Paths.get(path, fileName).toString();
+    public static String joinPaths(String... path){
+        String res = "";
+        for(String current : path) {
+            res = res.concat(current);
+            res = res.concat("\\");
+        }
+        res = res.substring(0, res.length() - 1);
+        return res;
     }
 
     public static String getFileContent(FileInputStream fis, Charset encoding ) throws IOException

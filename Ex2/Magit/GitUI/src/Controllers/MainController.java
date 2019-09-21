@@ -81,6 +81,7 @@ public class MainController {
 //  ================================ Utils ===================================
     private Graph commitTreeGraph = new Graph();
     private Magit myMagit = new Magit();
+    private String remoteRepoPath;
     private Scene scene;
     private Stage primaryStage;
     private String style;
@@ -653,12 +654,20 @@ public class MainController {
 
     @FXML
     void pull() {
-
+        try {
+            myMagit.pull();
+        } catch (Exception e) {
+            CommonUsed.showError(e.getMessage());
+        }
     }
 
     @FXML
     void push() {
-
+        try {
+            myMagit.push();
+        } catch (Exception e) {
+            CommonUsed.showError(e.getMessage());
+        }
     }
 
     @FXML

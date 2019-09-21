@@ -59,6 +59,35 @@ public class GitObjectsBase {
         MagitUtils.writeToFile(destinationPath, this.toString());
     }
 
+    public static GitObjectsBase getGitObjectFromFile(String path) throws IOException {
+        String contentStr = MagitUtils.unZipAndReadFile(path);
+        String[] content = contentStr.split("\r\n");
+        // only folder can have more then 1 line
+        if (content.length > 1) {
+            Folder newFolder = new Folder();
+            newFolder.getDataFromFile(path);
+            return newFolder;
+        }
+        else{
+            String[] fields = content[0].split(MagitUtils.DELIMITER);
+            if(fields[3].equals("Folder")){
+                Folder newFolder = new Folder();
+                newFolder.getDataFromFile(path);
+                return newFolder;
+            }
+            if(fields[3].equals("File")){
+                Blob newFile = new Blob();
+                newFile.getDataFromFile(path);
+                return newFile;
+            }
+            Commit newCommit = new Commit();
+            newCommit.getDataFromFile(path);
+            return newCommit;
+
+
+
+        }
+    }
     public Commit convertToCommit(){
         if (this.isCommit()){
             return (Commit) this;

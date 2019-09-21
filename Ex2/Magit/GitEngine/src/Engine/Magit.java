@@ -422,7 +422,15 @@ public class Magit {
     }
 
     public void fetch() throws IOException, FileErrorException {
-        repo.fetch();
+        repo.fetch(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+    }
+    public void pull() throws IOException, FileErrorException,
+            InvalidDataException, DataAlreadyExistsException {
+        repo.pull(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+    }
+    public void push() throws IOException, FileErrorException,
+            InvalidDataException {
+        repo.push(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
     }
 
 

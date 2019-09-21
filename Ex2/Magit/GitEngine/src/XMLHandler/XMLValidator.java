@@ -26,9 +26,8 @@ public class XMLValidator {
             checkPointedId(currentRepo.getMagitFolders());
             checkIfCommitPointsToFolder(currentRepo.getMagitCommits());
             checkIfBranchPointsToCommit(currentRepo.getMagitBranches());
-            checkIfBranchIsTracking(currentRepo.getMagitBranches());
             checkIfHeadExists(currentRepo.getMagitBranches());
-            checkIfRepoInElementExists(currentRepo.getMagitRemoteReference());
+            checkIfRemoteRepoValid(currentRepo.getMagitRemoteReference());
         }
         catch (InvalidDataException e) {
             validationResult.setIsValid(false);
@@ -175,13 +174,23 @@ public class XMLValidator {
         throw new InvalidDataException(errorMsg);
 
     }
-
+    // ====================================================================================================================
+    // check if Remote is ok
+    // ====================================================================================================================
+    private void checkIfRemoteRepoValid(MagitRepository.MagitRemoteReference magitRemoteReference)
+            throws InvalidDataException {
+        if (magitRemoteReference != null) {
+            checkIfRepoInElementExists(magitRemoteReference);
+            checkIfBranchIsTracking(currentRepo.getMagitBranches());
+        }
+    }
     // ====================================================================================================================
     // check if MagitRemoteReference element appears in the repository and if the location in it points to an existing repo
     // ====================================================================================================================
     private void checkIfRepoInElementExists(MagitRepository.MagitRemoteReference magitRemoteReference)
             throws InvalidDataException{
-        if(magitRemoteReference.getName() != null && magitRemoteReference.getLocation() != null){
+        if(magitRemoteReference.getName() != null &&
+                magitRemoteReference.getLocation() != null){
             String location = magitRemoteReference.getLocation();
             File file = new File(location);
             if(!file.exists()) {
