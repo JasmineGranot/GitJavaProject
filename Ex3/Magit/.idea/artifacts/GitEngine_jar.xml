@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GitEngine:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GitEngine_jar</output-path>
+    <root id="archive" name="GitEngine.jar">
+      <element id="module-output" name="GitEngine" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-codec-1.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/AncestorFinder.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/fxgraph-0.0.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,35 @@
+.timestamp-label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+}
+
+.message-label {
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+}
+
+.committer-label {
+    -fx-text-fill: black;
+    -fx-font-size: 10px;
+}
+
+.branch-label {
+    -fx-text-fill: #DFE3EE;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.single-commit-row-container:hover {
+    -fx-border-color: black;
+    -fx-background-color: #DFE3EE;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+/*override separator style*/
+.separator .line {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
