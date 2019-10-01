@@ -6,7 +6,7 @@ import java.util.List;
 public class UserManager {
     private List<User> allUsers;
 
-    UserManager(){
+    public UserManager(){
         allUsers = new LinkedList<>();
     }
 
@@ -15,7 +15,7 @@ public class UserManager {
         allUsers.add(newUser);
     }
 
-    private User getUserByName(String userName) {
+    public User getUserByName(String userName) {
         for(User curr : allUsers) {
             if(curr.getUserName().equals(userName)) {
                 return curr;
@@ -24,7 +24,7 @@ public class UserManager {
         return null;
     }
 
-    boolean isUserOnline(String userName) {
+    public boolean isUserOnline(String userName) {
         User currUser = getUserByName(userName);
         if(currUser != null) {
             return currUser.getIsOnline();
@@ -32,12 +32,12 @@ public class UserManager {
         return false;
     }
 
-    boolean isUserExists(String userName) {
+    public boolean isUserExists(String userName) {
         User currUser = getUserByName(userName);
         return currUser != null;
     }
 
-    List<Repository> showUserRepos(String userName) {
+    public List<Repository> showUserRepos(String userName) {
         User currUser = getUserByName(userName);
         if(currUser != null) {
             return currUser.getActiveRepositories();

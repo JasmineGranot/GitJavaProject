@@ -15,15 +15,15 @@ public class User {
         activeRepositories = new LinkedList<>();
     }
 
-    List<Repository> getActiveRepositories() {
+    public List<Repository> getActiveRepositories() {
         return activeRepositories;
     }
 
-    String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    boolean getIsOnline() {
+    public boolean getIsOnline() {
         return isOnline;
     }
 
