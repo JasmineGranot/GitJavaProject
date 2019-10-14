@@ -1214,6 +1214,10 @@ public class Repository {
 
     // =========================== Merge =========================================
 
+//    public String mergeTwoBranches(Branch targetToMergeInto, Branch sourceToMergeToTarget) {
+//
+//    }
+
     public String merge(Branch branchToMerge, List<MergeResult> mergeResultList)
             throws InvalidDataException, IOException, FileErrorException, DataAlreadyExistsException{
         try {

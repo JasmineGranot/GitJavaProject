@@ -15,6 +15,8 @@ import java.util.zip.ZipOutputStream;
 public class MagitUtils {
     public final static String DELIMITER = "; ";
     public final static String DATE_PATTERN = "dd.MM.yyyy-hh:mm:ss:sss";
+    public final static String OPEN_PULL_REQUEST = "Open";
+    public final static String CLOSED_PULL_REQUEST = "Closed";
     private static Charset ENCODING = StandardCharsets.UTF_8;
 
     public static String readFileAsString(String filePath) throws IOException{
