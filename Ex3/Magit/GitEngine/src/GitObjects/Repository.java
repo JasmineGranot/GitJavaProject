@@ -32,6 +32,7 @@ public class Repository {
     private boolean isTrackingRepo;
     private Repository trackedRepository;
     private String MAGIT_REPO_LOCATION = "c:\\magit-ex3";
+    private List<PullRequestObject> pr;
 
     //private ObservableList<String> currentBranchesNames = FXCollections.observableArrayList();
     //private Map<String, String> sha1OfRemoteBranchInRemoteRepo = new HashMap<>();
@@ -119,6 +120,31 @@ public class Repository {
     }
 
 //  =========================== Creating New Repo ==================================
+    private PullRequestObject createNewPullRequest(String target, String base, String prMsg, User owner)
+            throws InvalidDataException{
+        PullRequestObject newPullRequest = new PullRequestObject();
+        Branch baseBranch = getBranchByName(base);
+        Branch targetBranch = getBranchByName(target);
+
+        if(baseBranch == null || targetBranch == null) {
+            throw new InvalidDataException("Base or Target branch does not exist in the system!");
+        }
+
+        newPullRequest.setBaseToMergeInto(baseBranch);
+        newPullRequest.setTargetToMergeFrom(targetBranch);
+        newPullRequest.setOwner(owner);
+        newPullRequest.setPrMsg(prMsg);
+
+        return newPullRequest;
+    }
+
+    public void addNewPullRequestToRepository(String target, String base, String prMsg, User owner)
+            throws InvalidDataException{
+        PullRequestObject newPullRequest = createNewPullRequest(target, base, prMsg, owner);
+        pr.add(newPullRequest);
+    }
+
+//  =========================== Creating New Repo ==================================
     public Repository() {
         repoOwner = null;
         this.repoName = null;
@@ -132,6 +158,8 @@ public class Repository {
 
         isTrackingRepo = false;
         trackedRepository = null;
+
+        pr = new LinkedList<>();
     }
 
     public Repository(User owner, String repoName) {
@@ -147,6 +175,8 @@ public class Repository {
 
         isTrackingRepo = false;
         trackedRepository = null;
+
+        pr = new LinkedList<>();
     }
 
     public void createNewRepository(String newRepositoryPath, boolean addMaster)

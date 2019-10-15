@@ -87,7 +87,7 @@ public class MagitUtils {
         }
 
         z.close();
-        
+
         return new String(byteStream.toByteArray(), ENCODING);
     }
 
@@ -160,5 +160,30 @@ public class MagitUtils {
         res.setHasConflict(true);
         res.setFileName(fileName);
         res.setFilePath(fileName);
+    }
+
+    public static void copyFile(File source, File target) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(target);
+            byte[] buffer = new byte[2048];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+            if(os != null) {
+                os.close();
+            }
+        }
     }
 }

@@ -68,7 +68,18 @@ public class Magit {
     public StringProperty getRepoName() {return this.repo.getRepoName();}
 
     public String getRepoNameByPath(String path) {
-        return repos.get(path);
+
+        return repos.get(findPathWithDifferentCase(path));
+    }
+
+    private String findPathWithDifferentCase(String pathToFind){
+        String smallCaseToFind = pathToFind.toLowerCase();
+        for (String repoPath: repos.keySet()){
+            if (repoPath.toLowerCase().equals(smallCaseToFind)){
+                return repoPath;
+            }
+        }
+        return null;
     }
 
     public MagitStringResultObject createNewRepo(String repoPath, String repoName) {
@@ -93,7 +104,7 @@ public class Magit {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();
         try{
-            String repoName = repos.get(repoPath);
+            String repoName = getRepoNameByPath(repoPath);
             if (repoName == null){
                 repoName = Paths.get(repoPath).getFileName().toString();
             }
@@ -417,11 +428,12 @@ public class Magit {
         return repo.merge(branchToMerge, res);
     }
 
-    public MagitStringResultObject cloneRemoteToLocal(String remotePath, String localPath, String repoName) {
+    public MagitStringResultObject cloneRemoteToLocal(String remotePath, String localPath, String repoName,
+                                                      String newRepoName) {
         MagitStringResultObject res = new MagitStringResultObject();
         try {
-            repo.clone(remotePath, localPath, repoName);
-            repos.put(StringUtils.capitalize(localPath), repoName);
+            repo.clone(remotePath, localPath, repoName, newRepoName);
+            repos.put(StringUtils.capitalize(localPath), newRepoName);
             res.setData("Repository cloned successfully!");
             res.setIsHasError(false);
         } catch (Exception e) {
@@ -436,7 +448,7 @@ public class Magit {
     public MagitStringResultObject fetch() {
         MagitStringResultObject res = new MagitStringResultObject();
         try {
-            repo.fetch(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            repo.fetch(getRepoNameByPath(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
             res.setIsHasError(false);
             res.setData("Fetched successfully!");
         } catch (Exception e) {
@@ -451,7 +463,7 @@ public class Magit {
     public MagitStringResultObject pull() {
         MagitStringResultObject res = new MagitStringResultObject();
         try {
-            repo.pull(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            repo.pull(getRepoNameByPath(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
             res.setIsHasError(false);
             res.setData("Pulled from remote repository successfully!");
         } catch (Exception e) {
@@ -466,12 +478,12 @@ public class Magit {
     public MagitStringResultObject push() {
         MagitStringResultObject res = new MagitStringResultObject();
         try {
-            repo.push(repos.get(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
+            repo.push(getRepoNameByPath(repo.getRemoteRepoPath(repo.getRootPath().getValue())));
             res.setIsHasError(false);
-            res.setData("Pulled successfully!");
+            res.setData("Pushed successfully!");
         } catch (Exception e) {
             res.setIsHasError(true);
-            String errorMessage = "Something went wrong while trying to pull!\n" +
+            String errorMessage = "Something went wrong while trying to push!\n" +
                     "Error message:" + e.getMessage();
             res.setErrorMSG(errorMessage);
         }

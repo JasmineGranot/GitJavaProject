@@ -71,14 +71,14 @@ public class MainController {
     @FXML private Button showCommitData;
     @FXML private Text wcStatusHeader;
 
-//  =========================== Controllers ==================================
+    //  =========================== Controllers ==================================
     private ShowCommitData commitDataController = new ShowCommitData();
     private ShowStatusController statusController = new ShowStatusController();
     private CommitNodeController commitNodeController = new CommitNodeController();
-//  =========================== Scene Builder ================================
+    //  =========================== Scene Builder ================================
     private ScrollPane scrollPane = new ScrollPane();
     private PannableCanvas canvas;
-//  ================================ Utils ===================================
+    //  ================================ Utils ===================================
     private Graph commitTreeGraph = new Graph();
     private Magit myMagit = new Magit();
     private String remoteRepoPath;
@@ -251,7 +251,7 @@ public class MainController {
         pushButton.setDisable(false);
     }
 
-//  ============================= Repo Functions ===============================
+    //  ============================= Repo Functions ===============================
     @FXML
     void updateMagitUser() {
         Optional<String> res = CommonUsed.showDialog("Change user name", "Enter your name:",
@@ -351,7 +351,7 @@ public class MainController {
 
     }
 
-//  ============================ Branch Functions ==============================
+    //  ============================ Branch Functions ==============================
     @FXML
     void deleteBranch() {
         try {
@@ -493,7 +493,7 @@ public class MainController {
         }
     }
 
-//  ============================ Commit Functions ==============================
+    //  ============================ Commit Functions ==============================
     @FXML
     void createNewCommit() {
         Optional<String> commitMessage = CommonUsed.showDialog("New Commit",
@@ -501,8 +501,8 @@ public class MainController {
 
         commitMessage.ifPresent(msg -> {
             if(isShowStatusOpen){
-            showStatusPane.getChildren().clear();
-            isShowStatusOpen = false;
+                showStatusPane.getChildren().clear();
+                isShowStatusOpen = false;
             }
 
             MagitStringResultObject result;
@@ -702,7 +702,7 @@ public class MainController {
                             if (file.mkdir()) {
                                 MagitStringResultObject res =
                                         myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y,
-                                        myMagit.getRepoNameByPath(selectFile.getAbsolutePath()));
+                                                myMagit.getRepoNameByPath(selectFile.getAbsolutePath()), z);
                                 if(!res.getIsHasError()) {
                                     CommonUsed.showSuccess(String.format
                                             ("Cloned repository %s to repository %s successfully!",

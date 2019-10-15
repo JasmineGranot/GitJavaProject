@@ -702,7 +702,7 @@ public class MainController {
                             if (file.mkdir()) {
                                 MagitStringResultObject res =
                                         myMagit.cloneRemoteToLocal(selectFile.getAbsolutePath(), y,
-                                        myMagit.getRepoNameByPath(selectFile.getAbsolutePath()));
+                                        myMagit.getRepoNameByPath(selectFile.getAbsolutePath()), z);
                                 if(!res.getIsHasError()) {
                                     CommonUsed.showSuccess(String.format
                                             ("Cloned repository %s to repository %s successfully!",
