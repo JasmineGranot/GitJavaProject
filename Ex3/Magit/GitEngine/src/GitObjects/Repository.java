@@ -1644,80 +1644,146 @@ public class Repository {
 
     // =========================== Push =========================================
 
-    public void push() throws IOException, InvalidDataException, FileErrorException {
+    public void push() throws IOException, InvalidDataException, FileErrorException, DataAlreadyExistsException {
         if (isTrackingRepo && headBranch != null && headBranch.getTrackedBranch() != null) {
             WorkingCopyChanges isWcHasOpenChanges = isWorkingCopyIsChanged();
             if (!isWcHasOpenChanges.isChanged()) {
                 String headName = headBranch.getName();
 
-                // get the local tracked branch:
-                String rtHeadPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
-                        headName);
-                String rtHeadContent = MagitUtils.readFileAsString(rtHeadPath);
+                // get the local Remote branch:
+                String localRemoteBranchPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
+                        headBranch.getTrackedBranch());
+                String localRemoteBranchContent = MagitUtils.readFileAsString(localRemoteBranchPath);
 
-                // get the remote branch:
-                Branch remoteBranch = trackedRepository.getBranchByName(headName);
+                // get the tracked branch in remote repo:
+                Branch trackedBranch = trackedRepository.getBranchByName(headName);
 
-                //Makes sure local and remote tracked branchs are synced
-                if (rtHeadContent.equals(headBranch.getCommitSha1())) {
+                //Makes sure branch in remote repo and remote branchs in local repo are synced
+                if (trackedBranch != null && localRemoteBranchContent.equals(trackedBranch.getCommitSha1())) {
 
                     // update remote and tracked branch with changes of local.
-                    MagitUtils.writeToFile(rtHeadPath, headBranch.getCommitSha1());
+                    MagitUtils.writeToFile(localRemoteBranchPath, headBranch.getCommitSha1());
                     MagitUtils.writeToFile(MagitUtils.joinPaths(trackedRepository.getRepoPath(),
-                            ".magit", "Branches", headName),
+                            ".magit", "Branches", trackedBranch.getName()),
                             headBranch.getCommitSha1());
                     trackedRepository.copyLocalRepoObjectsToRemote(this);
-                    loadWCFromCommitSha1(headBranch.getCommitSha1(), trackedRepository.getRepoPath());
+                    // Replcaed with pull request:
+                    // loadWCFromCommitSha1(headBranch.getCommitSha1(), trackedRepository.getRepoPath());
                 } else {
                     String errorMsg = "Cannot push when remote branch and tracked branch are not synced.!";
                     throw new InvalidDataException(errorMsg);
                 }
             } else {
-                String errorMsg = "Cannot push from a non-tracking branch!";
+                String errorMsg = "Cannot push data to remote repository! Changes were found.\nCommit first!";
                 throw new InvalidDataException(errorMsg);
             }
         }
-        else {
-            String errorMsg = "Cannot push data to remote repository! Changes were found.\nCommit first!";
+        // if this is a new local branch:
+        else if(headBranch.getTrackedBranch() == null){
+            String localRemoteBranchPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
+                    headBranch.getName());
+            MagitUtils.writeToFile(localRemoteBranchPath, headBranch.getCommitSha1());
+
+            // add the new branch to remote
+            trackedRepository.addBranch(headBranch.getName(), headBranch.getCommitSha1(), null);
+
+            headBranch.setTrackedBranch(headBranch.getName());
+
+            trackedRepository.addObjects(getObjectsFromCommit(headBranch.getCommitSha1()));
+        }
+        else{
+            String errorMsg = "Cannot push from a non-tracking repository!";
             throw new InvalidDataException(errorMsg);
         }
     }
 
     // =========================== Pull =========================================
 
-    public void pull() throws IOException, InvalidDataException, FileErrorException, DataAlreadyExistsException {
+    public void pull() throws IOException, InvalidDataException, FileErrorException {
         if (isTrackingRepo && headBranch != null && headBranch.getTrackedBranch() != null) {
             WorkingCopyChanges isWcHasOpenChanges = isWorkingCopyIsChanged();
             if (!isWcHasOpenChanges.isChanged()) {
+
                 //Gets the current head in local
                 if (headBranch != null) {
                     String headName = headBranch.getName();
-                    //Get the remote tracking branch the current head tracks
-                    String rtHeadPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
-                            headName);
-                    String rtHeadContent = MagitUtils.readFileAsString(rtHeadPath);
-                    Branch remoteBranch = trackedRepository.getBranchByName(headName);
-                    // checks if current branch and local tracked branch are synced
-                    if (remoteBranch != null && rtHeadContent.equals(remoteBranch.getCommitSha1())) {
-                        MagitUtils.writeToFile(rtHeadPath, remoteBranch.getCommitSha1());
+
+                    //Get the tracked branch in remote repo that the current head tracks
+                    String localRemoteBranchPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
+                            headBranch.getTrackedBranch());
+                    String localRemoteBranchContent = MagitUtils.readFileAsString(localRemoteBranchPath);
+
+                    //get the remote branch in remote repo:
+                    Branch remoteBranch = trackedRepository.getBranchByName(headBranch.getTrackedBranch());
+
+                    // checks if current branch (rtb) and local remote branch are synced, then we can pull
+                    if (localRemoteBranchContent.equals(headBranch.getCommitSha1())) {
+                        MagitUtils.writeToFile(localRemoteBranchPath, remoteBranch.getCommitSha1());
                         MagitUtils.writeToFile(MagitUtils.joinPaths(BRANCHES_PATH, headName),
                                 remoteBranch.getCommitSha1());
+
                         headBranch.setCommitSha1(remoteBranch.getCommitSha1());
                         copyRemoteRepositoryObjectsToLocal(trackedRepository, this);
                         currentCommit = (Commit) repoObjects.get(remoteBranch.getCommitSha1());
                         loadWCFromCommitSha1(headBranch.getCommitSha1(), repoPath);
+                    } else {
+                        String errorMsg = "Cannot pull when remote branch and remote tracked branch are not synced.!";
+                        throw new InvalidDataException(errorMsg);
                     }
                 }
-                else {
-                    String errorMsg = "Cannot pull from a non-tracking branch!";
-                    throw new InvalidDataException(errorMsg);
-                }
+            }
+            else {
+                String errorMsg = "Cannot pull data from remote repository! " +
+                        "Changes were found.\nCommit first!";
+                throw new InvalidDataException(errorMsg);
             }
         }
         else {
-            String errorMsg = "Cannot pull data from remote repository! " +
-                    "Changes were found.\nCommit first!";
+            String errorMsg = "Cannot pull from a non-tracking branch!";
             throw new InvalidDataException(errorMsg);
+        }
+    }
+
+    private Map<String, GitObjectsBase> getObjectsFromCommit(String commitSha1){
+        Map<String, GitObjectsBase> map = new HashMap<>();
+        getObjectsFromCommitWithMap(commitSha1, map);
+        return map;
+    }
+    private void getObjectsFromCommitWithMap(String commitSha1, Map<String, GitObjectsBase> map) {
+        if (commitSha1 != null && !commitSha1.equals("")){
+            Commit relevantCommit = (Commit) repoObjects.get(commitSha1);
+            if (!map.containsKey(commitSha1)) {
+                map.put(commitSha1, relevantCommit);
+                getObjectsFromRoot(relevantCommit.getRootSha1(), map);
+                getObjectsFromCommitWithMap(relevantCommit.getFirstPrecedingSha1(), map);
+                getObjectsFromCommitWithMap(relevantCommit.getSecondPrecedingSha1(), map);
+            }
+
+        }
+    }
+    private void getObjectsFromRoot(String rootSha1, Map<String, GitObjectsBase> map) {
+        if (rootSha1 != null && !rootSha1.equals("")){
+            GitObjectsBase relevantobj = repoObjects.get(rootSha1);
+            if (!map.containsKey(rootSha1)) {
+                if (relevantobj.isFolder()) {
+                    Folder gitFolder = (Folder) relevantobj;
+                    map.put(rootSha1, gitFolder);
+                    for (FileDetails fileData : gitFolder.getFilesList()) {
+                        getObjectsFromRoot(fileData.getSha1(), map);
+                    }
+                }
+                else{
+                    Blob gitBlob = (Blob) relevantobj;
+                    map.put(rootSha1, gitBlob);
+                }
+            }
+
+        }
+    }
+
+    private void addObjects(Map<String, GitObjectsBase> newObjectsToAdd){
+        for(String newSha1: newObjectsToAdd.keySet()){
+            repoObjects.putIfAbsent(newSha1, newObjectsToAdd.get(newSha1));
         }
     }
 
@@ -1728,5 +1794,5 @@ public class Repository {
 
 
 
-}
+    }
 
