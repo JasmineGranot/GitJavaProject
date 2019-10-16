@@ -8,14 +8,35 @@ public class PullRequestObject {
     private User owner;
     private String repoManagerMsg;
     private String status;
+    private Repository pullRequestRepository;
+    private boolean approvedByRepoOwner;
 
     public PullRequestObject() {
         targetToMergeFrom = null;
         baseToMergeInto = null;
         prMsg = null;
         owner = null;
+        pullRequestRepository = null;
         repoManagerMsg = null;
         status = MagitUtils.OPEN_PULL_REQUEST;
+        approvedByRepoOwner = false;
+
+    }
+
+    public void setApprovedByRepoOwner(boolean approvedByRepoOwner) {
+        this.approvedByRepoOwner = approvedByRepoOwner;
+    }
+
+    public boolean getApprovedByOwner() {
+        return approvedByRepoOwner;
+    }
+
+    public void setPullRequestRepository(Repository pullRequestRepository) {
+        this.pullRequestRepository = pullRequestRepository;
+    }
+
+    public Repository getPullRequestRepository() {
+        return pullRequestRepository;
     }
 
     public void setBaseToMergeInto(Branch baseToMergeInto) {

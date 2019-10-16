@@ -1,8 +1,12 @@
 package GitObjects;
 
 
+import Utils.MagitUtils;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class User {
     private String userName;
@@ -38,5 +42,18 @@ public class User {
     void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public List<PullRequestObject> getActivePullRequest() {
+        List<PullRequestObject> allOpenRequest = new LinkedList<>();
+        for (Repository repo : activeRepositories){
+            Stream<PullRequestObject> prObjects = repo.getAllPullRequestInRepo().stream();
+            allOpenRequest.addAll(prObjects.filter(
+                    x->x.getStatus().equals(MagitUtils.OPEN_PULL_REQUEST)).collect(Collectors.toList()));
+
+        }
+        return allOpenRequest;
+    }
+
+
 
 }

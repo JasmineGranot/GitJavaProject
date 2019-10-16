@@ -266,43 +266,43 @@ public class Magit {
         return resultObject;
     }
 
-//    public ResultList<Branch.BrancheData> showAllBranches(String user, String repositoryName) {
-//        ResultList<Branch.BrancheData> result = new ResultList<>();
-//        Repository repo = getRepoForUser(user, repositoryName);
-//
-//        if(repo == null) {
-//            result.setHasError(true);
-//            result.setErrorMsg(NON_EXISTING_REPO_MSG);
-//            return result;
-//        }
-//        try{
-//            result.setRes(repo.());
-//            result.setHasError(false);
-//        }
-//        catch(Exception e){
-//            result.setHasError(true);
-//            result.setErrorMsg("Got Generic Exception!!!\n Error message: " + e.getMessage());
-//        }
-//        return result;
-//    }
+    /*public ResultList<Branch.BrancheData> showAllBranches(String user, String repositoryName) {
+        ResultList<Branch.BrancheData> result = new ResultList<>();
+        Repository repo = getRepoForUser(user, repositoryName);
 
-//    public MagitStringResultObject showHistoryDataForActiveBranch() {
-//        MagitStringResultObject resultObject = new MagitStringResultObject();
-//        if (!isRepositoryConfigured()){
-//            resultObject.setIsHasError(true);
-//            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
-//            return resultObject;
-//        }
-//        try{
-//            resultObject = repo.getHistoryBranchData();
-//            resultObject.setIsHasError(false);
-//        }
-//        catch (Exception e) {
-//            resultObject.setIsHasError(true);
-//            resultObject.setErrorMSG(e.getMessage());
-//        }
-//        return resultObject;
-//    }
+        if(repo == null) {
+            result.setHasError(true);
+            result.setErrorMsg(NON_EXISTING_REPO_MSG);
+            return result;
+        }
+        try{
+            result.setRes(repo.());
+            result.setHasError(false);
+        }
+        catch(Exception e){
+            result.setHasError(true);
+            result.setErrorMsg("Got Generic Exception!!!\n Error message: " + e.getMessage());
+        }
+        return result;
+    }
+
+    public MagitStringResultObject showHistoryDataForActiveBranch() {
+        MagitStringResultObject resultObject = new MagitStringResultObject();
+        if (!isRepositoryConfigured()){
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            return resultObject;
+        }
+        try{
+            resultObject = repo.getHistoryBranchData();
+            resultObject.setIsHasError(false);
+        }
+        catch (Exception e) {
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(e.getMessage());
+        }
+        return resultObject;
+    }*/
 
 //  ======================== Commit Functions ==============================
 
@@ -486,5 +486,74 @@ public class Magit {
         return res;
     }
 
+//  ======================== Pull Request Functions =========================
+
+    public MagitStringResultObject createPullRequest (String user, String repoName,
+                                                String baseBranch, String targetBranch, String pullRequstMsg) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.addNewPullRequestToRepository(targetBranch, baseBranch, pullRequstMsg);
+                res.setIsHasError(false);
+                res.setData(String.format("Sent pull request to repository %s owner successfully!", repoName));
+            } catch (Exception e) {
+                String errorMsg = "Something went wrong while trying to send the pull request!\n" +
+                        "Error message: " + e.getMessage();
+                res.setIsHasError(true);
+                res.setErrorMSG(errorMsg);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+
+    public MagitStringResultObject approvePullRequest (String user, String repoName, PullRequestObject pullRequest) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.acceptPullRequest(pullRequest);
+                res.setIsHasError(false);
+                res.setData("Approved pull request successfully!");
+            } catch (Exception e) {
+                String errorMsg = "Something went wrong while trying to approve the pull request!\n" +
+                        "Error message: " + e.getMessage();
+                res.setIsHasError(true);
+                res.setErrorMSG(errorMsg);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+
+    public MagitStringResultObject rejectPullRequest (String user, String repoName,
+                                                      String ownerMsg, PullRequestObject pullRequest) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.rejectPullRequest(pullRequest, ownerMsg);
+                res.setIsHasError(false);
+                res.setData("Rejected pull request successfully!");
+            } catch (Exception e) {
+                String errorMsg = "Something went wrong while trying to reject the pull request!\n" +
+                        "Error message: " + e.getMessage();
+                res.setIsHasError(true);
+                res.setErrorMSG(errorMsg);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
 
 }

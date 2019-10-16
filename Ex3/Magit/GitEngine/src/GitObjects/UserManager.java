@@ -44,4 +44,13 @@ public class UserManager {
         }
         return null;
     }
+
+    public List<PullRequestObject> getAllOpenPullRequests(String userName) {
+        User currUser = getUserByName(userName);
+        if(currUser != null) {
+            return currUser.getActivePullRequest();
+        }
+        return null;
+    }
+
 }

@@ -65,7 +65,7 @@ public class Repository {
     }
 
     private String getRepoPathAsString() {
-        if (repoPath != null){
+        if (repoPath != null) {
             return repoPath;
         }
         return null;
@@ -76,14 +76,14 @@ public class Repository {
     }
 
     private String getRootSha1() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
-            return currentCommit.getRootSha1();
+        return currentCommit.getRootSha1();
     }
 
-    private void setRepoName(String name){
-        repoName= name;
+    private void setRepoName(String name) {
+        repoName = name;
     }
 
-    public Branch getHeadBranch(){
+    public Branch getHeadBranch() {
         return headBranch;
     }
 
@@ -93,15 +93,15 @@ public class Repository {
 
 
     public boolean isCommitSha1PointedByRTB(String sha1) throws IOException {
-        if(trackedRepository != null) {
+        if (trackedRepository != null) {
             String fileContent;
             String localRTB = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName());
             File localRTBFolder = new File(localRTB);
             File[] localRTBFiles = localRTBFolder.listFiles();
-            if(localRTBFiles != null) {
-                for(File currRTB : localRTBFiles) {
+            if (localRTBFiles != null) {
+                for (File currRTB : localRTBFiles) {
                     fileContent = MagitUtils.readFileAsString(currRTB.getAbsolutePath());
-                    if(fileContent.equals(sha1)) {
+                    if (fileContent.equals(sha1)) {
                         return true;
                     }
                 }
@@ -109,42 +109,19 @@ public class Repository {
         }
         return false;
     }
-// ============================ General Functions =================================
-    public static Repository getRepositoryByNameFromList(List<Repository> repos, String repoNameToFind){
-        for (Repository curRepo : repos){
-            if (curRepo.getRepoName().equals(repoNameToFind)){
+
+    // ============================ General Functions =================================
+    public static Repository getRepositoryByNameFromList(List<Repository> repos, String repoNameToFind) {
+        for (Repository curRepo : repos) {
+            if (curRepo.getRepoName().equals(repoNameToFind)) {
                 return curRepo;
             }
         }
         return null;
     }
 
-//  =========================== Creating New Repo ==================================
-    private PullRequestObject createNewPullRequest(String target, String base, String prMsg, User owner)
-            throws InvalidDataException{
-        PullRequestObject newPullRequest = new PullRequestObject();
-        Branch baseBranch = getBranchByName(base);
-        Branch targetBranch = getBranchByName(target);
 
-        if(baseBranch == null || targetBranch == null) {
-            throw new InvalidDataException("Base or Target branch does not exist in the system!");
-        }
-
-        newPullRequest.setBaseToMergeInto(baseBranch);
-        newPullRequest.setTargetToMergeFrom(targetBranch);
-        newPullRequest.setOwner(owner);
-        newPullRequest.setPrMsg(prMsg);
-
-        return newPullRequest;
-    }
-
-    public void addNewPullRequestToRepository(String target, String base, String prMsg, User owner)
-            throws InvalidDataException{
-        PullRequestObject newPullRequest = createNewPullRequest(target, base, prMsg, owner);
-        pr.add(newPullRequest);
-    }
-
-//  =========================== Creating New Repo ==================================
+    //  =========================== Creating New Repo ==================================
     public Repository() {
         repoOwner = null;
         this.repoName = null;
@@ -189,17 +166,14 @@ public class Repository {
         if (newFile.exists()) {
             if (!isValidRepo(newRepositoryPath)) {
                 addNewFilesToRepo(newRepositoryPath, addMaster);
-            }
-            else {
+            } else {
                 errorMsg = "The repository you were trying to create already exists!";
                 throw new DataAlreadyExistsException(errorMsg);
             }
-        }
-        else{
-            if(newFile.mkdirs()){
+        } else {
+            if (newFile.mkdirs()) {
                 addNewFilesToRepo(newRepositoryPath, addMaster);
-            }
-            else{
+            } else {
                 errorMsg = "The system has failed to create the new directory";
                 throw new ErrorCreatingNewFileException(errorMsg);
             }
@@ -213,12 +187,12 @@ public class Repository {
 
         String magitPath = MagitUtils.joinPaths(newRepositoryPath, ".magit");
         File newFile = new File(magitPath);
-        if(!newFile.mkdir()){
+        if (!newFile.mkdir()) {
             throw new ErrorCreatingNewFileException(errorMsg);
         }
 
         newFile = new File(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Branches"));
-        if(!newFile.mkdir()){
+        if (!newFile.mkdir()) {
             throw new ErrorCreatingNewFileException(errorMsg);
         }
 
@@ -226,10 +200,9 @@ public class Repository {
         Writer out1 = new BufferedWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(HeadPath.toString()), StandardCharsets.UTF_8));
-        if (addMaster){
+        if (addMaster) {
             out1.write("master");
-        }
-        else{
+        } else {
             out1.write("");
         }
         out1.close();
@@ -244,7 +217,7 @@ public class Repository {
         }
 
         newFile = new File(MagitUtils.joinPaths(newRepositoryPath, ".magit\\Objects"));
-        if(!newFile.mkdir()){
+        if (!newFile.mkdir()) {
             throw new ErrorCreatingNewFileException(errorMsg);
         }
     }
@@ -266,12 +239,12 @@ public class Repository {
             String repoPath = MagitUtils.joinPaths(MAGIT_REPO_LOCATION, owner.getUserName(), localRepoName);
 
 
-            if (MagitUtils.isRepositoryExist(repoPath) && !toDeleteExistingRepo){
+            if (MagitUtils.isRepositoryExist(repoPath) && !toDeleteExistingRepo) {
                 errorMsg = "The repository already exists in the system!";
                 throw new DataAlreadyExistsException(errorMsg);
             }
 
-            if (MagitUtils.isRepositoryExist(repoPath) && toDeleteExistingRepo){
+            if (MagitUtils.isRepositoryExist(repoPath) && toDeleteExistingRepo) {
                 deleteWC(repoPath, toDeleteExistingRepo);
                 File rootFile = new File(repoPath);
                 rootFile.delete();
@@ -280,7 +253,7 @@ public class Repository {
             XMLValidator validation = new XMLValidator(newMagitRepo, repoXMLPath);
             XMLValidationResult validationResult = validation.StartChecking();
 
-            if(validationResult.isValid()) {
+            if (validationResult.isValid()) {
                 repoBranches.clear();
                 repoObjects.clear();
                 createNewRepository(repoPath, false);
@@ -289,26 +262,22 @@ public class Repository {
                 loadBranchesDataFromMagitRepository(newMagitRepo);
                 setRepoName(localRepoName);
                 MagitRepository.MagitRemoteReference remoteRepo = newMagitRepo.getMagitRemoteReference();
-                if(remoteRepo != null){
+                if (remoteRepo != null) {
                     fetch();
                 }
                 repoOwner = owner;
 
-            }
-            else {
+            } else {
                 throw new InvalidDataException(validationResult.getMessage());
             }
-        }
-        catch (JAXBException e) {
+        } catch (JAXBException e) {
             errorMsg = "Error while trying to load a repository from xml file!\n" +
                     "Error msg: " + e.getMessage();
             throw new JAXBException(errorMsg);
-        }
-        catch (DataAlreadyExistsException e){
+        } catch (DataAlreadyExistsException e) {
             throw e;
-        }
-        catch (Exception e){
-            if(currentRepo.equals("Undefined")) {
+        } catch (Exception e) {
+            if (currentRepo.equals("Undefined")) {
                 errorMsg = "Something went wrong while trying to load a new repository from XML file!\n" +
                         "Error message: " + e.getMessage();
                 throw new FileErrorException(errorMsg);
@@ -320,14 +289,14 @@ public class Repository {
     private void loadBranchesDataFromMagitRepository(MagitRepository repoFromXML)
             throws IOException, FileErrorException, InvalidDataException {
         String errorMsg;
-        if(XMLUtils.isEmptyRepo(repoFromXML)){
+        if (XMLUtils.isEmptyRepo(repoFromXML)) {
             return;
         }
         String head = repoFromXML.getMagitBranches().getHead();
         List<MagitSingleBranch> localBranches = repoFromXML.getMagitBranches().getMagitSingleBranch().stream()
-                .filter(x-> !x.isIsRemote()).collect(Collectors.toList());
+                .filter(x -> !x.isIsRemote()).collect(Collectors.toList());
 
-        for (MagitSingleBranch curBranch : localBranches){
+        for (MagitSingleBranch curBranch : localBranches) {
             // get all commits of the branch:
             String commitId = curBranch.getPointedCommit().getId();
             MagitSingleCommit relevantCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, commitId);
@@ -342,8 +311,7 @@ public class Repository {
             if (newCommit.isEmpty()) {
                 errorMsg = "Couldn't load the commit!";
                 throw new FileErrorException(errorMsg);
-            }
-            else{
+            } else {
                 commitSha1 = newCommit.doSha1();
 
                 // add commit to .magit folder
@@ -357,7 +325,7 @@ public class Repository {
             // handle the branch itself:
             Branch newBranch = addBranchToFileSystem(curBranch.getName(), commitSha1);
 
-            if(curBranch.isTracking()) {
+            if (curBranch.isTracking()) {
                 newBranch.setTrackedBranch(curBranch.getTrackingAfter());
             }
 
@@ -373,8 +341,7 @@ public class Repository {
                 if (BranchCommit != null) {
                     currentCommit = (Commit) BranchCommit;
                     loadWCFromCommitSha1(headBranch.getCommitSha1(), null);
-                }
-                else {
+                } else {
                     currentCommit = null;
                 }
             }
@@ -390,23 +357,23 @@ public class Repository {
         newCommit.setCommitCreator(commitToLoad.getAuthor());
         newCommit.setCommitMessage(commitToLoad.getMessage());
 
-        if(commitToLoad.getPrecedingCommits() != null) {
+        if (commitToLoad.getPrecedingCommits() != null) {
             List<PrecedingCommits.PrecedingCommit> historyCommits = commitToLoad.getPrecedingCommits().getPrecedingCommit();
 
             if (historyCommits.size() > 0) {
                 String firstCommitId = historyCommits.get(0).getId();
                 MagitSingleCommit secondLastCommit = null;
                 newCommit.setSecondPrecedingSha1(null);
-                if(historyCommits.size() == 2) {
+                if (historyCommits.size() == 2) {
                     String secondCommitId = historyCommits.get(1).getId();
                     secondLastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, secondCommitId);
                 }
                 MagitSingleCommit lastCommit = XMLUtils.getMagitSingleCommitByID(repoFromXML, firstCommitId);
                 if (lastCommit != null && !lastCommit.equals("")) {
                     String commitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, lastCommit).doSha1();
-                    if(secondLastCommit != null) {
+                    if (secondLastCommit != null) {
                         String secondCommitSha1 = loadCommitFromMagitSingleCommit(repoFromXML, secondLastCommit).doSha1();
-                        if(secondCommitSha1 != null) {
+                        if (secondCommitSha1 != null) {
                             newCommit.setSecondPrecedingSha1(secondCommitSha1);
                         }
                     }
@@ -421,8 +388,7 @@ public class Repository {
         if (rootFolderId == null) {
             errorMsg = "Illegal commit!";
             throw new InvalidDataException(errorMsg);
-        }
-        else {
+        } else {
             MagitSingleFolder relevantFolder = XMLUtils.getMagitFolderByID(repoFromXML, rootFolderId);
 
             if (relevantFolder == null) {
@@ -454,7 +420,7 @@ public class Repository {
                 MagitBlob newMagitBlob = XMLUtils.getMagitBlobByID(repoFromXML, f.getId());
                 Blob newBlob = new Blob();
 
-                if(newMagitBlob == null){
+                if (newMagitBlob == null) {
                     errorMsg = "Commit XML issue - file doesn't exists!";
                     throw new InvalidDataException(errorMsg);
                 }
@@ -472,11 +438,10 @@ public class Repository {
 
                 // add to containing folder object
                 currentFolder.addFile(blobDetails);
-            }
-            else {
+            } else {
                 MagitSingleFolder newMagitFolder = XMLUtils.getMagitFolderByID(repoFromXML, f.getId());
 
-                if(newMagitFolder == null) {
+                if (newMagitFolder == null) {
                     errorMsg = "Commit XML issue - folder doesn't exists!";
                     throw new InvalidDataException(errorMsg);
                 }
@@ -505,7 +470,7 @@ public class Repository {
     }
 
     private FileDetails getDataFromMagitFolder(MagitSingleFolder relevantFolder) {
-        String name = relevantFolder.isIsRoot()? "": relevantFolder.getName();
+        String name = relevantFolder.isIsRoot() ? "" : relevantFolder.getName();
 
         return new FileDetails(name, null, "Folder",
                 relevantFolder.getLastUpdater(), relevantFolder.getLastUpdateDate());
@@ -515,8 +480,8 @@ public class Repository {
 
     // ========================== Change Repo ==========================
 
-   // void changeRepo(String newRepo, String repoName)
-            //throws InvalidDataException, IOException, NullPointerException,
+    // void changeRepo(String newRepo, String repoName)
+    //throws InvalidDataException, IOException, NullPointerException,
 //            ErrorCreatingNewFileException {
 //        String errorMsg;
 //
@@ -560,8 +525,7 @@ public class Repository {
                             throw new FileErrorException(errorMsg);
                         }
                     }
-                }
-                else {
+                } else {
                     if (!childPath.delete()) {
                         errorMsg = "Had an issue deleting a file!";
                         throw new FileErrorException(errorMsg);
@@ -571,18 +535,16 @@ public class Repository {
         }
     }
 
-    private void loadWCFromCommitSha1(String commitSha1, String path) throws FileErrorException, IOException{
-        if(path!= null) {
+    private void loadWCFromCommitSha1(String commitSha1, String path) throws FileErrorException, IOException {
+        if (path != null) {
             deleteWC(path, false);
-        }
-        else {
+        } else {
             deleteWC(getRepoPathAsString(), false);
         }
         Commit curCommit = (Commit) repoObjects.get(commitSha1);
-        if(path != null) {
+        if (path != null) {
             loadWCFromRoot(curCommit.getRootSha1(), path);
-        }
-        else {
+        } else {
             loadWCFromRoot(curCommit.getRootSha1(), getRepoPathAsString());
         }
     }
@@ -604,19 +566,18 @@ public class Repository {
 
     private void updateMainPaths() {
         String rootPathAsString = getRepoPathAsString();
-        if(rootPathAsString != null) {
+        if (rootPathAsString != null) {
             MAGIT_PATH = Paths.get(getRepoPathAsString(), ".magit").toString();
             BRANCHES_PATH = Paths.get(MAGIT_PATH, "Branches").toString();
             OBJECTS_PATH = Paths.get(MAGIT_PATH, "Objects").toString();
-        }
-        else{
+        } else {
             MAGIT_PATH = null;
             BRANCHES_PATH = null;
             OBJECTS_PATH = null;
         }
     }
 
-    private void loadObjectsFromRepo() throws IOException, ErrorCreatingNewFileException{
+    private void loadObjectsFromRepo() throws IOException, ErrorCreatingNewFileException {
         repoObjects.clear();
         repoBranches.clear();
         loadBranchesObjectsFromBranchs();
@@ -642,28 +603,26 @@ public class Repository {
         }
     }
 
-    private void loadBranchesObjectsFromBranchs () throws IOException, ErrorCreatingNewFileException{
+    private void loadBranchesObjectsFromBranchs() throws IOException, ErrorCreatingNewFileException {
         String branchesPath = BRANCHES_PATH;
         File branchesFolder = new File(branchesPath);
         String remoteBranchFolder = Paths.get(branchesFolder.getAbsolutePath(), repoName).toString();
         File isRemoteRepo = new File(remoteBranchFolder);
         String[] filesInBranchesFolder;
-        if(isRemoteRepo.exists())
-        {
+        if (isRemoteRepo.exists()) {
             filesInBranchesFolder = isRemoteRepo.list();
             branchesPath = Paths.get(branchesFolder.getAbsolutePath(), repoName).toString();
-        }
-        else {
+        } else {
             filesInBranchesFolder = branchesFolder.list();
         }
         String errorMsg;
 
-        if(filesInBranchesFolder == null){
+        if (filesInBranchesFolder == null) {
             errorMsg = "There are no files in the branches folder!";
             throw new ErrorCreatingNewFileException(errorMsg);
         }
         for (String currentBranchPath : filesInBranchesFolder) {
-            if (!currentBranchPath.equals("Head")){
+            if (!currentBranchPath.equals("Head")) {
                 String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(branchesPath, currentBranchPath));
                 Branch newBranch = new Branch(currentBranchPath, commitSha1, null);
                 repoBranches.add(newBranch);
@@ -671,7 +630,7 @@ public class Repository {
         }
     }
 
-    private void loadObjectsFromRootFolder(String sha1, String path) throws IOException{
+    private void loadObjectsFromRootFolder(String sha1, String path) throws IOException {
         File curFile = new File(path);
         if (curFile.isDirectory()) {
             Folder newFolder = new Folder();
@@ -687,8 +646,7 @@ public class Repository {
                 }
             }
 
-        }
-        else {
+        } else {
             Blob newFile = new Blob();
             newFile.getDataFromFile(MagitUtils.joinPaths(OBJECTS_PATH, sha1));
             repoObjects.put(sha1, newFile);
@@ -719,16 +677,15 @@ public class Repository {
         if (isBranchExist(newBranchName)) {
             errorMsg = "Branch already Exist!";
             throw new DataAlreadyExistsException(errorMsg);
-        }
-        else {
+        } else {
             Branch newBranch = addBranchToFileSystem(newBranchName, sha1);
-            if(trackingAfter!=null) {
+            if (trackingAfter != null) {
                 newBranch.setTrackedBranch(trackingAfter);
             }
         }
     }
 
-    private Branch addBranchToFileSystem(String newBranchName, String commitSha1) throws IOException{
+    private Branch addBranchToFileSystem(String newBranchName, String commitSha1) throws IOException {
         // add to objects in .magit
         Path newPath = Paths.get(BRANCHES_PATH, newBranchName);
         MagitUtils.writeToFile(newPath, commitSha1);
@@ -749,7 +706,7 @@ public class Repository {
 
         String branchToDelete = Paths.get(BRANCHES_PATH, branchName).toString();
         File f = new File(branchToDelete);
-        if (!f.delete()){
+        if (!f.delete()) {
             errorMsg = "Had an issue while trying to delete a file!";
             throw new FileErrorException(errorMsg);
         }
@@ -781,56 +738,54 @@ public class Repository {
 //    }
 
     private boolean isBranchExist(String branchName) {
-        for(Branch currBranch : repoBranches){
-            if(currBranch.getName().equals(branchName)){
+        for (Branch currBranch : repoBranches) {
+            if (currBranch.getName().equals(branchName)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Branch getBranchByName(String branchName){
-        for(Branch currBranch : repoBranches){
-            if(currBranch.getName().equals(branchName)){
+    public Branch getBranchByName(String branchName) {
+        for (Branch currBranch : repoBranches) {
+            if (currBranch.getName().equals(branchName)) {
                 return currBranch;
             }
         }
         return null;
     }
 
-    private void changeHeadBranch(String branchName) throws InvalidDataException, IOException{
+    private void changeHeadBranch(String branchName) throws InvalidDataException, IOException {
         String errorMsg;
         Path headPath = Paths.get(BRANCHES_PATH, "Head");
-        if (!isBranchExist(branchName)){
+        if (!isBranchExist(branchName)) {
             errorMsg = "Branch does not exits in the repository!";
             throw new InvalidDataException(errorMsg);
-        }
-        else {
+        } else {
             try {
                 FileWriter head = new FileWriter(headPath.toString(), false);
                 head.write(branchName);
                 head.close();
                 headBranch = getBranchByName(branchName);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 errorMsg = "There was an unhandled IOException! could not change head branch!";
                 throw new IOException(errorMsg);
             }
         }
     }
 
-    private String getCurrentBranchInRepoByFileSystem() throws IOException{
-       String currentBranchInRepo;
-       Path branchs = Paths.get(BRANCHES_PATH, "Head");
-       File headFile = new File(branchs.toString());
-       BufferedReader reader = new BufferedReader(new FileReader(headFile));
-       currentBranchInRepo = reader.readLine();
-       reader.close();
-       return currentBranchInRepo;
+    private String getCurrentBranchInRepoByFileSystem() throws IOException {
+        String currentBranchInRepo;
+        Path branchs = Paths.get(BRANCHES_PATH, "Head");
+        File headFile = new File(branchs.toString());
+        BufferedReader reader = new BufferedReader(new FileReader(headFile));
+        currentBranchInRepo = reader.readLine();
+        reader.close();
+        return currentBranchInRepo;
     }
 
     public void checkoutBranch(String newBranchName, boolean ignoreChanges)
-            throws InvalidDataException, IOException, FileErrorException{
+            throws InvalidDataException, IOException, FileErrorException {
         String errorMsg;
 
         boolean changesExist = isWorkingCopyIsChanged().isChanged();
@@ -845,8 +800,7 @@ public class Repository {
         if (!lastCommitInBranchSha1.equals("")) {
             currentCommit = (Commit) repoObjects.get(lastCommitInBranchSha1);
             loadWCFromCommitSha1(lastCommitInBranchSha1, null);
-        }
-        else{ // No commit was never done, meaning this still is an empty repo.
+        } else { // No commit was never done, meaning this still is an empty repo.
             deleteWC(getRepoPathAsString(), false);
             currentCommit = null;
         }
@@ -856,12 +810,12 @@ public class Repository {
     public void resetCommitInBranch(String commitSha1, boolean ignore)
             throws InvalidDataException, IOException, FileErrorException {
         String errorMsg;
-        if(!isValidCommit(commitSha1)){
+        if (!isValidCommit(commitSha1)) {
             errorMsg = "Invalid commit!";
             throw new InvalidDataException(errorMsg);
         }
 
-        if(isWorkingCopyIsChanged().isChanged() && !ignore){
+        if (isWorkingCopyIsChanged().isChanged() && !ignore) {
             errorMsg = "There are open changes in the repository!";
             throw new DirectoryNotEmptyException(errorMsg);
         }
@@ -870,9 +824,10 @@ public class Repository {
         loadWCFromCommitSha1(commitSha1, null);
     }
 
-    public List<Branch> getAllBranchesData(){
+    public List<Branch> getAllBranchesData() {
         return repoBranches;
     }
+
     // =========================== Commit =========================================
     public List<Commit.CommitData> currentCommits() {
         List<Commit.CommitData> commits = new LinkedList<>();
@@ -890,7 +845,7 @@ public class Repository {
         commits.sort((o1, o2) -> {
             try {
                 return -o1.getCommitDateAsDate().compareTo(o2.getCommitDateAsDate());
-            }catch(ParseException e){
+            } catch (ParseException e) {
                 e.getMessage();
             }
             return 0;
@@ -898,13 +853,13 @@ public class Repository {
         return commits;
     }
 
-    private boolean isValidCommit(String sha1){
+    private boolean isValidCommit(String sha1) {
         GitObjectsBase obj = repoObjects.get(sha1);
         return (obj != null && obj.isCommit());
     }
 
     public boolean createNewCommit(String userName, String commitMsg, String secondCommitSha1)
-            throws InvalidDataException, IOException, FileErrorException{
+            throws InvalidDataException, IOException, FileErrorException {
         String errorMsg;
         boolean isChanged;
         FileDetails rootData;
@@ -912,18 +867,16 @@ public class Repository {
             if (isWorkingCopyIsChanged().isChanged()) {
                 isChanged = true;
                 try {
-                    Map <String, String> commitData = new HashMap<>();
-                    if (currentCommit != null){
+                    Map<String, String> commitData = new HashMap<>();
+                    if (currentCommit != null) {
                         getAllCurrentCommitDirWithSha1(getRootSha1(), getRepoPathAsString(), commitData);
                     }
                     rootData = updateFilesInSystem(getRepoPathAsString(), commitData, userName);
-                }
-                catch (IOException e){
+                } catch (IOException e) {
                     errorMsg = "Had an issue updating the files in the system!\n" +
                             "Error message: " + e.getMessage();
                     throw new IOException(errorMsg);
-                }
-                catch (FileErrorException e) {
+                } catch (FileErrorException e) {
                     throw new FileErrorException(e.getMessage());
                 }
 
@@ -932,10 +885,9 @@ public class Repository {
                 newCommit.setCommitDate(MagitUtils.getTodayAsStr());
                 newCommit.setCommitMessage(commitMsg);
 
-                if(rootData != null) {
+                if (rootData != null) {
                     newCommit.setRootSha1(rootData.getSha1());
-                }
-                else {
+                } else {
                     errorMsg = "Root is null - cannot get it's sha1!";
                     throw new InvalidDataException(errorMsg);
                 }
@@ -945,15 +897,14 @@ public class Repository {
                 if (currentCommit != null) {
                     newCommit.setFirstPrecedingSha1(headBranch.getCommitSha1());
                 }
-                if(secondCommitSha1 != null) {
+                if (secondCommitSha1 != null) {
                     newCommit.setSecondPrecedingSha1(secondCommitSha1);
                 }
                 currentCommit = newCommit;
                 repoObjects.put(commitSha1, newCommit);
                 updateCommitInCurrentBranch(commitSha1);
                 currentCommit.saveToMagitObjects(commitSha1, repoPath);
-            }
-            else {
+            } else {
                 isChanged = false;
             }
         } catch (IOException e) {
@@ -987,7 +938,7 @@ public class Repository {
 
             Map<String, String> lastCommitFiles = new HashMap<>();
             Commit curCommit = currentCommit;
-            if ( curCommit != null && !curCommit.isEmpty()) {
+            if (curCommit != null && !curCommit.isEmpty()) {
                 getLastCommitFiles(currentCommit.getRootSha1(), repoPath, lastCommitFiles);
             }
 
@@ -1016,11 +967,11 @@ public class Repository {
     }
 
     private void getLastCommitFiles(String rootSha1, String rootPath, Map<String, String> commitFiles)
-            throws InvalidDataException{
+            throws InvalidDataException {
         GitObjectsBase f = repoObjects.get(rootSha1);
         String errorMsg;
 
-        if (f == null){
+        if (f == null) {
             errorMsg = "Illegal root folder!";
             throw new InvalidDataException(errorMsg);
         }
@@ -1035,7 +986,7 @@ public class Repository {
         }
     }
 
-    private void getChanged(Set<String> filesToCheck, Map<String, String> oldData) throws IOException{
+    private void getChanged(Set<String> filesToCheck, Map<String, String> oldData) throws IOException {
         Set<String> changedFiles = new HashSet<>();
 
         for (String currentFile : filesToCheck) {
@@ -1050,8 +1001,8 @@ public class Repository {
         filesToCheck.addAll(changedFiles);
     }
 
-    private FileDetails updateFilesInSystem(String filePath, Map <String, String> commitData, String commiter)
-            throws IOException, FileErrorException{
+    private FileDetails updateFilesInSystem(String filePath, Map<String, String> commitData, String commiter)
+            throws IOException, FileErrorException {
         String errorMsg;
         try {
             if (Files.isRegularFile(Paths.get(filePath))) {
@@ -1060,20 +1011,17 @@ public class Repository {
 
                 if (isObjectInRepo(currentFileSha1) && isFileNotChanged(currentFileSha1, filePath, commitData)) {
                     return getPrevData(currentFileSha1);
-                }
-                else {
+                } else {
                     Blob newBlob = new Blob();
                     newBlob.setFileContent(content);
                     repoObjects.put(currentFileSha1, newBlob);
                     try {
                         newBlob.saveToMagitObjects(currentFileSha1, getRepoPathAsString());
-                    }
-                    catch (IOException e) {
+                    } catch (IOException e) {
                         errorMsg = "Had an issue saving a blob to the objects!\n" +
                                 "Error message: " + e.getMessage();
                         throw new IOException(errorMsg);
-                    }
-                    catch (FileErrorException e) {
+                    } catch (FileErrorException e) {
                         errorMsg = "Had an issue saving a blob to the objects!\n" +
                                 "Error message: " + e.getMessage();
                         throw new FileErrorException(errorMsg);
@@ -1081,8 +1029,7 @@ public class Repository {
                     return getNewData(currentFileSha1, Paths.get(filePath), commiter);
                 }
 
-            }
-            else {
+            } else {
                 Folder newFolder = new Folder();
                 File newFile = new File(filePath);
                 String[] newFileList = newFile.list();
@@ -1098,31 +1045,26 @@ public class Repository {
 
                     if (isObjectInRepo(folderSha1) && isFileNotChanged(folderSha1, filePath, commitData)) {
                         return getPrevData(folderSha1);
-                    }
-                    else {
+                    } else {
                         repoObjects.put(folderSha1, newFolder);
                         try {
                             newFolder.saveToMagitObjects(folderSha1, getRepoPathAsString());
-                        }
-                        catch (IOException e) {
+                        } catch (IOException e) {
                             errorMsg = "Had an issue saving a folder to the objects!\n" +
                                     "Error message: " + e.getMessage();
                             throw new IOException(errorMsg);
-                        }
-                        catch (FileErrorException e) {
+                        } catch (FileErrorException e) {
                             errorMsg = "Had an issue saving a folder to the objects!\n" +
                                     "Error message: " + e.getMessage();
                             throw new FileErrorException(errorMsg);
                         }
                         return getNewData(folderSha1, Paths.get(filePath), commiter);
                     }
-                }
-                else {
+                } else {
                     return null;
                 }
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             errorMsg = "Something went wrong while reading the file as string!\n" +
                     "Error message: " + e.getMessage();
             throw new IOException(errorMsg);
@@ -1163,15 +1105,14 @@ public class Repository {
                         return subdet;
                     }
                 }
-            }
-            else {
+            } else {
                 return det.get(0);
             }
         }
         return null;
     }
 
-    public List<String> getCurrentCommitFullFilesData(){
+    public List<String> getCurrentCommitFullFilesData() {
         List<String> commitFiles = new LinkedList<>();
         getAllCurrentCommitDir(getRootSha1(), getRepoPathAsString()
                 , commitFiles);
@@ -1207,7 +1148,7 @@ public class Repository {
         return commitFiles.containsKey(sha1ToCheck) && pathToCheck.equals(commitFiles.get(sha1ToCheck));
     }
 
-    private void changeHeadCommit(String sha1) throws IOException{
+    private void changeHeadCommit(String sha1) throws IOException {
         if (isValidCommit(sha1)) {
             Path headPath = Paths.get(BRANCHES_PATH, headBranch.getName());
             MagitUtils.writeToFile(headPath, sha1);
@@ -1217,15 +1158,13 @@ public class Repository {
 
     List<Commit.CommitData> getAllCommitsInSystem() {
         List<Commit.CommitData> commits = new LinkedList<>();
-        for(String sha1 : repoObjects.keySet()){
+        for (String sha1 : repoObjects.keySet()) {
             GitObjectsBase currentObj = repoObjects.get(sha1);
-            if (currentObj.isCommit()){
+            if (currentObj.isCommit()) {
                 Commit curCommit = (Commit) currentObj;
-                if(headBranch.getCommitSha1().equals(curCommit.doSha1()))
-                {
+                if (headBranch.getCommitSha1().equals(curCommit.doSha1())) {
                     commits.add(Commit.getCommitData(sha1, curCommit, headBranch.getName()));
-                }
-                else {
+                } else {
                     commits.add(Commit.getCommitData(sha1, curCommit, null));
                 }
             }
@@ -1234,7 +1173,7 @@ public class Repository {
         commits.sort((o1, o2) -> {
             try {
                 return -o1.getCommitDateAsDate().compareTo(o2.getCommitDateAsDate());
-            }catch(ParseException e){
+            } catch (ParseException e) {
                 e.getMessage();
             }
             return 0;
@@ -1244,12 +1183,8 @@ public class Repository {
 
     // =========================== Merge =========================================
 
-//    public String mergeTwoBranches(Branch targetToMergeInto, Branch sourceToMergeToTarget) {
-//
-//    }
-
     public String merge(Branch branchToMerge, List<MergeResult> mergeResultList)
-            throws InvalidDataException, IOException, FileErrorException, DataAlreadyExistsException{
+            throws InvalidDataException, IOException, FileErrorException, DataAlreadyExistsException {
         try {
             boolean changesExist = isWorkingCopyIsChanged().isChanged();
             if (!changesExist) {
@@ -1341,8 +1276,7 @@ public class Repository {
                 } else {
                     return fastForwardMerge;
                 }
-            }
-            else {
+            } else {
                 throw new DataAlreadyExistsException("WC has open changes!\nCommit first then merge");
             }
         } catch (InvalidDataException e) {
@@ -1353,8 +1287,11 @@ public class Repository {
     }
 
     private Commit sha1ToCommit(String sha1) {
-        try { return (Commit) repoObjects.get(sha1); }
-        catch (Exception e) { return null; }
+        try {
+            return (Commit) repoObjects.get(sha1);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private Map<String, String> makeMap(Commit currentCommit) throws InvalidDataException {
@@ -1382,13 +1319,25 @@ public class Repository {
         String sha1InSecondCommit = file.getSha1InSecondCommit();
         String sha1InAncestorCommit = file.getSha1InAncestor();
 
-        if(sha1InFirstCommit.equals("")) { inFirst = false; }
-        if(sha1InSecondCommit.equals("")) { inSecond = false; }
-        if(sha1InAncestorCommit.equals("")) { inAncestor = false; }
+        if (sha1InFirstCommit.equals("")) {
+            inFirst = false;
+        }
+        if (sha1InSecondCommit.equals("")) {
+            inSecond = false;
+        }
+        if (sha1InAncestorCommit.equals("")) {
+            inAncestor = false;
+        }
 
-        if(sha1InFirstCommit.equals(sha1InSecondCommit)) { firstSha1EqualsSeconds = true;}
-        if(sha1InSecondCommit.equals(sha1InAncestorCommit)) { secondSha1EqualsAncestors = true;}
-        if(sha1InFirstCommit.equals(sha1InAncestorCommit)) { firstSha1EqualsAncestors = true;}
+        if (sha1InFirstCommit.equals(sha1InSecondCommit)) {
+            firstSha1EqualsSeconds = true;
+        }
+        if (sha1InSecondCommit.equals(sha1InAncestorCommit)) {
+            secondSha1EqualsAncestors = true;
+        }
+        if (sha1InFirstCommit.equals(sha1InAncestorCommit)) {
+            firstSha1EqualsAncestors = true;
+        }
 
 
         boolean[] mergeCase = new boolean[6];
@@ -1406,15 +1355,14 @@ public class Repository {
     }
 
     private String findIfFFMerge(Branch branchToMerge, String ancestorSha1)
-            throws InvalidDataException, IOException, FileErrorException{
+            throws InvalidDataException, IOException, FileErrorException {
         String mergeMsg;
-        if(headBranch.getCommitSha1().equals(ancestorSha1)) {
+        if (headBranch.getCommitSha1().equals(ancestorSha1)) {
             resetCommitInBranch(branchToMerge.getCommitSha1(), false);
             mergeMsg = String.format("Changed branch %s commit to branch %s commit in a FF merge successfully!",
                     headBranch.getName(), branchToMerge.getName());
             return mergeMsg;
-        }
-        else if(branchToMerge.getCommitSha1().equals(ancestorSha1)) {
+        } else if (branchToMerge.getCommitSha1().equals(ancestorSha1)) {
             mergeMsg = String.format("Head branch %s contains branch %s. There is no data to merge!",
                     headBranch.getName(), branchToMerge.getName());
             return mergeMsg;
@@ -1422,11 +1370,11 @@ public class Repository {
         return null;
     }
 
-    private void isFileDirectoryInCurrentBranch(String filePath) throws IOException{
+    private void isFileDirectoryInCurrentBranch(String filePath) throws IOException {
         File f = new File(filePath);
-        if(!f.exists()) {
+        if (!f.exists()) {
             if (f.mkdirs()) {
-                if(f.delete()) {
+                if (f.delete()) {
                     f.createNewFile();
                 }
             }
@@ -1442,12 +1390,12 @@ public class Repository {
 
         cloneRepository(remoteRepo, headContent);
 
-        if(!headContent.isEmpty()) {
+        if (!headContent.isEmpty()) {
             content = headContent.get(0);
         }
 
         File head = new File(Paths.get(MagitUtils.joinPaths(BRANCHES_PATH, "Head")).toString());
-        if(!head.exists()) {
+        if (!head.exists()) {
             if (head.createNewFile()) {
                 Writer out1 = new BufferedWriter(
                         new OutputStreamWriter(
@@ -1460,7 +1408,7 @@ public class Repository {
         }
 
         String headSha1 = addRTBHeadBranchToRepo(Paths.get(MagitUtils.joinPaths
-                (remoteRepo.getRepoPath(), ".magit\\Branches")).toString(), content,BRANCHES_PATH);
+                (remoteRepo.getRepoPath(), ".magit\\Branches")).toString(), content, BRANCHES_PATH);
 
         if (headSha1 != null) {
             loadWCFromCommitSha1(headSha1, repoPath);
@@ -1478,7 +1426,7 @@ public class Repository {
             throws IOException, FileErrorException {
         File remoteFolder = new File(folderToClone);
         File[] remoteFolderFiles = remoteFolder.listFiles();
-        if(remoteFolderFiles != null) {
+        if (remoteFolderFiles != null) {
             for (File remoteFolderFile : remoteFolderFiles) {
                 if (remoteFolderFile.getAbsolutePath().contains(".magit")) {
                     if (remoteFolderFile.isDirectory()) {
@@ -1539,12 +1487,12 @@ public class Repository {
     }
 
     private String addRTBHeadBranchToRepo(String remoteWithBranchPath, String content, String localWithBranchPath)
-            throws IOException{
+            throws IOException {
         File f = new File(remoteWithBranchPath);
         File[] files = f.listFiles();
         if (files != null) {
             for (File curr : files) {
-                if(curr.getName().equals(content)) {
+                if (curr.getName().equals(content)) {
                     File headBranch = new File(Paths.get(localWithBranchPath, curr.getName()).toString());
                     String headSha1 = MagitUtils.readFileAsString(curr.getAbsolutePath());
                     if (headBranch.createNewFile()) {
@@ -1575,7 +1523,7 @@ public class Repository {
         String remoteBranchesPathInLocal = MagitUtils.joinPaths(repoPath, ".magit\\Branches",
                 trackedRepository.getRepoName());
         File localRTBFolder = new File(remoteBranchesPathInLocal);
-        if (!localRTBFolder.exists()){
+        if (!localRTBFolder.exists()) {
             localRTBFolder.mkdir();
         }
         File[] remoteFolderFiles = remote.listFiles();
@@ -1590,8 +1538,7 @@ public class Repository {
                         Branch newBranch = new Branch(curr.getName(), branchData, curr.getName());
                         repoBranches.add(newBranch);
                     }
-                }
-                else {
+                } else {
                     File remoteBranch = new File(Paths.get(remote.getAbsolutePath(), curr.getName()).toString());
                     String branchContent = MagitUtils.readFileAsString(remoteBranch.getAbsolutePath());
                     MagitUtils.writeToFile(newBranchFile.getAbsolutePath(), branchContent);
@@ -1603,8 +1550,9 @@ public class Repository {
     private void copyLocalRepoObjectsToRemote(Repository localRepo) throws IOException, FileErrorException {
         copyRemoteRepositoryObjectsToLocal(localRepo, this);
     }
+
     private void copyRemoteRepositoryObjectsToLocal(Repository remoteRepo, Repository localRepo)
-            throws IOException, FileErrorException{
+            throws IOException, FileErrorException {
         File remote = new File(MagitUtils.joinPaths(remoteRepo.getRepoPath(), ".magit\\Objects"));
         File local = new File(localRepo.getRepoPath(), ".magit\\Objects");
 
@@ -1631,7 +1579,7 @@ public class Repository {
                         String errorMsg = "Had an error while trying to change a file name!";
                         throw new FileErrorException(errorMsg);
                     }
-                    if(getRepoPathAsString() != null) {
+                    if (getRepoPathAsString() != null) {
                         if (local.getAbsolutePath().contains(getRepoPathAsString())) {
                             repoObjects.put(newObjectFile.getName(),
                                     GitObjectsBase.getGitObjectFromFile(curr.getAbsolutePath()));
@@ -1642,7 +1590,7 @@ public class Repository {
         }
     }
 
-    // =========================== Push =========================================
+    // =========================== Collaborations =========================================
 
     public void push() throws IOException, InvalidDataException, FileErrorException, DataAlreadyExistsException {
         if (isTrackingRepo && headBranch != null && headBranch.getTrackedBranch() != null) {
@@ -1663,11 +1611,12 @@ public class Repository {
 
                     // update remote and tracked branch with changes of local.
                     MagitUtils.writeToFile(localRemoteBranchPath, headBranch.getCommitSha1());
-                    MagitUtils.writeToFile(MagitUtils.joinPaths(trackedRepository.getRepoPath(),
-                            ".magit", "Branches", trackedBranch.getName()),
-                            headBranch.getCommitSha1());
                     trackedRepository.copyLocalRepoObjectsToRemote(this);
-                    // Replcaed with pull request:
+
+                    // being replace with Pull Request Process
+                    // MagitUtils.writeToFile(MagitUtils.joinPaths(trackedRepository.getRepoPath(),
+                    //        ".magit", "Branches", trackedBranch.getName()),
+                    //        headBranch.getCommitSha1());
                     // loadWCFromCommitSha1(headBranch.getCommitSha1(), trackedRepository.getRepoPath());
                 } else {
                     String errorMsg = "Cannot push when remote branch and tracked branch are not synced.!";
@@ -1679,7 +1628,7 @@ public class Repository {
             }
         }
         // if this is a new local branch:
-        else if(headBranch.getTrackedBranch() == null){
+        else if (headBranch != null && headBranch.getTrackedBranch() == null) {
             String localRemoteBranchPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
                     headBranch.getName());
             MagitUtils.writeToFile(localRemoteBranchPath, headBranch.getCommitSha1());
@@ -1690,14 +1639,11 @@ public class Repository {
             headBranch.setTrackedBranch(headBranch.getName());
 
             trackedRepository.addObjects(getObjectsFromCommit(headBranch.getCommitSha1()));
-        }
-        else{
+        } else {
             String errorMsg = "Cannot push from a non-tracking repository!";
             throw new InvalidDataException(errorMsg);
         }
     }
-
-    // =========================== Pull =========================================
 
     public void pull() throws IOException, InvalidDataException, FileErrorException {
         if (isTrackingRepo && headBranch != null && headBranch.getTrackedBranch() != null) {
@@ -1731,26 +1677,25 @@ public class Repository {
                         throw new InvalidDataException(errorMsg);
                     }
                 }
-            }
-            else {
+            } else {
                 String errorMsg = "Cannot pull data from remote repository! " +
                         "Changes were found.\nCommit first!";
                 throw new InvalidDataException(errorMsg);
             }
-        }
-        else {
+        } else {
             String errorMsg = "Cannot pull from a non-tracking branch!";
             throw new InvalidDataException(errorMsg);
         }
     }
 
-    private Map<String, GitObjectsBase> getObjectsFromCommit(String commitSha1){
+    private Map<String, GitObjectsBase> getObjectsFromCommit(String commitSha1) {
         Map<String, GitObjectsBase> map = new HashMap<>();
         getObjectsFromCommitWithMap(commitSha1, map);
         return map;
     }
+
     private void getObjectsFromCommitWithMap(String commitSha1, Map<String, GitObjectsBase> map) {
-        if (commitSha1 != null && !commitSha1.equals("")){
+        if (commitSha1 != null && !commitSha1.equals("")) {
             Commit relevantCommit = (Commit) repoObjects.get(commitSha1);
             if (!map.containsKey(commitSha1)) {
                 map.put(commitSha1, relevantCommit);
@@ -1761,8 +1706,9 @@ public class Repository {
 
         }
     }
+
     private void getObjectsFromRoot(String rootSha1, Map<String, GitObjectsBase> map) {
-        if (rootSha1 != null && !rootSha1.equals("")){
+        if (rootSha1 != null && !rootSha1.equals("")) {
             GitObjectsBase relevantobj = repoObjects.get(rootSha1);
             if (!map.containsKey(rootSha1)) {
                 if (relevantobj.isFolder()) {
@@ -1771,8 +1717,7 @@ public class Repository {
                     for (FileDetails fileData : gitFolder.getFilesList()) {
                         getObjectsFromRoot(fileData.getSha1(), map);
                     }
-                }
-                else{
+                } else {
                     Blob gitBlob = (Blob) relevantobj;
                     map.put(rootSha1, gitBlob);
                 }
@@ -1781,18 +1726,73 @@ public class Repository {
         }
     }
 
-    private void addObjects(Map<String, GitObjectsBase> newObjectsToAdd){
-        for(String newSha1: newObjectsToAdd.keySet()){
+    private void addObjects(Map<String, GitObjectsBase> newObjectsToAdd) {
+        for (String newSha1 : newObjectsToAdd.keySet()) {
             repoObjects.putIfAbsent(newSha1, newObjectsToAdd.get(newSha1));
         }
     }
 
+    // =========================== Pull Request =========================================
+    private PullRequestObject createNewPullRequest(String target, String base, String prMsg)
+            throws InvalidDataException {
+        PullRequestObject newPullRequest = new PullRequestObject();
+        Branch baseBranch = getBranchByName(base);
+        Branch targetBranch = getBranchByName(target);
 
+        // handle case of wrong branch's name
+        if (baseBranch == null || targetBranch == null) {
+            throw new InvalidDataException("Base or Target branch does not exist in the system!");
+        }
 
+        // create new PR
+        newPullRequest.setBaseToMergeInto(baseBranch);
+        newPullRequest.setTargetToMergeFrom(targetBranch);
+        newPullRequest.setOwner(repoOwner);
+        newPullRequest.setPrMsg(prMsg);
+        newPullRequest.setPullRequestRepository(this);
 
-
-
-
-
+        return newPullRequest;
     }
+
+    public void addNewPullRequestToRepository(String target, String base, String prMsg)
+            throws InvalidDataException {
+        PullRequestObject newPullRequest = createNewPullRequest(target, base, prMsg);
+        pr.add(newPullRequest);
+    }
+
+    public List<PullRequestObject> getAllPullRequestInRepo(){
+        return pr;
+    }
+
+    public void acceptPullRequest(PullRequestObject pullRequest)
+            throws IOException, InvalidDataException, FileErrorException {
+        fastForwardMerge(pullRequest.getBaseToMergeInto(), pullRequest.getTargetToMergeFrom());
+        pullRequest.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
+        pullRequest.setApprovedByRepoOwner(true);
+    }
+
+    public void rejectPullRequest(PullRequestObject pullRequest, String message) {
+        pullRequest.setApprovedByRepoOwner(false);
+        pullRequest.setRepoManagerMsg(message);
+        pullRequest.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
+    }
+
+    private void fastForwardMerge(Branch base, Branch target) throws IOException, InvalidDataException, FileErrorException {
+        String errorMsg;
+        if (isWorkingCopyIsChanged().isChanged()) {
+            errorMsg = "There are open changes in the repository!";
+            throw new DirectoryNotEmptyException(errorMsg);
+        }
+
+        base.setCommitSha1(target.getCommitSha1()); //TODO: check if changes the branch itself or just the copy
+        MagitUtils.writeToFile(MagitUtils.joinPaths(BRANCHES_PATH, base.getName()),
+                target.getCommitSha1());
+
+        if(base == headBranch) {
+            loadWCFromCommitSha1(target.getCommitSha1(), null);
+        }
+    }
+}
+
+
 
