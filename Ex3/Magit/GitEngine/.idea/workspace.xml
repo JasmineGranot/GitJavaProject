@@ -2,10 +2,140 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78608821-3148-4a03-b213-598c21c9680a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GitEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GitEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Magit/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/AncestorFinder.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/GitEngine.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/GitUI.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/Magit.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/Magit/GitUI/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/README.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/commons-codec-1.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Ex2/fxgraph-0.0.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/artifacts/web_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/CommitNode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/CommitNode2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/CommitNode3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/Style 2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/Style 3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Css/Style1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/MagitMain/MagitMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/CommitNode.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/ConflictResolver.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/ChangeRepo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Clone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Commit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Fetch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/LoadRepo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Merge.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/NewBranch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/NewRepo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Pull.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Push.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/ResetBranch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/ShowStatus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/Trash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/icons8-show-property-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/Images/v.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/MainScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/MainScreenTest.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/MainScreenTest2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/ShowCommitData.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/ShowMergeCase.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Resources/ShowStatusScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/Servlets/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/UIUtils/CommonUsed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/UIUtils/ServletUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/src/UI/UIUtils/SessionUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/Pages/computer.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/Pages/login_window.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/Pages/login_window.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/Pages/magit test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/Pages/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.annotation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.ejb.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.jms.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.persistence.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.resource.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.servlet.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.servlet.jsp.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.servlet.jsp.jstl.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/javax.transaction.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Ex2/Magit/out/production/GitEngine/Engine/Magit.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Ex2/Magit/out/production/GitEngine/Engine/Magit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Ex2/Magit/out/production/GitEngine/Utils/MagitUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Ex2/Magit/out/production/GitEngine/Utils/MagitUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/GitUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../GitUI/GitUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/CommitNode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/CommitNode2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/CommitNode3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/Style 2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/Style 3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Css/Style1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/MagitMain/MagitMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/CommitNode.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/ConflictResolver.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/ChangeRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Clone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Commit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Edit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Fetch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/LoadRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Merge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/NewBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/NewRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Pull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Push.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/ResetBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/ShowStatus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/Trash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/icons8-show-property-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/Images/v.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/MainScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/MainScreenTest.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/MainScreenTest2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/ShowCommitData.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/ShowMergeCase.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Resources/ShowStatusScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/UIUtils/CommonUsed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Windows/login_window.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitUI/src/Windows/login_window.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/CommitNode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/CommitNode2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/CommitNode3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/Style 2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/Style 3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Css/Style1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/CommitNode.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/ConflictResolver.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/ChangeRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Clone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Commit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Edit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Fetch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/LoadRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Merge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/NewBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/NewRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Pull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Push.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/ResetBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/ShowStatus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/Trash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/icons8-show-property-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/Images/v.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/MainScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/MainScreenTest.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/MainScreenTest2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/ShowCommitData.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/ShowMergeCase.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/GitUI/Resources/ShowStatusScreen.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,31 +152,12 @@
     <option name="width" value="1440" />
     <option name="height" value="780" />
   </component>
+  <component name="ProjectId" id="1SQ77hcmX7S4eLszE7emIbrScEb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitUI" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -73,47 +184,27 @@
       <option name="presentableId" value="Default" />
       <updated>1566391445351</updated>
       <workItem from="1566391446475" duration="10000" />
+      <workItem from="1571483800820" duration="8000" />
+      <workItem from="1571483871814" duration="34000" />
+      <workItem from="1571484120532" duration="17000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>
