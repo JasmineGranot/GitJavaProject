@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 
 public class XMLUtils {
 
-    MagitRepository magitRepo;
-
     public static MagitSingleCommit getMagitSingleCommitByID(MagitRepository repoFromXML, String commitId) {
         List<MagitSingleCommit> commits = repoFromXML.getMagitCommits().getMagitSingleCommit().stream().
                 filter(x-> x.getId().equals(commitId)).collect(Collectors.toList());
@@ -57,12 +55,5 @@ public class XMLUtils {
         }
         return false;
     }
-
-//    private void unMarshalXMLData(BufferedReader data) throws JAXBException
-//    {
-//        JAXBContext context = JAXBContext.newInstance(MagitRepository.class);
-//        Unmarshaller unmarshaller = context.createUnmarshaller();
-//        M = (MagitRepository) unmarshaller.unmarshal(data);
-//    }
 }
 

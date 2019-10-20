@@ -20,7 +20,6 @@ public class XMLValidator {
         XMLValidationResult validationResult = new XMLValidationResult();
         validationResult.setIsValid(true);
         try{
-            checkFileExitsAndXml(xmlPath);
             checkDoubledId(currentRepo.getMagitBranches(),currentRepo.getMagitCommits(),
                     currentRepo.getMagitFolders(),currentRepo.getMagitBlobs());
             checkPointedId(currentRepo.getMagitFolders());
@@ -41,9 +40,8 @@ public class XMLValidator {
     // =====================
     private void checkFileExitsAndXml(String path) throws InvalidDataException{
         String errorMsg;
-        File file = new File(path);
-        if (!file.exists() || !path.endsWith(".xml")) {
-            errorMsg = String.format("Xml File %s does not exist.", path);
+        if (!path.endsWith(".xml")) {
+            errorMsg = String.format("Xml File %s is not valid.", path);
             throw new InvalidDataException(errorMsg);
         }
     }

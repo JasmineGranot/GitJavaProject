@@ -162,7 +162,7 @@ public class Repository {
         pr = new LinkedList<>();
     }
 
-    public Repository(User owner, String repoName) {
+    public Repository(User owner, String repoName) throws FileErrorException, JAXBException {
         repoOwner = owner;
         this.repoName = repoName;
         this.repoPath = MagitUtils.joinPaths(MAGIT_REPO_LOCATION, owner.getUserName(), repoName);
@@ -251,59 +251,22 @@ public class Repository {
 
 //  ====================== loading Repo from XML ==============================
 
-    public void loadRepoFromXML(User owner, String repoXMLPath, boolean toDeleteExistingRepo)
-            throws DataAlreadyExistsException, ErrorCreatingNewFileException,
-            IOException, InvalidDataException, FileErrorException, JAXBException {
+    public void loadRepoFromXML(MagitRepository repoToLoad, String repoPath, boolean toDeleteExistingRepo)
+            throws DataAlreadyExistsException, FileErrorException {
         String errorMsg;
         String currentRepo = getRepoPathAsString();
 
         try {
-            File file = new File(repoXMLPath);
-            JAXBContext jaxbContext = JAXBContext.newInstance("Parser");
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            MagitRepository newMagitRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(file);
-            String localRepoName = newMagitRepo.getName();
-            String repoPath = MagitUtils.joinPaths(MAGIT_REPO_LOCATION, owner.getUserName(), localRepoName);
-
-
-            if (MagitUtils.isRepositoryExist(repoPath) && !toDeleteExistingRepo){
-                errorMsg = "The repository already exists in the system!";
-                throw new DataAlreadyExistsException(errorMsg);
-            }
-
-            if (MagitUtils.isRepositoryExist(repoPath) && toDeleteExistingRepo){
-                deleteWC(repoPath, toDeleteExistingRepo);
-                File rootFile = new File(repoPath);
-                rootFile.delete();
-            }
-
-            XMLValidator validation = new XMLValidator(newMagitRepo, repoXMLPath);
-            XMLValidationResult validationResult = validation.StartChecking();
-
-            if(validationResult.isValid()) {
-                repoBranches.clear();
-                repoObjects.clear();
-                createNewRepository(repoPath, false);
-                setRepoPath(repoPath);
-                updateMainPaths();
-                loadBranchesDataFromMagitRepository(newMagitRepo);
-                setRepoName(localRepoName);
-                MagitRepository.MagitRemoteReference remoteRepo = newMagitRepo.getMagitRemoteReference();
-                if(remoteRepo != null){
-                    fetch();
-                }
-                repoOwner = owner;
-
-            }
-            else {
-                throw new InvalidDataException(validationResult.getMessage());
+            createNewRepository(repoPath, false);
+            setRepoPath(repoPath);
+            updateMainPaths();
+            loadBranchesDataFromMagitRepository(repoToLoad);
+            MagitRepository.MagitRemoteReference remoteRepo = repoToLoad.getMagitRemoteReference();
+            if (remoteRepo != null) {
+                fetch();
             }
         }
-        catch (JAXBException e) {
-            errorMsg = "Error while trying to load a repository from xml file!\n" +
-                    "Error msg: " + e.getMessage();
-            throw new JAXBException(errorMsg);
-        }
+
         catch (DataAlreadyExistsException e){
             throw e;
         }
@@ -313,7 +276,6 @@ public class Repository {
                         "Error message: " + e.getMessage();
                 throw new FileErrorException(errorMsg);
             }
-            //changeRepo(currentRepo, repoName);
         }
     }
 

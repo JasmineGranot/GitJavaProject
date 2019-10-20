@@ -93,8 +93,11 @@
 
     <nav>
         <center>
-          <input id="FileInput" type="file" accept="text/xml" onchange="LoadGameClicked(event)">Load repository<br>
-          <button type="button" id="forkButton" onclick="forkRepository()">Fork</button>
+         <span class="actionUp">
+           <input id="FileInput" type="file" accept="text/xml" onchange="LoadFile(event)">Load repository</input>
+             <button type="button" id="forkButton" onclick="forkRepository()">Fork</button>
+         </span>
+          <button type="button">Fork</button>
         </center>
     </nav>
 
