@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_magit" default="compile.module.magit">
+  <dirname property="module.magit.basedir" file="${ant.file.module_magit}"/>
+  
+  <property name="module.jdk.home.magit" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.magit" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.magit" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.magit" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="magit.output.dir" value="${module.magit.basedir}/out/production/Magit"/>
+  <property name="magit.testoutput.dir" value="${module.magit.basedir}/out/test/Magit"/>
+  
+  <path id="magit.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="magit.module.production.classpath">
+    <path refid="${module.jdk.classpath.magit}"/>
+  </path>
+  
+  <path id="magit.runtime.production.module.classpath">
+    <pathelement location="${magit.output.dir}"/>
+  </path>
+  
+  <path id="magit.module.classpath">
+    <path refid="${module.jdk.classpath.magit}"/>
+    <pathelement location="${magit.output.dir}"/>
+  </path>
+  
+  <path id="magit.runtime.module.classpath">
+    <pathelement location="${magit.testoutput.dir}"/>
+    <pathelement location="${magit.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.magit">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.magit">
+    <patternset refid="excluded.from.module.magit"/>
+  </patternset>
+  
+  
+  <target name="compile.module.magit" depends="compile.module.magit.production,compile.module.magit.tests" description="Compile module Magit"/>
+  
+  <target name="compile.module.magit.production" depends="register.custom.compilers" description="Compile module Magit; production classes"/>
+  
+  <target name="compile.module.magit.tests" depends="register.custom.compilers,compile.module.magit.production" description="compile module Magit; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.magit" description="cleanup module">
+    <delete dir="${magit.output.dir}"/>
+    <delete dir="${magit.testoutput.dir}"/>
+  </target>
+</project>
