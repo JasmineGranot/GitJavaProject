@@ -1,4 +1,5 @@
-package UIUtils;
+
+package myGit.UIUtils;
 
 import GitObjects.UserManager;
 

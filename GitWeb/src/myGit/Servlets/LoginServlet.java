@@ -1,7 +1,7 @@
 package myGit.Servlets;
 
 import GitObjects.UserManager;
-import UIUtils.ServletUtils;
+import myGit.UIUtils.ServletUtils;
 import UIUtils.SessionUtils;
 
 import java.io.IOException;

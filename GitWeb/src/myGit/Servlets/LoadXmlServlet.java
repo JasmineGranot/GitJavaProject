@@ -5,7 +5,7 @@ import Exceptions.FileErrorException;
 import GitObjects.User;
 import GitObjects.UserManager;
 import Parser.MagitRepository;
-import UIUtils.ServletUtils;
+import myGit.UIUtils.ServletUtils;
 import UIUtils.SessionUtils;
 import Engine.Magit;
 import javax.servlet.ServletException;
@@ -27,13 +27,13 @@ public class LoadXmlServlet extends HttpServlet {
             throws ServletException, IOException, JAXBException, DataAlreadyExistsException, FileErrorException {
 
         response.setContentType("text/html;charset=UTF-8");
+        Magit myMagit = new Magit();
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         User currentUser = userManager.getUserByName(usernameFromSession);
         String content = request.getParameter("file");
-
-        if(currentUser.validateXML(content)){
-            currentUser.loadXMLForUser(content);
+        if(myMagit.validateXML(currentUser, content)){
+            myMagit.loadXMLForUser(currentUser, content);
         }
         else{
             String msg = "ValidateXML failed."; //TODO

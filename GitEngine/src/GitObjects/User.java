@@ -30,13 +30,13 @@ public class User {
         createFileInServer(filesPath);
     }
 
-    private void createFileInServer(String pathToCreate){
+    public void createFileInServer(String pathToCreate){
         File serverUserFile = new File(getPath());
         if (!serverUserFile.exists()){
             serverUserFile.mkdir();
         }
     }
-    private String getPath() {
+    public String getPath() {
         return filesPath;
     }
 
@@ -68,45 +68,11 @@ public class User {
         this.userName = userName;
     }
 
-    public MagitStringResultObject loadXMLForUser(String data) throws JAXBException, DataAlreadyExistsException, FileErrorException {
-        XMLHandler xml = new XMLHandler(data, getPath());
-        if (xml.isRepoValid()) {
-            String newRepoPath = MagitUtils.joinPaths(getPath(), xml.getMagitRepository().getName());
-            createFileInServer(newRepoPath);
-            return loadRepositoryFromXML(xml,newRepoPath, false);
+    public boolean addRepositoy(Repository repo) {
+        if(!getActiveRepositories().contains(repo)){
+            activeRepositories.add(repo);
+            return true;
         }
-        return null; //TODO
-    }
-    public boolean validateXML(String data) throws JAXBException {
-        XMLHandler xml = new XMLHandler(data, getPath());
-        return xml.isRepoValid();
-    }
-
-    private MagitStringResultObject loadRepositoryFromXML(XMLHandler handler,String newRepoPath,
-                                                          boolean toDeleteExistingRepo)
-            throws DataAlreadyExistsException, JAXBException, FileErrorException {
-        String msg;
-        MagitStringResultObject result = new MagitStringResultObject();
-        Repository repo = new Repository(this, handler.getMagitRepository().getName());
-        try{
-            repo.loadRepoFromXML(handler.getMagitRepository(), newRepoPath, toDeleteExistingRepo);
-            if(!activeRepositories.contains(repo)){
-                activeRepositories.add(repo);
-            }
-            else{
-                msg = "Repository already Exist Error!";
-                throw new InvalidDataException(msg);
-            }
-            msg = "Repository loaded successfully!";
-            result.setData(msg);
-            result.setIsHasError(false);
-        }
-        catch (DataAlreadyExistsException e){
-            throw e;
-        } catch (Exception e){
-            result.setErrorMSG(e.getMessage());
-            result.setIsHasError(true);
-        }
-        return result;
+        return false;
     }
 }

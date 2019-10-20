@@ -9,8 +9,10 @@ function LoadFile(event) {
         $.ajax({
             url: "../loadXml",
             data:
-                {file: content},
-            type: 'POST',
+                {
+                    file: content
+                },
+            type: 'POST'
 
         });
     };
