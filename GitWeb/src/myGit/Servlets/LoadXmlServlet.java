@@ -1,5 +1,7 @@
 package myGit.Servlets;
 
+import Exceptions.DataAlreadyExistsException;
+import Exceptions.FileErrorException;
 import GitObjects.User;
 import GitObjects.UserManager;
 import Parser.MagitRepository;
@@ -22,49 +24,20 @@ import java.util.Scanner;
 public class LoadXmlServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JAXBException {
+            throws ServletException, IOException, JAXBException, DataAlreadyExistsException, FileErrorException {
+
+        response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         User currentUser = userManager.getUserByName(usernameFromSession);
+        String content = request.getParameter("file");
 
-        StringBuilder fileContent = new StringBuilder();
-        fileContent.append(request.getReader().read());
-
-        System.out.println(fileContent.toString());
-        //currentUser.validateXML(fileContent);
-        System.out.println();
-        //myMagit.loadRepositoryFromXML(currentUser, request.)
-
-
-//        response.setContentType("text/html;charset=UTF-8");
-//        if (usernameFromSession == null) {
-//           String usernameFromParameter = request.getParameter("username");
-//            if (usernameFromParameter == null || usernameFromParameter.isEmpty()) {
-//                response.sendRedirect(SIGN_UP_URL); // replace with error
-//            } else {
-//                usernameFromParameter = usernameFromParameter.trim();
-//                synchronized (this) {
-//                    if (userManager.isUserExists(usernameFromParameter)) {
-//                        if(userManager.isUserOnline(usernameFromParameter)) {// isUserOnline
-//                            String errorMessage = "Username " + usernameFromParameter + " already exists. Please enter a different username.";
-//                            request.setAttribute("loggedInAlready", errorMessage);
-//                            //TODO: //getServletContext().getRequestDispatcher(LOGIN_ERROR_URL).forward(request, response);
-//                        }
-//                        else {
-//                            response.sendRedirect(PAGE_2);
-//                        }
-//                    } else {
-//                        userManager.addUser(usernameFromParameter);
-//                        request.getSession(true).setAttribute("username", usernameFromParameter);
-//                        System.out.println("On login, request URI is: " + request.getRequestURI());
-//                        response.sendRedirect(PAGE_2);
-//                    }
-//                }
-//            }
-//        } else {
-//            response.sendRedirect(PAGE_2);
-//        }
-//    }
+        if(currentUser.validateXML(content)){
+            currentUser.loadXMLForUser(content);
+        }
+        else{
+            String msg = "ValidateXML failed."; //TODO
+        }
     }
 
     @Override
@@ -72,7 +45,7 @@ public class LoadXmlServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (JAXBException e) {
+        } catch (JAXBException | DataAlreadyExistsException | FileErrorException e) {
             e.printStackTrace();
         }
     }
@@ -83,19 +56,14 @@ public class LoadXmlServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (JAXBException e) {
+        } catch (JAXBException | DataAlreadyExistsException | FileErrorException e) {
             e.printStackTrace();
         }
     }
 
-
-    private String readFromInputStream(InputStream inputStream) {
-        return new Scanner(inputStream).useDelimiter("\\Z").next();
-    }
-
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Servlet handling parsing and validating of xml file.";
     }
 }
 

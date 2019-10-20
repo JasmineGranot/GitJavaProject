@@ -1,18 +1,17 @@
-function LoadGameClicked(event) {
-    console.log("found this point");
-    LoadGame(event);
-}
-
-function LoadGame(event) {
+function LoadFile(event) {
     var file = event.target.files[0];
     var reader = new FileReader();
 
-    reader.onload = function (blob){
-        var content = reader.readAsArrayBuffer(blob);
+    reader.onload = function (){
+        var content = reader.result;
+        console.log(content);
+
         $.ajax({
             url: "../loadXml",
             data:
-                {file: content}
+                {file: content},
+            type: 'POST',
+
         });
     };
 

@@ -14,13 +14,14 @@ import javax.xml.bind.Unmarshaller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.*;
 
 public class XMLHandler {
     private MagitRepository parsedRepo;
     private String magitRepositoryPath;
 
-    public XMLHandler(BufferedReader data, String userPath) throws JAXBException {
+    public XMLHandler(String data, String userPath) throws JAXBException {
         unMarshalXMLData(data);
         setMagitRepositoryPath(MagitUtils.joinPaths(userPath, parsedRepo.getName()));
     }
@@ -36,10 +37,11 @@ public class XMLHandler {
         return parsedRepo;
     }
 
-    private void unMarshalXMLData(BufferedReader data) throws JAXBException {
+    private void unMarshalXMLData(String data) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance("Parser");
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        parsedRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(data);
+        parsedRepo = (MagitRepository) jaxbUnmarshaller.unmarshal(new StringReader(data));
+
     }
 
     public boolean isRepoValid(){
