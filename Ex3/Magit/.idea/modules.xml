@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/GitEngine/GitEngine.iml" filepath="$PROJECT_DIR$/GitEngine/GitEngine.iml" />
       <module fileurl="file://$PROJECT_DIR$/GitUI/GitUI.iml" filepath="$PROJECT_DIR$/GitUI/GitUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Magit.iml" filepath="$PROJECT_DIR$/Magit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GitUI/web.iml" filepath="$PROJECT_DIR$/GitUI/web.iml" />
     </modules>
   </component>
 </project>

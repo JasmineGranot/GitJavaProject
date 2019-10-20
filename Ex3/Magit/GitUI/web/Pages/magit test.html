@@ -3,10 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--  <link rel="stylesheet" type="text/css" href="CssFiles/game.css">-->
-  <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
-
   <style>
     body {
       font-family: Ariel;
@@ -22,7 +18,7 @@
       padding: 20px;
       text-align: center;
       font-size: 40px;
-      font-family: Ariel;
+      font: Ariel;
       color: black;
     }
 
@@ -31,7 +27,7 @@
       padding: 10px;
       position: fixed;
       z-index: 1;
-      top: 1px;
+      top: 1;
       overflow-x: hidden;
       padding-top: 20px;
     }
@@ -54,7 +50,7 @@
       margin-top: 50px;
       margin-left: 450px;
       margin-right: 450px;
-      transform: translate(-50%, -50%);
+      transform: translatr(-50%, -50%);
       text-align: center;
       color: black;
     }
@@ -90,14 +86,13 @@
     <header><h1>M.A.Git hub</h1></header>
 
     <nav>
-      <form method="GET" action="loadXml">
-        <p>
+      <p>
         <center>
-          <button id="loadRepo" class="action" onclick="loadRepositoryFromXml()">Load repository</button>
+          <button type="button">Create new repository</button>
+          <button type="button">Create new pull request</button>
+          <button type="button">Fork</button>
         </center>
-        </p>
-      </form>
-      <button type="button">Fork</button>
+      </p>
     </nav>
 
     <div class="row">

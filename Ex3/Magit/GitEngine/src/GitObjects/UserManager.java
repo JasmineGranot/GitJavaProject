@@ -10,7 +10,7 @@ public class UserManager {
         allUsers = new LinkedList<>();
     }
 
-    void addUser(String userName) {
+    public void addUser(String userName) {
         User newUser = new User(userName);
         allUsers.add(newUser);
     }
