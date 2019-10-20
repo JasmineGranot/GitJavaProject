@@ -2,24 +2,37 @@ package myGit.Servlets;
 
 import GitObjects.User;
 import GitObjects.UserManager;
+import Parser.MagitRepository;
 import UIUtils.ServletUtils;
 import UIUtils.SessionUtils;
 import Engine.Magit;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Scanner;
 
-
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class LoadXmlServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Magit myMagit = new Magit();
+            throws ServletException, IOException, JAXBException {
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         User currentUser = userManager.getUserByName(usernameFromSession);
+
+        StringBuilder fileContent = new StringBuilder();
+        fileContent.append(request.getReader().read());
+
+        System.out.println(fileContent.toString());
+        //currentUser.validateXML(fileContent);
+        System.out.println();
         //myMagit.loadRepositoryFromXML(currentUser, request.)
 
 
@@ -57,16 +70,28 @@ public class LoadXmlServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
+
+    private String readFromInputStream(InputStream inputStream) {
+        return new Scanner(inputStream).useDelimiter("\\Z").next();
+    }
 
     @Override
     public String getServletInfo() {

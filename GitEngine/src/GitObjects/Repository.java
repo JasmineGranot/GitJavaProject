@@ -293,7 +293,6 @@ public class Repository {
                     fetch();
                 }
                 repoOwner = owner;
-
             }
             else {
                 throw new InvalidDataException(validationResult.getMessage());
