@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--  <link rel="stylesheet" type="text/css" href="CssFiles/game.css">-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
 
   <style>
@@ -90,14 +91,11 @@
     <header><h1>M.A.Git hub</h1></header>
 
     <nav>
-      <form method="GET" action="loadXml">
-        <p>
-        <center>
-          <button id="loadRepo" class="action" onclick="loadRepositoryFromXml()">Load repository</button>
+        <>
+          <input id="FileInput" type="file" accept="text/xml" onchange="LoadGameClicked(event)">Load repository</input>
+<!--          /*<button id="loadRepo"  type="button" class="action" onclick="loadRepositoryFromXml()"></button>/*-->
+          <button type="button">Fork</button>
         </center>
-        </p>
-      </form>
-      <button type="button">Fork</button>
     </nav>
 
     <div class="row">

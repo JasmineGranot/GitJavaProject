@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gitengine" default="compile.module.gitengine">
+  <dirname property="module.gitengine.basedir" file="${ant.file.module_gitengine}"/>
+  
+  <property name="module.jdk.home.gitengine" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gitengine" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gitengine" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gitengine" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="gitengine.output.dir" value="${module.gitengine.basedir}/../out/production/GitEngine"/>
+  <property name="gitengine.testoutput.dir" value="${module.gitengine.basedir}/../out/test/GitEngine"/>
+  
+  <path id="gitengine.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gitengine.module.production.classpath">
+    <path refid="${module.jdk.classpath.gitengine}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+  </path>
+  
+  <path id="gitengine.runtime.production.module.classpath">
+    <pathelement location="${gitengine.output.dir}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+  </path>
+  
+  <path id="gitengine.module.classpath">
+    <path refid="${module.jdk.classpath.gitengine}"/>
+    <pathelement location="${gitengine.output.dir}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+  </path>
+  
+  <path id="gitengine.runtime.module.classpath">
+    <pathelement location="${gitengine.testoutput.dir}"/>
+    <pathelement location="${gitengine.output.dir}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gitengine">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gitengine">
+    <patternset refid="excluded.from.module.gitengine"/>
+  </patternset>
+  
+  <path id="gitengine.module.sourcepath">
+    <dirset dir="${module.gitengine.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gitengine" depends="compile.module.gitengine.production,compile.module.gitengine.tests" description="Compile module GitEngine"/>
+  
+  <target name="compile.module.gitengine.production" depends="register.custom.compilers" description="Compile module GitEngine; production classes">
+    <mkdir dir="${gitengine.output.dir}"/>
+    <javac2 destdir="${gitengine.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gitengine}/javac">
+      <compilerarg line="${compiler.args.gitengine}"/>
+      <bootclasspath refid="gitengine.module.bootclasspath"/>
+      <classpath refid="gitengine.module.production.classpath"/>
+      <src refid="gitengine.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gitengine"/>
+    </javac2>
+    
+    <copy todir="${gitengine.output.dir}">
+      <fileset dir="${module.gitengine.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gitengine.tests" depends="register.custom.compilers,compile.module.gitengine.production" description="compile module GitEngine; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.gitengine" description="cleanup module">
+    <delete dir="${gitengine.output.dir}"/>
+    <delete dir="${gitengine.testoutput.dir}"/>
+  </target>
+</project>

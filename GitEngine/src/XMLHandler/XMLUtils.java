@@ -1,9 +1,16 @@
 package XMLHandler;
 import Parser.*;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.BufferedReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class XMLUtils {
+
+    MagitRepository magitRepo;
 
     public static MagitSingleCommit getMagitSingleCommitByID(MagitRepository repoFromXML, String commitId) {
         List<MagitSingleCommit> commits = repoFromXML.getMagitCommits().getMagitSingleCommit().stream().
@@ -50,5 +57,12 @@ public class XMLUtils {
         }
         return false;
     }
+
+//    private void unMarshalXMLData(BufferedReader data) throws JAXBException
+//    {
+//        JAXBContext context = JAXBContext.newInstance(MagitRepository.class);
+//        Unmarshaller unmarshaller = context.createUnmarshaller();
+//        M = (MagitRepository) unmarshaller.unmarshal(data);
+//    }
 }
 

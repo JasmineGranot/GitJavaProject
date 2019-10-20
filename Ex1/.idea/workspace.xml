@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5324293b-1326-4bbb-85a4-3d005f451a7b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Ex3/Magit/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/GitUI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/web.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MagitProject3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/GitUI/GitUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex2/Magit/GitUI/GitUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/.idea/artifacts/GitUI_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/.idea/artifacts/GitUI_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitEngine/GitEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/GitEngine/GitEngine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitEngine/src/GitObjects/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/GitEngine/src/GitObjects/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/GitUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/GitUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/CommitNode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/CommitNode2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/CommitNode3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/Style 2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/Style 3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Css/Style1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/MagitMain/MagitMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/CommitNode.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/ConflictResolver.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/ChangeRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Clone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Commit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Edit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Fetch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/LoadRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Merge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/NewBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/NewRepo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Pull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Push.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/ResetBranch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/ShowStatus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/Trash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/icons8-show-property-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/Images/v.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/MainScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/MainScreenTest.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/MainScreenTest2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/ShowCommitData.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/ShowMergeCase.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Resources/ShowStatusScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/UIUtils/CommonUsed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Windows/login_window.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/GitUI/src/Windows/login_window.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/GitUI/web/login_window.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/artifacts/GitEngine_jar/GitEngine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/out/artifacts/GitEngine_jar/GitEngine.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/artifacts/GitUI_jar/GitUI.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitEngine/Engine/Magit.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitEngine/Engine/Magit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitEngine/Utils/MagitUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitEngine/Utils/MagitUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitUI/META-INF/GitUI.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitUI/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitUI/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ex3/Magit/out/production/GitUI/UIUtils/CommonUsed.class" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="240" />
+    <option name="y" value="130" />
+    <option name="width" value="1440" />
+    <option name="height" value="780" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Ex1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ex1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ex1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ex1" type="462c0819:PsiDirectoryNode" />
+              <item name="Git project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ex1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ex1" type="462c0819:PsiDirectoryNode" />
+              <item name="git-ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../magitEx3/GitWeb" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5324293b-1326-4bbb-85a4-3d005f451a7b" name="Default Changelist" comment="" />
+      <created>1571482687445</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571482687445</updated>
+      <workItem from="1571482688657" duration="22000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="22000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
