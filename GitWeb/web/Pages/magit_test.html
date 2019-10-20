@@ -7,6 +7,7 @@
 <!--  <link rel="stylesheet" type="text/css" href="CssFiles/game.css">-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
 
   <style>
     body {
@@ -91,10 +92,9 @@
     <header><h1>M.A.Git hub</h1></header>
 
     <nav>
-        <>
-          <input id="FileInput" type="file" accept="text/xml" onchange="LoadGameClicked(event)">Load repository</input>
-<!--          /*<button id="loadRepo"  type="button" class="action" onclick="loadRepositoryFromXml()"></button>/*-->
-          <button type="button">Fork</button>
+        <center>
+          <input id="FileInput" type="file" accept="text/xml" onchange="LoadGameClicked(event)">Load repository<br>
+          <button type="button" id="forkButton" onclick="forkRepository()">Fork</button>
         </center>
     </nav>
 
