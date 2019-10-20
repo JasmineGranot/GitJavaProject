@@ -1,0 +1,78 @@
+.root {
+    -fx-background-color: #DFE3EE;
+    -fx-border-color:  #221F1F;
+    -fx-border-width: 5;
+}
+
+#menuButtons {
+    -fx-padding: 25px 65px;
+    -fx-font-size: 10px;
+    -fx-text-alignment: center;
+    -fx-text-fill: #1b476d;
+    -fx-background-color: #f0f0f0;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, #6b5b95, 10, 0.3, 5, 3);
+}
+
+.button:pressed {
+    -fx-background-color:  #6b5b95;
+    -fx-effect: dropshadow(three-pass-box, #92a8d1, 10, 0.3, 5, 3);
+    -fx-translate-y: 2px;
+}
+
+#magitHeader{
+    -fx-text-fill: #4c86c3;
+    -fx-font-size: 68px;
+    -fx-font-family: Stencil;
+    -fx-font-weight: bold;
+    -fx-effect: innershadow(three-pass-box, black, 5.13, 0.55, 0.0, 0.0);
+    -fx-text-alignment: center;
+}
+
+#magitBranchButtons {
+    -fx-text-fill: #4499ea;
+    -fx-font-size: 10px;
+}
+
+#userName {
+    -fx-font-size: 10px;
+    -fx-font-family: "System";
+    -fx-text-fill: #386895;
+}
+
+#magitLargeHeader {
+    -fx-text-fill: #052f59;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #052f59;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+#checkoutButton {
+    -fx-text-fill: #1b476d;
+    -fx-font-size: 11px;
+}
+
+#pinkButton {
+    -fx-font-size: 9px;
+}
+
+#blueButton {
+    -fx-font-size: 9px;
+}
+
+#greenButton {
+    -fx-font-size: 9px;
+}
+
+.split-pane {
+    -fx-background-color:  #3B5998;
+    -fx-border-radius: 10;
+}
+

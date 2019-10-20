@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: MagitMain.JavaFXUI
+Class-Path: AncestorFinder.jar fxgraph-0.0.3.jar fxgraph-0.0.3.jar commo
+ ns-codec-1.12.jar
+
