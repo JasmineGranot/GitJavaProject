@@ -1,0 +1,44 @@
+body {
+	background-image: url("wallpaper3.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	font-family: Aharoni;
+}
+
+.button {
+	box-shadow: 2px 5px 14px -7px #276873;
+	background:linear-gradient(to bottom, #f0f0f5 5%, #9494b8 100%);
+	background-color:#29293d;
+	border-radius:10px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Aharoni;
+	font-size:12px;
+	font-weight:bold;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.button:hover {
+	background:linear-gradient(to bottom, #9494b8 5%, #f0f0f5 100%);
+	background-color:#29293d;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+h3 {
+	font-family:aharoni;
+	font-size:500%;
+	color: #c2c2d6; 
+	text-shadow: 10px 5px 5px black;
+}
+
+h4 {
+	font-family:aharoni; 
+	font-size:100%;
+	color:#28283e; 
+	text-shadow: 1px 1px #b1b1ce;
+}

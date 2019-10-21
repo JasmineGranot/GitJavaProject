@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
+
+</head>
+
+<body>
+  
+	<div class="up">
+		<h1>M.A.Github</h1>
+	</div>
+
+	<div class="leftcolumn">
+		<p><img src="CssFiles/user.png" alt="User"></p>
+		<h4>Current User:
+			<p id="currentUser"></p>
+		</h4>
+	</div>
+
+
+	<div class="up2">
+		<nav>
+			<div class="middle">
+				<span>
+					<div class="button">
+						Load Repository
+						<input class="hide_file" id="FileInput" type="file" accept="text/xml" onchange="LoadFile(event)"></input>
+					</div><br><br>
+					<button type="button" id="forkButton" onclick="forkRepository()" class="button">Fork</button>
+				</span>
+			</div>
+		</nav>
+	</div>
+		
+    <div class="centercolumn">
+		<div class="center">
+			<table>
+				<tr>
+					<th>Repository Name</th>
+					<th>Repository's Active Branch</th>
+					<th>Number Of Branches In Repository</th>
+					<th>Last Commit Date</th>
+					<th id="forkButtonColumn">-</th>
+				</tr>
+			</table>
+		</div>
+    </div>
+
+    <div class="rightcolumn">
+        <h4>Registered Users:</h4>
+			<div id="List">
+				<ol style="list-style-type:none;">
+					<li>User 1</li>
+					<li>User 2</li>
+					<li>User 3</li>
+				</ol>
+			</div>
+    </div>
+	
+</body>
+</html>
