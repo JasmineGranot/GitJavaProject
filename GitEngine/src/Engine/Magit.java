@@ -1,12 +1,9 @@
 package Engine;
 
 import GitObjects.*;
-import Parser.MagitRepository;
 import Utils.*;
 import Exceptions.*;
-import XMLHandler.XMLHandler;
-import XMLHandler.XMLUtils;
-
+import XMLHandler.*;
 import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
 import java.io.IOException;

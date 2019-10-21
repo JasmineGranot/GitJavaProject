@@ -42,6 +42,14 @@ public class User {
         return activeRepositories;
     }
 
+    public List<RepositoryWebData> getActiveRepositoriesWebData() {
+        List<RepositoryWebData> repos= new LinkedList<>();
+        for (Repository repo : getActiveRepositories()){
+            repos.add(repo.getRepoWebData());
+        }
+        return repos;
+    }
+
     public List<NotificationObject> getUserNotifications() {
         return userNotifications;
     }

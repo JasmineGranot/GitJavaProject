@@ -2,6 +2,8 @@ package GitObjects;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UserManager {
     private List<User> allUsers;
@@ -22,6 +24,12 @@ public class UserManager {
             }
         }
         return null;
+    }
+
+    public List<User> getAllOnlineUsers(){
+        Stream<User> users = allUsers.stream();
+        return users.filter(User::getIsOnline).collect(Collectors.toList());
+
     }
 
     public boolean isUserOnline(String userName) {
@@ -47,5 +55,12 @@ public class UserManager {
 
     public Repository getUserRepository(User user, String repoName){
         return user.getUserRepository(repoName);
+    }
+
+    public void disconnectUser(String userName) {
+        User currUser = getUserByName(userName);
+        if(currUser != null) {
+            currUser.setOnline(false);
+        }
     }
 }

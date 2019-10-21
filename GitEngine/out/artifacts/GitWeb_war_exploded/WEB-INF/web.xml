@@ -12,6 +12,16 @@
     <servlet-name>LoadXmlServlet</servlet-name>
     <servlet-class>myGit.Servlets.LoadXmlServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForkRepository</servlet-name>
+        <servlet-class>myGit.Servlets.ForkRepositoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RefreshData</servlet-name>
+        <servlet-class>myGit.Servlets.RefreshDataServlet</servlet-class>
+    </servlet>
+
+
 <!--    <servlet>-->
 <!--        <servlet-name>UsersListServlet</servlet-name>-->
 <!--        <servlet-class>chat.servlets.UsersListServlet</servlet-class>-->
@@ -28,6 +38,14 @@
         <servlet-name>LoadXmlServlet</servlet-name>
         <url-pattern>/loadXml</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForkRepository</servlet-name>
+        <url-pattern>/fork</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RefreshData</servlet-name>
+        <url-pattern>/refreshData</url-pattern>
+</servlet-mapping>
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>UsersListServlet</servlet-name>-->
 <!--        <url-pattern>/userslist</url-pattern>-->

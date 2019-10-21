@@ -106,8 +106,17 @@ public class Repository {
         return null;
     }
 
+//  =========================== Web functions ==================================
+    public Commit getLastCommit(){
+        return currentCommit;
+    }
 
-//  =========================== Creating New Repo ==================================
+    public RepositoryWebData getRepoWebData(){
+        return new RepositoryWebData(this);
+    }
+
+
+    //  =========================== Creating New Repo ==================================
     public Repository() {
         repoOwner = null;
         this.repoName = null;
@@ -795,6 +804,7 @@ public class Repository {
     }
 
     // =========================== Commit =========================================
+
     public List<Commit.CommitData> currentCommits() {
         List<Commit.CommitData> commits = new LinkedList<>();
         for (String sha1 : repoObjects.keySet()) {

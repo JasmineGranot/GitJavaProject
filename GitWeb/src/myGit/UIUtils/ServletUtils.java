@@ -5,6 +5,7 @@ import Engine.Magit;
 import GitObjects.UserManager;
 
 import javax.servlet.ServletContext;
+import java.util.LinkedList;
 
 public class ServletUtils {
 
@@ -32,4 +33,5 @@ public class ServletUtils {
 		}
 		return (Magit) servletContext.getAttribute(MAGIT_ATTRIBUTE_NAME);
 	}
+
 }

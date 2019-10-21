@@ -38,13 +38,13 @@ public class XMLValidator {
     // =====================
     // validation number 3.1
     // =====================
-    private void checkFileExitsAndXml(String path) throws InvalidDataException{
-        String errorMsg;
-        if (!path.endsWith(".xml")) {
-            errorMsg = String.format("Xml File %s is not valid.", path);
-            throw new InvalidDataException(errorMsg);
-        }
-    }
+//    private void checkFileExitsAndXml(String path) throws InvalidDataException{
+//        String errorMsg;
+//        if (!path.endsWith(".xml")) {
+//            errorMsg = String.format("Xml File %s is not valid.", path);
+//            throw new InvalidDataException(errorMsg);
+//        }
+//    }
 
     // =====================
     // validation number 3.2

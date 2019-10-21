@@ -12,8 +12,8 @@ function LoadFile(event) {
                 {
                     file: content
                 },
-            type: 'POST'
-
+            type: 'POST',
+            success: function() {}
         });
     };
 

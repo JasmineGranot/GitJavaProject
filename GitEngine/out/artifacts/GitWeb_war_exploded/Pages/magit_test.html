@@ -3,6 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--  <link rel="stylesheet" type="text/css" href="CssFiles/game.css">-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="../javaScriptFiles/context-path-helper.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
+
   <style>
     body {
       font-family: Ariel;
@@ -86,14 +93,13 @@
     <header><h1>M.A.Git hub</h1></header>
 
     <nav>
-      <form method="GET" action="loadXml">
-        <p>
         <center>
-          <button type="submit">Load repository</button>
+         <span class="actionUp">
+           <input id="FileInput" type="file" accept="text/xml" onchange="LoadFile(event)">Load repository</input>
+             <button type="button" id="forkButton" onclick="forkRepository()">Fork</button>
+         </span>
+          <button type="button">Fork</button>
         </center>
-        </p>
-      </form>
-      <button type="button">Fork</button>
     </nav>
 
     <div class="row">
@@ -104,19 +110,22 @@
 
       <div class="column middle">
         <table style="width:100%">
-          <tr>
-            <th>Repository name</th>
-            <th>Repository's active branch</th>
-            <th>Number of branches in repository</th>
-            <th>Last commit date</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Repository name</th>
+              <th>Repository's active branch</th>
+              <th>Number of branches in repository</th>
+              <th>Last commit date</th>
+            </tr>
+          </thead>
+          <tbody  id="userRepoTable"></tbody>
         </table>
       </div>
 
       <div class="column right">
         <h4>Registered Users</h4>
           <form id="form1" runat="server">
-            <div id="List">
+            <div id="userList">
               <ul style="list-style-type:circle;">
                 <li>User 1</li>
                 <li>User 2</li>
