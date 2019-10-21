@@ -44,4 +44,8 @@ public class UserManager {
         }
         return null;
     }
+
+    public Repository getUserRepository(User user, String repoName){
+        return user.getUserRepository(repoName);
+    }
 }

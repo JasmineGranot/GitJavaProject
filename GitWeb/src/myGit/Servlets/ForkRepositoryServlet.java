@@ -1,8 +1,10 @@
 package myGit.Servlets;
 
 import Engine.Magit;
+import GitObjects.Repository;
 import GitObjects.User;
 import GitObjects.UserManager;
+import myGit.UIUtils.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,24 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ForkRepositoryServlet extends HttpServlet {
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Magit myMagit = new Magit();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         UserManager userManager = UIUtils.ServletUtils.getUserManager(getServletContext());
+        Magit magitManager = ServletUtils.getMagitObject(getServletContext());
+        String repositoryFromSession = UIUtils.SessionUtils.getCurrentRepository(request);
+
         User user = userManager.getUserByName(usernameFromSession);
-        myMagit.cloneRemoteToLocal(user, "c:\\repo1");
+        Repository repoToClone = user.getUserRepository(repositoryFromSession);
+        if (repoToClone == null){
+            return; //TODO add error
+        }
+        magitManager.cloneRemoteToLocal(user, repoToClone);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         processRequest(request, response);
     }
 }

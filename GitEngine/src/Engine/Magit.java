@@ -408,28 +408,20 @@ public class Magit {
         return null;
     }
 
-    public MagitStringResultObject cloneRemoteToLocal(User user, String repoName) {
+    public MagitStringResultObject cloneRemoteToLocal(User user, Repository repoToClone) {
         MagitStringResultObject res = new MagitStringResultObject();
-        Repository repo = getRepoForUser(user, repoName);
-        if(repo != null) {
-            Repository remote = repo.getTrackedRepository();
-            try {
-                if(remote != null) {
-                    repo.clone(remote);
-                    res.setData("Repository cloned successfully!");
-                    res.setIsHasError(false);
-                }
-                else {
-                    res.setIsHasError(true);
-                    res.setErrorMSG("Remote repository undefined!");
-                }
-            } catch (Exception e) {
+        Repository repo = new Repository(user, repoToClone.getRepoName());
+        try {
+            repo.clone(repoToClone);
+            res.setData("Repository cloned successfully!");
+            res.setIsHasError(false);
+        } catch (Exception e) {
                 String errorMessage = "Something went wrong while trying to clone the repository!\n" +
                         "Error message: " + e.getMessage();
                 res.setIsHasError(true);
                 res.setData(errorMessage);
             }
-        }
+
         return res;
     }
 
