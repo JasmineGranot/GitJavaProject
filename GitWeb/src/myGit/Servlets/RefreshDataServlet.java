@@ -10,7 +10,6 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
