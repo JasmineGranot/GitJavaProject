@@ -98,16 +98,17 @@ function refreshUserReposList(repos) {
 // ========================= On loading ================================
 
 
-//activate the timer calls after the page is loaded
-// $(function() {
-//
-//     //These lists is refreshed automatically every second
-//     setInterval(ajaxCurrentUserRepo, refreshRate);
-//     // setInterval(ajaxUsersList, refreshRate);
-//     // setInterval(ajaxUsersNotificationsList, refreshRate);
-//
-//
-//     // //The chat content is refreshed only once (using a timeout) but
-//     // //on each call it triggers another execution of itself later (1 second later)
-//     // triggerAjaxChatContent();
-// });
+// activate the timer calls after the page is loaded
+$(function() {
+
+    //These lists is refreshed automatically every second
+    setInterval(ajaxCurrentUserRepo, refreshRate);
+    // setInterval(ajaxUsersList, refreshRate);
+    // setInterval(ajaxUsersNotificationsList, refreshRate);
+
+
+    // //The chat content is refreshed only once (using a timeout) but
+    // //on each call it triggers another execution of itself later (1 second later)
+    // triggerAjaxChatContent();
+});
+
