@@ -26,11 +26,18 @@ public class RefreshDataServlet extends HttpServlet {
         String json = "";
         switch (action){
             case ("getUserRepoList"):
-                {json = getUserRepositoriesList(usernameFromSession);}
+                {json = getCurrentUserRepositoriesList(usernameFromSession);
+                break;}
+            case ("getOtherUserRepoList"):
+                String otherUser = request.getParameter("otherUserName") ;
+                {json = getOtherUserRepositoriesList(otherUser);
+                break;}
             case ("getUsersList"):
-                {json = getUsersList();}
+                {json = getUsersList(usernameFromSession);
+                break;}
             case ("getNotificationForUser"):
-                {json = getUserNotificationList(usernameFromSession);}
+                {json = getUserNotificationList(usernameFromSession);
+                break;}
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -39,7 +46,7 @@ public class RefreshDataServlet extends HttpServlet {
         }
     }
 
-    private String getUserRepositoriesList(String usernameFromSession){
+    private String getCurrentUserRepositoriesList(String usernameFromSession){
             UserManager userManager = ServletUtils.getUserManager(getServletContext());
             Gson gson = new Gson();
             User currUser = userManager.getUserByName(usernameFromSession);
@@ -47,10 +54,19 @@ public class RefreshDataServlet extends HttpServlet {
             return gson.toJson(repos);
     }
 
-    private String getUsersList(){
+    private String getOtherUserRepositoriesList(String username){
+        UserManager userManager = ServletUtils.getUserManager(getServletContext());
+        Gson gson = new Gson();
+        User currUser = userManager.getUserByName(username);
+        List<RepositoryWebData> repos = currUser.getActiveRepositoriesWebData();
+        return gson.toJson(repos);
+    }
+
+    private String getUsersList(String usernameFromSession){
         Gson gson = new Gson();
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
-        List<User> users = userManager.getAllOnlineUsers();
+        List<String> users = userManager.getAllOnlineUsers();
+        users.remove(usernameFromSession);
         return gson.toJson(users);
     }
 

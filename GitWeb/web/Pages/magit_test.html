@@ -8,6 +8,8 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script src="../javaScriptFiles/context-path-helper.js"></script>
   <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
+  <script type="text/javascript" src="../javaScriptFiles/page2_script.js"></script>
+
   <script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
 
   <style>
@@ -109,7 +111,7 @@
       </div>
 
       <div class="column middle">
-        <table style="width:100%">
+        <table id="userRepoTable" style="width:100%">
           <thead>
             <tr>
               <th>Repository name</th>
@@ -118,7 +120,7 @@
               <th>Last commit date</th>
             </tr>
           </thead>
-          <tbody  id="userRepoTable"></tbody>
+          <tbody id="tableBody"></tbody>
         </table>
       </div>
 

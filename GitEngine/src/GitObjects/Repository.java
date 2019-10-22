@@ -232,10 +232,9 @@ public class Repository {
             setRepoPath(repoPath);
             updateMainPaths();
             loadBranchesDataFromMagitRepository(repoToLoad);
-            MagitRepository.MagitRemoteReference remoteRepo = repoToLoad.getMagitRemoteReference();
-            if (remoteRepo != null) {
-                fetch();
-            }
+            // TODO add RemoteRepo
+            // MagitRepository.MagitRemoteReference remoteRepo = repoToLoad.getMagitRemoteReference();
+
         }
 
         catch (DataAlreadyExistsException e){
@@ -475,6 +474,7 @@ public class Repository {
 //        setRepoName(repoName);
 //
 //    }
+
 
     private static void deleteWC(String filePath, boolean deleteMagit) throws FileErrorException {
         File root = new File(filePath);
