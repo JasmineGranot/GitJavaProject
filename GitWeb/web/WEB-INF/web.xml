@@ -9,8 +9,12 @@
         <servlet-class>myGit.Servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>LoadXmlServlet</servlet-name>
-    <servlet-class>myGit.Servlets.LoadXmlServlet</servlet-class>
+        <servlet-name>LoadXmlServlet</servlet-name>
+        <servlet-class>myGit.Servlets.LoadXmlServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SystemHandler</servlet-name>
+        <servlet-class>myGit.Servlets.SystemServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForkRepository</servlet-name>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>RefreshData</servlet-name>
         <url-pattern>/refreshData</url-pattern>
+</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemHandler</servlet-name>
+        <url-pattern>/loadSystem</url-pattern>
     </servlet-mapping>
 
 <!--    <servlet-mapping>-->
