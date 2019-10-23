@@ -1,5 +1,5 @@
-var REFRESH_DATA = buildUrlWithContextPath("refreshData");
-var refreshRate = 5000; //milli seconds
+var REFRESH_DATA = "../refreshData";
+var refreshRate = 3000; //milli seconds
 
 // =================== Updating online users list ==========================
 function ajaxUsersList() {
@@ -86,28 +86,38 @@ function refreshUserReposList(repos) {
 
     // rebuild the table of repos: scan all users and add them to the list of users
     console.log("adding repos");
-    var newRow;
+    var tableBody;
     var htmlContent;
     $.each(repos || [], function(index, repo) {
         console.log("Adding repo #" + index + ": " + repo.name);
-        newRow = document.getElementById('userRepoTable').getElementsByTagName('tbody')[0].insertRow();
-        htmlContent = "";
+        tableBody = document.getElementById('userRepoTable').getElementsByTagName('tbody');
         //appeand it to the #UserRepoTable
-        htmlContent += ("<td>" + repo.name + "</td>");
-        htmlContent += ("<td>" + repo.activeBranch + "</td>");
-        htmlContent += ("<td>" + repo.numOfBranches + "</td>");
-        htmlContent += ("<td>" + repo.lastCommitDate + "</td>");
-        // x.innerHTML=repo.name;
-        // x = line.insertCell(1);
-        // x.innerHTML=repo.activeBranch;
-        // x = line.insertCell(2);
-        // x.innerHTML=repo.numOfBranches;
-        // x = line.insertCell(3);
-        // x.innerHTML=repo.lastCommitDate;
+
+        var tr = $(document.createElement('tr'));
+        var tdRepoName = $(document.createElement('td')).text(repo.name);
+        var tdHead = $(document.createElement('td')).text(repo.activeBranch);
+        var tdBranchNum = $(document.createElement('td')).text(repo.numOfBranches);
+        var tdLastCommitDate = $(document.createElement('td')).text(repo.lastCommitDate);
+        var btn = $(document.createElement('button'));
+        var tdFork = $(document.createElement('td'));
+        btn.text("Fork");
+        btn.appendTo(tdFork);
+        tdRepoName.appendTo(tr);
+        tdHead.appendTo(tr);
+        tdBranchNum.appendTo(tr);
+        tdLastCommitDate.appendTo(tr);
+        tdFork.appendTo(tr);
+
+        tr.appendTo(tableBody);
+
 
         console.log("finished repos");
 
-        newRow.innerHTML = htmlContent;
+        $(btn).click(function(){
+            alert("hello");
+        });
+        console.log("try click");
+
     });
 }
 
@@ -131,4 +141,5 @@ $(function() {
     // //on each call it triggers another execution of itself later (1 second later)
     // triggerAjaxChatContent();
 });
+
 
