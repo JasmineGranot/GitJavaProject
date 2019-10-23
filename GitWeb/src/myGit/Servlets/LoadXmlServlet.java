@@ -24,16 +24,16 @@ import java.util.Scanner;
 public class LoadXmlServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JAXBException, DataAlreadyExistsException, FileErrorException {
+            throws JAXBException, DataAlreadyExistsException, FileErrorException {
 
         response.setContentType("text/html;charset=UTF-8");
-        Magit myMagit = new Magit();
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
+        Magit magitManager = ServletUtils.getMagitObject(getServletContext());
         User currentUser = userManager.getUserByName(usernameFromSession);
         String content = request.getParameter("file");
-        if(myMagit.validateXML(currentUser, content)){
-            myMagit.loadXMLForUser(currentUser, content);
+        if(magitManager.validateXML(currentUser, content)){
+            magitManager.loadXMLForUser(currentUser, content);
         }
         else{
             String msg = "ValidateXML failed."; //TODO
