@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
-  <script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
+  	<link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  	<script type="text/javascript" src="../javaScriptFiles/xmlUpload.js"></script>
+  	<script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
+	<script type="text/javascript" src="../javaScriptFiles/context-path-helper.js"></script>
+	<script type="text/javascript" src="../javaScriptFiles/fork.js"></script>
 
 </head>
 
@@ -41,14 +43,16 @@
 		
     <div class="centercolumn">
 		<div class="center">
-			<table>
-				<tr>
-					<th>Repository Name</th>
-					<th>Repository's Active Branch</th>
-					<th>Number Of Branches In Repository</th>
-					<th>Last Commit Date</th>
-					<th id="forkButtonColumn">-</th>
-				</tr>
+			<table class="table" id="userRepoTable">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Repository name</th>
+						<th scope="col">Repository's active branch</th>
+						<th scope="col">Number of branches in repository</th>
+						<th scope="col">Last commit date</th>
+					</tr>
+				</thead>
+				<tbody id="tableBody"></tbody>
 			</table>
 		</div>
     </div>

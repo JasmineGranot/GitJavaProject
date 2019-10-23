@@ -4,6 +4,7 @@ import Engine.Magit;
 import GitObjects.Repository;
 import GitObjects.User;
 import GitObjects.UserManager;
+import myGit.*;
 import myGit.UIUtils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -14,10 +15,10 @@ import java.io.IOException;
 
 public class ForkRepositoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
-        UserManager userManager = UIUtils.ServletUtils.getUserManager(getServletContext());
+        String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
+        UserManager userManager = myGit.UIUtils.ServletUtils.getUserManager(getServletContext());
         Magit magitManager = ServletUtils.getMagitObject(getServletContext());
-        String repositoryFromSession = UIUtils.SessionUtils.getCurrentRepository(request);
+        String repositoryFromSession = myGit.UIUtils.SessionUtils.getCurrentRepository(request);
 
         User user = userManager.getUserByName(usernameFromSession);
         Repository repoToClone = user.getUserRepository(repositoryFromSession);
