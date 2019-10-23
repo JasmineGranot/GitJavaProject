@@ -3,9 +3,20 @@ body{
         width: 100%;
   	float: right;
 	display: inline-block;
-	background-image: url("wallpaper3.jpg");
-	background-repeat: no-repeat;
-	background-size: 100%;
+}
+
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
 }
 
 h1 {
@@ -104,10 +115,10 @@ textarea{
 button {
 	background-color:transparent;
 	border-radius:5px;
-	border:0.55px solid #5d5d89;
+	border:0.65px solid #5d5d89;
 	display:inline-block;
 	cursor:pointer;
-	color:#34344c;
+	color: white;
 	font-family:Aharoni;
 	font-size:10px;
 	font-weight:bold;
@@ -122,6 +133,10 @@ button:hover {
 button:active {
 	position:relative;
 	top:1px;
+}
+
+.branchButtons {
+	color: #5d5d89;
 }
 
 .f90-logout-button {

@@ -15,13 +15,17 @@
 
 <body>
   
+	<div id="background">
+		<img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
+	</div>
+  
 	<div class="up">
 		<h1>M.A.Github</h1>
 	</div>
 
 	<div class="leftcolumn">
 		<a href="#" class="f90-logout-button">Logout</a>
-		<p><img src="CssFiles/user.png" alt="User"></p>
+		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
 		<h4>Current User:
 			<p id="currentUser"></p>
 		</h4>
@@ -44,14 +48,12 @@
     <div class="centercolumn">
 		<div class="center">
 			<table class="table" id="userRepoTable">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Repository name</th>
-						<th scope="col">Repository's active branch</th>
-						<th scope="col">Number of branches in repository</th>
-						<th scope="col">Last commit date</th>
-					</tr>
-				</thead>
+				<tr>
+					<th scope="col">Repository name</th>
+					<th scope="col">Repository's active branch</th>
+					<th scope="col">Number of branches in repository</th>
+					<th scope="col">Last commit date</th>
+				</tr>
 				<tbody id="tableBody"></tbody>
 			</table>
 		</div>
