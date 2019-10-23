@@ -11,20 +11,26 @@
       
       <div class="center">
         <b>
-          <h1>Repository Name:</h1>
+          <h1>Repository Name:
 		  <label id="repoName"></label>
+		  </h1>
         </b>
       </div>
         
       
-      
+		<div id="background">
+			<img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
+		</div>
+		
       <div class="leftcolumn">
-		<a href="#" class="f90-logout-button">Logout</a>
+          <a href="#" class="f90-logout-button">Logout</a><br>
+		<a href="#" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a>
 		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
         <p style="font-size: 15px">
           <b>
-          <h2>User Name:</h2>
+          <h2>User Name:
 		  <label id="userName"></label>
+		  </h2>
           </b>
         </p>
      
@@ -52,28 +58,27 @@
       
       <div class="rightcolumn">
       	<h2 style="margin-left:5px;">
-          <b>
-          Current Branch:
-          </b>
+          <b>Current Branch:</b>
+		  <label id="currentBranchName"></label>
         </h2>
         
         <h4 style="margin-left:5px; margin-top:5px;">Branches in repository: </h4>
         <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
-        <br><br>
+        <br><br><br><br>
         
-        <button style="font-size:10px; margin-left: 5px;">
+        <button style="font-size:10px; margin-left: 5px;" class="branchButtons">
           	Checkout
         </button>
 
-        <button style="font-size:10px; margin-left: 5px;">
-          	New Button
+        <button style="font-size:10px; margin-left: 5px;" class="branchButtons">
+          	New Branch
         </button><br>
         
-        <button style="margin-top:10px; font-size:10px; margin-left: 50px;">
+        <button style="margin-top:10px; font-size:10px; margin-left: 50px;"class="branchButtons">
           	Delete
         </button>
          
-        <br><br><br><br>
+        <br><br><br><br><br><br>
         
         <button style="font-size: 10px; margin-left:25px">
           Show Commit Data

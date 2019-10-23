@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class LoginServlet extends HttpServlet {
-    private final String PAGE_2 = "Pages/Page2.html";
+    private final String PAGE_2 = "../Pages/Page2.html";
     private final String SIGN_UP_URL = "../LoginPage.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
