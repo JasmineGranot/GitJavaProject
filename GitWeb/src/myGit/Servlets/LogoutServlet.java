@@ -1,5 +1,6 @@
 package myGit.Servlets;
 
+import GitObjects.User;
 import GitObjects.UserManager;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
             System.out.println("Clearing session for " + usernameFromSession);
             userManager.disconnectUser(usernameFromSession);
             myGit.UIUtils.SessionUtils.clearSession(request);
+
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
     }

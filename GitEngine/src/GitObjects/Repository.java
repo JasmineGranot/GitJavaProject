@@ -475,8 +475,7 @@ public class Repository {
 //
 //    }
 
-
-    private static void deleteWC(String filePath, boolean deleteMagit) throws FileErrorException {
+    public void deleteWC(String filePath, boolean deleteMagit) throws FileErrorException {
         File root = new File(filePath);
         String[] files = root.list();
         String errorMsg;

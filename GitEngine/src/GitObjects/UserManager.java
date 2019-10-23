@@ -1,5 +1,7 @@
 package GitObjects;
 
+import Exceptions.FileErrorException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,6 +63,12 @@ public class UserManager {
         User currUser = getUserByName(userName);
         if(currUser != null) {
             currUser.setOnline(false);
+        }
+    }
+
+    public void removeFolders() throws FileErrorException {
+        for(User currUser : allUsers){
+            currUser.deleteFolders();
         }
     }
 }
