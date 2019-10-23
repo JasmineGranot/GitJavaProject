@@ -2,11 +2,9 @@ package myGit.Servlets;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.FileErrorException;
 import GitObjects.*;
-import UIUtils.SessionUtils;
 import com.google.gson.Gson;
 import myGit.UIUtils.ServletUtils;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +19,7 @@ public class RefreshDataServlet extends HttpServlet {
             throws FileErrorException, IOException {
 
         response.setContentType("application/json");
-        String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
+        String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
         String action = request.getParameter("action");
         String json = "";
         switch (action){

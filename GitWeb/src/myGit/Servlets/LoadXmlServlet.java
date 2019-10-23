@@ -6,8 +6,9 @@ import GitObjects.User;
 import GitObjects.UserManager;
 import Parser.MagitRepository;
 import myGit.UIUtils.ServletUtils;
-import UIUtils.SessionUtils;
 import Engine.Magit;
+import myGit.UIUtils.SessionUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
