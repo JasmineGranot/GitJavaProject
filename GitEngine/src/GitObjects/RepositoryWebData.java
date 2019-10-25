@@ -5,12 +5,14 @@ public class RepositoryWebData {
     private String activeBranch;
     private String numOfBranches;
     private String lastCommitDate;
+    private String repoOwner;
 
     public RepositoryWebData(Repository repo) {
         name = repo.getRepoName();
         activeBranch = repo.getHeadBranch().getName();
         numOfBranches = String.valueOf(repo.getAllBranchesData().size());
-        lastCommitDate = repo.getLastCommit().getCommitDate();
+        lastCommitDate = repo.getLastCommit().getCommitDate() != null ? repo.getLastCommit().getCommitDate() : "";
+        repoOwner = repo.getRepoOwner();
     }
 
     public String getName() {

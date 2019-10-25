@@ -1,5 +1,4 @@
-
-package myGit.UIUtils;
+package UIUtils;
 
 import Engine.Magit;
 import GitObjects.UserManager;

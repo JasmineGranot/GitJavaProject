@@ -1,31 +1,36 @@
-package myGit.Servlets;
+package Servlets;
 
 import Engine.Magit;
 import GitObjects.Repository;
 import GitObjects.User;
 import GitObjects.UserManager;
-import myGit.*;
-import myGit.UIUtils.ServletUtils;
+import UIUtils.ServletUtils;
 
-import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+@WebServlet(
+        urlPatterns = "/fork"
+)
 
 public class ForkRepositoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
-        UserManager userManager = myGit.UIUtils.ServletUtils.getUserManager(getServletContext());
+        String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
+        UserManager userManager = UIUtils.ServletUtils.getUserManager(getServletContext());
         Magit magitManager = ServletUtils.getMagitObject(getServletContext());
-        String repositoryFromSession = myGit.UIUtils.SessionUtils.getCurrentRepository(request);
+        String repoToCloneName = request.getParameter("repositoryName");
+        String userToCloneFromName = request.getParameter("otherUSer");
+        User otherUser = userManager.getUserByName(userToCloneFromName);
+        User currentUser = userManager.getUserByName(usernameFromSession);
 
-        User user = userManager.getUserByName(usernameFromSession);
-        Repository repoToClone = user.getUserRepository(repositoryFromSession);
+        Repository repoToClone = otherUser.getUserRepository(repoToCloneName);
         if (repoToClone == null){
-            return; //TODO add error
+            System.out.println("no cloning for you");
+            return;
         }
-        magitManager.cloneRemoteToLocal(user, repoToClone);
+        magitManager.cloneRemoteToLocal(currentUser, repoToClone);
     }
 
     @Override

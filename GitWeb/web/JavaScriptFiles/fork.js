@@ -1,7 +1,12 @@
-function forkRepository(event) {
-    var forkRepo = document.getElementById("forkButton");
+function forkRepository(repoId) {
+    var forkRepo = repoId;
+    console.log(forkRepo);
     $.ajax ({
-        url:"../fork"
+        url:"../fork",
+        data:
+            {
+                repositoryName: forkRepo
+            },
     });
 }
 

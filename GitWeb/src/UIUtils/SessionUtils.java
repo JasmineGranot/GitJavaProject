@@ -1,4 +1,4 @@
-package myGit.UIUtils;
+package UIUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

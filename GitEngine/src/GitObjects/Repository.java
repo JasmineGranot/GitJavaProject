@@ -44,6 +44,10 @@ public class Repository {
         return repoName;
     }
 
+    public String getRepoOwner() {
+        return repoOwner.getUserName();
+    }
+
     private boolean isObjectInRepo(String id) {
         return repoObjects.containsKey(id);
     }
@@ -1364,11 +1368,21 @@ public class Repository {
     // =========================== Clone =========================================
 
     public void clone(Repository remote) throws Exception {
-        cloneRepository(remote.getRepoPath(), this.getRepoPath(), remote.getRepoName());
-        headBranch.setTrackedBranch(remote.getHeadBranch().getName());
-        // add clone notification to remote owner:
-        remote.repoOwner.addNotification(new NotificationObject(
-                String.format("user %s just clone repository %s", repoOwner.getUserName(), getRepoName())));
+        File localFolder = new File(this.getRepoPath());
+        if (localFolder.exists()){
+            String msg = "error";
+            return;
+        }
+        if(localFolder.mkdir()) {
+            cloneRepository(remote.getRepoPath(), this.getRepoPath(), remote.getRepoName());
+            loadObjectsFromRepo();
+            headBranch = getBranchByName(remote.headBranch.getName());
+            headBranch.setTrackedBranch(remote.getHeadBranch().getName());
+            currentCommit = remote.getLastCommit();
+            // add clone notification to remote owner:
+            remote.repoOwner.addNotification(new NotificationObject(
+                    String.format("user %s just clone repository %s", repoOwner.getUserName(), getRepoName())));
+        }
     }
 
     private void cloneRepository(String remotePath, String localPath, String remoteName) throws IOException {

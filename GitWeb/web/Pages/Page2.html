@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  	<link rel="stylesheet" type="text/css" href="../../../GitWeb/web/Pages/CssFiles/Page2.css">
-  	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="CssFiles/bootstrap.min.css">
+  	<script type="text/javascript" src="../Commons/jquery-2.0.3.min.js"></script>
   	<script type="text/javascript" src="../JavaScriptFiles/xmlUpload.js"></script>
-  	<script type="text/javascript" src="../../../GitWeb/web/javaScriptFiles/fork.js"></script>
-	<script type="text/javascript" src="../../../GitWeb/web/javaScriptFiles/context-path-helper.js"></script>
-	<script type="text/javascript" src="../../../GitWeb/web/javaScriptFiles/page2_script.js"></script>
+  	<script type="text/javascript" src="../JavaScriptFiles/fork.js"></script>
+	<script type="text/javascript" src="../JavaScriptFiles/context-path-helper.js"></script>
+	<script type="text/javascript" src="../JavaScriptFiles/page2_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
 
 </head>
 
 <body>
   
 	<div id="background">
-		<img src="../../../GitWeb/web/Pages/CssFiles/wallpaper3.jpg" class="stretch" alt="" />
+		<img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
 	</div>
   
 	<div class="up">
@@ -25,7 +26,7 @@
 
 	<div class="leftcolumn">
 		<a href="#" class="f90-logout-button">Logout</a>
-		<p><img class="userImage" src="../../../GitWeb/web/Pages/CssFiles/user.png" alt="User"></p>
+		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
 		<h4>Current User:
 			<p id="currentUser"></p>
 		</h4>
@@ -48,12 +49,14 @@
     <div class="centercolumn">
 		<div class="center">
 			<table class="table" id="userRepoTable">
+				<thead class="thead-dark">
 				<tr>
 					<th scope="col">Repository name</th>
 					<th scope="col">Repository's active branch</th>
 					<th scope="col">Number of branches in repository</th>
 					<th scope="col">Last commit date</th>
 				</tr>
+				</thead>
 				<tbody id="tableBody"></tbody>
 			</table>
 		</div>
@@ -62,10 +65,7 @@
     <div class="rightcolumn">
         <h4>Registered Users:</h4>
 			<div id="userList" >
-				<ol style="list-style-type:none;">
-					<li>User 1</li>
-					<li>User 2</li>
-					<li>User 3</li>
+				<ol style="list-style:none;">
 				</ol>
 			</div>
     </div>

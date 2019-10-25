@@ -1,27 +1,31 @@
-package myGit.Servlets;
+package Servlets;
 
 import GitObjects.UserManager;
-import myGit.UIUtils.ServletUtils;
-import myGit.UIUtils.SessionUtils;
+import UIUtils.ServletUtils;
+import UIUtils.SessionUtils;
 
-import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
+@WebServlet (
+            urlPatterns = "/Signup"
+)
 
 public class LoginServlet extends HttpServlet {
-    private final String PAGE_2 = "../Pages/Page2.html";
-    private final String SIGN_UP_URL = "../index.html";
+    private final String PAGE_2 = "Pages/Page2.html";
+    private final String SIGN_UP_URL = "Pages/LoginPage.html";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         if (usernameFromSession == null) {
-           String usernameFromParameter = request.getParameter("username");
+            String usernameFromParameter = request.getParameter("username");
             if (usernameFromParameter == null || usernameFromParameter.isEmpty()) {
                 response.sendRedirect(SIGN_UP_URL); // replace with error
             } else {
@@ -48,24 +52,4 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect(PAGE_2);
         }
     }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
 }
-
