@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+      	<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="CssFiles/Page3.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    </head>
+ 
+    <body>
+      
+      <div class="center">
+        <b>
+          <h1>Repository Name:
+		  <label id="repoName"></label>
+		  </h1>
+        </b>
+      </div>
+        
+      
+		<div id="background">
+			<img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
+		</div>
+		
+      <div class="leftcolumn">
+          <a href="#" class="f90-logout-button">Logout</a><br>
+		<a href="#" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a>
+		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
+        <p style="font-size: 15px">
+          <b>
+          <h2>User Name:
+		  <label id="userName"></label>
+		  </h2>
+          </b>
+        </p>
+     
+       	<h4>Notifications: </h4>
+        <select name="comboNotifications" id="comboNotifocations"></select>
+        <br><br>
+        
+        <button style="font-size:10px;">
+          Show my open PR's
+        </button><br><br>
+      </div>
+      
+      <div class="centercolumn">
+      	<div class="middle">
+          <div class="top">
+            <textarea rows="1" placeholder="Auto-Expanding Textarea" readonly>
+          </textarea>
+          </div>
+          <div class="bottom">
+            <textarea id="openTextArea" rows="1" placeholder="Auto-Expanding Textarea" readonly>
+          </textarea>
+          </div>
+        </div>
+      </div>
+      
+      <div class="rightcolumn">
+      	<h2 style="margin-left:5px;">
+          <b>Current Branch:</b>
+		  <label id="currentBranchName"></label>
+        </h2>
+        
+        <h4 style="margin-left:5px; margin-top:5px;">Branches in repository: </h4>
+        <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
+        <br><br><br><br>
+        
+        <button style="font-size:10px; margin-left: 5px;" class="branchButtons">
+          	Checkout
+        </button>
+
+        <button style="font-size:10px; margin-left: 5px;" class="branchButtons">
+          	New Branch
+        </button><br>
+        
+        <button style="margin-top:10px; font-size:10px; margin-left: 50px;"class="branchButtons">
+          	Delete
+        </button>
+         
+        <br><br><br><br><br><br>
+        
+        <button style="font-size: 10px; margin-left:25px">
+          Show Commit Data
+        </button><br><br>
+
+        <button style="font-size: 10px; margin-left:30px">
+          Show WC Status
+        </button><br><br>
+
+        <button style="font-size: 10px; margin-left:35px">
+          Create New PR
+        </button><br><br>
+
+        <button style="font-size: 10px; margin-left:50px">
+          Commit
+        </button><br><br>
+
+        <button style="font-size: 10px; margin-left:57px">
+          Push
+        </button><br><br>
+
+        <button style="font-size: 10px; margin-left:60px">
+          Pull
+        </button><br><br>
+
+      </div>
+    </body>
+</html>
