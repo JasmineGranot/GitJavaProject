@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class LoginServlet extends HttpServlet {
-    private final String PAGE_2 = "../web/Pages/Page2.html";
-    private final String SIGN_UP_URL = "../LoginPage.html";
+    private final String PAGE_2 = "../Pages/Page2.html";
+    private final String SIGN_UP_URL = "../index.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

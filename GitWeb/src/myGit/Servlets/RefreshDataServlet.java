@@ -19,9 +19,9 @@ public class RefreshDataServlet extends HttpServlet {
             throws FileErrorException, IOException {
 
         response.setContentType("application/json");
-    String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
-    String action = request.getParameter("action");
-    String json = "";
+        String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
+        String action = request.getParameter("action");
+        String json = "";
         switch (action){
         case ("getUserRepoList"):
         {json = getCurrentUserRepositoriesList(usernameFromSession);
