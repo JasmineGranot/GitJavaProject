@@ -1,5 +1,6 @@
 package myGit.Servlets;
 
+import GitObjects.User;
 import GitObjects.UserManager;
 
 import javax.servlet.ServletException;
@@ -12,13 +13,14 @@ public class LogoutServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
-        UserManager userManager = UIUtils.ServletUtils.getUserManager(getServletContext());
+        String usernameFromSession = myGit.UIUtils.SessionUtils.getUsername(request);
+        UserManager userManager = myGit.UIUtils.ServletUtils.getUserManager(getServletContext());
 
         if (usernameFromSession != null) {
             System.out.println("Clearing session for " + usernameFromSession);
             userManager.disconnectUser(usernameFromSession);
-            UIUtils.SessionUtils.clearSession(request);
+            myGit.UIUtils.SessionUtils.clearSession(request);
+
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
     }

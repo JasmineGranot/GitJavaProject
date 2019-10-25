@@ -9,8 +9,12 @@
         <servlet-class>myGit.Servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>LoadXmlServlet</servlet-name>
-    <servlet-class>myGit.Servlets.LoadXmlServlet</servlet-class>
+        <servlet-name>LoadXmlServlet</servlet-name>
+        <servlet-class>myGit.Servlets.LoadXmlServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SystemHandler</servlet-name>
+        <servlet-class>myGit.Servlets.SystemServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForkRepository</servlet-name>
@@ -20,10 +24,15 @@
         <servlet-name>RefreshData</servlet-name>
         <servlet-class>myGit.Servlets.RefreshDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RepoActions</servlet-name>
+        <servlet-class>myGit.Servlets.RepositoryActionServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/LoginPage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadXmlServlet</servlet-name>
@@ -36,6 +45,14 @@
     <servlet-mapping>
         <servlet-name>RefreshData</servlet-name>
         <url-pattern>/refreshData</url-pattern>
+</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemHandler</servlet-name>
+        <url-pattern>/loadSystem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RepoActions</servlet-name>
+        <url-pattern>/repositoryActions</url-pattern>
     </servlet-mapping>
 
 <!--    <servlet-mapping>-->
@@ -44,6 +61,6 @@
 <!--    </servlet-mapping>-->
 
     <welcome-file-list>
-        <welcome-file>Pages/LoginPage.html</welcome-file>
+        <welcome-file>/Pages/LoginPage.html</welcome-file>
     </welcome-file-list>
 </web-app>

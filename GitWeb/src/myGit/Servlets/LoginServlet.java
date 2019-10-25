@@ -2,7 +2,7 @@ package myGit.Servlets;
 
 import GitObjects.UserManager;
 import myGit.UIUtils.ServletUtils;
-import UIUtils.SessionUtils;
+import myGit.UIUtils.SessionUtils;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class LoginServlet extends HttpServlet {
-    private final String PAGE_2 = "Pages/magit_test.html";
+    private final String PAGE_2 = "../web/Pages/Page2.html";
     private final String SIGN_UP_URL = "../LoginPage.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

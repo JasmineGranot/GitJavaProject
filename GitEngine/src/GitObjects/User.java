@@ -1,6 +1,7 @@
 package GitObjects;
 
 
+import Exceptions.FileErrorException;
 import Utils.MagitUtils;
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
@@ -97,5 +98,11 @@ public class User {
 
     public boolean isRepoExist(String repoName){
         return getUserRepository(repoName) != null;
+    }
+
+    void deleteFolders() throws FileErrorException {
+        for (Repository repo : getActiveRepositories()){
+            repo.deleteWC(getPath(), true);
+        }
     }
 }
