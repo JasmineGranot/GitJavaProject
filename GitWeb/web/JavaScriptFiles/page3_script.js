@@ -1,5 +1,6 @@
 var REFRESH_DATA = "../refreshData";
 var refreshRate = 3000; //milli seconds
+var REPO_ACTIONS = "../repoActions";
 
 // =================== Updating online users list ==========================
 function ajaxUsersList() {
@@ -66,13 +67,20 @@ function updateHeadBranch(){
                 action: "getHead",
             },
 
-        success: function(headBranch) {
-            updateHeadBranch();
+        success: function(headBranchResObject) {
+            if(headBranchResObject.haveError){
+                alert(headBranchResObject.errorMSG);
+            }
+            else{
+                $('#currentBranchName').text = headBranchResObject.data;
+            }
         }
     });
 }
+
 function checkoutBranch(){
     var branchName = $("#comboBranches").val().text();
+
     $.ajax({
         url: REPO_ACTIONS,
         data:
@@ -81,12 +89,19 @@ function checkoutBranch(){
                 branchName: branchName
             },
 
-        success: function() {
-            updateHeadBranch();
+        success: function(checkoutResObj) {
+            if (checkoutResObj.haveError){
+                alert (checkoutResObj.errorMSG);
+            }
+            else{
+                alert(checkoutResObj.data);
+                updateHeadBranch();
+
+            }
         }
     });
-    updateHeadBranch()
 }
+
 function pull(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -96,9 +111,11 @@ function pull(){
             },
 
         success: function() {
+
         }
     });
 }
+
 function push(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -111,6 +128,7 @@ function push(){
         }
     });
 }
+
 function addBranch(){
     var name=prompt("Please enter new branch name","Aviad The King");
     if (name != null) {
