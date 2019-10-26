@@ -14,6 +14,7 @@ import UIUtils.SessionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +25,14 @@ import java.nio.file.DirectoryNotEmptyException;
 import java.util.LinkedList;
 import java.util.List;
 
+@WebServlet(
+        urlPatterns = "/repoActions"
+)
+
 public class RepositoryActionServlet extends HttpServlet {
 
-    private Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
-    private UserManager userManager = ServletUtils.getUserManager(getServletContext());
+    private final Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
+    private final UserManager userManager = ServletUtils.getUserManager(getServletContext());
 
     protected void processGetRequest(HttpServletRequest request, HttpServletResponse response) {
 
@@ -109,7 +114,7 @@ public class RepositoryActionServlet extends HttpServlet {
         response.setContentType("application/json");
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         User currUser = userManager.getUserByName(usernameFromSession);
-        String repoName = request.getParameter("repository");
+        String repoName = UIUtils.SessionUtils.getCurrentRepository(request);
         Repository repo = userManager.getUserRepository(currUser, repoName);
         String branchName = request.getParameter("branchName");
 

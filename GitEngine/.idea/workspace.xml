@@ -7,11 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/Page3Servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/Page3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/Page3.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,6 +91,53 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="GitEngine" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="GitEngine" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 8.5.47" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.47" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -376,7 +426,13 @@
       <option name="project" value="LOCAL" />
       <updated>1572100478371</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎00028" summary="login servlete changed">
+      <created>1572105601851</created>
+      <option name="number" value="LOCAL‎00028" />
+      <option name="presentableId" value="LOCAL‎00028" />
+      <updated>1572105601852</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +447,8 @@
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/artifacts/GitEngine_jar.xml&#10;#&#9;GitEngine/.idea/artifacts/Magit.xml&#10;#&#9;GitWeb/GitWeb.iml&#10;#&#9;GitWeb/src/myGit/Servlets/LoginServlet.java&#10;#&#9;GitWeb/src/myGit/Servlets/RefreshDataServlet.java&#10;#&#9;GitWeb/web/JavaScriptFiles/page3_script.js&#10;#&#9;GitWeb/web/Pages/LoginPage.html&#10;#&#9;GitWeb/web/Pages/Page2.html&#10;#&#9;GitWeb/web/Pages/Page3.html&#10;#&#9;GitWeb/web/WEB-INF/web.xml&#10;#&#9;GitWeb/web/index.html" />
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/misc.xml&#10;#&#9;GitWeb/GitWeb.iml&#10;#&#9;GitWeb/src/META-INF/MANIFEST.MF&#10;#&#9;GitWeb/src/MagitMain/MagitMain.java&#10;#&#9;GitWeb/src/Resources/CommitNode.fxml&#10;#&#9;GitWeb/src/Resources/ConflictResolver.fxml&#10;#&#9;GitWeb/src/Resources/Images/ChangeRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Clone.png&#10;#&#9;GitWeb/src/Resources/Images/Commit.png&#10;#&#9;GitWeb/src/Resources/Images/Edit.png&#10;#&#9;GitWeb/src/Resources/Images/Fetch.png&#10;#&#9;GitWeb/src/Resources/Images/LoadRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Merge.png&#10;#&#9;GitWeb/src/Resources/Images/NewBranch.png&#10;#&#9;GitWeb/src/Resources/Images/NewRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Pull.png&#10;#&#9;GitWeb/src/Resources/Images/Push.png&#10;#&#9;GitWeb/src/Resources/Images/ResetBranch.png&#10;#&#9;GitWeb/src/Resources/Images/ShowStatus.png&#10;#&#9;GitWeb/src/Resources/Images/Trash.png&#10;#&#9;GitWeb/src/Resources/Images/icons8-show-property-48.png&#10;#&#9;GitWeb/src/Resources/Images/v.png&#10;#&#9;GitWeb/src/Resources/MainScreen.fxml&#10;#&#9;GitWeb/src/Resources/MainScreenTest.fxml&#10;#&#9;GitWeb/src/Resources/MainScreenTest2.fxml&#10;#&#9;GitWeb/src/Resources/ShowCommitData.fxml&#10;#&#9;GitWeb/src/Resources/ShowMergeCase.fxml&#10;#&#9;GitWeb/src/Resources/ShowStatusScreen.fxml&#10;#&#9;GitWeb/src/Servlets/ForkRepositoryServlet.java&#10;#&#9;GitWeb/src/Servlets/LoadXmlServlet.java&#10;#&#9;GitWeb/src/Servlets/LoginServlet.java&#10;#&#9;GitWeb/src/Servlets/LogoutServlet.java&#10;#&#9;GitWeb/src/Servlets/RefreshDataServlet.java&#10;#&#9;GitWeb/src/Servlets/SystemServlet.java&#10;#&#9;GitWeb/src/UIUtils/CommonUsed.java&#10;#&#9;GitWeb/src/UIUtils/ServletUtils.java&#10;#&#9;GitWeb/src/UIUtils/SessionUtils.java&#10;#&#9;GitWeb/web/JavaScriptFiles/fork.js&#10;#&#9;GitWeb/web/JavaScriptFiles/page2_script.js&#10;#&#9;GitWeb/web/JavaScriptFiles/xmlUpload.js&#10;#&#9;GitWeb/web/Pages/LoginPage.html&#10;#&#9;GitWeb/web/Pages/Page2.html&#10;#&#9;GitWeb/web/WEB-INF/web.xml&#10;#&#9;GitWeb/web/index.html" />
     <MESSAGE value="added many repo actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added many repo actions" />
+    <MESSAGE value="login servlete changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="login servlete changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -427,9 +484,25 @@
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="95" />
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/Page3Servlet.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js</url>
+          <line>70</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

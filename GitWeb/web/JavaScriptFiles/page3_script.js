@@ -61,12 +61,12 @@ function refreshMessagesList(notifications) {
 // =================== Updating RepoData ====================
 function updateHeadBranch(){
     $.ajax({
-        url: REPO_ACTIONS,
+        url: "../repoActions",
         data:
             {
                 action: "getHead",
             },
-
+        type: 'POST',
         success: function(headBranchResObject) {
             if(headBranchResObject.haveError){
                 alert(headBranchResObject.errorMSG);
@@ -197,9 +197,9 @@ function addBranchesToList(branches) {
 
 // ========================= On loading ================================
 
-function triggerGetRepos(){
-    setTimeout(ajaxCurrentUserRepo, refreshRate);
-}
+// function triggerGetRepos(){
+//     setTimeout(ajaxCurrentUserRepo, refreshRate);
+// }
 
 // activate the timer calls after the page is loaded
 $(function() {
@@ -207,7 +207,9 @@ $(function() {
     //These lists is refreshed automatically every second
     // setTimeout(ajaxCurrentUserRepo, refreshRate);
     setInterval(ajaxUsersList, refreshRate);
-    triggerGetRepos();
+    updateHeadBranch();
+
+    // triggerGetRepos();
     // setInterval(ajaxUsersNotificationsList, refreshRate);
 
 

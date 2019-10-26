@@ -1,4 +1,6 @@
 var REFRESH_DATA = "../refreshData";
+var PAGE3 = "../page3";
+
 var refreshRate = 3000; //milli seconds
 
 // ================== Fork action ==========================
@@ -173,12 +175,15 @@ function refreshUserReposList(repos) {
         var tdBranchNum = $(document.createElement('td')).text(repo.numOfBranches);
         var tdLastCommitDate = $(document.createElement('td')).text(repo.lastCommitDate);
 
-        var btn = $(document.createElement('button'));
+        var btn = $(document.createElement('a'));
         var tdRepo = $(document.createElement('td'));
         btn.attr('id', repo.name);
         btn.attr('owner', repo.repoOwner);
         btn.text("Go To Repository");
         btn.attr('class', "button");
+        btn.attr('href', "Page3.html");
+        btn.attr('role', "button");
+
         btn.appendTo(tdRepo);
 
         tdRepoName.appendTo(tr);
@@ -193,7 +198,7 @@ function refreshUserReposList(repos) {
         console.log("finished repos");
 
         $(btn).click(function(){
-            //moveToPage3(this)
+            updateRepo(repo.name);
         });
         console.log("try click");
 
@@ -244,6 +249,19 @@ function refreshOtherUserReposList(repos) {
 
     });
 }
+
+function updateRepo(repoName) {
+        $.ajax({
+        url: PAGE3,
+        data:
+            {
+                action: "setRepo",
+                repoName: repoName
+            },
+
+    });
+}
+
 
 // ========================= On loading ================================
 
