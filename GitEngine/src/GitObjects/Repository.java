@@ -1386,7 +1386,7 @@ public class Repository {
             currentCommit = remote.getLastCommit();
             // add clone notification to remote owner:
             remote.repoOwner.addNotification(new NotificationObject(
-                    String.format("user %s just clone repository %s", repoOwner.getUserName(), getRepoName())));
+                    String.format("user %s just cloned repository %s", repoOwner.getUserName(), getRepoName())));
         }
     }
 

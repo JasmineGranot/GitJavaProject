@@ -36,4 +36,9 @@ public class SessionUtils {
     public static void clearSession (HttpServletRequest request) {
         request.getSession().invalidate();
     }
+
+    public static void clearCurrentUser (HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        session.setAttribute("username", null);
+    }
 }

@@ -2,6 +2,7 @@ package Servlets;
 
 import GitObjects.User;
 import GitObjects.UserManager;
+import sun.plugin.util.UIUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,13 +23,11 @@ public class LogoutServlet extends HttpServlet {
         UserManager userManager = UIUtils.ServletUtils.getUserManager(getServletContext());
 
         if (usernameFromSession != null) {
-            System.out.println("Clearing session for " + usernameFromSession);
-            User curUser = userManager.getUserByName(usernameFromSession);
-            curUser.logout();
             userManager.disconnectUser(usernameFromSession);
+            UIUtils.SessionUtils.clearCurrentUser(request);
             UIUtils.SessionUtils.clearSession(request);
 
-            response.sendRedirect(request.getContextPath() + "/index.html");
+            response.sendRedirect("Pages/LoginPage.html");
         }
     }
 
