@@ -55,17 +55,30 @@ public class Magit {
 
 //  ======================== Repository Functions ==========================
 
-    public void loadUserData(User user) throws IOException, ErrorCreatingNewFileException {
+    public MagitStringResultObject loadUserData(User user) {
+        MagitStringResultObject res = new MagitStringResultObject();
         File userPath = new File(user.getPath());
         if(userPath.exists()){
             File[] listOfUserRepos = userPath.listFiles();
             if (listOfUserRepos != null) {
                 for (File curr : listOfUserRepos) {
                     Repository newRepository = new Repository(user, curr.getName());
-                    newRepository.loadRepositoryFromFile();
+                    try {
+                        newRepository.loadRepositoryFromFile();
+                        res.setIsHasError(false);
+                    } catch (Exception e) {
+                        res.setIsHasError(true);
+                        res.setErrorMSG("Got exception while trying to load the users repositories!\n" + "Error message:"
+                                + e.getMessage());
+                    }
                 }
             }
         }
+        else {
+            userPath.mkdir();
+            res.setIsHasError(false);
+        }
+        return res;
     }
 
     public ResultList<PullRequestObject> getPullRequests(User user, String repoName){
