@@ -26,6 +26,9 @@ public class RefreshDataServlet extends HttpServlet {
         String action = request.getParameter("action");
         String json = "";
         switch (action){
+            case ("getCurrentUser"):
+            {json = getCurrentUser(usernameFromSession);
+                break;}
             case ("getUserRepoList"):
                 {json = getCurrentUserRepositoriesList(usernameFromSession);
                 break;}
@@ -45,6 +48,12 @@ public class RefreshDataServlet extends HttpServlet {
             out.println(json);
             out.flush();
         }
+    }
+
+    private String getCurrentUser(String usernameFromSession) {
+        Gson gson = new Gson();
+        return gson.toJson(usernameFromSession);
+
     }
 
     private String getCurrentUserRepositoriesList(String usernameFromSession){

@@ -27,10 +27,17 @@ public class User {
 
     public void createFileInServer(String pathToCreate){
         File serverUserFile = new File(getPath());
+        File mainFolder = new File("c:\\magit-ex3");
+
+        if(!mainFolder.exists()){
+            mainFolder.mkdir();
+        }
+
         if (!serverUserFile.exists()){
-            serverUserFile.mkdir();
+        serverUserFile.mkdir();
         }
     }
+
     public String getPath() {
         return filesPath;
     }
