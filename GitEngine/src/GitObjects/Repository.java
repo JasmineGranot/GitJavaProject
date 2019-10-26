@@ -1393,7 +1393,7 @@ public class Repository {
             return; //TODO add error?
         }
         // handle remote branches's copy
-        if (remotePath.toLowerCase().equals(BRANCHES_PATH.toLowerCase())){
+        if (new File(remotePath.toLowerCase()).getName().equals(new File(BRANCHES_PATH.toLowerCase()).getName())){
             File newRemoteFolder = new File(MagitUtils.joinPaths(localPath, remoteName));
             if (newRemoteFolder.mkdir()){
                 copyBranchsForClone(remotePath, localPath, remoteName);
