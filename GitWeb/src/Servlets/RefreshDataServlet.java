@@ -84,7 +84,7 @@ public class RefreshDataServlet extends HttpServlet {
         Gson gson = new Gson();
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         User currUser = userManager.getUserByName(usernameFromSession);
-        List<NotificationObject> msgs = currUser.getUserNotifications();
+        List<NotificationObject> msgs = currUser.getUserNotificationsDelta();
         return gson.toJson(msgs);
     }
 

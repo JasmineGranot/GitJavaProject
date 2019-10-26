@@ -44,6 +44,11 @@ public class Repository {
         return repoName;
     }
 
+    public List<PullRequestObject> getRepoPullRequsetList() {
+        Stream<PullRequestObject> openPr = repoPullRequsetList.stream();
+        return openPr.filter(PullRequestObject::isOpenPullRequest).collect(Collectors.toList());
+    }
+
     public String getRepoOwner() {
         return repoOwner.getUserName();
     }

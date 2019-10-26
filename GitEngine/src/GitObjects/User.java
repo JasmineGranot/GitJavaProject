@@ -6,8 +6,13 @@ import Utils.MagitUtils;
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import java.io.File;
+import java.text.ParseException;
+import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class User {
     private String userName;
@@ -15,10 +20,12 @@ public class User {
     private String filesPath;
     private List<Repository> activeRepositories;
     private List<NotificationObject> userNotifications;
+    private Date lastSignOut;
 
     User(String userName) {
         this.userName = userName;
         isOnline = true;
+        lastSignOut = MagitUtils.getTodayAsDate();
         userNotifications = new LinkedList<>();
         activeRepositories = new LinkedList<>();
         filesPath =  MagitUtils.joinPaths("c:\\magit-ex3", userName);
@@ -41,6 +48,9 @@ public class User {
     public String getPath() {
         return filesPath;
     }
+    public Date getLastSignOut() {
+        return lastSignOut;
+    }
 
     private void setPath(String path) {
         filesPath = path;
@@ -61,6 +71,23 @@ public class User {
     public List<NotificationObject> getUserNotifications() {
         return userNotifications;
     }
+
+    public List<NotificationObject> getUserNotificationsDelta() {
+        Stream <NotificationObject> msg =  userNotifications.stream();
+        return msg.filter(
+                x-> this.getLastSignOut().before(MagitUtils.getStringAsDate(x.getDate()))).collect(Collectors.toList());
+    }
+    public List<PullRequestObject> getUserPullRequests() {
+        List<PullRequestObject> prs = new LinkedList<>();
+        for (Repository repo : activeRepositories)
+            prs.addAll(repo.getRepoPullRequsetList());
+        return prs;
+    }
+
+    public List<PullRequestObject> getUserPullRequestsForRepo(String repoName) {
+        return new LinkedList<>(getUserRepository(repoName).getRepoPullRequsetList());
+    }
+
 
     public String getUserName() {
         return userName;
@@ -111,5 +138,9 @@ public class User {
         for (Repository repo : getActiveRepositories()){
             repo.deleteWC(getPath(), true);
         }
+    }
+
+    public void logout() {
+        lastSignOut = MagitUtils.getTodayAsDate();
     }
 }

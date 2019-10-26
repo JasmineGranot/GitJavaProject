@@ -52,6 +52,48 @@ public class Magit {
 
 //  ======================== Repository Functions ==========================
 
+    public ResultList<PullRequestObject> getPullRequests(User user, String repoName){
+        ResultList<PullRequestObject> res = new ResultList<>();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                res.setRes(repo.getRepoPullRequsetList());
+                res.setHasError(false);
+            } catch (Exception e) {
+                String errorMsg = "could not fetch open pull requests";
+                res.setHasError(true);
+                res.setErrorMsg(errorMsg);
+            }
+        }
+        else {
+            res.setHasError(true);
+            res.setErrorMsg("Repository undefined!");
+        }
+        return res;
+    }
+
+    public MagitStringResultObject getHeadBranchName(User user, String repoName) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                res.setData(repo.getHeadBranch().getName());
+                res.setIsHasError(false);
+                res.setData("found head in repository successfully!");
+            } catch (Exception e) {
+                String errorMsg = "Something went wrong while trying to pull from remote repository!\n" +
+                        "Error message: " + e.getMessage();
+                res.setIsHasError(true);
+                res.setErrorMSG(errorMsg);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+
     public MagitStringResultObject createNewRepo(User user, String repositoryName, String repoPath) {
         String msg;
         MagitStringResultObject result = new MagitStringResultObject();

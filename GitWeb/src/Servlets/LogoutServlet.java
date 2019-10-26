@@ -1,5 +1,6 @@
 package Servlets;
 
+import GitObjects.User;
 import GitObjects.UserManager;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,8 @@ public class LogoutServlet extends HttpServlet {
 
         if (usernameFromSession != null) {
             System.out.println("Clearing session for " + usernameFromSession);
+            User curUser = userManager.getUserByName(usernameFromSession);
+            curUser.logout();
             userManager.disconnectUser(usernameFromSession);
             UIUtils.SessionUtils.clearSession(request);
 
