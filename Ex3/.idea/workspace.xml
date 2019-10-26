@@ -2,59 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3966cb8e-f2e5-4c20-a602-7719fba422e3" name="Default Changelist" comment="add PR">
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Engine/Magit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Exceptions/DataAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Exceptions/ErrorCreatingNewFileException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Exceptions/FileErrorException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Exceptions/InvalidDataException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/Blob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/Branch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/Commit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/FileDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/GitObjectsBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/GitObjects/Sha1Obj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MAGit.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitBlob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitBlobs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitBranches.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitFolders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitRepository$MagitRemoteReference.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitSingleBranch$PointedCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitSingleBranch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitSingleCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitSingleFolder$Items.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/MagitSingleFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/PrecedingCommits$PrecedingCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/PrecedingCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Parser/RootFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Utils/MagitStringResultObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Utils/MagitUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/Utils/WorkingCopyChanges.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/XMLHandler/XMLUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/XMLHandler/XMLValidationResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitEngine/XMLHandler/XMLValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/MagitMain/JavaFXUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/ChangeRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Clone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Commit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Fetch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/LoadRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Merge.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/NewBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/NewRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Pull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Push.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/ResetBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/ShowStatus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/Images/Trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/Resources/MainScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ex2/Magit/out/production/GitUI/UIUtils/CommonUsed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/GitObjects/Branch.java">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -100,23 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/GitObjects/PullRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/Utils/MagitUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="154">
+              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,7 +75,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="75" />
-    <option name="y" value="178" />
+    <option name="y" value="177" />
     <option name="width" value="1800" />
     <option name="height" value="975" />
   </component>
@@ -149,6 +85,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,20 +141,10 @@
               <item name="GitUI" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Ex3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ex3" type="462c0819:PsiDirectoryNode" />
-              <item name="Magit" type="462c0819:PsiDirectoryNode" />
-              <item name="GitUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MagitMain" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -224,7 +152,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Magit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -261,16 +189,17 @@
       <workItem from="1571147118782" duration="184000" />
       <workItem from="1571149376789" duration="12000" />
       <workItem from="1571160801086" duration="29000" />
+      <workItem from="1572075902838" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6901000" />
+    <option name="totallyTimeSpent" value="6908000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29978585" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3045822" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -308,6 +237,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="add PR" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/GitObjects/PullRequest.java" />
     <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/GitObjects/Branch.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -334,18 +264,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/Utils/MagitUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Magit/GitEngine/src/GitObjects/PullRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="154">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

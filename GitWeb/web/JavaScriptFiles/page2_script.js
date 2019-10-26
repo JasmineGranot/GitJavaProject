@@ -49,7 +49,6 @@ function refreshUsersList(users) {
         userRow.text(username);
         userRow.attr('id', username);
         $(userRow).click(function () {
-            alert("help!!!")
             ajaxOtherUserRepo(this.id);
         });
         userRow.appendTo($("#userList"));

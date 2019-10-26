@@ -1,4 +1,5 @@
 package GitObjects;
+import Engine.Magit;
 import Utils.MagitUtils;
 
 public class PullRequestObject {
@@ -64,5 +65,9 @@ public class PullRequestObject {
 
     public String getRepoManagerMsg() {
         return repoManagerMsg;
+    }
+
+    public boolean isOpenPullRequest(){
+        return getStatus().equals(MagitUtils.OPEN_PULL_REQUEST);
     }
 }

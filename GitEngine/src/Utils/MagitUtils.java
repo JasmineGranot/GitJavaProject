@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.ZipEntry;
@@ -48,6 +49,22 @@ public class MagitUtils {
 
     public static String getTodayAsStr(){
         return new SimpleDateFormat(DATE_PATTERN).format(new Date());
+    }
+    public static Date getTodayAsDate(){
+        return new Date();
+    }
+    public static String getDateAsString(Date date){
+        return new SimpleDateFormat(DATE_PATTERN).format(date);
+    }
+    public static Date getStringAsDate(String dateString) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+            return formatter.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new Date();
+
     }
 
     public static void zipFile(String source, String dest){

@@ -13,12 +13,14 @@ function LoadFile(event) {
                     file: content
                 },
             type: 'POST',
-            success: function() {}
+            success: function() {
+                updateRepoAfterLoadFile();
+            }
         });
     };
 
     reader.readAsText(file);
 }
-// function loadFile(json) {
-//
-// }
+function updateRepoAfterLoadFile() {
+    ajaxCurrentUserRepo();
+}

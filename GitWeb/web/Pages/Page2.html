@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="CssFiles/bootstrap.min.css">
-  	<script type="text/javascript" src="../Commons/jquery-2.0.3.min.js"></script>
-  	<script type="text/javascript" src="../JavaScriptFiles/xmlUpload.js"></script>
-  	<script type="text/javascript" src="../JavaScriptFiles/fork.js"></script>
-	<script type="text/javascript" src="../JavaScriptFiles/context-path-helper.js"></script>
-	<script type="text/javascript" src="../JavaScriptFiles/page2_script.js"></script>
-	<link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
+    <link rel="stylesheet" type="text/css" href="CssFiles/bootstrap.min.css">
+    <script type="text/javascript" src="../Commons/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="../JavaScriptFiles/xmlUpload.js"></script>
+    <script type="text/javascript" src="../JavaScriptFiles/fork.js"></script>
+    <script type="text/javascript" src="../JavaScriptFiles/context-path-helper.js"></script>
+    <script type="text/javascript" src="../JavaScriptFiles/page2_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="CssFiles/Page2.css">
 
 </head>
 
 <body>
-  
-	<div id="background">
-		<img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
-	</div>
-  
-	<div class="up">
-		<h1>M.A.Github</h1>
-	</div>
 
-	<div class="leftcolumn">
-		<a href="#" class="f90-logout-button">Logout</a>
-		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
-		<h4>Current User:
-			<p id="currentUser"></p>
-		</h4>
-	</div>
+<div id="background">
+    <img src="CssFiles/wallpaper3.jpg" class="stretch" alt="" />
+</div>
+
+<div class="up">
+    <h1>M.A.Github</h1>
+</div>
+
+<div class="leftcolumn">
+    <a href="#" class="f90-logout-button">Logout</a>
+    <p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
+    <h4>Current User:
+        <p id="currentUser"></p>
+    </h4>
+</div>
 
 
-	<div class="up2">
-		<nav>
-			<div class="middle">
+<div class="up2">
+    <nav>
+        <div class="middle">
 				<span>
 					<div class="button">
 						Load Repository
 						<input class="hide_file" id="FileInput" type="file" accept="text/xml" onchange="LoadFile(event)"></input>
 					</div><br><br>
 				</span>
-			</div>
-		</nav>
-	</div>
-		
-    <div class="centercolumn">
-		<div class="center">
-			<table class="table" id="userRepoTable">
-				<thead class="thead-dark">
-				<tr>
-					<th scope="col">Repository name</th>
-					<th scope="col">Repository's active branch</th>
-					<th scope="col">Number of branches in repository</th>
-					<th scope="col">Last commit date</th>
-				</tr>
-				</thead>
-				<tbody id="tableBody"></tbody>
-			</table>
-		</div>
-    </div>
+        </div>
+    </nav>
+</div>
 
-    <div class="rightcolumn">
-        <h4>Registered Users:</h4>
-			<div id="userList" >
-				<ol style="list-style:none;">
-				</ol>
-			</div>
+<div class="centercolumn">
+    <div class="center">
+        <table class="table" id="userRepoTable">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Repository name</th>
+                <th scope="col">Repository's active branch</th>
+                <th scope="col">Number of branches in repository</th>
+                <th scope="col">Last commit date</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
     </div>
-	
+</div>
+
+<div class="rightcolumn">
+    <h4>Registered Users:</h4>
+    <div id="userList" >
+        <ol style="list-style:none;">
+        </ol>
+    </div>
+</div>
+
 </body>
 </html>
