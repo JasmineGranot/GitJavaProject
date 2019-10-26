@@ -6,9 +6,11 @@ import UIUtils.ServletUtils;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServlet;
 import java.io.File;
 
+@WebListener
 public class SystemServlet extends HttpServlet implements ServletContextListener {
     final String SERVER_PATH = "c:\\magit-ex3";
     @Override

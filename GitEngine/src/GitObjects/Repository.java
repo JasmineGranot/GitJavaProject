@@ -84,6 +84,11 @@ public class Repository {
         return headBranch;
     }
 
+    public Branch getHeadBranchFromFileList() throws IOException {
+        String head = MagitUtils.readFileAsString(MagitUtils.joinPaths(BRANCHES_PATH, "Head"));
+        return getBranchByName(head);
+    }
+
     public WorkingCopyChanges printWCStatus() throws IOException, InvalidDataException {
         return isWorkingCopyIsChanged();
     }
@@ -455,34 +460,17 @@ public class Repository {
 
     // ========================== Change Repo ==========================
 
-   // void changeRepo(String newRepo, String repoName)
-            //throws InvalidDataException, IOException, NullPointerException,
-//            ErrorCreatingNewFileException {
-//        String errorMsg;
-//
-//        if (!isValidRepo(newRepo)) {
-//            errorMsg = "The repository you entered is missing the .magit library";
-//            throw new InvalidDataException(errorMsg);
-//        }
-//
-//        if(isTrackingRepo) {
-//            trackedRepository = localAndRemote.get(newRepo);
-//        }
-//        // patch for windows choosing file..
-//        newRepo = newRepo.replace("C:", "c:");
-//        setRepoPath(newRepo);
-//        updateMainPaths();
-//        loadObjectsFromRepo();
-//        String newHead = getCurrentBranchInRepo();
-//        Branch headBranch = getBranchByName(newHead);
-//        this.headBranch = headBranch;
-//        if (headBranch != null) {
-//            String newCommitSha1 = headBranch.getCommitSha1();
-//            currentCommit = (Commit) repoObjects.get(newCommitSha1);
-//        }
-//        setRepoName(repoName);
-//
-//    }
+    public void loadRepositoryFromFile() throws IOException, ErrorCreatingNewFileException {
+
+        // Get all objects from file system:
+        loadObjectsFromRepo();
+
+        this.headBranch = getHeadBranchFromFileList();
+        if (headBranch != null) {
+            String newCommitSha1 = headBranch.getCommitSha1();
+            currentCommit = (Commit) repoObjects.get(newCommitSha1);
+        }
+   }
 
     public void deleteWC(String filePath, boolean deleteMagit) throws FileErrorException {
         File root = new File(filePath);
