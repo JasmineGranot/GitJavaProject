@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Magit {
 
@@ -82,6 +84,28 @@ public class Magit {
                 res.setData("found head in repository successfully!");
             } catch (Exception e) {
                 String errorMsg = "Something went wrong while trying to pull from remote repository!\n" +
+                        "Error message: " + e.getMessage();
+                res.setIsHasError(true);
+                res.setErrorMSG(errorMsg);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+
+    public MagitStringResultObject getHeadBranchCommitSha1(User user, String repoName) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                res.setData(repo.getHeadBranch().getCommitSha1());
+                res.setIsHasError(false);
+                res.setData("found head commit in repository successfully!");
+            } catch (Exception e) {
+                String errorMsg = "Something went wrong while trying to get commit from remote repository!\n" +
                         "Error message: " + e.getMessage();
                 res.setIsHasError(true);
                 res.setErrorMSG(errorMsg);
@@ -186,6 +210,31 @@ public class Magit {
         return result;
     }
 //  ======================== Branch Functions ==============================
+
+    public MagitStringResultObject getBranches(User user, String repoName) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                List<String> branches = repo.getAllBranchesData().stream().
+                        map(Branch::getName).collect(Collectors.toList());
+
+                res.setDataList(branches);
+                res.setIsHasError(false);
+                res.setData("got Branches successfully!");
+            } catch (Exception e) {
+                res.setIsHasError(true);
+                String errorMessage = "Something went wrong while trying to get Branches!\n" +
+                        "Error message:" + e.getMessage();
+                res.setErrorMSG(errorMessage);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
 
     public MagitStringResultObject addNewBranch(User user, String repositoryName, String branchName, String sha1,
                                                 boolean toIgnoreRemoteBranchsSha1)
@@ -428,13 +477,34 @@ public class Magit {
         return result;
     }
 
-    public List<Commit.CommitData> getCurrentCommits(User user, String repoName) {
+    public ResultList getCurrentCommits(User user, String repoName) {
+        ResultList<Commit.CommitData> res = new ResultList<>();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
-            return repo.currentCommits();
+            res.setRes(repo.currentCommits());
+            res.setHasError(false);
         }
-        return null;
+        else{
+            res.setErrorMsg("Could not get all commits");
+            res.setHasError(true);
+        }
+        return res;
     }
+
+    public ResultList getCurrentWC(User user, String repoName) {
+        ResultList<String> res = new ResultList<>();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            res.setRes(repo.getCurrentCommitFullFilesData());
+            res.setHasError(false);
+        }
+        else{
+            res.setErrorMsg("Could not get all WC");
+            res.setHasError(true);
+        }
+        return res;
+    }
+
 
 //  ======================== Collaborations Functions ======================
 
@@ -530,6 +600,27 @@ public class Magit {
         }
         return res;
     }
-
+    public MagitStringResultObject createPR(User user, String repoName, String srcBranch,
+                                            String targetBranch, String msg) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.addNewPullRequestToRepository(targetBranch, srcBranch, msg, user);
+                res.setIsHasError(false);
+                res.setData("Pull Request created successfully!");
+            } catch (Exception e) {
+                res.setIsHasError(true);
+                String errorMessage = "Something went wrong while trying to pull!\n" +
+                        "Error message:" + e.getMessage();
+                res.setErrorMSG(errorMessage);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
 
 }

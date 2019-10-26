@@ -811,6 +811,8 @@ public class Repository {
         return repoBranches;
     }
 
+
+
     // =========================== Commit =========================================
 
     public List<Commit.CommitData> currentCommits() {
@@ -1637,8 +1639,8 @@ public class Repository {
     public void addNewPullRequestToRepository(String target, String base, String prMsg, User owner)
             throws InvalidDataException{
         PullRequestObject newPullRequest = createNewPullRequest(target, base, prMsg, owner);
-        repoPullRequsetList.add(newPullRequest);
-        repoOwner.addNotification(new NotificationObject(
+        trackedRepository.repoPullRequsetList.add(newPullRequest);
+        trackedRepository.repoOwner.addNotification(new NotificationObject(
                 String.format("A new pull request was created in repository %s by user %s", repoName, owner)));
     }
 

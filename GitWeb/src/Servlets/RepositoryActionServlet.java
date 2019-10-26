@@ -3,6 +3,7 @@ package Servlets;
 import Engine.Magit;
 import Exceptions.DataAlreadyExistsException;
 import Exceptions.FileErrorException;
+import Exceptions.InvalidDataException;
 import GitObjects.*;
 import UIUtils.ServletUtils;
 import Utils.MagitStringResultObject;
@@ -19,17 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.DirectoryNotEmptyException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class RepositoryActionServlet extends HttpServlet {
 
     private Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
+    private UserManager userManager = ServletUtils.getUserManager(getServletContext());
 
     protected void processGetRequest(HttpServletRequest request, HttpServletResponse response) {
 
         response.setContentType("application/json");
-        UserManager userManager = ServletUtils.getUserManager(getServletContext());
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         User currUser = userManager.getUserByName(usernameFromSession);
         String repoName = request.getParameter("repository");
@@ -39,17 +41,29 @@ public class RepositoryActionServlet extends HttpServlet {
         String json = "";
         switch (action){
             case ("getPullRequests"):
-            {json = getOpenPullRequestsForUser(currUser, repo);
-                break;}
-            case ("getHead"):{
-                String otherUser = request.getParameter("otherUserName") ;
-                break;}
+            {
+                json = getOpenPullRequestsForUser(currUser, repo);
+                break;
+            }
+            case ("getHead"):
+            {
+                json = getHead(currUser, repo);
+                break;
+            }
             case ("getCommits"):
-            {break;}
+            {
+                json = getCommits(currUser, repo);
+                break;}
             case ("showWC"):
-            {break;}
+            {
+                json = getWC(currUser, repo);
+                break;
+            }
             case ("getBranches"):
-            {break;}
+            {
+                json = getBranches(currUser, repo);
+                break;
+            }
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -72,27 +86,69 @@ public class RepositoryActionServlet extends HttpServlet {
         return gson.toJson(headObj);
     }
 
+    private String getBranches(User currUser, Repository repo) {
+        Gson gson = new Gson();
+        MagitStringResultObject branchObj = myMagit.getBranches(currUser, repo.getRepoName());
+        return gson.toJson(branchObj);
+    }
+
+    private String getCommits(User currUser, Repository repo) {
+        Gson gson = new Gson();
+        ResultList commitObj = myMagit.getCurrentCommits(currUser, repo.getRepoName());
+        return gson.toJson(commitObj);
+    }
+
+    private String getWC(User currUser, Repository repo) {
+        Gson gson = new Gson();
+        ResultList filesObj = myMagit.getCurrentWC(currUser, repo.getRepoName());
+        return gson.toJson(filesObj);
+    }
+
     protected void processPostRequest(HttpServletRequest request, HttpServletResponse response) {
 
         response.setContentType("application/json");
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
+        User currUser = userManager.getUserByName(usernameFromSession);
+        String repoName = request.getParameter("repository");
+        Repository repo = userManager.getUserRepository(currUser, repoName);
+        String branchName = request.getParameter("branchName");
+
         String action = request.getParameter("action");
         String json = "";
         switch (action){
             case ("checkout"):
-            {break;}
-            case ("pull"):{
+            {
+                json = checkout(currUser, repo, branchName);
+                break;}
+            case ("pull"):
+            {
+                json = pull(currUser, repo);
                 break;}
             case ("push"):
-            {break;}
+            {
+                json = push(currUser, repo);
+                break;
+            }
             case ("addBranch"):
-            {break;}
+            {
+                String commitSha1 = request.getParameter("commitSh1");
+                json = addBranch(currUser, repo, branchName, commitSha1);
+                break;
+            }
             case ("deleteBranch"):
-            {break;}
+            {
+                json = deleteBranch(currUser, repo, branchName);
+                break;
+            }
+
             case ("createPullRequest"):
-            {break;}
+            {
+                String branchTarget = request.getParameter("branchTarget");
+                String msg = request.getParameter("prMsg");
 
-
+                json = createPR(currUser, repo, branchName, branchTarget, msg);
+                break;
+            }
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -102,6 +158,77 @@ public class RepositoryActionServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    private String checkout(User currUser, Repository repo, String branch) {
+        Gson gson = new Gson();
+
+        MagitStringResultObject resObj = null;
+        try {
+            resObj = myMagit.checkoutBranch(currUser, repo.getRepoName(), branch, false);
+        } catch (DirectoryNotEmptyException e) {
+            e.printStackTrace();
+        }
+        return gson.toJson(resObj);
+    }
+
+    private String pull(User currUser, Repository repo) {
+        Gson gson = new Gson();
+
+        MagitStringResultObject resObj = null;
+        resObj = myMagit.pull(currUser, repo.getRepoName());
+
+        return gson.toJson(resObj);
+    }
+
+    private String push(User currUser, Repository repo) {
+        Gson gson = new Gson();
+
+        MagitStringResultObject resObj = null;
+        resObj = myMagit.push(currUser, repo.getRepoName());
+
+        return gson.toJson(resObj);
+    }
+
+    private String addBranch(User currUser, Repository repo, String branchName, String commitSha1) {
+        Gson gson = new Gson();
+        MagitStringResultObject resObj = null;
+        if (commitSha1.equals("")) {
+            MagitStringResultObject commitobj = myMagit.getHeadBranchCommitSha1(currUser, repo.getRepoName());
+            if (!commitobj.getIsHasError()) {
+                commitSha1 = commitobj.getData();
+            }
+        }
+        try {
+            resObj = myMagit.addNewBranch(currUser, repo.getRepoName(), branchName, commitSha1, false);
+        } catch (InvalidDataException | DataAlreadyExistsException | IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return gson.toJson(resObj);
+
+    }
+
+    private String createPR(User currUser, Repository repo, String src, String target, String msg) {
+        Gson gson = new Gson();
+
+        MagitStringResultObject resObj =  myMagit.createPR(currUser, repo.getRepoName(), src, target, msg);
+
+        return gson.toJson(resObj);
+    }
+    private String deleteBranch(User currUser, Repository repo, String branchToDelete) {
+        Gson gson = new Gson();
+
+        MagitStringResultObject resObj = null;
+        try {
+            resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
+
+        return gson.toJson(resObj);
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         processGetRequest(request, response);
