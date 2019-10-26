@@ -1,5 +1,5 @@
 var REFRESH_DATA = "../refreshData";
-var refreshRate = 10000; //milli seconds
+var refreshRate = 3000; //milli seconds
 
 // ================== Fork action ==========================
 
@@ -14,8 +14,31 @@ function forkRepository(repo) {
                 repositoryName: forkRepo,
                 otherUSer: forkOwner
             },
-        success: function() {
+        success: function(finalMsg) {
             ajaxCurrentUserRepo();
+            alert(finalMsg);
+        }
+    });
+}
+
+// =================== Updating current user ==========================
+
+function ajaxCurrentUser() {
+    $.ajax({
+        url: REFRESH_DATA,
+        data:
+            {
+                action: "getCurrentUser"
+            },
+
+        success: function(username) {
+           var curUser =  $("#currentUser");
+           $(curUser).text(username);
+           $(curUser).click(function(){
+               ajaxCurrentUserRepo();
+           })
+
+
         }
     });
 }
@@ -138,10 +161,19 @@ function refreshUserReposList(repos) {
         var tdBranchNum = $(document.createElement('td')).text(repo.numOfBranches);
         var tdLastCommitDate = $(document.createElement('td')).text(repo.lastCommitDate);
 
+        var btn = $(document.createElement('button'));
+        var tdRepo = $(document.createElement('td'));
+        btn.attr('id', repo.name);
+        btn.attr('owner', repo.repoOwner);
+        btn.text("Go To Repository");
+        btn.attr('class', "button");
+        btn.appendTo(tdRepo);
+
         tdRepoName.appendTo(tr);
         tdHead.appendTo(tr);
         tdBranchNum.appendTo(tr);
         tdLastCommitDate.appendTo(tr);
+        tdRepo.appendTo(tr);
 
         tr.appendTo(tableBody);
 
@@ -149,8 +181,7 @@ function refreshUserReposList(repos) {
         console.log("finished repos");
 
         $(btn).click(function(){
-            forkRepository(this)
-            alert("hello");
+            //moveToPage3(this)
         });
         console.log("try click");
 
@@ -180,6 +211,8 @@ function refreshOtherUserReposList(repos) {
         btn.attr('id', repo.name);
         btn.attr('owner', repo.repoOwner);
         btn.text("Fork");
+        btn.attr('class', "button");
+
         btn.appendTo(tdFork);
         tdRepoName.appendTo(tr);
         tdHead.appendTo(tr);
@@ -209,6 +242,7 @@ function refreshOtherUserReposList(repos) {
 // activate the timer calls after the page is loaded
 $(function() {
 
+    ajaxCurrentUser();
     //These lists is refreshed automatically every second
     // setTimeout(ajaxCurrentUserRepo, refreshRate);
     setInterval(ajaxUsersList, refreshRate);

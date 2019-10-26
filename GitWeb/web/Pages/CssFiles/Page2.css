@@ -1,6 +1,6 @@
 body{
 	font-family: Aharoni;
-        width: 100%;
+	width: 100%;
   	float: right;
 	display: inline-block;
 }
@@ -73,9 +73,8 @@ h4 {
         margin-top: 5%;
         margin-left: 15%;
         margin-right: 0%;
-        float: center;
-	color: #47476b;
-	text-decoration: underline;
+		color: #47476b;
+		text-decoration: underline;
 }
         
 .up,.down {
@@ -98,11 +97,14 @@ h4 {
 table {
   	border-collapse: collapse;
 	width: 100%;
-	color: #e0e0eb;
+	color: #d9d9d9;
+	background-color: black;
 }
 
 table, th, td {
-      	border: 2px solid #47476b;
+      	border: 1.5px solid #d9d9d9;
+		border-radius: 1em;
+		overflow: hidden;
 }
 
 .up2 {

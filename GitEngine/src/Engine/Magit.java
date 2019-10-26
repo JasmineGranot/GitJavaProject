@@ -176,9 +176,18 @@ public class Magit {
         }
         return null; //TODO
     }
-    public boolean validateXML(User owner, String data) throws JAXBException {
-        XMLHandler xml = new XMLHandler(data, owner.getPath());
-        return xml.isRepoValid();
+    public MagitStringResultObject validateXML(User owner, String data) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        try {
+            XMLHandler xml = new XMLHandler(data, owner.getPath());
+            if(xml.isRepoValid()) {
+                res.setIsHasError(false);
+            }
+        } catch(Exception e) {
+            res.setIsHasError(true);
+            res.setErrorMSG(e.getMessage());
+        }
+        return res;
     }
 
     private MagitStringResultObject loadRepositoryFromXML(User owner, XMLHandler handler,String newRepoPath,
