@@ -253,7 +253,7 @@ function triggerGetMsg(){
 
 // activate the timer calls after the page is loaded
 $(function() {
-
+    ajaxCurrentUserRepo();
     ajaxCurrentUser();
     //These lists is refreshed automatically every second
     // setTimeout(ajaxCurrentUserRepo, refreshRate);

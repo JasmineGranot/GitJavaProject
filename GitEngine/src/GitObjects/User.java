@@ -101,7 +101,7 @@ public class User {
         this.activeRepositories = activeRepositories;
     }
 
-    void setOnline(boolean online) {
+    public void setOnline(boolean online) {
         isOnline = online;
     }
 

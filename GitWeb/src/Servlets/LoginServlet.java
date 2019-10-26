@@ -1,6 +1,7 @@
 package Servlets;
 
 import Engine.Magit;
+import GitObjects.Repository;
 import GitObjects.UserManager;
 import UIUtils.ServletUtils;
 import UIUtils.SessionUtils;
@@ -22,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Magit myMagit = ServletUtils.getMagitObject(getServletContext());
         response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
@@ -36,9 +38,11 @@ public class LoginServlet extends HttpServlet {
                         if(userManager.isUserOnline(usernameFromParameter)) {// isUserOnline
                             String errorMessage = "Username " + usernameFromParameter + " already exists. Please enter a different username.";
                             request.setAttribute("loggedInAlready", errorMessage);
-                            //TODO: //getServletContext().getRequestDispatcher(LOGIN_ERROR_URL).forward(request, response);
                         }
                         else {
+                            myMagit.loadUserData(userManager.getUserByName(usernameFromParameter));
+                            request.getSession(true).setAttribute("username", usernameFromParameter);
+                            userManager.getUserByName(usernameFromParameter).setOnline(true);
                             response.sendRedirect(PAGE_2);
                         }
                     } else {
@@ -49,10 +53,6 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-        } else {
-            Magit myMagit = ServletUtils.getMagitObject(getServletContext());
-            myMagit.loadUserData(userManager.getUserByName(usernameFromSession));
-            response.sendRedirect(PAGE_2);
         }
     }
 }
