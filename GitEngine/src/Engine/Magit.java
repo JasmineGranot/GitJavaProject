@@ -410,6 +410,7 @@ public class Magit {
         Repository repo = new Repository(user, repoToClone.getRepoName());
         try {
             repo.clone(repoToClone);
+            user.addRepositoy(repo);
             res.setData("Repository cloned successfully!");
             res.setIsHasError(false);
         } catch (Exception e) {
