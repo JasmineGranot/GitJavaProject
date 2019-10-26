@@ -142,5 +142,6 @@ public class User {
 
     public void logout() {
         lastSignOut = MagitUtils.getTodayAsDate();
+        setOnline(false);
     }
 }

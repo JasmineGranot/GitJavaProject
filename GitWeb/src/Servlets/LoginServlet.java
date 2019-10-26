@@ -1,5 +1,6 @@
 package Servlets;
 
+import Engine.Magit;
 import GitObjects.UserManager;
 import UIUtils.ServletUtils;
 import UIUtils.SessionUtils;
@@ -49,6 +50,8 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         } else {
+            Magit myMagit = ServletUtils.getMagitObject(getServletContext());
+            myMagit.loadUserData(userManager.getUserByName(usernameFromSession));
             response.sendRedirect(PAGE_2);
         }
     }

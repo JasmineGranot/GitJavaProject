@@ -24,10 +24,16 @@
 	</div>
 
 	<div class="leftcolumn">
-		<a href="#" class="f90-logout-button">Logout</a>
+		<form action="../logout" method="get"><center>
+			<input type="submit" class="f90-logout-button" value="Logout">
+		</center></form>
 		<p><img class="userImage" src="CssFiles/user.png" alt="User"></p>
 		<h4>Current User:</h4>
 		<p id="currentUser"></p>
+		<h4>Notifications: </h4>
+		<select name="comboNotifications" id="comboNotifications">
+		</select>
+		<br><br>
 	</div>
 
 

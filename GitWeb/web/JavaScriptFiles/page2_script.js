@@ -43,6 +43,11 @@ function ajaxCurrentUser() {
     });
 }
 
+function logoutUser(){
+    $.ajax({
+        url: "/logout",
+    });
+}
 // =================== Updating online users list ==========================
 function ajaxUsersList() {
     $.ajax({
@@ -88,20 +93,27 @@ function ajaxUsersNotificationsList() {
             },
         success: function(notifications) {
             refreshMessagesList(notifications);
+            triggerGetMsg();
         }
     });
 }
 
 function refreshMessagesList(notifications) {
     //clear all current messages
-    $("#userNotifications").empty();
+    $("#comboNotifications").empty();
 
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(notifications || [], function(index, msg) {
-        console.log("Adding msg #" + index + ": " + msg);
-        //create a new <option> tag with a value in it and
-        //appeand it to the #userslist (div with id=userslist) element
-        $('<li>' + msg + '</li>').appendTo($("#userNotifications"));
+        console.log("Adding notifications");
+        var select = $(document.getElementById("comboNotifications"));
+        var option = $(document.createElement('option'));
+        option.text = msg.msg;
+
+        option.appendTo(select);
+
+        $(option).click(function () {
+            alert(msg);
+        });
     });
 }
 
@@ -235,9 +247,9 @@ function refreshOtherUserReposList(repos) {
 
 // ========================= On loading ================================
 
-// function triggerGetRepos(){
-//     setTimeout(ajaxCurrentUserRepo, refreshRate);
-// }
+function triggerGetMsg(){
+    setTimeout(ajaxUsersNotificationsList, refreshRate);
+}
 
 // activate the timer calls after the page is loaded
 $(function() {
@@ -246,7 +258,7 @@ $(function() {
     //These lists is refreshed automatically every second
     // setTimeout(ajaxCurrentUserRepo, refreshRate);
     setInterval(ajaxUsersList, refreshRate);
-    // triggerGetRepos();
+    triggerGetMsg();
     // setInterval(ajaxUsersNotificationsList, refreshRate);
 
 

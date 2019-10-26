@@ -6,6 +6,7 @@ import Exceptions.*;
 import XMLHandler.*;
 import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
@@ -53,6 +54,17 @@ public class Magit {
     }
 
 //  ======================== Repository Functions ==========================
+
+    public void loadUserData(User user) {
+        File userPath = new File(user.getPath());
+        if(userPath.exists()){
+            File[] listOfUserRepos = userPath.listFiles();
+            for(File curr : listOfUserRepos) {
+                Repository newRepository = new Repository(user, curr.getName());
+                newRepository.loadRepositoryFromFile();
+            }
+        }
+    }
 
     public ResultList<PullRequestObject> getPullRequests(User user, String repoName){
         ResultList<PullRequestObject> res = new ResultList<>();

@@ -63,6 +63,7 @@ public class UserManager {
         User currUser = getUserByName(userName);
         if(currUser != null) {
             currUser.setOnline(false);
+            currUser.logout();
         }
     }
 
