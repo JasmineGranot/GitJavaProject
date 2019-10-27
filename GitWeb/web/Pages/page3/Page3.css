@@ -61,7 +61,7 @@ h2 {
         position:fixed; 
         top:5%;
         left:85%;
-	right: 5%;
+		right: 5%;
 }
         
 .center {
@@ -146,7 +146,26 @@ button:active {
 
 .bottom {
 	background-color: white;
-	display: block;
+	background-size: contain;
+	border: 2px solid black;
+	border-radius: 5px;
 	font-family: Arial;
-	font-size: x-small;
+	font-size: small;
+	text-align: center;
+
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	color: #d9d9d9;
+	background-color: black;
+	font-size: 13.5px;
+	position: center;
+}
+
+table, th, td {
+	border: 1.5px solid #d9d9d9;
+	border-radius: 0.5em;
+	overflow: hidden;
 }

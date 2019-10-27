@@ -507,10 +507,10 @@ public class Magit {
     }
 
     public ResultList getCurrentCommits(User user, String repoName) {
-        ResultList<String> res = new ResultList<>();
+        ResultList<Commit.CommitData> res = new ResultList<>();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
-            res.setRes(getCommitDataStringFromCommit(repo.currentCommits()));
+            res.setRes(repo.currentCommits());
             res.setHasError(false);
         }
         else{

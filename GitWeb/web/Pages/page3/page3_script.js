@@ -236,11 +236,25 @@ function showCommits(){
                 var listArea = $('#commitSection');
                 listArea.empty();
 
-                $.each(commits.res || [], function (index, commitString) {
-                    console.log("Adding commits");
-                    var element = $(document.createElement('li'));
-                    element.text(commitString);
-                    element.appendTo(listArea);
+                listArea.append("<tr><th>Root Sha1</th>" +
+                    "<th>Last Commit</th>" +
+                    "<th>Commit Message</th>" +
+                    "<th>Commit Date</th>" +
+                    "<th>Commit Writer</th></tr>");
+
+                $.each(commits.res || [], function (index, commitData) {
+                    listArea.append("<tr><td>" + commitData.commitSha1 + "</td>" +
+                        "<td>" + commitData.commitsLastCommit + "</td>" +
+                        "<td>" + commitData.commitMsg + "</td>" +
+                        "<td>" + commitData.commitDate + "</td>" +
+                        "<td>" + commitData.commitWriter + "</td></tr>");
+
+                    // console.log("Adding commits");
+                    // var element = $(document.createElement('li'));
+                    // element.text(commitString);
+                    // element.appendTo(listArea);
+                    // element.text('\n');
+                    // element.appendTo(listArea);
                 });
             }
         }

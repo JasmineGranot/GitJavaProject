@@ -10,8 +10,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
@@ -195,6 +193,8 @@
       <workItem from="1572077488217" duration="21433000" />
       <workItem from="1572162313934" duration="18455000" />
       <workItem from="1572197696026" duration="8300000" />
+      <workItem from="1572206050237" duration="76000" />
+      <workItem from="1572209487680" duration="6366000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -409,7 +409,13 @@
       <option name="presentableId" value="LOCAL‎00031" />
       <updated>1572198871323</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL‎00032" summary="page3 changed">
+      <created>1572206092469</created>
+      <option name="number" value="LOCAL‎00032" />
+      <option name="presentableId" value="LOCAL‎00032" />
+      <updated>1572206092469</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +447,8 @@
     <MESSAGE value="tried to do page 3" />
     <MESSAGE value="page 3 working" />
     <MESSAGE value="magit changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="magit changed" />
+    <MESSAGE value="page3 changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="page3 changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -487,5 +494,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GitEngine$Tomcat_8_5_47.ic" NAME="Tomcat 8.5.47 Coverage Results" MODIFIED="1572213667114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
