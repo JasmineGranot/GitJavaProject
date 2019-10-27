@@ -6,12 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
+    <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +17,181 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="462" column="30" selection-start-line="462" selection-start-column="30" selection-end-line="462" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#30675#30676#0" expanded="true" />
+                <element signature="e#30710#30711#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1949#2016#0" />
+                <element signature="method#getOpenPullRequestsForUser#0;class#RepositoryActionServlet#0" />
+                <element signature="method#getBranches#0;class#RepositoryActionServlet#0" />
+                <element signature="method#getBranches#1;class#RepositoryActionServlet#0" />
+                <element signature="method#getCommits#1;class#RepositoryActionServlet#0" />
+                <element signature="e#4214#4239#1" />
+                <element signature="method#pull#0;class#RepositoryActionServlet#0" />
+                <element signature="method#push#0;class#RepositoryActionServlet#0" />
+                <element signature="method#addBranch#0;class#RepositoryActionServlet#0" />
+                <element signature="e#8237#8238#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" column="23" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1377">
+              <caret line="131" column="18" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="18" />
+              <folding>
+                <element signature="n#!!block;n#ajaxUsersList#0" />
+                <element signature="n#!!block;n#refreshUsersList#0" />
+                <element signature="n#!!block;n#ajaxUsersNotificationsList#0" />
+                <element signature="n#!!block;n#refreshMessagesList#0" />
+                <element signature="n#!!block;n#push#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3877">
+              <caret line="86" column="35" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/Page3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="61" column="38" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="357" column="12" lean-forward="true" selection-start-line="357" selection-start-column="12" selection-end-line="357" selection-end-column="12" />
+              <folding>
+                <element signature="e#1915#2744#0" />
+                <element signature="e#2630#3466#0" />
+                <element signature="e#3572#4448#0" />
+                <element signature="e#1911#2786#0" />
+                <element signature="e#2190#2630#1" />
+                <element signature="e#2208#2461#0" />
+                <element signature="e#2482#2620#0" />
+                <element signature="e#2644#2757#1" />
+                <element signature="e#2792#3645#0" />
+                <element signature="e#3651#4165#0" />
+                <element signature="e#3888#4131#1" />
+                <element signature="e#4354#5518#0" />
+                <element signature="e#4822#5293#0" />
+                <element signature="e#4964#5118#1" />
+                <element signature="e#5135#5282#1" />
+                <element signature="e#5338#5370#0" />
+                <element signature="e#5390#5489#0" />
+                <element signature="e#7194#7991#0" />
+                <element signature="e#7863#7965#1" />
+                <element signature="e#5601#7585#0" />
+                <element signature="e#6064#6215#1" />
+                <element signature="e#6784#7549#1" />
+                <element signature="e#6802#7023#0" />
+                <element signature="e#7061#7310#0" />
+                <element signature="e#7333#7539#0" />
+                <element signature="e#7917#8068#1" />
+                <element signature="e#8132#8243#1" />
+                <element signature="e#8275#8485#0" />
+                <element signature="e#8517#8717#0" />
+                <element signature="e#9175#9326#1" />
+                <element signature="e#9587#9619#0" />
+                <element signature="e#9658#9859#0" />
+                <element signature="e#9887#9998#0" />
+                <element signature="e#10039#11004#0" />
+                <element signature="e#10386#10537#1" />
+                <element signature="e#10550#10753#0" />
+                <element signature="e#10798#10830#0" />
+                <element signature="e#10858#10969#0" />
+                <element signature="e#11006#11103#0" />
+                <element signature="e#12485#13304#0" />
+                <element signature="e#13076#13275#0" />
+                <element signature="e#13310#15064#0" />
+                <element signature="e#13694#13826#1" />
+                <element signature="e#13839#14373#0" />
+                <element signature="e#13943#14143#1" />
+                <element signature="e#14160#14363#1" />
+                <element signature="e#14412#14511#0" />
+                <element signature="e#14557#14792#0" />
+                <element signature="e#14831#15035#0" />
+                <element signature="e#15687#15749#1" />
+                <element signature="e#15782#16518#0" />
+                <element signature="e#16025#16208#0" />
+                <element signature="e#16229#16491#0" />
+                <element signature="e#16524#17318#0" />
+                <element signature="e#16743#17176#1" />
+                <element signature="e#16761#16902#0" />
+                <element signature="e#16923#17166#0" />
+                <element signature="e#17190#17292#1" />
+                <element signature="e#17324#18160#0" />
+                <element signature="e#17560#17722#0" />
+                <element signature="e#17743#18008#0" />
+                <element signature="e#18562#18811#0" />
+                <element signature="e#23581#23830#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/ResultList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,6 +214,92 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <showMembers ProjectPane="false" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="GitEngine" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\97250\Desktop\GitJavaProject\GitEngine" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Servlets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Commons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaScriptFiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -376,8 +633,57 @@
       <option name="project" value="LOCAL" />
       <updated>1572100478371</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572105670507</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1572105670507</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2327000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info id="Designer" order="5" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.23719676" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32876712" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5005549" side_tool="true" weight="0.48901734" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.325723" />
+      <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32947975" />
+      <window_info anchor="bottom" id="Database Changes" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="6" visible="true" weight="0.32724506" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32724506" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.32876712" />
+      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" weight="0.42313546" />
+      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="14" />
+      <window_info anchor="bottom" id="Thumbnails" order="15" weight="0.33281973" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Database" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -391,7 +697,8 @@
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/artifacts/GitEngine_jar.xml&#10;#&#9;GitEngine/.idea/artifacts/Magit.xml&#10;#&#9;GitWeb/GitWeb.iml&#10;#&#9;GitWeb/src/myGit/Servlets/LoginServlet.java&#10;#&#9;GitWeb/src/myGit/Servlets/RefreshDataServlet.java&#10;#&#9;GitWeb/web/JavaScriptFiles/page3_script.js&#10;#&#9;GitWeb/web/Pages/LoginPage.html&#10;#&#9;GitWeb/web/Pages/Page2.html&#10;#&#9;GitWeb/web/Pages/Page3.html&#10;#&#9;GitWeb/web/WEB-INF/web.xml&#10;#&#9;GitWeb/web/index.html" />
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/misc.xml&#10;#&#9;GitWeb/GitWeb.iml&#10;#&#9;GitWeb/src/META-INF/MANIFEST.MF&#10;#&#9;GitWeb/src/MagitMain/MagitMain.java&#10;#&#9;GitWeb/src/Resources/CommitNode.fxml&#10;#&#9;GitWeb/src/Resources/ConflictResolver.fxml&#10;#&#9;GitWeb/src/Resources/Images/ChangeRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Clone.png&#10;#&#9;GitWeb/src/Resources/Images/Commit.png&#10;#&#9;GitWeb/src/Resources/Images/Edit.png&#10;#&#9;GitWeb/src/Resources/Images/Fetch.png&#10;#&#9;GitWeb/src/Resources/Images/LoadRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Merge.png&#10;#&#9;GitWeb/src/Resources/Images/NewBranch.png&#10;#&#9;GitWeb/src/Resources/Images/NewRepo.png&#10;#&#9;GitWeb/src/Resources/Images/Pull.png&#10;#&#9;GitWeb/src/Resources/Images/Push.png&#10;#&#9;GitWeb/src/Resources/Images/ResetBranch.png&#10;#&#9;GitWeb/src/Resources/Images/ShowStatus.png&#10;#&#9;GitWeb/src/Resources/Images/Trash.png&#10;#&#9;GitWeb/src/Resources/Images/icons8-show-property-48.png&#10;#&#9;GitWeb/src/Resources/Images/v.png&#10;#&#9;GitWeb/src/Resources/MainScreen.fxml&#10;#&#9;GitWeb/src/Resources/MainScreenTest.fxml&#10;#&#9;GitWeb/src/Resources/MainScreenTest2.fxml&#10;#&#9;GitWeb/src/Resources/ShowCommitData.fxml&#10;#&#9;GitWeb/src/Resources/ShowMergeCase.fxml&#10;#&#9;GitWeb/src/Resources/ShowStatusScreen.fxml&#10;#&#9;GitWeb/src/Servlets/ForkRepositoryServlet.java&#10;#&#9;GitWeb/src/Servlets/LoadXmlServlet.java&#10;#&#9;GitWeb/src/Servlets/LoginServlet.java&#10;#&#9;GitWeb/src/Servlets/LogoutServlet.java&#10;#&#9;GitWeb/src/Servlets/RefreshDataServlet.java&#10;#&#9;GitWeb/src/Servlets/SystemServlet.java&#10;#&#9;GitWeb/src/UIUtils/CommonUsed.java&#10;#&#9;GitWeb/src/UIUtils/ServletUtils.java&#10;#&#9;GitWeb/src/UIUtils/SessionUtils.java&#10;#&#9;GitWeb/web/JavaScriptFiles/fork.js&#10;#&#9;GitWeb/web/JavaScriptFiles/page2_script.js&#10;#&#9;GitWeb/web/JavaScriptFiles/xmlUpload.js&#10;#&#9;GitWeb/web/Pages/LoginPage.html&#10;#&#9;GitWeb/web/Pages/Page2.html&#10;#&#9;GitWeb/web/WEB-INF/web.xml&#10;#&#9;GitWeb/web/index.html" />
     <MESSAGE value="added many repo actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added many repo actions" />
+    <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -399,39 +706,89 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/User.java</url>
           <line>117</line>
+          <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
           <line>686</line>
+          <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
           <line>1443</line>
+          <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/myGit/Servlets/ForkRepositoryServlet.java</url>
           <line>17</line>
+          <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/myGit/Servlets/SystemServlet.java</url>
           <line>22</line>
+          <properties />
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../Web2/src/Servlets/LoginServlet.java</url>
           <line>19</line>
+          <properties />
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java</url>
           <line>25</line>
+          <properties />
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="131" column="18" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!block;n#ajaxUsersList#0" />
+            <element signature="n#!!block;n#refreshUsersList#0" />
+            <element signature="n#!!block;n#ajaxUsersNotificationsList#0" />
+            <element signature="n#!!block;n#refreshMessagesList#0" />
+            <element signature="n#!!block;n#push#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1949#2016#0" />
+            <element signature="method#getOpenPullRequestsForUser#0;class#RepositoryActionServlet#0" />
+            <element signature="method#getBranches#0;class#RepositoryActionServlet#0" />
+            <element signature="method#getBranches#1;class#RepositoryActionServlet#0" />
+            <element signature="method#getCommits#1;class#RepositoryActionServlet#0" />
+            <element signature="e#4214#4239#1" />
+            <element signature="method#pull#0;class#RepositoryActionServlet#0" />
+            <element signature="method#push#0;class#RepositoryActionServlet#0" />
+            <element signature="method#addBranch#0;class#RepositoryActionServlet#0" />
+            <element signature="e#8237#8238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
