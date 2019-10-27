@@ -227,11 +227,7 @@ public class RepoActionsNewServlet extends HttpServlet {
         Gson gson = new Gson();
 
         MagitStringResultObject resObj = null;
-        try {
-            resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
-        }
+        resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
 
         return gson.toJson(resObj);
     }

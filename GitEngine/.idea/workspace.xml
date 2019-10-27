@@ -7,28 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/IndexDirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/IndexDirect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/LogoutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/Page3Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/Page3Servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/fork.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/fork.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page2_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/JavaScriptFiles/xmlUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/xmlUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/LoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/loginPage/LoginPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/Page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/resources/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/CssFiles/wallpaper3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/resources/wallpaper3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/loginPage/LoginPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/Page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,6 +191,7 @@
       <workItem from="1572076335458" duration="985000" />
       <workItem from="1572077488217" duration="21433000" />
       <workItem from="1572162313934" duration="18455000" />
+      <workItem from="1572197696026" duration="1150000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -410,7 +394,13 @@
       <option name="presentableId" value="LOCAL‎00029" />
       <updated>1572111180552</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎00030" summary="page 3 working">
+      <created>1572197763017</created>
+      <option name="number" value="LOCAL‎00030" />
+      <option name="presentableId" value="LOCAL‎00030" />
+      <updated>1572197763017</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +411,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -438,7 +430,8 @@
     <MESSAGE value="added many repo actions" />
     <MESSAGE value="login servlete changed" />
     <MESSAGE value="tried to do page 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="tried to do page 3" />
+    <MESSAGE value="page 3 working" />
+    <option name="LAST_COMMIT_MESSAGE" value="page 3 working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -499,13 +492,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="125" />
+          <line>107</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
           <line>102</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="120" />
         </line-breakpoint>
       </breakpoints>

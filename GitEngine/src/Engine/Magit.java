@@ -279,6 +279,7 @@ public class Magit {
             if (repo == null) {
                 resultObject.setIsHasError(true);
                 resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+                return resultObject;
             }
             if (branchName.contains(" ")) {
                 msg = "Branch name is invalid, please try again without any spaces.";
@@ -304,8 +305,7 @@ public class Magit {
         return resultObject;
     }
 
-    public MagitStringResultObject deleteBranch(User user, String repositoryName, String branchName)
-            throws InvalidDataException {
+    public MagitStringResultObject deleteBranch(User user, String repositoryName, String branchName) {
         MagitStringResultObject resultObject = new MagitStringResultObject();
         String msg;
         Repository repo = getRepoForUser(user, repositoryName);
@@ -316,7 +316,8 @@ public class Magit {
         }
         if (branchName.equals(repo.getHeadBranch().getName())) {
             msg = "Head Branch cannot be deleted";
-            throw new InvalidDataException(msg);
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(msg);
         }
         else {
             try {

@@ -199,8 +199,7 @@ public class RepositoryActionServlet extends HttpServlet {
     private String push(User currUser, Repository repo) {
         Gson gson = new Gson();
 
-        MagitStringResultObject resObj = null;
-        resObj = myMagit.push(currUser, repo.getRepoName());
+        MagitStringResultObject resObj = myMagit.push(currUser, repo.getRepoName());
 
         return gson.toJson(resObj);
     }
@@ -226,15 +225,11 @@ public class RepositoryActionServlet extends HttpServlet {
 
         return gson.toJson(resObj);
     }
+
     private String deleteBranch(User currUser, Repository repo, String branchToDelete) {
         Gson gson = new Gson();
 
-        MagitStringResultObject resObj = null;
-        try {
-            resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
-        }
+        MagitStringResultObject resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
 
         return gson.toJson(resObj);
     }

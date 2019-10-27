@@ -201,7 +201,20 @@ function deleteBranch(){
     refreshBranches()
 }
 function commit(){}
-function showCommits(){}
+
+function showCommits(){
+    $.ajax({
+        url: REPO_ACTIONS,
+        data:
+            {
+                action: "getCommits",
+            },
+        success: function(commits) {
+            alert("hello");
+        }
+    });
+
+}
 function showWC(){}
 function createPullRequest(){}
 function refreshBranches(){
