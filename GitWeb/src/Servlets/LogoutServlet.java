@@ -26,8 +26,7 @@ public class LogoutServlet extends HttpServlet {
             userManager.disconnectUser(usernameFromSession);
             UIUtils.SessionUtils.clearCurrentUser(request);
             UIUtils.SessionUtils.clearSession(request);
-
-            response.sendRedirect("Pages/LoginPage.html");
+            response.sendRedirect("Pages/loginPage/LoginPage.html");
         }
     }
 

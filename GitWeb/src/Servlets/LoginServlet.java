@@ -18,8 +18,8 @@ import java.io.IOException;
 )
 
 public class LoginServlet extends HttpServlet {
-    private final String PAGE_2 = "Pages/Page2.html";
-    private final String SIGN_UP_URL = "Pages/LoginPage.html";
+    private final String PAGE_2 = "Pages/page2/Page2.html";
+    private final String SIGN_UP_URL = "Pages/loginPage/LoginPage.html";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
