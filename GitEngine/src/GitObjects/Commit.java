@@ -240,5 +240,10 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
             this.commitWriter = commitWriter;
         }
 
+        public String toString(){
+            return String.format("%s%s%s%s%s%s%s%s%s%s%s", getCommitSha1(), MagitUtils.DELIMITER, getCommitsLastCommit(),
+                    MagitUtils.DELIMITER, getCommitsLast2Commit(), MagitUtils.DELIMITER, getCommitMsg(), MagitUtils.DELIMITER,
+                    getCommitDate(), MagitUtils.DELIMITER, getCommitWriter());
+        }
     }
 }

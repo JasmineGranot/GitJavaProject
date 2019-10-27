@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -506,10 +507,10 @@ public class Magit {
     }
 
     public ResultList getCurrentCommits(User user, String repoName) {
-        ResultList<Commit.CommitData> res = new ResultList<>();
+        ResultList<String> res = new ResultList<>();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
-            res.setRes(repo.currentCommits());
+            res.setRes(getCommitDataStringFromCommit(repo.currentCommits()));
             res.setHasError(false);
         }
         else{
@@ -517,6 +518,11 @@ public class Magit {
             res.setHasError(true);
         }
         return res;
+    }
+
+    private List<String> getCommitDataStringFromCommit(List<Commit.CommitData> commits){
+        Stream<Commit.CommitData> commitsString = commits.stream();
+        return commitsString.map(Commit.CommitData::toString).collect(Collectors.toList());
     }
 
     public ResultList getCurrentWC(User user, String repoName) {
@@ -640,7 +646,7 @@ public class Magit {
             } catch (Exception e) {
                 res.setIsHasError(true);
                 String errorMessage = "Something went wrong while trying to pull!\n" +
-                        "Error message:" + e.getMessage();
+                        "Error message:\n" + e.getMessage();
                 res.setErrorMSG(errorMessage);
             }
         }

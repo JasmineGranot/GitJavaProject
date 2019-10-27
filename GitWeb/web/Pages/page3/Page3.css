@@ -143,3 +143,10 @@ button:active {
 	font-size:10px; 
 	color: #34344c
 }
+
+.bottom {
+	background-color: white;
+	display: block;
+	font-family: Arial;
+	font-size: x-small;
+}

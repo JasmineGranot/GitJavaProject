@@ -200,7 +200,26 @@ function deleteBranch(){
     });
     refreshBranches()
 }
-function commit(){}
+function commit(){
+    var msg=prompt("Please enter a massage for the new commit:");
+
+    $.ajax({
+        url: REPO_ACTIONS,
+        data:
+            {
+                action: "getCommits",
+                commitMsg: msg,
+            },
+        type: 'POST',
+        success: function(newCommitResult) {
+            if (newCommitResult.haveError) {
+                alert(newCommitResult.errorMSG);
+            } else {
+                alert(newCommitResult.data);
+            }
+        }
+    });
+}
 
 function showCommits(){
     $.ajax({
@@ -210,13 +229,56 @@ function showCommits(){
                 action: "getCommits",
             },
         success: function(commits) {
-            alert("hello");
+            if(commits.hasError){
+                alert(commits.errorMsg);
+            }
+            else {
+                var listArea = $('#commitSection');
+                listArea.empty();
+
+                $.each(commits.res || [], function (index, commitString) {
+                    console.log("Adding commits");
+                    var element = $(document.createElement('li'));
+                    element.text(commitString);
+                    element.appendTo(listArea);
+                });
+            }
         }
     });
 
 }
+
 function showWC(){}
-function createPullRequest(){}
+function createPullRequest(){
+    var srcBranch=prompt("Please enter the source branch:");
+    var targetBranch=prompt("Please enter the target branch:");
+    var msg=prompt("Please enter a message for repository owner:",
+        "I created a new pull request. Please check it out :)");
+
+    if(srcBranch == null && targetBranch == null){
+        alert("Cannot take 2 branches!")
+    }
+    else {
+        $.ajax({
+            url: REPO_ACTIONS,
+            data:
+                {
+                    action: "createPullRequest",
+                    branchName: srcBranch,
+                    branchTarget: targetBranch,
+                    prMsg: msg
+                },
+            type: 'POST',
+            success: function (prObj) {
+                if (prObj.haveError) {
+                    alert(prObj.errorMSG);
+                } else {
+                    alert(prObj.data);
+                }
+            }
+        });
+    }
+}
 function refreshBranches(){
     $.ajax({
         url: REPO_ACTIONS,
