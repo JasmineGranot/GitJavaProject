@@ -1,5 +1,5 @@
-var REFRESH_DATA = "../refreshData";
-var PAGE3 = "../page3";
+var REFRESH_DATA = "../../refreshData";
+var PAGE3 = "../../page3";
 
 var refreshRate = 3000; //milli seconds
 
@@ -10,7 +10,7 @@ function forkRepository(repo) {
     var forkOwner = repo.getAttribute("owner");
     console.log(forkOwner);
     $.ajax ({
-        url:"../fork",
+        url:"../../fork",
         data:
             {
                 repositoryName: forkRepo,
@@ -47,7 +47,7 @@ function ajaxCurrentUser() {
 
 function logoutUser(){
     $.ajax({
-        url: "/logout",
+        url: "../../logout",
     });
 }
 // =================== Updating online users list ==========================
@@ -181,7 +181,7 @@ function refreshUserReposList(repos) {
         btn.attr('owner', repo.repoOwner);
         btn.text("Go To Repository");
         btn.attr('class', "button");
-        btn.attr('href', "Page3.html");
+        btn.attr('href', "../page3/Page3.html");
         btn.attr('role', "button");
 
         btn.appendTo(tdRepo);
@@ -198,9 +198,10 @@ function refreshUserReposList(repos) {
         console.log("finished repos");
 
         $(btn).click(function(){
+
             updateRepo(repo.name);
+            console.log("defined session's repo");
         });
-        console.log("try click");
 
     });
 }

@@ -1,8 +1,24 @@
-var REFRESH_DATA = "../refreshData";
 var refreshRate = 3000; //milli seconds
-var REPO_ACTIONS = "../repoActions";
+var REFRESH_DATA = "../../refreshData";
+var REPO_ACTIONS = "../../actionOnRepo";
 
 // =================== Updating online users list ==========================
+function ajaxCurrentUser() {
+    $.ajax({
+        url: REFRESH_DATA,
+        data:
+            {
+                action: "getCurrentUser"
+            },
+
+        success: function(username) {
+            var curUser =  $("#userName");
+            $(curUser).text(username);
+
+        }
+    });
+}
+
 function ajaxUsersList() {
     $.ajax({
         url: REFRESH_DATA,
@@ -59,20 +75,31 @@ function refreshMessagesList(notifications) {
 }
 
 // =================== Updating RepoData ====================
-function updateHeadBranch(){
+function updateRepoName(){
     $.ajax({
-        url: "../repoActions",
+        url: REPO_ACTIONS,
+        data:
+            {
+                action: "getRepo",
+            },
+        success: function (repoName) {
+            $("#repoName").text(repoName);
+        }
+    });
+}
+
+function updateHeadBranchName(){
+    $.ajax({
+        url: REPO_ACTIONS,
         data:
             {
                 action: "getHead",
             },
-        type: 'POST',
-        success: function(headBranchResObject) {
-            if(headBranchResObject.haveError){
-                alert(headBranchResObject.errorMSG);
-            }
-            else{
-                $('#currentBranchName').text = headBranchResObject.data;
+        success: function (headNameObj) {
+            if (headNameObj.haveError) {
+                alert(headNameObj.errorMSG);
+            } else {
+                $("#currentBranchName").text(headNameObj.data);
             }
         }
     });
@@ -88,7 +115,7 @@ function checkoutBranch(){
                 action: "checkout",
                 branchName: branchName
             },
-
+        type: 'POST',
         success: function(checkoutResObj) {
             if (checkoutResObj.haveError){
                 alert (checkoutResObj.errorMSG);
@@ -101,7 +128,6 @@ function checkoutBranch(){
         }
     });
 }
-
 function pull(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -109,13 +135,16 @@ function pull(){
             {
                 action: "pull",
             },
-
-        success: function() {
-
+        type: 'POST',
+        success: function(pullObj) {
+            if (pullObj.haveError) {
+                alert(pullObj.errorMSG);
+            } else {
+                alert(pullObj.data);
+            }
         }
     });
 }
-
 function push(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -123,25 +152,33 @@ function push(){
             {
                 action: "push",
             },
-
+        type: 'POST',
         success: function() {
         }
     });
 }
-
 function addBranch(){
     var name=prompt("Please enter new branch name","Aviad The King");
+    var commit=prompt("Please enter commit sha1");
+
     if (name != null) {
         $.ajax({
             url: REPO_ACTIONS,
             data:
                 {
                     action: "addBranch",
-                    branchName: name
+                    branchName: name,
+                    commitSha1: commit
                 },
+            type: 'POST',
+            success: function (branchObj) {
 
-            success: function () {
-                refreshBranches()
+                if (branchObj.haveError) {
+                    alert(branchObj.errorMSG);
+                } else {
+                    refreshBranches();
+                    alert(branchObj.data);
+                }
             }
         });
     }
@@ -156,13 +193,14 @@ function deleteBranch(){
                 action: "deleteBranch",
                 branchName: branchName
             },
-
+        type: 'POST',
         success: function() {
             updateHeadBranch();
         }
     });
     refreshBranches()
 }
+function commit(){}
 function showCommits(){}
 function showWC(){}
 function createPullRequest(){}
@@ -207,7 +245,9 @@ $(function() {
     //These lists is refreshed automatically every second
     // setTimeout(ajaxCurrentUserRepo, refreshRate);
     setInterval(ajaxUsersList, refreshRate);
-    updateHeadBranch();
+    ajaxCurrentUser();
+    updateHeadBranchName();
+    updateRepoName();
 
     // triggerGetRepos();
     // setInterval(ajaxUsersNotificationsList, refreshRate);

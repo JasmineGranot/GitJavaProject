@@ -7,7 +7,7 @@ function LoadFile(event) {
         console.log(content);
 
         $.ajax({
-            url: "../LoadXml",
+            url: "../../LoadXml",
             data:
                 {
                     file: content

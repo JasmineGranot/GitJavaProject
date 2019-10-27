@@ -108,7 +108,6 @@ public class Magit {
             try {
                 res.setData(repo.getHeadBranch().getName());
                 res.setIsHasError(false);
-                res.setData("found head in repository successfully!");
             } catch (Exception e) {
                 String errorMsg = "Something went wrong while trying to pull from remote repository!\n" +
                         "Error message: " + e.getMessage();
@@ -130,7 +129,6 @@ public class Magit {
             try {
                 res.setData(repo.getHeadBranch().getCommitSha1());
                 res.setIsHasError(false);
-                res.setData("found head commit in repository successfully!");
             } catch (Exception e) {
                 String errorMsg = "Something went wrong while trying to get commit from remote repository!\n" +
                         "Error message: " + e.getMessage();
@@ -273,41 +271,34 @@ public class Magit {
     }
 
     public MagitStringResultObject addNewBranch(User user, String repositoryName, String branchName, String sha1,
-                                                boolean toIgnoreRemoteBranchsSha1)
-            throws InvalidDataException, DataAlreadyExistsException, IOException {
-        String msg;
+                                                boolean toIgnoreRemoteBranchsSha1) {
         MagitStringResultObject resultObject = new MagitStringResultObject();
-        Repository repo = getRepoForUser(user, repositoryName);
-        if(repo == null) {
-            resultObject.setIsHasError(true);
-            resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
-            return resultObject;
-        }
-        if (branchName.contains(" ")) {
-            msg = "Branch name is invalid, please try again without any spaces.";
-            throw new InvalidDataException(msg);
-        } else if (repo.isCommitSha1PointedByRTB(sha1) && !toIgnoreRemoteBranchsSha1) {
-            msg = "The sha1 is currently pointed by a remote branch.\n" +
-                    "Would you like to add the branch as a remote tracking branch?\n" +
-                    "OK for yes\n" +
-                    "Cancel for abort";
-            throw new DataAlreadyExistsException(msg);
-        } else {
-            try {
+        String msg;
+        try {
+            Repository repo = getRepoForUser(user, repositoryName);
+            if (repo == null) {
+                resultObject.setIsHasError(true);
+                resultObject.setErrorMSG(NON_EXISTING_REPO_MSG);
+            }
+            if (branchName.contains(" ")) {
+                msg = "Branch name is invalid, please try again without any spaces.";
+                resultObject.setIsHasError(true);
+                resultObject.setErrorMSG(msg);
+            }
+            else if (repo.isCommitSha1PointedByRTB(sha1) && !toIgnoreRemoteBranchsSha1) {
+                msg = "The sha1 is currently pointed by a remote branch.";
+                resultObject.setIsHasError(true);
+                resultObject.setErrorMSG(msg);
+            }
+            else {
                 repo.addBranch(branchName, sha1, null);
                 resultObject.setIsHasError(false);
                 msg = "Branch was added successfully!";
                 resultObject.setData(msg);
-            } catch (DataAlreadyExistsException e) {
-                resultObject.setIsHasError(true);
-                msg = "Had an issue while trying to add the new branch!\n" +
-                        "Error message: " + e.getMessage();
-                resultObject.setErrorMSG(msg);
-            } catch (IOException e) {
-                resultObject.setIsHasError(true);
-                msg = "Had an unhandled IOException!\n" + "Error message: " + e.getMessage();
-                resultObject.setErrorMSG(msg);
             }
+        } catch (Exception e) {
+            resultObject.setIsHasError(true);
+            resultObject.setErrorMSG(e.getMessage());
         }
 
         return resultObject;
