@@ -1632,6 +1632,59 @@ public class Repository {
                 String.format("A new pull request was created in repository %s by user %s", repoName, owner)));
     }
 
+    public WorkingCopyChanges getPRFileChanges(String target, String base)
+            throws InvalidDataException{
+
+        Branch baseBranch = getBranchByName(base);
+        Branch targetBranch = getBranchByName(target);
+
+        if(baseBranch == null || targetBranch == null) {
+            throw new InvalidDataException("Base or Target branch does not exist in the system!");
+        }
+
+        WorkingCopyChanges newChangesSet;
+
+        // Get the files in source branch
+        Map<String, String> sourceBranchFile = new HashMap<>();
+        Commit srcCommit = (Commit) repoObjects.get(baseBranch.getCommitSha1());
+        if ( srcCommit != null && !srcCommit.isEmpty()) {
+            getLastCommitFiles(srcCommit.getRootSha1(), getRepoPath(), sourceBranchFile);
+        }
+
+        // Gets the files in the target branch
+        Map<String, String> targetBranchFile = new HashMap<>();
+        Commit targetCommit = (Commit) repoObjects.get(targetBranch.getCommitSha1());
+        if ( targetCommit != null && !targetCommit.isEmpty()) {
+            getLastCommitFiles(targetCommit.getRootSha1(), getRepoPath(), sourceBranchFile);
+        }
+
+        Set<String> changedFilePaths = getChangedFileByCommit(targetBranchFile, sourceBranchFile);
+
+        Set<String> newFiles = new HashSet<>(targetBranchFile.keySet());
+        newFiles.removeAll(sourceBranchFile.keySet());
+
+        Set<String> deletedFiles = new HashSet<>(targetBranchFile.keySet());
+        deletedFiles.removeAll(sourceBranchFile.keySet());
+
+        newChangesSet = new WorkingCopyChanges(changedFilePaths, deletedFiles, newFiles, false);
+        return newChangesSet;
+
+    }
+
+    private Set<String> getChangedFileByCommit(Map<String, String> oldFiles,Map<String, String> newFiles ){
+        Set<String> changedFiles = new HashSet<>();
+        Set<String> newFilePath = newFiles.keySet();
+        Set<String> oldFilePath = newFiles.keySet();
+
+        newFilePath.retainAll(oldFilePath);
+        for (String path : newFilePath){
+            if (!oldFiles.get(path).equals(newFiles.get(path))){
+                changedFiles.add(path);
+            }
+        }
+        return changedFiles;
+
+    }
 
 
 

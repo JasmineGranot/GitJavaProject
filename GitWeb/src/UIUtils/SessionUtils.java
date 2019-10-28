@@ -28,9 +28,9 @@ public class SessionUtils {
         return sessionAttribute != null ? sessionAttribute.toString() : null;
     }
 
-    public static void setCurrentRepository (HttpServletRequest request) {
+    public static void setCurrentRepository (HttpServletRequest request, String repoName) {
         HttpSession session = request.getSession(false);
-        session.setAttribute("repository", request.getParameter("repository"));
+        session.setAttribute("repository", repoName);
     }
 
     public static void clearSession (HttpServletRequest request) {
