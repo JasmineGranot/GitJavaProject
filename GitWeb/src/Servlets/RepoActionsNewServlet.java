@@ -11,6 +11,7 @@ import UIUtils.ServletUtils;
 import Utils.MagitStringResultObject;
 import Utils.ResultList;
 import com.google.gson.Gson;
+import sun.plugin.util.UIUtil;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -159,6 +160,13 @@ public class RepoActionsNewServlet extends HttpServlet {
                 json = createPR(currUser, repo, branchName, branchTarget, msg, myMagit);
                 break;
             }
+            case ("setPullRequestInSession"):{
+                String pr = request.getParameter("prObj");
+                Gson gson = new Gson();
+                PullRequestObject object = (PullRequestObject) gson.fromJson(pr, PullRequestObject.class);
+                UIUtils.SessionUtils.setPullRequest(request, object);
+            }
+            
             case("getCommits"):
             {
                 String msg = request.getParameter("commitMsg");

@@ -8,6 +8,7 @@ import GitObjects.UserManager;
 import UIUtils.ServletUtils;
 import Utils.MagitStringResultObject;
 import Utils.ResultList;
+import Utils.WorkingCopyChanges;
 import com.google.gson.Gson;
 import sun.plugin.util.UIUtil;
 
@@ -37,39 +38,42 @@ public class PullRequestServlet extends HttpServlet {
         Repository repo = userManager.getUserRepository(currUser, repoName);
 
         PullRequestObject pr = UIUtils.SessionUtils.getPullRequest(request);
-
+        if (pr == null){
+            return ;
+        }
         String action = request.getParameter("action");
         String json = "";
         switch (action){
             case ("approvePR"):
             {
-//                json = getOpenPullRequestsForUser(currUser, repo, myMagit);
+                json = approvePR(currUser, repo, myMagit, pr);
                 break;
             }
             case ("declinePR"):
             {
-//                json = getHead(currUser, repo, myMagit);
+                String msg = request.getParameter("declineMsg");
+                json = declinePR(currUser, repo, myMagit, pr, msg);
                 break;
             }
 
             case ("getPRFiles"):
             {
-//                json = getHead(currUser, repo, myMagit);
+                json = getFilesDelta(currUser, repo, myMagit, pr);
                 break;
             }
             case ("getSrc"):
             {
-//                json = getHead(currUser, repo, myMagit);
+                json = getSrcBranch(pr);
                 break;
             }
             case ("getTarget"):
             {
-//                json = getHead(currUser, repo, myMagit);
+                json = getTargetBranch(pr);
                 break;
             }
             case ("getMsg"):
             {
-//                json = getHead(currUser, repo, myMagit);
+                json = getPRMsg(pr);
                 break;
             }
 
@@ -82,18 +86,39 @@ public class PullRequestServlet extends HttpServlet {
         }
     }
 
-    private String getOpenPullRequestsForUser(User currUser, Repository repo, Magit myMagit) {
+    private String approvePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {
         Gson gson = new Gson();
-        ResultList<PullRequestObject> prsObj = myMagit.getPullRequests(currUser, repo.getRepoName());
+        MagitStringResultObject prsObj = myMagit.approvePR(currUser, repo.getRepoName(), pr);
         return gson.toJson(prsObj);
     }
 
-    private String getHead(User currUser, Repository repo, Magit myMagit) {
+    private String declinePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr, String msg) {
         Gson gson = new Gson();
-        MagitStringResultObject headObj = myMagit.getHeadBranchName(currUser, repo.getRepoName());
-        return gson.toJson(headObj);
+        MagitStringResultObject prsObj = myMagit.declinePR(currUser, repo.getRepoName(),pr,  msg);
+        return gson.toJson(prsObj);
+    }
+    private String getFilesDelta(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {
+        Gson gson = new Gson();
+        WorkingCopyChanges prsObj = myMagit.getFilesChangesBetweenBranches(currUser, repo.getRepoName(),
+                pr.getBaseToMergeInto().getName(), pr.getTargetToMergeFrom().getName());
+        return gson.toJson(prsObj);
     }
 
+    private String getSrcBranch(PullRequestObject pr) {
+        Gson gson = new Gson();
+        String prsObj = pr.getBaseToMergeInto().getName();
+        return gson.toJson(prsObj);
+    }
+    private String getTargetBranch(PullRequestObject pr) {
+        Gson gson = new Gson();
+        String prsObj = pr.getTargetToMergeFrom().getName();
+        return gson.toJson(prsObj);
+    }
+    private String getPRMsg(PullRequestObject pr) {
+        Gson gson = new Gson();
+        String prsObj = pr.getPrMsg();
+        return gson.toJson(prsObj);
+    }
 
 
     @Override

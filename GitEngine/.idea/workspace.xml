@@ -7,17 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="432">
-              <caret line="1730" column="23" lean-forward="true" selection-start-line="1730" selection-start-column="23" selection-end-line="1730" selection-end-column="23" />
+              <caret line="1730" column="23" selection-start-line="1730" selection-start-column="23" selection-end-line="1730" selection-end-column="23" />
               <folding>
                 <element signature="e#1321#1554#0" />
                 <element signature="e#1807#1942#0" />
@@ -350,11 +342,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
+            <state relative-caret-position="88">
+              <caret line="121" selection-start-line="121" selection-end-line="121" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="164" column="53" selection-start-line="164" selection-start-column="53" selection-end-line="164" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -363,7 +382,7 @@
         <entry file="file://$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="282">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -373,6 +392,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
               <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="454">
+              <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -406,12 +434,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Utils/Pair.java" />
-        <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
         <option value="$PROJECT_DIR$/src/GitObjects/User.java" />
         <option value="$PROJECT_DIR$/src/GitObjects/UserManager.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" />
         <option value="$PROJECT_DIR$/src/GitObjects/Repository.java" />
+        <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" />
+        <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" />
       </list>
     </option>
   </component>
@@ -564,24 +593,24 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page3" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page2" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Servlets" />
-      <recent name="myGit.Servlets" />
-      <recent name="GitObjects" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\97250\Desktop\GitJavaProject\GitWeb\web\Commons" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\web\Pages" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\web\javaScriptFiles" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\src\UIUtils" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\src\Servlets" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Servlets" />
+      <recent name="myGit.Servlets" />
+      <recent name="GitObjects" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page3" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page2" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -912,11 +941,25 @@
       <option name="project" value="LOCAL" />
       <updated>1572272452645</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572278673779</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1572278673779</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572279180903</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1572279180903</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14785000" />
+    <option name="totallyTimeSpent" value="16628000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1087,7 +1130,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>210</line>
+          <line>215</line>
           <properties />
           <option name="timeStamp" value="123" />
         </line-breakpoint>
@@ -1108,6 +1151,12 @@
           <line>73</line>
           <properties />
           <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
@@ -1186,13 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="83" column="15" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/WorkingCopyChanges.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1267,13 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="474" column="29" selection-start-line="474" selection-start-column="29" selection-end-line="474" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -1291,21 +1326,14 @@
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="1730" column="23" lean-forward="true" selection-start-line="1730" selection-start-column="23" selection-end-line="1730" selection-end-column="23" />
+          <caret line="1730" column="23" selection-start-line="1730" selection-start-column="23" selection-end-line="1730" selection-end-column="23" />
           <folding>
             <element signature="e#1321#1554#0" />
             <element signature="e#1807#1942#0" />
@@ -1620,10 +1648,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
+        <state relative-caret-position="88">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="164" column="53" selection-start-line="164" selection-start-column="53" selection-end-line="164" selection-end-column="53" />
         </state>
       </provider>
     </entry>

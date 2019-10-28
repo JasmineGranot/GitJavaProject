@@ -682,4 +682,48 @@ public class Magit {
         return res;
     }
 
+    public MagitStringResultObject approvePR(User user, String repoName, PullRequestObject pr) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.approvePullRequest(pr);
+                res.setIsHasError(false);
+                res.setData("Pull Request approved successfully!");
+            } catch (Exception e) {
+                res.setIsHasError(true);
+                String errorMessage = "Something went wrong while trying to approve pull request!\n" +
+                        "Error message:\n" + e.getMessage();
+                res.setErrorMSG(errorMessage);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+    public MagitStringResultObject declinePR(User user, String repoName, PullRequestObject pr,
+                                             String declineMsg) {
+        MagitStringResultObject res = new MagitStringResultObject();
+        Repository repo = getRepoForUser(user, repoName);
+        if(repo != null) {
+            try {
+                repo.declinePullRequest(pr, declineMsg);
+                res.setIsHasError(false);
+                res.setData("Pull Request declined successfully!");
+            } catch (Exception e) {
+                res.setIsHasError(true);
+                String errorMessage = "Something went wrong while trying to decline pull request!\n" +
+                        "Error message:\n" + e.getMessage();
+                res.setErrorMSG(errorMessage);
+            }
+        }
+        else {
+            res.setIsHasError(true);
+            res.setErrorMSG("Repository undefined!");
+        }
+        return res;
+    }
+
 }
