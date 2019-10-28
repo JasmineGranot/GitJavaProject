@@ -159,6 +159,13 @@ public class RepoActionsNewServlet extends HttpServlet {
                 json = createPR(currUser, repo, branchName, branchTarget, msg, myMagit);
                 break;
             }
+            case("getCommits"):
+            {
+                String msg = request.getParameter("commitMsg");
+
+                json = createNewCommit(currUser, repo, msg, myMagit);
+                break;
+            }
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -227,13 +234,15 @@ public class RepoActionsNewServlet extends HttpServlet {
         Gson gson = new Gson();
 
         MagitStringResultObject resObj = null;
-        try {
-            resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
-        }
+        resObj = myMagit.deleteBranch(currUser, repo.getRepoName(), branchToDelete);
 
         return gson.toJson(resObj);
+    }
+
+    private String createNewCommit(User currUser, Repository repo, String commitMsg, Magit myMagit) {
+        Gson gson = new Gson();
+        MagitStringResultObject resultObject = myMagit.createNewCommit(currUser, repo.getRepoName(), commitMsg, null);
+        return gson.toJson(resultObject);
     }
 
 

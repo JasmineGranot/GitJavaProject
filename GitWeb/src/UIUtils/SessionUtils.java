@@ -1,5 +1,7 @@
 package UIUtils;
 
+import GitObjects.PullRequestObject;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,15 +13,15 @@ public class SessionUtils {
         return sessionAttribute != null ? sessionAttribute.toString() : null;
     }
 
-    public static String getOtherUser (HttpServletRequest request) {
+    public static PullRequestObject getPullRequest (HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        Object sessionAttribute = session != null ? session.getAttribute("otherUser") : null;
-        return sessionAttribute != null ? sessionAttribute.toString() : null;
+        Object sessionAttribute = session != null ? session.getAttribute("pullRequest") : null;
+        return sessionAttribute != null ? (PullRequestObject) sessionAttribute : null;
     }
 
-    public static void setOtherUser (HttpServletRequest request) {
+    public static void setPullRequest (HttpServletRequest request, PullRequestObject pr) {
         HttpSession session = request.getSession(false);
-        session.setAttribute("otherUser", request.getParameter("otherUser"));
+        session.setAttribute("pullRequest", pr);
     }
 
     public static String getCurrentRepository (HttpServletRequest request) {

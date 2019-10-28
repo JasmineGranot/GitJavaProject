@@ -240,5 +240,9 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
             this.commitWriter = commitWriter;
         }
 
+        public String toString(){
+            return String.format("%s%s%s%s%s", getCommitSha1(), getCommitsLastCommit(), getCommitMsg(),
+                    getCommitDate(), getCommitWriter());
+        }
     }
 }
