@@ -48,31 +48,81 @@ function refreshUsersList(users) {
 }
 
 // =================== Updating user's Notifications (assuming list) ====================
+
 function ajaxUsersNotificationsList() {
     $.ajax({
-        url: "..",
+        url: REFRESH_DATA,
         data:
             {
                 action: "getNotificationForUser"
             },
         success: function(notifications) {
             refreshMessagesList(notifications);
+            triggerGetMsg();
         }
     });
 }
 
 function refreshMessagesList(notifications) {
     //clear all current messages
-    $("#userNotifications").empty();
+    $("#notifications").empty();
 
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(notifications || [], function(index, msg) {
-        console.log("Adding msg #" + index + ": " + msg);
-        //create a new <option> tag with a value in it and
-        //appeand it to the #userslist (div with id=userslist) element
-        $('<li>' + msg + '</li>').appendTo($("#userNotifications"));
+    $.each(notifications || [], function (index, msg) {
+        var notificationSection = $(document.getElementById("notifications"));
+        var label = $(document.createElement('li'));
+
+        label.text(msg.msg);
+        label.attr('id', msg.msg);
+        label.appendTo($(notificationSection));
+
+        $(label).click(function () {
+            ajaxDeleteNotification(msg, label);
+        });
     });
 }
+
+function ajaxDeleteNotification(msg, label) {
+    $.ajax({
+        url: REPO_ACTIONS,
+        data:
+            {
+                action: "deleteNotification",
+                message: msg.msg
+            },
+        type: 'POST',
+        success: function (users) {
+            $(label).remove();
+        }
+
+    });
+}
+
+// function ajaxUsersNotificationsList() {
+//     $.ajax({
+//         url: "..",
+//         data:
+//             {
+//                 action: "getNotificationForUser"
+//             },
+//         success: function(notifications) {
+//             refreshMessagesList(notifications);
+//         }
+//     });
+// }
+//
+// function refreshMessagesList(notifications) {
+//     //clear all current messages
+//     $("#userNotifications").empty();
+//
+//     // rebuild the list of users: scan all users and add them to the list of users
+//     $.each(notifications || [], function(index, msg) {
+//         console.log("Adding msg #" + index + ": " + msg);
+//         //create a new <option> tag with a value in it and
+//         //appeand it to the #userslist (div with id=userslist) element
+//         $('<li>' + msg + '</li>').appendTo($("#userNotifications"));
+//     });
+// }
 
 // =================== Updating RepoData ====================
 function updateRepoName(){
@@ -128,6 +178,7 @@ function checkoutBranch(){
         }
     });
 }
+
 function pull(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -145,6 +196,7 @@ function pull(){
         }
     });
 }
+
 function push(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -157,6 +209,7 @@ function push(){
         }
     });
 }
+
 function addBranch(){
     var name=prompt("Please enter new branch name","Aviad The King");
     var commit=prompt("Please enter commit sha1");
@@ -184,6 +237,7 @@ function addBranch(){
     }
 
 }
+
 function deleteBranch(){
     var branchName = $("#comboBranches").val().text();
     $.ajax({
@@ -200,6 +254,7 @@ function deleteBranch(){
     });
     refreshBranches()
 }
+
 function commit(){
     var msg=prompt("Please enter a massage for the new commit:");
 
@@ -263,6 +318,7 @@ function showCommits(){
 }
 
 function showWC(){}
+
 function createPullRequest(){
     var srcBranch=prompt("Please enter the source branch:");
     var targetBranch=prompt("Please enter the target branch:");
@@ -293,6 +349,7 @@ function createPullRequest(){
         });
     }
 }
+
 function refreshBranches(){
     $.ajax({
         url: REPO_ACTIONS,
@@ -323,7 +380,9 @@ function addBranchesToList(branches) {
 
 
 // ========================= On loading ================================
-
+function triggerGetMsg(){
+    setTimeout(ajaxUsersNotificationsList, refreshRate);
+}
 // function triggerGetRepos(){
 //     setTimeout(ajaxCurrentUserRepo, refreshRate);
 // }
@@ -337,6 +396,8 @@ $(function() {
     ajaxCurrentUser();
     updateHeadBranchName();
     updateRepoName();
+    ajaxUsersNotificationsList();
+    triggerGetMsg();
 
     // triggerGetRepos();
     // setInterval(ajaxUsersNotificationsList, refreshRate);
