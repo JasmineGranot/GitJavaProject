@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pull Request Page</title>
+    <script type="text/javascript" src="pullRequest.js"></script>
     <link rel="stylesheet" type="text/css" href="pullRequest.css">
 
 </head>
@@ -25,8 +26,8 @@
 <h4>Changed Files: </h4>
 <ul id="changedFiles"></ul>
 
-<button id="approvePr">Approve Request</button>
-<button id="rejectRequest">Reject Request</button>
+<button id="approvePr" onclick="approvePr()">Approve Request</button>
+<button id="rejectRequest" onclick="rejectPR()">Reject Request</button>
 
 </body>
 </html>
