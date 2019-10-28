@@ -370,6 +370,25 @@ function addBranchesToList(branches) {
     $('#comboBranches').append(output);
 }
 
+function openPullRequest() {
+    addPRToSession();
+
+    $("#prButton").click(function() {
+       window.open("../pullRequest/pullRequestPage.html", "Pull Request");
+    });
+}
+function addPRToSession() {
+    $.ajax({
+        url: REPO_ACTIONS,
+        data:
+            {
+                action: "setPullRequestInSession",
+            },
+        type: 'POST'
+    });
+
+}
+
 
 
 

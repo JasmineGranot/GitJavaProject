@@ -1433,6 +1433,7 @@ public class Repository {
             headBranch = getBranchByName(remote.headBranch.getName());
             headBranch.setTrackedBranch(remote.getHeadBranch().getName());
             currentCommit = remote.getLastCommit();
+            trackedRepository = remote;
             // add clone notification to remote owner:
             remote.repoOwner.addNotification(new NotificationObject(
                     String.format("user %s just cloned repository %s", repoOwner.getUserName(), getRepoName())));

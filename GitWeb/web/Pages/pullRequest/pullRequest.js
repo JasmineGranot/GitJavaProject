@@ -55,6 +55,7 @@ function approvePr() {
             } else {
                 alert(approveObj.data);
             }
+            window.close();
         }
     });
 }
@@ -77,6 +78,7 @@ function rejectPR() {
             } else {
                 alert(declineObj.data);
             }
+            window.close();
         }
     });
 }

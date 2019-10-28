@@ -7,8 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,250 +22,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7192">
-              <caret line="1167" column="33" selection-start-line="1167" selection-start-column="33" selection-end-line="1167" selection-end-column="33" />
-              <folding>
-                <element signature="e#1321#1554#0" />
-                <element signature="e#1807#1942#0" />
-                <element signature="e#1875#1915#1" />
-                <element signature="e#2235#2266#0" />
-                <element signature="e#2301#2335#0" />
-                <element signature="e#2341#2543#0" />
-                <element signature="e#2549#2680#0" />
-                <element signature="e#2686#3410#0" />
-                <element signature="e#2798#3382#1" />
-                <element signature="e#3087#3372#1" />
-                <element signature="e#3139#3358#1" />
-                <element signature="e#3280#3340#1" />
-                <element signature="e#3411#3787#0" />
-                <element signature="e#3640#3760#1" />
-                <element signature="e#3703#3750#1" />
-                <element signature="e#3903#3940#0" />
-                <element signature="e#3987#4038#0" />
-                <element signature="e#4045#4532#0" />
-                <element signature="e#4538#5036#0" />
-                <element signature="e#5042#6074#0" />
-                <element signature="e#5426#5751#1" />
-                <element signature="e#5477#5557#1" />
-                <element signature="e#5575#5741#1" />
-                <element signature="e#5764#6067#1" />
-                <element signature="e#5798#5878#1" />
-                <element signature="e#5895#6057#1" />
-                <element signature="e#6080#7708#0" />
-                <element signature="e#6450#6524#1" />
-                <element signature="e#6643#6717#1" />
-                <element signature="e#7018#7063#1" />
-                <element signature="e#7076#7115#1" />
-                <element signature="e#7162#7510#1" />
-                <element signature="e#7628#7702#1" />
-                <element signature="e#7795#8714#0" />
-                <element signature="e#8004#8331#0" />
-                <element signature="e#8195#8217#0" />
-                <element signature="e#8377#8409#0" />
-                <element signature="e#8437#8708#0" />
-                <element signature="e#8720#11272#0" />
-                <element signature="e#8943#8974#1" />
-                <element signature="e#9283#11266#1" />
-                <element signature="e#9545#9664#1" />
-                <element signature="e#9827#9954#1" />
-                <element signature="e#9971#10262#1" />
-                <element signature="e#10432#10521#1" />
-                <element signature="e#10575#11256#1" />
-                <element signature="e#10712#10870#1" />
-                <element signature="e#11005#11159#1" />
-                <element signature="e#11181#11242#1" />
-                <element signature="e#11278#14360#0" />
-                <element signature="e#11776#13199#1" />
-                <element signature="e#11947#13189#1" />
-                <element signature="e#12181#12378#1" />
-                <element signature="e#12555#13175#1" />
-                <element signature="e#12713#13020#1" />
-                <element signature="e#12891#12998#1" />
-                <element signature="e#13065#13157#1" />
-                <element signature="e#13303#13410#1" />
-                <element signature="e#13424#14328#1" />
-                <element signature="e#13570#13734#1" />
-                <element signature="e#13779#13952#1" />
-                <element signature="e#14366#16682#0" />
-                <element signature="e#14741#16343#1" />
-                <element signature="e#14787#15709#1" />
-                <element signature="e#14965#15120#1" />
-                <element signature="e#15727#16333#1" />
-                <element signature="e#15877#16034#1" />
-                <element signature="e#16688#16912#0" />
-                <element signature="e#16918#17222#0" />
-                <element signature="e#17303#17705#0" />
-                <element signature="e#17557#17700#1" />
-                <element signature="e#17711#18777#0" />
-                <element signature="e#17929#18771#1" />
-                <element signature="e#17966#18761#1" />
-                <element signature="e#18091#18505#1" />
-                <element signature="e#18171#18487#1" />
-                <element signature="e#18298#18465#1" />
-                <element signature="e#18527#18747#1" />
-                <element signature="e#18574#18729#1" />
-                <element signature="e#18783#19304#0" />
-                <element signature="e#18913#18959#1" />
-                <element signature="e#18973#19036#1" />
-                <element signature="e#19127#19197#1" />
-                <element signature="e#19211#19298#1" />
-                <element signature="e#19310#19956#0" />
-                <element signature="e#19472#19950#1" />
-                <element signature="e#19603#19940#1" />
-                <element signature="e#19962#20454#0" />
-                <element signature="e#20089#20326#1" />
-                <element signature="e#20339#20448#1" />
-                <element signature="e#20460#21352#0" />
-                <element signature="e#20694#21346#1" />
-                <element signature="e#20830#21336#1" />
-                <element signature="e#21037#21119#1" />
-                <element signature="e#21358#22649#0" />
-                <element signature="e#21797#21958#1" />
-                <element signature="e#21972#22042#1" />
-                <element signature="e#22110#22253#1" />
-                <element signature="e#22317#22643#1" />
-                <element signature="e#22369#22633#1" />
-                <element signature="e#22655#23582#0" />
-                <element signature="e#22814#23389#1" />
-                <element signature="e#22990#23055#1" />
-                <element signature="e#23172#23378#1" />
-                <element signature="e#23232#23364#1" />
-                <element signature="e#23403#23576#1" />
-                <element signature="e#23588#23938#0" />
-                <element signature="e#23763#23910#1" />
-                <element signature="e#23810#23900#1" />
-                <element signature="e#24020#24737#0" />
-                <element signature="e#24237#24358#1" />
-                <element signature="e#24401#24520#1" />
-                <element signature="e#24534#24731#1" />
-                <element signature="e#24647#24721#1" />
-                <element signature="e#24743#25184#0" />
-                <element signature="e#25190#26622#0" />
-                <element signature="e#25406#25520#1" />
-                <element signature="e#25765#25898#1" />
-                <element signature="e#25983#26525#1" />
-                <element signature="e#26257#26402#1" />
-                <element signature="e#26624#26694#0" />
-                <element signature="e#27649#27884#0" />
-                <element signature="e#27745#27856#1" />
-                <element signature="e#27802#27846#1" />
-                <element signature="e#27890#28129#0" />
-                <element signature="e#27985#28102#1" />
-                <element signature="e#28042#28092#1" />
-                <element signature="e#28135#28944#0" />
-                <element signature="e#28348#28480#1" />
-                <element signature="e#28494#28938#1" />
-                <element signature="e#28512#28733#0" />
-                <element signature="e#28768#28928#0" />
-                <element signature="e#28950#29354#0" />
-                <element signature="e#29360#30283#0" />
-                <element signature="e#29646#29788#1" />
-                <element signature="e#30113#30276#1" />
-                <element signature="e#30289#30894#0" />
-                <element signature="e#30494#30601#1" />
-                <element signature="e#30662#30801#1" />
-                <element signature="e#30940#30976#0" />
-                <element signature="e#68641#69131#0" />
-                <element signature="e#69137#70777#0" />
-                <element signature="e#69412#69522#1" />
-                <element signature="e#69810#69911#1" />
-                <element signature="e#70172#70276#1" />
-                <element signature="e#70783#71295#0" />
-                <element signature="e#71129#71259#1" />
-                <element signature="e#71194#71249#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="53" column="61" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
-              <folding>
-                <element signature="n#!!block;n#ajaxCurrentUser#0" />
-                <element signature="n#!!block;n#addFilesToPRPage#0" />
-                <element signature="n#!!block;n#getFiles#1" />
-                <element signature="n#!!block;n#approvePr#1" />
-                <element signature="n#!!block;n#declinePR#1" />
-                <element signature="n#!!block;n#getSrcBranch#1" />
-                <element signature="n#!!block;n#getTarget#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/WorkingCopyChanges.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="705" column="35" selection-start-line="705" selection-start-column="35" selection-end-line="705" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -287,22 +46,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/Utils/Pair.java" />
-        <option value="$PROJECT_DIR$/src/GitObjects/User.java" />
-        <option value="$PROJECT_DIR$/src/GitObjects/UserManager.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" />
-        <option value="$PROJECT_DIR$/src/GitObjects/Repository.java" />
-        <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" />
-        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" />
-      </list>
-    </option>
-  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -310,140 +53,9 @@
     <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="21" />
-    <option name="y" value="106" />
-    <option name="width" value="1580" />
-    <option name="height" value="1100" />
-  </component>
   <component name="ProjectId" id="1SmINsu2bSGHx3TV8KGiAm3XDu0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <showMembers ProjectPane="false" />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GitObjects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitEngine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Servlets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="UIUtils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="Commons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaScriptFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-              <item name="page2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-              <item name="page3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-              <item name="pullRequest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="GitEngine" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="C:\Users\97250\Desktop\GitJavaProject\GitEngine" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -591,6 +203,7 @@
       <workItem from="1572077488217" duration="21433000" />
       <workItem from="1572162313934" duration="18455000" />
       <workItem from="1572267857823" duration="4099000" />
+      <workItem from="1572287323044" duration="1825000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -838,9 +451,6 @@
     <option name="localTasksCounter" value="36" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21901000" />
-  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -849,45 +459,6 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Image Layers" order="0" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Web" order="4" side_tool="true" />
-      <window_info id="Designer" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.22169812" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32876712" />
-      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5005549" side_tool="true" weight="0.48901734" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.325723" />
-      <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32876712" />
-      <window_info anchor="bottom" id="Database Changes" order="5" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.32724506" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32724506" />
-      <window_info anchor="bottom" id="Message" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" />
-      <window_info anchor="bottom" id="Run" order="10" weight="0.32876712" />
-      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" weight="0.22070014" />
-      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="14" weight="0.32876712" />
-      <window_info anchor="bottom" id="Thumbnails" order="15" weight="0.33281973" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Database" order="2" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -898,20 +469,7 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -952,91 +510,76 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/User.java</url>
           <line>117</line>
-          <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
           <line>703</line>
-          <properties />
           <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
-          <line>1476</line>
-          <properties />
-          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/myGit/Servlets/ForkRepositoryServlet.java</url>
           <line>17</line>
-          <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/myGit/Servlets/SystemServlet.java</url>
           <line>22</line>
-          <properties />
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../Web2/src/Servlets/LoginServlet.java</url>
           <line>19</line>
-          <properties />
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/Page3Servlet.java</url>
-          <properties />
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java</url>
           <line>27</line>
-          <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java</url>
           <line>38</line>
-          <properties />
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
           <line>144</line>
-          <properties />
           <option name="timeStamp" value="122" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
           <line>218</line>
-          <properties />
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java</url>
           <line>191</line>
-          <properties />
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
           <line>135</line>
-          <properties />
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/UserManager.java</url>
           <line>73</line>
-          <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
           <line>41</line>
-          <properties />
           <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
+          <line>1688</line>
+          <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
@@ -1098,347 +641,6 @@
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" />
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/Pair.java" />
-    <entry file="file://$PROJECT_DIR$/src/Utils/ResultList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/MagitUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/Commit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#1221#1222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LogoutServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/UserManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#1323#1324#0" expanded="true" />
-            <element signature="e#1355#1356#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/FileDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#716#717#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7192">
-          <caret line="1167" column="33" selection-start-line="1167" selection-start-column="33" selection-end-line="1167" selection-end-column="33" />
-          <folding>
-            <element signature="e#1321#1554#0" />
-            <element signature="e#1807#1942#0" />
-            <element signature="e#1875#1915#1" />
-            <element signature="e#2235#2266#0" />
-            <element signature="e#2301#2335#0" />
-            <element signature="e#2341#2543#0" />
-            <element signature="e#2549#2680#0" />
-            <element signature="e#2686#3410#0" />
-            <element signature="e#2798#3382#1" />
-            <element signature="e#3087#3372#1" />
-            <element signature="e#3139#3358#1" />
-            <element signature="e#3280#3340#1" />
-            <element signature="e#3411#3787#0" />
-            <element signature="e#3640#3760#1" />
-            <element signature="e#3703#3750#1" />
-            <element signature="e#3903#3940#0" />
-            <element signature="e#3987#4038#0" />
-            <element signature="e#4045#4532#0" />
-            <element signature="e#4538#5036#0" />
-            <element signature="e#5042#6074#0" />
-            <element signature="e#5426#5751#1" />
-            <element signature="e#5477#5557#1" />
-            <element signature="e#5575#5741#1" />
-            <element signature="e#5764#6067#1" />
-            <element signature="e#5798#5878#1" />
-            <element signature="e#5895#6057#1" />
-            <element signature="e#6080#7708#0" />
-            <element signature="e#6450#6524#1" />
-            <element signature="e#6643#6717#1" />
-            <element signature="e#7018#7063#1" />
-            <element signature="e#7076#7115#1" />
-            <element signature="e#7162#7510#1" />
-            <element signature="e#7628#7702#1" />
-            <element signature="e#7795#8714#0" />
-            <element signature="e#8004#8331#0" />
-            <element signature="e#8195#8217#0" />
-            <element signature="e#8377#8409#0" />
-            <element signature="e#8437#8708#0" />
-            <element signature="e#8720#11272#0" />
-            <element signature="e#8943#8974#1" />
-            <element signature="e#9283#11266#1" />
-            <element signature="e#9545#9664#1" />
-            <element signature="e#9827#9954#1" />
-            <element signature="e#9971#10262#1" />
-            <element signature="e#10432#10521#1" />
-            <element signature="e#10575#11256#1" />
-            <element signature="e#10712#10870#1" />
-            <element signature="e#11005#11159#1" />
-            <element signature="e#11181#11242#1" />
-            <element signature="e#11278#14360#0" />
-            <element signature="e#11776#13199#1" />
-            <element signature="e#11947#13189#1" />
-            <element signature="e#12181#12378#1" />
-            <element signature="e#12555#13175#1" />
-            <element signature="e#12713#13020#1" />
-            <element signature="e#12891#12998#1" />
-            <element signature="e#13065#13157#1" />
-            <element signature="e#13303#13410#1" />
-            <element signature="e#13424#14328#1" />
-            <element signature="e#13570#13734#1" />
-            <element signature="e#13779#13952#1" />
-            <element signature="e#14366#16682#0" />
-            <element signature="e#14741#16343#1" />
-            <element signature="e#14787#15709#1" />
-            <element signature="e#14965#15120#1" />
-            <element signature="e#15727#16333#1" />
-            <element signature="e#15877#16034#1" />
-            <element signature="e#16688#16912#0" />
-            <element signature="e#16918#17222#0" />
-            <element signature="e#17303#17705#0" />
-            <element signature="e#17557#17700#1" />
-            <element signature="e#17711#18777#0" />
-            <element signature="e#17929#18771#1" />
-            <element signature="e#17966#18761#1" />
-            <element signature="e#18091#18505#1" />
-            <element signature="e#18171#18487#1" />
-            <element signature="e#18298#18465#1" />
-            <element signature="e#18527#18747#1" />
-            <element signature="e#18574#18729#1" />
-            <element signature="e#18783#19304#0" />
-            <element signature="e#18913#18959#1" />
-            <element signature="e#18973#19036#1" />
-            <element signature="e#19127#19197#1" />
-            <element signature="e#19211#19298#1" />
-            <element signature="e#19310#19956#0" />
-            <element signature="e#19472#19950#1" />
-            <element signature="e#19603#19940#1" />
-            <element signature="e#19962#20454#0" />
-            <element signature="e#20089#20326#1" />
-            <element signature="e#20339#20448#1" />
-            <element signature="e#20460#21352#0" />
-            <element signature="e#20694#21346#1" />
-            <element signature="e#20830#21336#1" />
-            <element signature="e#21037#21119#1" />
-            <element signature="e#21358#22649#0" />
-            <element signature="e#21797#21958#1" />
-            <element signature="e#21972#22042#1" />
-            <element signature="e#22110#22253#1" />
-            <element signature="e#22317#22643#1" />
-            <element signature="e#22369#22633#1" />
-            <element signature="e#22655#23582#0" />
-            <element signature="e#22814#23389#1" />
-            <element signature="e#22990#23055#1" />
-            <element signature="e#23172#23378#1" />
-            <element signature="e#23232#23364#1" />
-            <element signature="e#23403#23576#1" />
-            <element signature="e#23588#23938#0" />
-            <element signature="e#23763#23910#1" />
-            <element signature="e#23810#23900#1" />
-            <element signature="e#24020#24737#0" />
-            <element signature="e#24237#24358#1" />
-            <element signature="e#24401#24520#1" />
-            <element signature="e#24534#24731#1" />
-            <element signature="e#24647#24721#1" />
-            <element signature="e#24743#25184#0" />
-            <element signature="e#25190#26622#0" />
-            <element signature="e#25406#25520#1" />
-            <element signature="e#25765#25898#1" />
-            <element signature="e#25983#26525#1" />
-            <element signature="e#26257#26402#1" />
-            <element signature="e#26624#26694#0" />
-            <element signature="e#27649#27884#0" />
-            <element signature="e#27745#27856#1" />
-            <element signature="e#27802#27846#1" />
-            <element signature="e#27890#28129#0" />
-            <element signature="e#27985#28102#1" />
-            <element signature="e#28042#28092#1" />
-            <element signature="e#28135#28944#0" />
-            <element signature="e#28348#28480#1" />
-            <element signature="e#28494#28938#1" />
-            <element signature="e#28512#28733#0" />
-            <element signature="e#28768#28928#0" />
-            <element signature="e#28950#29354#0" />
-            <element signature="e#29360#30283#0" />
-            <element signature="e#29646#29788#1" />
-            <element signature="e#30113#30276#1" />
-            <element signature="e#30289#30894#0" />
-            <element signature="e#30494#30601#1" />
-            <element signature="e#30662#30801#1" />
-            <element signature="e#30940#30976#0" />
-            <element signature="e#68641#69131#0" />
-            <element signature="e#69137#70777#0" />
-            <element signature="e#69412#69522#1" />
-            <element signature="e#69810#69911#1" />
-            <element signature="e#70172#70276#1" />
-            <element signature="e#70783#71295#0" />
-            <element signature="e#71129#71259#1" />
-            <element signature="e#71194#71249#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="705" column="35" selection-start-line="705" selection-start-column="35" selection-end-line="705" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="53" column="61" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/WorkingCopyChanges.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
-          <folding>
-            <element signature="n#!!block;n#ajaxCurrentUser#0" />
-            <element signature="n#!!block;n#addFilesToPRPage#0" />
-            <element signature="n#!!block;n#getFiles#1" />
-            <element signature="n#!!block;n#approvePr#1" />
-            <element signature="n#!!block;n#declinePR#1" />
-            <element signature="n#!!block;n#getSrcBranch#1" />
-            <element signature="n#!!block;n#getTarget#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>
