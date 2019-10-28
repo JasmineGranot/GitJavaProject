@@ -170,3 +170,8 @@ table, th, td {
 	border-radius: 0.5em;
 	overflow: hidden;
 }
+
+.notifications {
+	font-size: 10px;
+	color: #9494b8;
+}

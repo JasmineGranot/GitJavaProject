@@ -817,10 +817,7 @@ public class Repository {
     }
 
 
-
-    // =========================== Commit =========================================
-
-    public List<Commit.CommitData> currentCommits() {
+    public List<Commit.CommitData> getHeadCommits() {
         List<Commit.CommitData> commits = new LinkedList<>();
         for (String sha1 : repoObjects.keySet()) {
             GitObjectsBase currentObj = repoObjects.get(sha1);
@@ -842,6 +839,25 @@ public class Repository {
             return 0;
         });
         return commits;
+    }
+
+
+    // =========================== Commit =========================================
+
+
+    public List<Commit.CommitData> currentCommits() {
+        List<Commit.CommitData> commits = new LinkedList<>();
+        addCommitsOfCommitRecursivly(currentCommit, commits);
+       return commits;
+    }
+    private void addCommitsOfCommitRecursivly(Commit currentCommit, List<Commit.CommitData> commits){
+        commits.add(Commit.getCommitData(currentCommit.getSha1(), currentCommit , null));
+        String sha1 = currentCommit.getFirstPrecedingSha1();
+        if (sha1 == null || sha1.equals("")){
+            return;
+        }
+        Commit nextCommit = (Commit) repoObjects.get(sha1);
+        addCommitsOfCommitRecursivly(nextCommit, commits);
     }
 
     private boolean isValidCommit(String sha1){
@@ -1660,6 +1676,9 @@ public class Repository {
     public void addNewPullRequestToRepository(String target, String base, String prMsg, User owner)
             throws InvalidDataException{
         PullRequestObject newPullRequest = createNewPullRequest(target, base, prMsg, owner);
+        if(trackedRepository == null) {
+            throw new InvalidDataException("Cannot create pull request if repository is not forked!!");
+        }
         trackedRepository.repoPullRequsetList.add(newPullRequest);
         trackedRepository.repoOwner.addNotification(new NotificationObject(
                 String.format("A new pull request was created in repository %s by user %s", repoName, owner)));

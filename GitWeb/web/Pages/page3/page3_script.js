@@ -77,6 +77,7 @@ function refreshMessagesList(notifications) {
         label.appendTo($(notificationSection));
 
         $(label).click(function () {
+            alert(msg.msg);
             ajaxDeleteNotification(msg, label);
         });
     });
@@ -97,32 +98,6 @@ function ajaxDeleteNotification(msg, label) {
 
     });
 }
-
-// function ajaxUsersNotificationsList() {
-//     $.ajax({
-//         url: "..",
-//         data:
-//             {
-//                 action: "getNotificationForUser"
-//             },
-//         success: function(notifications) {
-//             refreshMessagesList(notifications);
-//         }
-//     });
-// }
-//
-// function refreshMessagesList(notifications) {
-//     //clear all current messages
-//     $("#userNotifications").empty();
-//
-//     // rebuild the list of users: scan all users and add them to the list of users
-//     $.each(notifications || [], function(index, msg) {
-//         console.log("Adding msg #" + index + ": " + msg);
-//         //create a new <option> tag with a value in it and
-//         //appeand it to the #userslist (div with id=userslist) element
-//         $('<li>' + msg + '</li>').appendTo($("#userNotifications"));
-//     });
-// }
 
 // =================== Updating RepoData ====================
 function updateRepoName(){
@@ -151,12 +126,14 @@ function updateHeadBranchName(){
             } else {
                 $("#currentBranchName").text(headNameObj.data);
             }
+            var listArea = $('#commitSection');
+            listArea.empty();
         }
     });
 }
 
 function checkoutBranch(){
-    var branchName = $("#comboBranches").val().text();
+    var branchName = $("#comboBranches option:selected").text();
 
     $.ajax({
         url: REPO_ACTIONS,
@@ -172,7 +149,7 @@ function checkoutBranch(){
             }
             else{
                 alert(checkoutResObj.data);
-                updateHeadBranch();
+                updateHeadBranchName();
 
             }
         }
@@ -239,7 +216,7 @@ function addBranch(){
 }
 
 function deleteBranch(){
-    var branchName = $("#comboBranches").val().text();
+    var branchName = $("#comboBranches option:selected").text();
     $.ajax({
         url: REPO_ACTIONS,
         data:
@@ -249,7 +226,7 @@ function deleteBranch(){
             },
         type: 'POST',
         success: function() {
-            updateHeadBranch();
+            refreshBranches();
         }
     });
     refreshBranches()
@@ -365,16 +342,27 @@ function refreshBranches(){
 }
 
 function addBranchesToList(branches) {
-    $("#comboBranches").empty();
-    console.log("Adding branches ");
+    // var comboBranch = $("#comboBranches");
+    //
+    // comboBranch.empty();
+    // comboBranch.append(function() {
+    //     var output = '';
+    //     $.each(branches || [], function (index, branch) {
+    //
+    //     });
+    //     return output;
+    // });
+    // comboBranch.change();
 
-    // rebuild the list of users: scan all users and add them to the list of users
+
+    $("#comboBranches").empty();
+
+    var output = '';
     $.each(branches || [], function(index, branch) {
-        console.log("Adding branch #" + index + ": " + branch.name);
-        //create a new <option> tag with a value in it and
-        //appeand it to the #userslist (div with id=userslist) element
-        $('#comboBranches').append( new Option(branch.name) )
+        output += '<option>' + branch + '</option>';
     });
+
+    $('#comboBranches').append(output);
 }
 
 
@@ -398,6 +386,7 @@ $(function() {
     updateRepoName();
     ajaxUsersNotificationsList();
     triggerGetMsg();
+    refreshBranches();
 
     // triggerGetRepos();
     // setInterval(ajaxUsersNotificationsList, refreshRate);
