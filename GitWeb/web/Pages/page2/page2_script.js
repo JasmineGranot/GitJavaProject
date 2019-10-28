@@ -111,6 +111,7 @@ function refreshMessagesList(notifications) {
         label.appendTo($(notificationSection));
 
         $(label).click(function () {
+            alert(msg.msg);
             ajaxDeleteNotification(msg, label);
         });
     });

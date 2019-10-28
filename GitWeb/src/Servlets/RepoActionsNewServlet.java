@@ -98,7 +98,7 @@ public class RepoActionsNewServlet extends HttpServlet {
     private String getBranches(User currUser, Repository repo, Magit myMagit) {
         Gson gson = new Gson();
         MagitStringResultObject branchObj = myMagit.getBranches(currUser, repo.getRepoName());
-        return gson.toJson(branchObj);
+        return gson.toJson(branchObj.getDataList());
     }
 
     private String getCommits(User currUser, Repository repo, Magit myMagit) {
