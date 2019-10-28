@@ -51,12 +51,17 @@
       <div class="centercolumn">
       	<div class="middle">
           <div class="top">
-            <textarea rows="1" placeholder="Auto-Expanding Textarea" readonly>
-          </textarea>
+              <table id="workingCopySection" class="workingCopyTable">
+                  <tr>
+                      <td id="workingCopy" style="width: 50%">
+                          <textarea rows="1" cols="5" maxlength="5"></textarea>
+                      </td>
+                      <td id="fileData" style="width: 50%">
+                      </td>
+                  </tr>
+              </table>
           </div>
           <div>
-<!--              <ul id="commitSection" style="list-style-type: none"></ul>-->
-<!--            <textarea rows="1" placeholder="Auto-Expanding Textarea" readonly id="commitSection">-->
               <table id="commitSection">
                   <tr id="insertCommitData"></tr>
               </table>

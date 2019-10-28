@@ -63,7 +63,7 @@ h2 {
         left:85%;
 		right: 5%;
 }
-        
+
 .center {
         width: 100%;
         top:0%;
@@ -83,11 +83,11 @@ textarea{
         padding:5%;
         width:100%;
         font-size:14px;
-        margin:10% auto;
+        /*margin:10% auto;*/
         display:block;
         border-radius:5px;
         border:2px solid #47476b;
-		resize: none;
+		/*resize: none;*/
 }
         
 .up,.down {

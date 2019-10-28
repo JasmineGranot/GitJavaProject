@@ -268,18 +268,23 @@ function showCommits(){
                 var listArea = $('#commitSection');
                 listArea.empty();
 
-                listArea.append("<tr><th>Root Sha1</th>" +
-                    "<th>Last Commit</th>" +
+                listArea.append("<tr><th>Commit Sha1</th>" +
                     "<th>Commit Message</th>" +
                     "<th>Commit Date</th>" +
-                    "<th>Commit Writer</th></tr>");
+                    "<th>Commit Writer</th>" +
+                    "<th>Branches Who Points To Commit</th></tr>");
 
                 $.each(commits.res || [], function (index, commitData) {
+                    var list = "";
+                    $.each(commitData.branches || [], function (index, branch) {
+                        list +=  branch + '<br>';
+                    });
+
                     listArea.append("<tr><td>" + commitData.commitSha1 + "</td>" +
-                        "<td>" + commitData.commitsLastCommit + "</td>" +
                         "<td>" + commitData.commitMsg + "</td>" +
                         "<td>" + commitData.commitDate + "</td>" +
-                        "<td>" + commitData.commitWriter + "</td></tr>");
+                        "<td>" + commitData.commitWriter + "</td>" +
+                        "<td>" + list +"</td></tr>");
 
                     // console.log("Adding commits");
                     // var element = $(document.createElement('li'));
@@ -364,6 +369,7 @@ function addBranchesToList(branches) {
 
     $('#comboBranches').append(output);
 }
+
 
 
 

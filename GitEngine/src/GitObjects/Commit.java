@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Commit extends GitObjectsBase implements CommitRepresentative {
@@ -152,6 +154,7 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
         private String commitsLast2Commit = "";
         private String commitsRootSha1 = "";
         private String branchName = "";
+        private List<String> branches = new LinkedList<>();
 
         CommitData getDataFromCommit(Commit commitToGet, String branchName){
             setCommitDate(commitToGet.getCommitDate());
@@ -162,6 +165,14 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
             setCommitWriter(commitToGet.getCommitCreator());
             setBranchName(branchName);
             return this;
+        }
+
+        public void setBranches(List<String> branches) {
+            this.branches = branches;
+        }
+
+        public List<String> getBranches() {
+            return branches;
         }
 
         private void setCommitsLast2Commit(String commitsLast2Commit) {
