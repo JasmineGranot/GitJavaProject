@@ -54,6 +54,31 @@ public class Magit {
         return changes;
     }
 
+    public WorkingCopyChanges getFilesChangesBetweenBranches(User user, String repositoryName,
+                                                             String target, String base){
+
+        WorkingCopyChanges changes = new WorkingCopyChanges();
+        Repository repo = getRepoForUser(user, repositoryName);
+        if (repo != null) {
+            try {
+                changes = repo.printWCStatus();
+                changes.setMsg("Success");
+                changes.setHasErrors(false);
+            } catch (IOException e) {
+                changes.setHasErrors(true);
+                changes.setErrorMsg("The was an unhandled IOException! Exception message: " + e.getMessage());
+            } catch (InvalidDataException e) {
+                changes.setHasErrors(true);
+                changes.setErrorMsg(e.getMessage());
+            }
+        }
+        else{
+            changes.setHasErrors(true);
+            changes.setErrorMsg(String.format("Could not find the '%s' repository for user %s", user, repositoryName));
+        }
+        return changes;
+
+    }
 //  ======================== Repository Functions ==========================
 
     public MagitStringResultObject loadUserData(User user) {

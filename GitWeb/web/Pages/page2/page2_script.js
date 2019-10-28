@@ -1,6 +1,5 @@
 var REFRESH_DATA = "../../refreshData";
 var PAGE3 = "../../page3";
-var REPO_ACTIONS = "../../actionOnRepo";
 
 var refreshRate = 3000; //milli seconds
 
@@ -69,9 +68,13 @@ function ajaxUsersList() {
 function refreshUsersList(users) {
     //clear all current users
     $("#userList").empty();
+    console.log("Adding users ");
 
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(users || [], function(index, username) {
+        console.log("Adding user #" + index + ": " + username);
+        //create a new <option> tag with a value in it and
+        //appeand it to the #userslist (div with id=userslist) element
         var userRow = $(document.createElement('li'));
         userRow.text(username);
         userRow.attr('id', username);
@@ -99,36 +102,20 @@ function ajaxUsersNotificationsList() {
 
 function refreshMessagesList(notifications) {
     //clear all current messages
-    $("#notifications").empty();
+    $("#comboNotifications").empty();
 
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(notifications || [], function (index, msg) {
-        var notificationSection = $(document.getElementById("notifications"));
-        var label = $(document.createElement('li'));
+    $.each(notifications || [], function(index, msg) {
+        console.log("Adding notifications");
+        var select = $(document.getElementById("comboNotifications"));
+        var option = $(document.createElement('option'));
+        option.text = msg.msg;
 
-        label.text(msg.msg);
-        label.attr('id', msg.msg);
-        label.appendTo($(notificationSection));
+        option.appendTo(select);
 
-        $(label).click(function () {
-            ajaxDeleteNotification(msg, label);
+        $(option).click(function () {
+            alert(msg);
         });
-    });
-}
-
-function ajaxDeleteNotification(msg, label) {
-    $.ajax({
-        url: REPO_ACTIONS,
-        data:
-            {
-                action: "deleteNotification",
-                message: msg.msg
-            },
-        type: 'POST',
-        success: function (users) {
-            $(label).remove();
-        }
-
     });
 }
 

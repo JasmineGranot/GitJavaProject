@@ -31,7 +31,10 @@ public class UserManager {
     public List<String> getAllOnlineUsers(){
         Stream<User> users = allUsers.stream();
         return users.filter(User::getIsOnline).map(User::getUserName).collect(Collectors.toList());
-
+    }
+    public List<String> getAllUsersName(){
+        Stream<User> users = allUsers.stream();
+        return users.map(User::getUserName).collect(Collectors.toList());
     }
 
     public boolean isUserOnline(String userName) {

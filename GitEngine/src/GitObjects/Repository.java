@@ -666,22 +666,39 @@ public class Repository {
 
     public void removeBranch(String branchName) throws InvalidDataException, FileErrorException {
         String errorMsg;
-        if (!isBranchExist(branchName)) {
+        Branch branchToDelete = getBranchByName(branchName);
+        if (branchToDelete == null) {
             errorMsg = "No such branch Exists!";
             throw new InvalidDataException(errorMsg);
         }
         // delete from objects in .magit
 
-        String branchToDelete = Paths.get(BRANCHES_PATH, branchName).toString();
-        File f = new File(branchToDelete);
+        String branchToDeletePath = Paths.get(BRANCHES_PATH, branchName).toString();
+        File f = new File(branchToDeletePath);
+        // delete from local repo file system
         if (!f.delete()){
             errorMsg = "Had an issue while trying to delete a file!";
             throw new FileErrorException(errorMsg);
         }
 
+        //delete Branch in remote if needed:
+        if (trackedRepository != null){
+
+            // delete RTB
+            String localRemoteBranchPath = MagitUtils.joinPaths(BRANCHES_PATH, trackedRepository.getRepoName(),
+                    branchToDelete.getTrackedBranch());
+            f = new File(localRemoteBranchPath);
+            if (!f.delete()){
+                errorMsg = "Had an issue while trying to delete a file!";
+                throw new FileErrorException(errorMsg);
+            }
+
+            // delete in remote:
+            trackedRepository.removeBranch(branchToDelete.getTrackedBranch());
+        }
+
         // delete from system memory objects
-        Branch branchObjToDelete = getBranchByName(branchName);
-        repoBranches.remove(branchObjToDelete);
+        repoBranches.remove(branchToDelete);
     }
 
 //    MagitStringResultObject getHistoryBranchData() throws Exception{
@@ -1360,6 +1377,22 @@ public class Repository {
         }
     }
 
+    private String FFMerge(Branch source, Branch target) throws InvalidDataException, FileErrorException, IOException {
+        AncestorFinder ancestorFinder = new AncestorFinder(this::sha1ToCommit);
+        String ancestorSha1 = ancestorFinder.traceAncestor(source.getCommitSha1(), target.getCommitSha1());
+        String mergeMsg;
+        if(source.getCommitSha1().equals(ancestorSha1)) {
+            resetCommitInBranch(target.getCommitSha1(), false);
+            mergeMsg = String.format("Changed branch %s commit to branch %s commit successfully!",
+                    source.getName(), target.getName());
+        }
+        else {
+            resetCommitInBranch(source.getCommitSha1(), false);
+            mergeMsg = String.format("Changed branch %s commit to branch %s commit successfully!",
+                    target.getName(), source.getName());
+        }
+        return mergeMsg;
+    }
     // =========================== Clone =========================================
 
     public void clone(Repository remote) throws Exception {
@@ -1632,8 +1665,87 @@ public class Repository {
                 String.format("A new pull request was created in repository %s by user %s", repoName, owner)));
     }
 
+    public WorkingCopyChanges getPRFileChanges(String target, String base)
+            throws InvalidDataException{
 
+        Branch baseBranch = getBranchByName(base);
+        Branch targetBranch = getBranchByName(target);
 
+        if(baseBranch == null || targetBranch == null) {
+            throw new InvalidDataException("Base or Target branch does not exist in the system!");
+        }
+
+        WorkingCopyChanges newChangesSet;
+
+        // Get the files in source branch
+        Map<String, String> sourceBranchFile = new HashMap<>();
+        Commit srcCommit = (Commit) repoObjects.get(baseBranch.getCommitSha1());
+        if ( srcCommit != null && !srcCommit.isEmpty()) {
+            getLastCommitFiles(srcCommit.getRootSha1(), getRepoPath(), sourceBranchFile);
+        }
+
+        // Gets the files in the target branch
+        Map<String, String> targetBranchFile = new HashMap<>();
+        Commit targetCommit = (Commit) repoObjects.get(targetBranch.getCommitSha1());
+        if ( targetCommit != null && !targetCommit.isEmpty()) {
+            getLastCommitFiles(targetCommit.getRootSha1(), getRepoPath(), targetBranchFile);
+        }
+
+        Set<String> changedFilePaths = getChangedFileByCommit(targetBranchFile, sourceBranchFile);
+
+        Set<String> newFiles = new HashSet<>(targetBranchFile.keySet());
+        newFiles.removeAll(sourceBranchFile.keySet());
+
+        Set<String> deletedFiles = new HashSet<>(sourceBranchFile.keySet());
+        deletedFiles.removeAll(targetBranchFile.keySet());
+
+        newChangesSet = new WorkingCopyChanges(changedFilePaths, deletedFiles, newFiles, false);
+        return newChangesSet;
+
+    }
+
+    private Set<String> getChangedFileByCommit(Map<String, String> oldFiles,Map<String, String> newFiles ){
+        Set<String> changedFiles = new HashSet<>();
+        Set<String> newFilePath = newFiles.keySet();
+        Set<String> oldFilePath = newFiles.keySet();
+
+        newFilePath.retainAll(oldFilePath);
+        for (String path : newFilePath){
+            if (!oldFiles.get(path).equals(newFiles.get(path))){
+                changedFiles.add(path);
+            }
+        }
+        return changedFiles;
+
+    }
+
+    public void approvePullRequest(PullRequestObject pr)
+            throws InvalidDataException, FileErrorException, IOException {
+        Branch src = pr.getTargetToMergeFrom();
+        Branch target = pr.getBaseToMergeInto();
+
+        FFMerge(src, target);
+        pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
+        pr.getOwner().addNotification(
+                new NotificationObject(
+                        String.format("%s approved your pull request for the repository %s",
+                                repoOwner.getUserName(), repoName)));
+
+    }
+
+    public void declinePullRequest(PullRequestObject pr, String ownerDeclineMsg)
+            throws InvalidDataException, FileErrorException, IOException {
+
+        // closing the pr with relevant message
+        pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
+        pr.setRepoManagerMsg(ownerDeclineMsg);
+
+        pr.getOwner().addNotification(
+                new NotificationObject(
+                        String.format("%s declined your pull request for the repository %s, with the message %s",
+                                repoOwner.getUserName(), repoName, ownerDeclineMsg)));
+
+    }
 
 
 

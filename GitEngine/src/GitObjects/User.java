@@ -139,6 +139,8 @@ public class User {
         for (Repository repo : getActiveRepositories()){
             repo.deleteWC(getPath(), true);
         }
+        File userFolder = new File(getPath());
+        userFolder.delete();
     }
 
     public void logout() {
