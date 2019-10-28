@@ -695,6 +695,9 @@ public class Repository {
 
             // delete in remote:
             trackedRepository.removeBranch(branchToDelete.getTrackedBranch());
+            trackedRepository.repoOwner.addNotification(new NotificationObject(
+                    String.format("The branch %s in repository %s was deleted by %s",
+                            branchName, trackedRepository.getRepoName(), repoOwner.getUserName())));
         }
 
         // delete from system memory objects
@@ -851,13 +854,20 @@ public class Repository {
        return commits;
     }
     private void addCommitsOfCommitRecursivly(Commit currentCommit, List<Commit.CommitData> commits){
-        commits.add(Commit.getCommitData(currentCommit.getSha1(), currentCommit , null));
         String sha1 = currentCommit.getFirstPrecedingSha1();
+        Commit.CommitData data = Commit.getCommitData(currentCommit.getSha1(), currentCommit , null);
+        data.setBranches(getBranchesForCommit(currentCommit.getSha1()));
+        commits.add(data);
         if (sha1 == null || sha1.equals("")){
             return;
         }
         Commit nextCommit = (Commit) repoObjects.get(sha1);
         addCommitsOfCommitRecursivly(nextCommit, commits);
+    }
+    private List<String> getBranchesForCommit (String commitSha1){
+        Stream<Branch> branches= repoBranches.stream();
+        return branches.filter(x-> x.getCommitSha1().equals(commitSha1)).
+                map(Branch::getName).collect(Collectors.toList());
     }
 
     private boolean isValidCommit(String sha1){
