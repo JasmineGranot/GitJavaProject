@@ -166,7 +166,7 @@ public class RepoActionsNewServlet extends HttpServlet {
                 PullRequestObject object = (PullRequestObject) gson.fromJson(pr, PullRequestObject.class);
                 UIUtils.SessionUtils.setPullRequest(request, object);
             }
-            
+
             case("getCommits"):
             {
                 String msg = request.getParameter("commitMsg");
