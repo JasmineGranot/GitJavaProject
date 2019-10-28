@@ -5,6 +5,7 @@ import Exceptions.FileErrorException;
 import Utils.MagitUtils;
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
+import javax.management.Notification;
 import java.io.File;
 import java.text.ParseException;
 import java.util.Collection;
@@ -145,5 +146,13 @@ public class User {
     public void logout() {
         lastSignOut = MagitUtils.getTodayAsDate();
         setOnline(false);
+    }
+
+    public void deleteNotification(String msgToFind) {
+        for(NotificationObject curr : userNotifications) {
+            if(curr.getMsg().equals(msgToFind)) {
+                userNotifications.remove(curr);
+            }
+        }
     }
 }

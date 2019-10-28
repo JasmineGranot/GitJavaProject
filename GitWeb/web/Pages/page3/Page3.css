@@ -79,14 +79,15 @@ h2 {
 }
         
 textarea{  
-	overflow:hidden;
+		overflow:scroll;
         padding:5%;
         width:100%;
         font-size:14px;
         margin:10% auto;
         display:block;
-        border-radius:10px;
+        border-radius:5px;
         border:2px solid #47476b;
+		resize: none;
 }
         
 .up,.down {

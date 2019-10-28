@@ -166,6 +166,11 @@ public class RepoActionsNewServlet extends HttpServlet {
                 json = createNewCommit(currUser, repo, msg, myMagit);
                 break;
             }
+            case ("deleteNotification"):
+            {
+                String msg = request.getParameter("message");
+                deleteNotification(currUser, msg);
+            }
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -243,6 +248,10 @@ public class RepoActionsNewServlet extends HttpServlet {
         Gson gson = new Gson();
         MagitStringResultObject resultObject = myMagit.createNewCommit(currUser, repo.getRepoName(), commitMsg, null);
         return gson.toJson(resultObject);
+    }
+
+    private void deleteNotification(User user, String msg) {
+        user.deleteNotification(msg);
     }
 
 
