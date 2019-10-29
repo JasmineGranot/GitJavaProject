@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7192">
-              <caret line="1167" column="33" selection-start-line="1167" selection-start-column="33" selection-end-line="1167" selection-end-column="33" />
+            <state relative-caret-position="306">
+              <caret line="499" column="5" lean-forward="true" selection-start-line="474" selection-start-column="4" selection-end-line="499" selection-end-column="5" />
               <folding>
                 <element signature="e#1321#1554#0" />
                 <element signature="e#1807#1942#0" />
@@ -99,12 +98,6 @@
                 <element signature="e#16918#17222#0" />
                 <element signature="e#17303#17705#0" />
                 <element signature="e#17557#17700#1" />
-                <element signature="e#17711#18777#0" />
-                <element signature="e#17929#18771#1" />
-                <element signature="e#17966#18761#1" />
-                <element signature="e#18091#18505#1" />
-                <element signature="e#18171#18487#1" />
-                <element signature="e#18298#18465#1" />
                 <element signature="e#18527#18747#1" />
                 <element signature="e#18574#18729#1" />
                 <element signature="e#18783#19304#0" />
@@ -143,39 +136,9 @@
                 <element signature="e#24534#24731#1" />
                 <element signature="e#24647#24721#1" />
                 <element signature="e#24743#25184#0" />
-                <element signature="e#25190#26622#0" />
                 <element signature="e#25406#25520#1" />
                 <element signature="e#25765#25898#1" />
-                <element signature="e#25983#26525#1" />
                 <element signature="e#26257#26402#1" />
-                <element signature="e#26624#26694#0" />
-                <element signature="e#27649#27884#0" />
-                <element signature="e#27745#27856#1" />
-                <element signature="e#27802#27846#1" />
-                <element signature="e#27890#28129#0" />
-                <element signature="e#27985#28102#1" />
-                <element signature="e#28042#28092#1" />
-                <element signature="e#28135#28944#0" />
-                <element signature="e#28348#28480#1" />
-                <element signature="e#28494#28938#1" />
-                <element signature="e#28512#28733#0" />
-                <element signature="e#28768#28928#0" />
-                <element signature="e#28950#29354#0" />
-                <element signature="e#29360#30283#0" />
-                <element signature="e#29646#29788#1" />
-                <element signature="e#30113#30276#1" />
-                <element signature="e#30289#30894#0" />
-                <element signature="e#30494#30601#1" />
-                <element signature="e#30662#30801#1" />
-                <element signature="e#30940#30976#0" />
-                <element signature="e#68641#69131#0" />
-                <element signature="e#69137#70777#0" />
-                <element signature="e#69412#69522#1" />
-                <element signature="e#69810#69911#1" />
-                <element signature="e#70172#70276#1" />
-                <element signature="e#70783#71295#0" />
-                <element signature="e#71129#71259#1" />
-                <element signature="e#71194#71249#1" />
               </folding>
             </state>
           </provider>
@@ -220,26 +183,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
+            <state relative-caret-position="-1100">
               <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="638">
+              <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+              <folding>
+                <element signature="e#2882#3037#1" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css">
+        <entry file="file://$PROJECT_DIR$/src/GitObjects/UserManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
+            <state relative-caret-position="169">
+              <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="139" column="19" lean-forward="true" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -249,15 +233,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
               <caret line="705" column="35" selection-start-line="705" selection-start-column="35" selection-end-line="705" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -300,6 +275,7 @@
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" />
+        <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" />
       </list>
     </option>
   </component>
@@ -459,24 +435,24 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page3" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page2" />
-      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Servlets" />
-      <recent name="myGit.Servlets" />
-      <recent name="GitObjects" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\97250\Desktop\GitJavaProject\GitWeb\web\Pages\pullRequest" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\GitWeb\web\Commons" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\web\Pages" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\web\javaScriptFiles" />
       <recent name="C:\Users\97250\Desktop\GitJavaProject\Web2\src\UIUtils" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Servlets" />
+      <recent name="myGit.Servlets" />
+      <recent name="GitObjects" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page3" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\page2" />
+      <recent name="C:\Users\Vered Harel\Desktop\GitJavaProject\GitWeb\web\Pages\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -835,11 +811,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572284419924</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572287271887</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1572287271887</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21901000" />
+    <option name="totallyTimeSpent" value="24187000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -873,7 +856,7 @@
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Run" order="10" weight="0.32876712" />
-      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" weight="0.22070014" />
+      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" visible="true" weight="0.37899545" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.32876712" />
@@ -992,7 +975,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java</url>
-          <line>27</line>
+          <line>32</line>
           <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
@@ -1147,24 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/UserManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="67" column="38" lean-forward="true" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#1323#1324#0" expanded="true" />
-            <element signature="e#1355#1356#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GitObjects/FileDetails.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1172,13 +1137,6 @@
           <folding>
             <element signature="e#716#717#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1196,10 +1154,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="705" column="35" selection-start-line="705" selection-start-column="35" selection-end-line="705" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="61" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1100">
+          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/WorkingCopyChanges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+          <folding>
+            <element signature="n#!!block;n#ajaxCurrentUser#0" />
+            <element signature="n#!!block;n#addFilesToPRPage#0" />
+            <element signature="n#!!block;n#getFiles#1" />
+            <element signature="n#!!block;n#approvePr#1" />
+            <element signature="n#!!block;n#declinePR#1" />
+            <element signature="n#!!block;n#getSrcBranch#1" />
+            <element signature="n#!!block;n#getTarget#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/UserManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="139" column="19" lean-forward="true" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7192">
-          <caret line="1167" column="33" selection-start-line="1167" selection-start-column="33" selection-end-line="1167" selection-end-column="33" />
+        <state relative-caret-position="306">
+          <caret line="499" column="5" lean-forward="true" selection-start-line="474" selection-start-column="4" selection-end-line="499" selection-end-column="5" />
           <folding>
             <element signature="e#1321#1554#0" />
             <element signature="e#1807#1942#0" />
@@ -1272,12 +1330,6 @@
             <element signature="e#16918#17222#0" />
             <element signature="e#17303#17705#0" />
             <element signature="e#17557#17700#1" />
-            <element signature="e#17711#18777#0" />
-            <element signature="e#17929#18771#1" />
-            <element signature="e#17966#18761#1" />
-            <element signature="e#18091#18505#1" />
-            <element signature="e#18171#18487#1" />
-            <element signature="e#18298#18465#1" />
             <element signature="e#18527#18747#1" />
             <element signature="e#18574#18729#1" />
             <element signature="e#18783#19304#0" />
@@ -1316,126 +1368,20 @@
             <element signature="e#24534#24731#1" />
             <element signature="e#24647#24721#1" />
             <element signature="e#24743#25184#0" />
-            <element signature="e#25190#26622#0" />
             <element signature="e#25406#25520#1" />
             <element signature="e#25765#25898#1" />
-            <element signature="e#25983#26525#1" />
             <element signature="e#26257#26402#1" />
-            <element signature="e#26624#26694#0" />
-            <element signature="e#27649#27884#0" />
-            <element signature="e#27745#27856#1" />
-            <element signature="e#27802#27846#1" />
-            <element signature="e#27890#28129#0" />
-            <element signature="e#27985#28102#1" />
-            <element signature="e#28042#28092#1" />
-            <element signature="e#28135#28944#0" />
-            <element signature="e#28348#28480#1" />
-            <element signature="e#28494#28938#1" />
-            <element signature="e#28512#28733#0" />
-            <element signature="e#28768#28928#0" />
-            <element signature="e#28950#29354#0" />
-            <element signature="e#29360#30283#0" />
-            <element signature="e#29646#29788#1" />
-            <element signature="e#30113#30276#1" />
-            <element signature="e#30289#30894#0" />
-            <element signature="e#30494#30601#1" />
-            <element signature="e#30662#30801#1" />
-            <element signature="e#30940#30976#0" />
-            <element signature="e#68641#69131#0" />
-            <element signature="e#69137#70777#0" />
-            <element signature="e#69412#69522#1" />
-            <element signature="e#69810#69911#1" />
-            <element signature="e#70172#70276#1" />
-            <element signature="e#70783#71295#0" />
-            <element signature="e#71129#71259#1" />
-            <element signature="e#71194#71249#1" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="705" column="35" selection-start-line="705" selection-start-column="35" selection-end-line="705" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="53" column="61" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/WorkingCopyChanges.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding>
-            <element signature="n#!!block;n#ajaxCurrentUser#0" />
-            <element signature="n#!!block;n#addFilesToPRPage#0" />
-            <element signature="n#!!block;n#getFiles#1" />
-            <element signature="n#!!block;n#approvePr#1" />
-            <element signature="n#!!block;n#declinePR#1" />
-            <element signature="n#!!block;n#getSrcBranch#1" />
-            <element signature="n#!!block;n#getTarget#1" />
+            <element signature="e#2882#3037#1" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
         </state>
       </provider>
     </entry>
