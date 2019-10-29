@@ -1691,8 +1691,9 @@ public class Repository {
             throw new InvalidDataException("Cannot create pull request if repository is not forked!!");
         }
         trackedRepository.repoPullRequsetList.add(newPullRequest);
+        trackedRepository.repoOwner.setPullRequestForUserList(newPullRequest);
         trackedRepository.repoOwner.addNotification(new NotificationObject(
-                String.format("A new pull request was created in repository %s by user %s", repoName, owner)));
+                String.format("A new pull request was created in repository %s by user %s", repoName, owner.getUserName())));
     }
 
     public WorkingCopyChanges getPRFileChanges(String target, String base)

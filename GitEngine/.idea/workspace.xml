@@ -8,11 +8,17 @@
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,17 +37,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>checkout</find>
-      <find>changeR</find>
-      <find>pullR</find>
-      <find>PR</find>
-      <find>getCommitData</find>
-      <find>branch</find>
-      <find>commit</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -204,6 +199,8 @@
       <workItem from="1572162313934" duration="18455000" />
       <workItem from="1572267857823" duration="4099000" />
       <workItem from="1572287323044" duration="1825000" />
+      <workItem from="1572289192712" duration="80000" />
+      <workItem from="1572294682378" duration="10567000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -448,7 +445,13 @@
       <option name="project" value="LOCAL" />
       <updated>1572284419924</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL‎00036" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572289238143</created>
+      <option name="number" value="LOCAL‎00036" />
+      <option name="presentableId" value="LOCAL‎00036" />
+      <updated>1572289238143</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TodoView">
@@ -509,7 +512,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/User.java</url>
-          <line>117</line>
+          <line>138</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -548,12 +551,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>218</line>
+          <line>219</line>
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -562,85 +560,27 @@
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/UserManager.java</url>
           <line>73</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="141" />
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
-          <line>1688</line>
-          <option name="timeStamp" value="145" />
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
+          <line>157</line>
+          <option name="timeStamp" value="151" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
-          <line>102</line>
-          <option name="timeStamp" value="120" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="152" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>removeFolders()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>newFiles</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>deletedFiles</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>changedFilePaths</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>targetBranch.commitSha1</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>baseBranch.commitSha1</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>if ( targetCommit != null &amp;&amp; !targetCommit.isEmpty()) {
-    getLastCommitFiles(targetCommit.getRootSha1(), getRepoPath(), targetBranchFile);
-}</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>if ( targetCommit != null &amp;&amp; !targetCommit.isEmpty()) {
-            getLastCommitFiles(targetCommit.getRootSha1(), getRepoPath(), targetBranchFile);
-        }</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>targetBranchFile</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
   <component name="masterDetails">
     <states>

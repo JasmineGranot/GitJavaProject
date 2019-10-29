@@ -21,6 +21,7 @@ public class User {
     private String filesPath;
     private List<Repository> activeRepositories;
     private List<NotificationObject> userNotifications;
+    private List<PullRequestObject> pullRequestForUserList;
     private Date lastSignOut;
 
     User(String userName) {
@@ -29,8 +30,28 @@ public class User {
         lastSignOut = MagitUtils.getTodayAsDate();
         userNotifications = new LinkedList<>();
         activeRepositories = new LinkedList<>();
+        pullRequestForUserList = new LinkedList<>();
         filesPath =  MagitUtils.joinPaths("c:\\magit-ex3", userName);
         createFileInServer(filesPath);
+    }
+
+    public void setPullRequestForUserList(PullRequestObject newPR) {
+        this.pullRequestForUserList.add(newPR);
+    }
+
+    public List<PullRequestObject> getPullRequestForUserList() {
+        return pullRequestForUserList;
+    }
+
+    public PullRequestObject findPr(String target, String base, String msg) {
+        for(PullRequestObject curr : pullRequestForUserList) {
+            if(curr.getBaseToMergeInto().getName().equals(base) &&
+                curr.getTargetToMergeFrom().getName().equals(target) &&
+                curr.getPrMsg().equals(msg)) {
+                return curr;
+            }
+        }
+        return null;
     }
 
     public void createFileInServer(String pathToCreate){

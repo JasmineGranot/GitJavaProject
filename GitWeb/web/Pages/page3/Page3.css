@@ -171,7 +171,17 @@ table, th, td {
 	overflow: hidden;
 }
 
+.notifications.h4 {
+    font-size: 15px;
+    text-decoration: underline;
+}
+
 .notifications {
-	font-size: 10px;
-	color: #9494b8;
+    font-size: 12px;
+    color: #28283e;
+    background-color: #c2c2d6;
+    border: 1px solid #28283e;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center;
 }

@@ -161,9 +161,10 @@ public class RepoActionsNewServlet extends HttpServlet {
                 break;
             }
             case ("setPullRequestInSession"):{
-                String pr = request.getParameter("prObj");
-                Gson gson = new Gson();
-                PullRequestObject object = (PullRequestObject) gson.fromJson(pr, PullRequestObject.class);
+                String target = request.getParameter("target");
+                String base = request.getParameter("base");
+                String msg = request.getParameter("message");
+                PullRequestObject object = currUser.findPr(target, base, msg);
                 UIUtils.SessionUtils.setPullRequest(request, object);
             }
 

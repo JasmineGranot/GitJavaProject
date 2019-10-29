@@ -64,17 +64,17 @@ function ajaxUsersNotificationsList() {
 }
 
 function refreshMessagesList(notifications) {
-    //clear all current messages
     $("#notifications").empty();
 
-    // rebuild the list of users: scan all users and add them to the list of users
     $.each(notifications || [], function (index, msg) {
         var notificationSection = $(document.getElementById("notifications"));
         var label = $(document.createElement('li'));
+        var down = $(document.createElement('br'));
 
         label.text(msg.msg);
         label.attr('id', msg.msg);
         label.appendTo($(notificationSection));
+        down.appendTo($(notificationSection));
 
         $(label).click(function () {
             alert(msg.msg);
@@ -308,7 +308,7 @@ function createPullRequest(){
         "I created a new pull request. Please check it out :)");
 
     if(srcBranch == null && targetBranch == null){
-        alert("Cannot take 2 branches!")
+        alert("Please insert 2 branches!")
     }
     else {
         $.ajax({
@@ -347,19 +347,6 @@ function refreshBranches(){
 }
 
 function addBranchesToList(branches) {
-    // var comboBranch = $("#comboBranches");
-    //
-    // comboBranch.empty();
-    // comboBranch.append(function() {
-    //     var output = '';
-    //     $.each(branches || [], function (index, branch) {
-    //
-    //     });
-    //     return output;
-    // });
-    // comboBranch.change();
-
-
     $("#comboBranches").empty();
 
     var output = '';
@@ -377,16 +364,54 @@ function openPullRequest() {
        window.open("../pullRequest/pullRequestPage.html", "Pull Request");
     });
 }
-function addPRToSession() {
+
+function addPRToSession(pr) {
     $.ajax({
         url: REPO_ACTIONS,
         data:
             {
                 action: "setPullRequestInSession",
+                target: pr.targetToMergeFrom,
+                base: pr.baseToMergeInto,
+                message: pr.prMsg,
             },
         type: 'POST'
     });
 
+}
+
+function ajaxUsersPullRequests() {
+    $.ajax({
+        url: REFRESH_DATA,
+        data:
+            {
+                action: "getPullRequestsForUser"
+            },
+        success: function(pullRequests) {
+                updatePullRequestsForUser(pullRequests);
+                triggerGetPRs();
+        }
+    });
+}
+
+function updatePullRequestsForUser(pullRequests) {
+    $("#openPrs").empty();
+
+    $.each(pullRequests || [], function (index, pr) {
+        var prSection = $(document.getElementById("openPrs"));
+        var row = $(document.createElement('li'));
+        var down = $(document.createElement('br'));
+
+        row.text(pr.prMsg);
+        row.appendTo($(prSection));
+        down.appendTo($(prSection));
+
+        addPRToSession(pr);
+
+        $(row).click(function () {
+            window.open("../pullRequest/pullRequestPage.html", "Pull Request");
+        });
+    });
 }
 
 
@@ -396,15 +421,12 @@ function addPRToSession() {
 function triggerGetMsg(){
     setTimeout(ajaxUsersNotificationsList, refreshRate);
 }
-// function triggerGetRepos(){
-//     setTimeout(ajaxCurrentUserRepo, refreshRate);
-// }
+function triggerGetPRs(){
+    setTimeout(ajaxUsersPullRequests, refreshRate);
+}
 
 // activate the timer calls after the page is loaded
 $(function() {
-
-    //These lists is refreshed automatically every second
-    // setTimeout(ajaxCurrentUserRepo, refreshRate);
     setInterval(ajaxUsersList, refreshRate);
     ajaxCurrentUser();
     updateHeadBranchName();
@@ -412,14 +434,7 @@ $(function() {
     ajaxUsersNotificationsList();
     triggerGetMsg();
     refreshBranches();
-
-    // triggerGetRepos();
-    // setInterval(ajaxUsersNotificationsList, refreshRate);
-
-
-    // //The chat content is refreshed only once (using a timeout) but
-    // //on each call it triggers another execution of itself later (1 second later)
-    // triggerAjaxChatContent();
+    triggerGetPRs();
 });
 
 

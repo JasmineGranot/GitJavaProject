@@ -26,8 +26,8 @@
       <div class="leftcolumn">
           <form action="../../logout" method="get"><center>
               <input type="submit" class="f90-logout-button" value="Logout">
-          </center></form>
-		<a href="../page2/Page2.html" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a>
+          </center></form><br>
+		<a href="../page2/Page2.html" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a><br>
 		<p><img class="userImage" src="../resources/user.png" alt="User"></p>
         <p style="font-size: 15px">
           <b>
@@ -37,8 +37,8 @@
           </b>
         </p>
 
-          <h4>Notifications: </h4>
           <div class="notifications">
+              <h4>Notifications: </h4>
               <ul id="notifications" style="list-style-type: none"></ul>
           </div>
         <br><br>
@@ -46,6 +46,10 @@
         <button style="font-size:10px;" id="prButton" onclick="openPullRequest()">
           Show my open PR's
         </button><br><br>
+          <div class="notifications">
+              <h4>Open Pull Requests: </h4>
+              <ul id="openPrs" style="list-style-type: none"></ul>
+          </div>
       </div>
       
       <div class="centercolumn">
@@ -76,7 +80,7 @@
         </h2>
         
         <h4 style="margin-left:5px; margin-top:5px;">Branches in repository: </h4>
-        <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
+          <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
         <br><br><br><br>
         
         <button style="font-size:10px; margin-left: 5px;" class="branchButtons" onclick="checkoutBranch()">
