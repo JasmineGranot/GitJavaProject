@@ -100,18 +100,18 @@ public class PullRequestServlet extends HttpServlet {
     private String getFilesDelta(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {
         Gson gson = new Gson();
         WorkingCopyChanges prsObj = myMagit.getFilesChangesBetweenBranches(currUser, repo.getRepoName(),
-                pr.getBaseToMergeInto().getName(), pr.getTargetToMergeFrom().getName());
+                pr.getBaseToMergeInto(), pr.getTargetToMergeFrom());
         return gson.toJson(prsObj);
     }
 
     private String getSrcBranch(PullRequestObject pr) {
         Gson gson = new Gson();
-        String prsObj = pr.getBaseToMergeInto().getName();
+        String prsObj = pr.getBaseToMergeInto();
         return gson.toJson(prsObj);
     }
     private String getTargetBranch(PullRequestObject pr) {
         Gson gson = new Gson();
-        String prsObj = pr.getTargetToMergeFrom().getName();
+        String prsObj = pr.getTargetToMergeFrom();
         return gson.toJson(prsObj);
     }
     private String getPRMsg(PullRequestObject pr) {

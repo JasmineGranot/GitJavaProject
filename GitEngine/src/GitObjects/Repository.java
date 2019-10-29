@@ -1676,9 +1676,9 @@ public class Repository {
             throw new InvalidDataException("Base or Target branch does not exist in the system!");
         }
 
-        newPullRequest.setBaseToMergeInto(baseBranch);
-        newPullRequest.setTargetToMergeFrom(targetBranch);
-        newPullRequest.setOwner(owner);
+        newPullRequest.setBaseToMergeInto(baseBranch.getName());
+        newPullRequest.setTargetToMergeFrom(targetBranch.getName());
+        newPullRequest.setOwner(owner.getUserName());
         newPullRequest.setPrMsg(prMsg);
 
         return newPullRequest;
@@ -1751,12 +1751,14 @@ public class Repository {
 
     public void approvePullRequest(PullRequestObject pr)
             throws InvalidDataException, FileErrorException, IOException {
-        Branch src = pr.getTargetToMergeFrom();
-        Branch target = pr.getBaseToMergeInto();
+        Branch src = getBranchByName(pr.getTargetToMergeFrom());
+        Branch target = getBranchByName(pr.getBaseToMergeInto());
 
         FFMerge(src, target);
         pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
-        pr.getOwner().addNotification(
+        UserManager um = new UserManager();
+        User owner = um.getUserByName(pr.getOwner());
+        owner.addNotification(
                 new NotificationObject(
                         String.format("%s approved your pull request for the repository %s",
                                 repoOwner.getUserName(), repoName)));
@@ -1769,8 +1771,9 @@ public class Repository {
         // closing the pr with relevant message
         pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
         pr.setRepoManagerMsg(ownerDeclineMsg);
-
-        pr.getOwner().addNotification(
+        UserManager um = new UserManager();
+        User owner = um.getUserByName(pr.getOwner());
+        owner.addNotification(
                 new NotificationObject(
                         String.format("%s declined your pull request for the repository %s, with the message %s",
                                 repoOwner.getUserName(), repoName, ownerDeclineMsg)));
