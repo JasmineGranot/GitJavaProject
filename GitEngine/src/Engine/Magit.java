@@ -662,7 +662,6 @@ public class Magit {
     public MagitStringResultObject createPR(User user, String repoName, String srcBranch,
                                             String targetBranch, String msg) {
         MagitStringResultObject res = new MagitStringResultObject();
-        PullRequestObject pr = new PullRequestObject();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {

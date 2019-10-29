@@ -97,7 +97,7 @@ public class RefreshDataServlet extends HttpServlet {
         Gson gson = new Gson();
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
         User currUser = userManager.getUserByName(usernameFromSession);
-        List<PullRequestObject> prs = currUser.getPullRequestForUserList();
+        List<PullRequestObject> prs = currUser.getUserPullRequests();
         return gson.toJson(prs);
     }
 

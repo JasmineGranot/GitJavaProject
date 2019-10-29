@@ -75,4 +75,6 @@ public class UserManager {
             currUser.deleteFolders();
         }
     }
+
+
 }

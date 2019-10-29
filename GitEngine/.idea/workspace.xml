@@ -11,13 +11,9 @@
       <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/UserManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -201,6 +197,7 @@
       <workItem from="1572287323044" duration="1825000" />
       <workItem from="1572289192712" duration="80000" />
       <workItem from="1572294682378" duration="10567000" />
+      <workItem from="1572340704225" duration="2974000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -451,7 +448,13 @@
       <option name="presentableId" value="LOCAL‎00036" />
       <updated>1572289238143</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL‎00037" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572340829456</created>
+      <option name="number" value="LOCAL‎00037" />
+      <option name="presentableId" value="LOCAL‎00037" />
+      <updated>1572340829457</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -512,7 +515,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/User.java</url>
-          <line>138</line>
+          <line>118</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -560,24 +563,9 @@
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GitObjects/UserManager.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>157</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="152" />
+          <line>164</line>
+          <option name="timeStamp" value="154" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

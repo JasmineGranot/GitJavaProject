@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.List;
 
 @WebServlet(
         urlPatterns = "/actionOnRepo"
@@ -161,10 +162,9 @@ public class RepoActionsNewServlet extends HttpServlet {
                 break;
             }
             case ("setPullRequestInSession"):{
-                String target = request.getParameter("target");
-                String base = request.getParameter("base");
-                String msg = request.getParameter("message");
-                PullRequestObject object = currUser.findPr(target, base, msg);
+                String pr = request.getParameter("prObj");
+                Gson gson = new Gson();
+                PullRequestObject object = (PullRequestObject) gson.fromJson(pr, PullRequestObject.class);
                 UIUtils.SessionUtils.setPullRequest(request, object);
             }
 

@@ -389,7 +389,6 @@ function ajaxUsersPullRequests() {
             },
         success: function(pullRequests) {
                 updatePullRequestsForUser(pullRequests);
-                triggerGetPRs();
         }
     });
 }
