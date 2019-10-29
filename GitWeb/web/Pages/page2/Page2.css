@@ -62,8 +62,9 @@ h2 {
         position:fixed; 
         top:5%;
         left:85%;
-	right: 5%;
-	color: #7575a3;
+		right: 5%;
+		color: #7575a3;
+		float: right;
 }
         
 .center {
@@ -185,5 +186,10 @@ table, th, td {
 	border: 1px solid #28283e;
 	margin-left: 20%;
 	margin-right: 20%;
-	text-align: center;
+}
+
+.outside {
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
 }

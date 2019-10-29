@@ -7,13 +7,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/LICENSE-MIT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/component.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/basic/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/basic/root.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/jstree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/jstree.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/32px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/40px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/style.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/throbber.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/32px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/40px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/style.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/throbber.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/jstree.jquery.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/intro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.changed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.checkbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.conditionalselect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.contextmenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.dnd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.massload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.sort.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.state.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.unique.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.wholerow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/misc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/outro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/sample.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/base.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/32px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/40px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/style.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/throbber.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/32px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/40px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/style.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/throbber.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/main.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/mixins.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/responsive.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/vakata-jstree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/libs/qunit.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/libs/qunit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/desktop/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/mobile/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/desktop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/mobile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,6 +115,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -56,7 +123,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15859374" />
     <property name="project.structure.side.proportion" value="0.2005571" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -197,7 +264,7 @@
       <workItem from="1572287323044" duration="1825000" />
       <workItem from="1572289192712" duration="80000" />
       <workItem from="1572294682378" duration="10567000" />
-      <workItem from="1572340704225" duration="2974000" />
+      <workItem from="1572340704225" duration="8505000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -454,7 +521,13 @@
       <option name="presentableId" value="LOCAL‎00037" />
       <updated>1572340829457</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL‎00038" summary="pull request not working!">
+      <created>1572343792911</created>
+      <option name="number" value="LOCAL‎00038" />
+      <option name="presentableId" value="LOCAL‎00038" />
+      <updated>1572343792911</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView">
@@ -497,6 +570,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="backup" />
     <MESSAGE value="adding XML servlet" />
     <MESSAGE value="fixed clone+ collabration and added repo to session" />
@@ -508,7 +582,8 @@
     <MESSAGE value="login servlete changed" />
     <MESSAGE value="tried to do page 3" />
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml" />
+    <MESSAGE value="pull request not working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="pull request not working!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -562,88 +637,7 @@
           <line>191</line>
           <option name="timeStamp" value="125" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>164</line>
-          <option name="timeStamp" value="154" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>Magit</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2005571" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Web (GitWeb)|Web</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2005571" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>GitWeb</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2005571" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>gson-2.1</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2005571" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

@@ -5,11 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="../../Commons/jquery-2.0.3.min.js"></script>
         <script type="text/javascript" src="page3_script.js"></script>
-		<link rel="stylesheet" type="text/css" href="Page3.css">
+        <link rel="stylesheet" type="text/css" href="Page3.css">
     </head>
  
     <body>
-      
       <div class="center">
         <b>
           <h1>Repository Name:
@@ -39,7 +38,7 @@
 
           <div class="notifications">
               <h4>Notifications: </h4>
-              <ul id="notifications" style="list-style-type: none"></ul>
+              <ul id="notifications" class="outside"></ul>
           </div>
         <br><br>
         
@@ -48,7 +47,7 @@
         </button><br><br>
           <div class="notifications">
               <h4>Open Pull Requests: </h4>
-              <ul id="openPrs" style="list-style-type: none"></ul>
+              <ul id="openPrs" class="outside"></ul>
           </div>
       </div>
       
@@ -57,14 +56,12 @@
           <div class="top">
               <table id="workingCopySection" class="workingCopyTable">
                   <tr>
-                      <td id="workingCopy" style="width: 50%">
-                          <textarea rows="1" cols="5" maxlength="5"></textarea>
-                      </td>
-                      <td id="fileData" style="width: 50%">
-                      </td>
+                      <td id="workingCopy" style="width: 50%"></td>
+                      <td id="fileData" style="width: 50%"></td>
                   </tr>
               </table>
           </div>
+            <br><br><br>
           <div>
               <table id="commitSection">
                   <tr id="insertCommitData"></tr>
@@ -75,7 +72,7 @@
       
       <div class="rightcolumn">
       	<h2 style="margin-left:5px;">
-          <b>Current Branch:</b><br>
+          <b>Current Branch: </b>
 		  <label id="currentBranchName"></label>
         </h2>
         
