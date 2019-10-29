@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pull Request Page</title>
+    <script type="text/javascript" src="pullRequest.js"></script>
+    <link rel="stylesheet" type="text/css" href="pullRequest.css">
+
+</head>
+<body>
+
+<div id="background">
+    <img src="../resources/wallpaper3.jpg" class="stretch" alt="" />
+</div>
+
+<h3>Pull Request Message: </h3>
+<label id="prMessage"></label>
+<h3>Branch Source:
+<label id="branchSource"></label> Branch Target: <label id="branchTarget"></label> </h3>
+<br><br>
+
+<h4>Added Files: </h4>
+<ul id="addedFiles"></ul>
+<h4>Deleted Files: </h4>
+<ul id="deletedFiles"></ul>
+<h4>Changed Files: </h4>
+<ul id="changedFiles"></ul>
+
+<button id="approvePr" onclick="approvePr()">Approve Request</button>
+<button id="rejectRequest" onclick="rejectPR()">Reject Request</button>
+
+</body>
+</html>
