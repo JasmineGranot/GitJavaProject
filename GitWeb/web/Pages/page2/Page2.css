@@ -31,6 +31,12 @@ h4 {
 	text-decoration: underline;
 }
 
+h2 {
+	font-size: 16px;
+	text-decoration: underline;
+	color: #33334d
+}
+
 .leftcolumn{
       	width:25%;
       	height: 100%;
@@ -56,8 +62,9 @@ h4 {
         position:fixed; 
         top:5%;
         left:85%;
-	right: 5%;
-	color: #7575a3;
+		right: 5%;
+		color: #7575a3;
+		float: right;
 }
         
 .center {
@@ -167,7 +174,22 @@ table, th, td {
 	color: #34344c
 }
 
+.notifications.h4 {
+	font-size: 15px;
+	text-decoration: underline;
+}
+
 .notifications {
-	font-size: 10px;
-	color: #9494b8;
+	font-size: 12px;
+	color: #28283e;
+	background-color: #c2c2d6;
+	border: 1px solid #28283e;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+.outside {
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
 }

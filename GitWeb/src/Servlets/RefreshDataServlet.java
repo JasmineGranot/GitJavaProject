@@ -42,6 +42,11 @@ public class RefreshDataServlet extends HttpServlet {
             case ("getNotificationForUser"):
                 {json = getUserNotificationList(usernameFromSession);
                 break;}
+            case("getPullRequestsForUser"):
+            {
+                json = getUserPullRequests(usernameFromSession);
+                break;
+            }
 
         }
         try (PrintWriter out = response.getWriter()) {
@@ -86,6 +91,14 @@ public class RefreshDataServlet extends HttpServlet {
         User currUser = userManager.getUserByName(usernameFromSession);
         List<NotificationObject> msgs = currUser.getUserNotificationsDelta();
         return gson.toJson(msgs);
+    }
+
+    private String getUserPullRequests(String usernameFromSession) {
+        Gson gson = new Gson();
+        UserManager userManager = ServletUtils.getUserManager(getServletContext());
+        User currUser = userManager.getUserByName(usernameFromSession);
+        List<PullRequestObject> prs = currUser.getUserPullRequests();
+        return gson.toJson(prs);
     }
 
 

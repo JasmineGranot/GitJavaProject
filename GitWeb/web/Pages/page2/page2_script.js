@@ -35,7 +35,7 @@ function ajaxCurrentUser() {
             },
 
         success: function(username) {
-           var curUser =  $("#currentUser");
+           var curUser =  $("#userName");
            $(curUser).text(username);
            $(curUser).click(function(){
                ajaxCurrentUserRepo();
@@ -105,10 +105,12 @@ function refreshMessagesList(notifications) {
     $.each(notifications || [], function (index, msg) {
         var notificationSection = $(document.getElementById("notifications"));
         var label = $(document.createElement('li'));
+        var down = $(document.createElement('br'));
 
         label.text(msg.msg);
         label.attr('id', msg.msg);
         label.appendTo($(notificationSection));
+        down.appendTo($(notificationSection));
 
         $(label).click(function () {
             alert(msg.msg);

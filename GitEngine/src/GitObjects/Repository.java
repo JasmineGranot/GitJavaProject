@@ -1433,6 +1433,7 @@ public class Repository {
             headBranch = getBranchByName(remote.headBranch.getName());
             headBranch.setTrackedBranch(remote.getHeadBranch().getName());
             currentCommit = remote.getLastCommit();
+            trackedRepository = remote;
             // add clone notification to remote owner:
             remote.repoOwner.addNotification(new NotificationObject(
                     String.format("user %s just cloned repository %s", repoOwner.getUserName(), getRepoName())));
@@ -1691,7 +1692,7 @@ public class Repository {
         }
         trackedRepository.repoPullRequsetList.add(newPullRequest);
         trackedRepository.repoOwner.addNotification(new NotificationObject(
-                String.format("A new pull request was created in repository %s by user %s", repoName, owner)));
+                String.format("A new pull request was created in repository %s by user %s", repoName, owner.getUserName())));
     }
 
     public WorkingCopyChanges getPRFileChanges(String target, String base)

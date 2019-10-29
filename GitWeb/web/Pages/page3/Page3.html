@@ -5,11 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="../../Commons/jquery-2.0.3.min.js"></script>
         <script type="text/javascript" src="page3_script.js"></script>
-		<link rel="stylesheet" type="text/css" href="Page3.css">
+        <link rel="stylesheet" type="text/css" href="Page3.css">
     </head>
  
     <body>
-      
       <div class="center">
         <b>
           <h1>Repository Name:
@@ -26,8 +25,8 @@
       <div class="leftcolumn">
           <form action="../../logout" method="get"><center>
               <input type="submit" class="f90-logout-button" value="Logout">
-          </center></form>
-		<a href="../page2/Page2.html" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a>
+          </center></form><br>
+		<a href="../page2/Page2.html" class="f90-logout-button" id="ReturnToPage2">Return To Page 2</a><br>
 		<p><img class="userImage" src="../resources/user.png" alt="User"></p>
         <p style="font-size: 15px">
           <b>
@@ -37,15 +36,19 @@
           </b>
         </p>
 
-          <h4>Notifications: </h4>
           <div class="notifications">
-              <ul id="notifications" style="list-style-type: none"></ul>
+              <h4>Notifications: </h4>
+              <ul id="notifications" class="outside"></ul>
           </div>
         <br><br>
         
         <button style="font-size:10px;">
           Show my open PR's
         </button><br><br>
+          <div class="notifications">
+              <h4>Open Pull Requests: </h4>
+              <ul id="openPrs" class="outside"></ul>
+          </div>
       </div>
       
       <div class="centercolumn">
@@ -53,14 +56,12 @@
           <div class="top">
               <table id="workingCopySection" class="workingCopyTable">
                   <tr>
-                      <td id="workingCopy" style="width: 50%">
-                          <textarea rows="1" cols="5" maxlength="5"></textarea>
-                      </td>
-                      <td id="fileData" style="width: 50%">
-                      </td>
+                      <td id="workingCopy" style="width: 50%"></td>
+                      <td id="fileData" style="width: 50%"></td>
                   </tr>
               </table>
           </div>
+            <br><br><br>
           <div>
               <table id="commitSection">
                   <tr id="insertCommitData"></tr>
@@ -71,12 +72,12 @@
       
       <div class="rightcolumn">
       	<h2 style="margin-left:5px;">
-          <b>Current Branch:</b><br>
+          <b>Current Branch: </b>
 		  <label id="currentBranchName"></label>
         </h2>
         
         <h4 style="margin-left:5px; margin-top:5px;">Branches in repository: </h4>
-        <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
+          <select name="comboBranches" id="comboBranches" style="margin-left:5px;"></select>
         <br><br><br><br>
         
         <button style="font-size:10px; margin-left: 5px;" class="branchButtons" onclick="checkoutBranch()">
