@@ -207,6 +207,13 @@ public class MagitUtils {
             }
         }
     }
+
+    public static void deleteFolder(String filePath, boolean deleteMagit) throws FileErrorException {
+        deleteFolderRecursivly(filePath,deleteMagit);
+        File folder = new File(filePath);
+        folder.delete();
+    }
+
     public static void deleteFolderRecursivly(String filePath, boolean deleteMagit) throws FileErrorException {
         File root = new File(filePath);
         String[] files = root.list();

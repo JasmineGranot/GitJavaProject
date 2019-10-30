@@ -9,13 +9,18 @@
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Commit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/MagitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/MagitUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/showWCStatus/ShowWCStatus.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -203,7 +208,8 @@
       <workItem from="1572289192712" duration="80000" />
       <workItem from="1572294682378" duration="10567000" />
       <workItem from="1572340704225" duration="8582000" />
-      <workItem from="1572434621207" duration="23354000" />
+      <workItem from="1572434621207" duration="23414000" />
+      <workItem from="1572460585382" duration="11125000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -484,7 +490,13 @@
       <option name="presentableId" value="LOCAL‎00041" />
       <updated>1572444076794</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL‎00042" summary="almost finished">
+      <created>1572458279773</created>
+      <option name="number" value="LOCAL‎00042" />
+      <option name="presentableId" value="LOCAL‎00042" />
+      <updated>1572458279773</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -542,7 +554,8 @@
     <MESSAGE value="pull request not working!" />
     <MESSAGE value="pull request not working, need to add scroll bar to page, added WC status" />
     <MESSAGE value="finished? pull request" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished? pull request" />
+    <MESSAGE value="almost finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -554,7 +567,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
-          <line>703</line>
+          <line>697</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -588,7 +601,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
-          <line>219</line>
+          <line>213</line>
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -597,24 +610,9 @@
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="153" />
+          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
+          <line>822</line>
+          <option name="timeStamp" value="160" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

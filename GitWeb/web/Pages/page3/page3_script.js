@@ -378,8 +378,8 @@ function ajaxUsersPullRequests() {
                 action: "getPullRequestsForUser"
             },
         success: function(pullRequests) {
-            triggerGetPRs();
             updatePullRequestsForUser(pullRequests);
+            triggerGetPRs();
         }
     });
 }
@@ -396,9 +396,9 @@ function updatePullRequestsForUser(pullRequests) {
         row.appendTo($(prSection));
         down.appendTo($(prSection));
 
-        addPRToSession(pr);
 
         $(row).click(function () {
+            addPRToSession(pr);
             window.open("../pullRequest/pullRequestPage.html", "Pull Request");
         });
     });

@@ -24,13 +24,11 @@ import java.io.PrintWriter;
 public class FilesModifyingServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        UserManager userManager = ServletUtils.getUserManager(getServletContext());
-        Magit myMagit = ServletUtils.getMagitObject(getServletContext());
         response.setContentType("application/json");
-
+        Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
+        UserManager userManager = ServletUtils.getUserManager(getServletContext());
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         User currUser = userManager.getUserByName(usernameFromSession);
-
         String repoName = UIUtils.SessionUtils.getCurrentRepository(request);
         Repository repo = userManager.getUserRepository(currUser, repoName);
 
@@ -69,7 +67,7 @@ public class FilesModifyingServlet extends HttpServlet {
             case ("deleteFile"):
             {
                 String path = request.getParameter("filePath");
-                json = deleteFile(path);
+                json = deleteFile(path, repo);
                 break;
             }
 
@@ -82,22 +80,27 @@ public class FilesModifyingServlet extends HttpServlet {
         }
     }
 
-    private String deleteFile(String path) {
+    private String deleteFile(String path, Repository repo) {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
         File fileToDelete = new File(path);
-        if (!fileToDelete.exists()){
+        if (path.equals(repo.getRepoPath())){
             res.setIsHasError(true);
-            res.setErrorMSG(String.format("could not find file %s.", fileToDelete.getName()));
+            res.setErrorMSG("could not delete repository folder %s.");
         }
-        else{
-            try{
-                MagitUtils.deleteFolderRecursivly(path, false);
-                res.setIsHasError(false);
-                res.setData("deleted file successfully");
-            } catch (FileErrorException e) {
+        else {
+            if (!fileToDelete.exists()) {
                 res.setIsHasError(true);
-                res.setErrorMSG("folder could not be deleted");
+                res.setErrorMSG(String.format("could not find file %s.", fileToDelete.getName()));
+            } else {
+                try {
+                    MagitUtils.deleteFolder(path, false);
+                    res.setIsHasError(false);
+                    res.setData("deleted file successfully");
+                } catch (FileErrorException e) {
+                    res.setIsHasError(true);
+                    res.setErrorMSG("folder could not be deleted");
+                }
             }
         }
         return gson.toJson(res);

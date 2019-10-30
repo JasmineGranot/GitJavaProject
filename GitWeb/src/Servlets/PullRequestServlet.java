@@ -52,7 +52,7 @@ public class PullRequestServlet extends HttpServlet {
             case ("declinePR"):
             {
                 String msg = request.getParameter("declineMsg");
-                json = declinePR(currUser, repo, myMagit, pr, msg);
+                json = declinePR(currUser, repo, myMagit, pr, msg, userManager);
                 break;
             }
 
@@ -92,9 +92,10 @@ public class PullRequestServlet extends HttpServlet {
         return gson.toJson(prsObj);
     }
 
-    private String declinePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr, String msg) {
+    private String declinePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr,
+                             String msg, UserManager um) {
         Gson gson = new Gson();
-        MagitStringResultObject prsObj = myMagit.declinePR(currUser, repo.getRepoName(),pr,  msg);
+        MagitStringResultObject prsObj = myMagit.declinePR(currUser, repo.getRepoName(),pr,  msg, um);
         return gson.toJson(prsObj);
     }
     private String getFilesDelta(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {

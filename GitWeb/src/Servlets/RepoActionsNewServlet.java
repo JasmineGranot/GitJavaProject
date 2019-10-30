@@ -29,9 +29,9 @@ import java.util.List;
 public class RepoActionsNewServlet extends HttpServlet {
 
     protected void processGetRequest(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("application/json");
         Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
-        response.setContentType("application/json");
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         User currUser = userManager.getUserByName(usernameFromSession);
         String repoName = UIUtils.SessionUtils.getCurrentRepository(request);
@@ -192,13 +192,7 @@ public class RepoActionsNewServlet extends HttpServlet {
 
     private String checkout(User currUser, Repository repo, String branch, Magit myMagit) {
         Gson gson = new Gson();
-
-        MagitStringResultObject resObj = null;
-        try {
-            resObj = myMagit.checkoutBranch(currUser, repo.getRepoName(), branch, false);
-        } catch (DirectoryNotEmptyException e) {
-            e.printStackTrace();
-        }
+        MagitStringResultObject resObj = myMagit.checkoutBranch(currUser, repo.getRepoName(), branch, false);
         return gson.toJson(resObj);
     }
 

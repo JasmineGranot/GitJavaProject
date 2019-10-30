@@ -310,11 +310,6 @@ public class Magit {
                 resultObject.setIsHasError(true);
                 resultObject.setErrorMSG(msg);
             }
-            else if (repo.isCommitSha1PointedByRTB(sha1) && !toIgnoreRemoteBranchsSha1) {
-                msg = "The sha1 is currently pointed by a remote branch.";
-                resultObject.setIsHasError(true);
-                resultObject.setErrorMSG(msg);
-            }
             else {
                 repo.addBranch(branchName, sha1, null);
                 resultObject.setIsHasError(false);
@@ -360,8 +355,7 @@ public class Magit {
     }
 
     public MagitStringResultObject checkoutBranch(User user, String repositoryName,
-                                                  String branchName, boolean ignoreChanges)
-            throws DirectoryNotEmptyException{
+                                                  String branchName, boolean ignoreChanges) {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repositoryName);
@@ -376,9 +370,6 @@ public class Magit {
             resultObject.setIsHasError(false);
             msg = "Checkout was successful!";
             resultObject.setData(msg);
-        }
-        catch (DirectoryNotEmptyException e){
-            throw e;
         }
         catch (InvalidDataException e){
             msg = "Had an issue while trying to checkout branch!\nError message: " + e.getMessage();
@@ -716,12 +707,12 @@ public class Magit {
         return res;
     }
     public MagitStringResultObject declinePR(User user, String repoName, PullRequestObject pr,
-                                             String declineMsg) {
+                                             String declineMsg, UserManager um) {
         MagitStringResultObject res = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {
-                repo.declinePullRequest(pr, declineMsg);
+                repo.declinePullRequest(pr, declineMsg, um);
                 res.setIsHasError(false);
                 res.setData("Pull Request declined successfully!");
             } catch (Exception e) {

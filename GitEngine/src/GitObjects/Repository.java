@@ -5,9 +5,6 @@ import Utils.*;
 import XMLHandler.*;
 import Parser.*;
 import puk.team.course.magit.ancestor.finder.AncestorFinder;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -29,7 +26,6 @@ public class Repository {
     private Branch headBranch;
     private String repoName;
     private User repoOwner;
-    private boolean isTrackingRepo;
     private Repository trackedRepository;
     private String MAGIT_REPO_LOCATION = "c:\\magit-ex3";
     private List<PullRequestObject> repoPullRequsetList;
@@ -142,7 +138,6 @@ public class Repository {
         currentCommit = null;
         headBranch = null;
 
-        isTrackingRepo = false;
         trackedRepository = null;
 
         repoPullRequsetList = new LinkedList<>();
@@ -159,7 +154,6 @@ public class Repository {
         currentCommit = null;
         headBranch = null;
 
-        isTrackingRepo = false;
         trackedRepository = null;
 
         repoPullRequsetList = new LinkedList<>();
@@ -289,7 +283,7 @@ public class Repository {
                 throw new FileErrorException(errorMsg);
             }
             else{
-                commitSha1 = newCommit.doSha1();
+                commitSha1 = newCommit.getCommitSha1();
 
                 // add commit to .magit folder
                 newCommit.saveToMagitObjects(commitSha1, getRepoPathAsString());
@@ -382,9 +376,9 @@ public class Repository {
             Sha1Obj rootSha1 = new Sha1Obj();
             loadRootFromMagitSingleFolder(repoFromXML, relevantFolder, rootSha1);
             newCommit.setRootSha1(rootSha1.sha1String);
-            String commitSha1 = newCommit.doSha1();
-            repoObjects.put(commitSha1, newCommit);
-            newCommit.saveToMagitObjects(commitSha1, getRepoPathAsString());
+            newCommit.setCommitSha1(newCommit.doSha1());
+            repoObjects.put(newCommit.getCommitSha1(), newCommit);
+            newCommit.saveToMagitObjects(newCommit.getCommitSha1(), getRepoPathAsString());
         }
         return newCommit;
     }
@@ -853,10 +847,10 @@ public class Repository {
         addCommitsOfCommitRecursivly(currentCommit, commits);
        return commits;
     }
-    private void addCommitsOfCommitRecursivly(Commit currentCommit, List<Commit.CommitData> commits){
-        String sha1 = currentCommit.getFirstPrecedingSha1();
-        Commit.CommitData data = Commit.getCommitData(currentCommit.getSha1(), currentCommit , null);
-        data.setBranches(getBranchesForCommit(currentCommit.getSha1()));
+    private void addCommitsOfCommitRecursivly(Commit currentCommitToCheck, List<Commit.CommitData> commits){
+        String sha1 = currentCommitToCheck.getFirstPrecedingSha1();
+        Commit.CommitData data = Commit.getCommitData(currentCommitToCheck.getCommitSha1(), currentCommitToCheck , null);
+        data.setBranches(getBranchesForCommit(currentCommitToCheck.getCommitSha1()));
         commits.add(data);
         if (sha1 == null || sha1.equals("")){
             return;
@@ -912,7 +906,7 @@ public class Repository {
                     throw new InvalidDataException(errorMsg);
                 }
 
-                String commitSha1 = newCommit.doSha1();
+                newCommit.setCommitSha1(newCommit.doSha1());
 
                 if (currentCommit != null) {
                     newCommit.setFirstPrecedingSha1(headBranch.getCommitSha1());
@@ -921,9 +915,9 @@ public class Repository {
                     newCommit.setSecondPrecedingSha1(secondCommitSha1);
                 }
                 currentCommit = newCommit;
-                repoObjects.put(commitSha1, newCommit);
-                updateCommitInCurrentBranch(commitSha1);
-                currentCommit.saveToMagitObjects(commitSha1, repoPath);
+                repoObjects.put(newCommit.getCommitSha1(), newCommit);
+                updateCommitInCurrentBranch(newCommit.getCommitSha1());
+                currentCommit.saveToMagitObjects(newCommit.getCommitSha1(), repoPath);
             }
             else {
                 isChanged = false;
@@ -1153,8 +1147,7 @@ public class Repository {
 
     public List<String>getWcFiles() throws IOException {
         Stream<Path> walk = walk(Paths.get(repoPath));
-        return walk.filter(x -> (!x.toAbsolutePath().toString().contains(".magit")) &&
-                (!x.toAbsolutePath().toString().equals(getRepoPath())))
+        return walk.filter(x -> (!x.toAbsolutePath().toString().contains(".magit")))
                 .map(Path::toString).collect(Collectors.toList());
     }
 
@@ -1200,7 +1193,7 @@ public class Repository {
             GitObjectsBase currentObj = repoObjects.get(sha1);
             if (currentObj.isCommit()){
                 Commit curCommit = (Commit) currentObj;
-                if(headBranch.getCommitSha1().equals(curCommit.doSha1()))
+                if(headBranch.getCommitSha1().equals(curCommit.getCommitSha1()))
                 {
                     commits.add(Commit.getCommitData(sha1, curCommit, headBranch.getName()));
                 }
@@ -1773,13 +1766,12 @@ public class Repository {
 
     }
 
-    public void declinePullRequest(PullRequestObject pr, String ownerDeclineMsg)
+    public void declinePullRequest(PullRequestObject pr, String ownerDeclineMsg, UserManager um)
             throws InvalidDataException, FileErrorException, IOException {
 
         // closing the pr with relevant message
         pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
         pr.setRepoManagerMsg(ownerDeclineMsg);
-        UserManager um = new UserManager();
         User owner = um.getUserByName(pr.getOwner());
         owner.addNotification(
                 new NotificationObject(

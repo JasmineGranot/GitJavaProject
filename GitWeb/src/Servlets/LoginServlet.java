@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         if (usernameFromSession == null) {
             String usernameFromParameter = request.getParameter("username");
             if (usernameFromParameter == null || usernameFromParameter.isEmpty()) {
-                response.sendRedirect(SIGN_UP_URL); // replace with error
+                response.sendRedirect(SIGN_UP_URL);
             } else {
                 usernameFromParameter = usernameFromParameter.trim();
                 synchronized (this) {
@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
                         if(userManager.isUserOnline(usernameFromParameter)) {// isUserOnline
                             String errorMessage = "Username " + usernameFromParameter + " already exists. Please enter a different username.";
                             request.setAttribute("loggedInAlready", errorMessage);
+                            response.sendRedirect(SIGN_UP_URL);
                         }
                         else {
                             myMagit.loadUserData(userManager.getUserByName(usernameFromParameter));

@@ -25,27 +25,31 @@ function showWC(){
 
 function showWCStatus(files) {
     var filesArea = $('#workingCopy');
+    var textField = $('#fileData');
 
+    textField.val("");
     filesArea.empty();
 
     $.each(files || [], function (index, file) {
         var newFile = $(document.createElement('ul', { is : 'expanding-list' }));
-
-
         newFile.text(file);
+        newFile.attr("selected", "false");
         newFile.css('font-weight', 'auto');
-        newFile.css('font-color', 'red');
+        newFile.css('font-color', 'white');
         newFile.appendTo(filesArea);
 
         $(newFile).click(function () {
             var text = $('#fileData');
+            text.val("");
             text.attr("path", file);
+            newFile.attr("selected", "true");
             newFile.css('font-weight', 'bold');
             newFile.css('color', 'red');
             getTextFromFile(file);
 
         });
     });
+
 }
 
 function updateTextOfFile(textToEnter){
@@ -55,8 +59,7 @@ function updateTextOfFile(textToEnter){
     var saveFileButton = $('#saveFile');
     var deleteFileButton = $('#deleteFile');
 
-    textField.empty();
-    textField.text(textToEnter);
+    textField.val(textToEnter);
     newFileButton.attr('disabled', false);
     newFolderButton.attr('disabled', false);
     saveFileButton.attr('disabled', false);
@@ -125,6 +128,7 @@ function addNewFolder(){
             }
             else {
                 alert(res.data);
+                showWC();
             }
         }
     });
@@ -170,7 +174,6 @@ function deleteFile(){
             }
             else {
                 alert(res.data);
-                textField.empty();
                 textField.attr('path', null);
                 showWC();
             }

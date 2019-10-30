@@ -50,9 +50,10 @@ h2 {
 .centercolumn {
         width: 60%; 
         height: 100%; 
-        position:fixed; 
-        top:5%; 
-        left:15%;
+        position: fixed;
+        top:25%;
+        left:20%;
+		right: 20%;
         text-align: center;
 }
         
@@ -76,7 +77,6 @@ h2 {
         margin-top: 15%;
         margin-left: 15%;
         margin-right: 0%;
-        float: center;
 }
         
 textarea{  
@@ -159,13 +159,12 @@ button:active {
 
 table {
 	border-collapse: collapse;
-	width: 100%;
+	width: 95%;
 	color: #d9d9d9;
 	background-color: black;
 	font-size: 13.5px;
-	position: center;
+	margin: 0 auto;
 	font-family: Calibri;
-	table-layout: auto;
 }
 
 table, th, td {

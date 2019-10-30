@@ -110,6 +110,7 @@ function getSrcBranch() {
         }
     });
 }
+
 function getTargetBranch() {
     $.ajax({
         url: PR_ACTIONS,
@@ -123,6 +124,7 @@ function getTargetBranch() {
         }
     });
 }
+
 function getMsg() {
     $.ajax({
         url: PR_ACTIONS,
