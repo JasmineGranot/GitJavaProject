@@ -33,7 +33,6 @@ public class User {
         createFileInServer(filesPath);
     }
 
-
     public void createFileInServer(String pathToCreate){
         File serverUserFile = new File(getPath());
         File mainFolder = new File("c:\\magit-ex3");

@@ -21,24 +21,38 @@ function getFiles() {
     });
 }
 
-function addFilesToPRPage(fileObj){
+function addFilesToPRPage(fileObj) {
     var list = $("#changedFiles");
     list.empty();
-    $.each(fileObj.changedFiles || [], function (index, changedFile) {
-        $('<li>' + changedFile + '</li>').appendTo(list);
-    });
+
+    if (fileObj.changedFiles.length === 0) {
+        $('<li>' + "No Files were changed" + '</li>').appendTo(list);
+    } else {
+
+        $.each(fileObj.changedFiles || [], function (index, changedFile) {
+            $('<li>' + changedFile + '</li>').appendTo(list);
+        });
+    }
 
     list = $("#addedFiles");
     list.empty();
-    $.each(fileObj.newFiles || [], function (index, newFile) {
-        $('<li>' + newFile + '</li>').appendTo(list);
-    });
+    if (fileObj.newFiles.length === 0) {
+        $('<li>' + "No Files were added" + '</li>').appendTo(list);
+    } else {
+        $.each(fileObj.newFiles || [], function (index, newFile) {
+            $('<li>' + newFile + '</li>').appendTo(list);
+        });
+    }
 
     list = $("#deletedFiles");
     list.empty();
-    $.each(fileObj.deletedFiles || [], function (index, deletedFile) {
-        $('<li>' + deletedFile + '</li>').appendTo(list);
-    });
+    if (fileObj.deletedFiles.length === 0) {
+        $('<li>' + "No Files were deleted" + '</li>').appendTo(list);
+    } else {
+        $.each(fileObj.deletedFiles || [], function (index, deletedFile) {
+            $('<li>' + deletedFile + '</li>').appendTo(list);
+        });
+    }
 }
 
 function approvePr() {
@@ -55,7 +69,6 @@ function approvePr() {
             } else {
                 alert(approveObj.data);
             }
-            window.close();
         }
     });
 }
@@ -78,7 +91,6 @@ function rejectPR() {
             } else {
                 alert(declineObj.data);
             }
-            window.close();
         }
     });
 }

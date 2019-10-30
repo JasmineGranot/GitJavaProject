@@ -1,6 +1,7 @@
 var refreshRate = 3000; //milli seconds
 var REFRESH_DATA = "../../refreshData";
 var REPO_ACTIONS = "../../actionOnRepo";
+var DELIMETER = "; ";
 
 // =================== Updating online users list ==========================
 function ajaxCurrentUser() {
@@ -393,14 +394,14 @@ function openPullRequest() {
 }
 
 function addPRToSession(pr) {
+    var prString = pr.owner + DELIMETER + pr.prMsg + DELIMETER + pr.status + DELIMETER + pr.baseToMergeInto +
+        DELIMETER + pr.targetToMergeFrom + DELIMETER + pr.repoManagerMsg;
     $.ajax({
         url: REPO_ACTIONS,
         data:
             {
                 action: "setPullRequestInSession",
-                target: pr.targetToMergeFrom,
-                base: pr.baseToMergeInto,
-                message: pr.prMsg,
+                prObj: prString
             },
         type: 'POST'
     });

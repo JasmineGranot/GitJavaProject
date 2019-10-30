@@ -61,12 +61,9 @@ public class Magit {
         Repository repo = getRepoForUser(user, repositoryName);
         if (repo != null) {
             try {
-                changes = repo.printWCStatus();
+                changes = repo.getPRFileChanges(target, base);
                 changes.setMsg("Success");
                 changes.setHasErrors(false);
-            } catch (IOException e) {
-                changes.setHasErrors(true);
-                changes.setErrorMsg("The was an unhandled IOException! Exception message: " + e.getMessage());
             } catch (InvalidDataException e) {
                 changes.setHasErrors(true);
                 changes.setErrorMsg(e.getMessage());

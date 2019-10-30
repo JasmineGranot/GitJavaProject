@@ -3,10 +3,10 @@ import Engine.Magit;
 import Utils.MagitUtils;
 
 public class PullRequestObject {
-    private Branch targetToMergeFrom;
-    private Branch baseToMergeInto;
+    private String targetToMergeFrom;
+    private String baseToMergeInto;
     private String prMsg;
-    private User owner;
+    private String owner;
     private String repoManagerMsg;
     private String status;
 
@@ -18,28 +18,37 @@ public class PullRequestObject {
         repoManagerMsg = null;
         status = MagitUtils.OPEN_PULL_REQUEST;
     }
+    public PullRequestObject(String s) {
+        String[] vals = s.split(MagitUtils.DELIMITER);
+        owner = vals[0];
+        prMsg = vals[1];
+        status = vals[2];
+        baseToMergeInto = vals[3];
+        targetToMergeFrom = vals[4];
+        repoManagerMsg = (s.length() > 5 && !vals[5].equals("undefined"))? vals[5] : null;
+    }
 
-    public void setBaseToMergeInto(Branch baseToMergeInto) {
+    public void setBaseToMergeInto(String baseToMergeInto) {
         this.baseToMergeInto = baseToMergeInto;
     }
 
-    public Branch getBaseToMergeInto() {
+    public String getBaseToMergeInto() {
         return baseToMergeInto;
     }
 
-    public void setTargetToMergeFrom(Branch targetToMergeFrom) {
+    public void setTargetToMergeFrom(String targetToMergeFrom) {
         this.targetToMergeFrom = targetToMergeFrom;
     }
 
-    public Branch getTargetToMergeFrom() {
+    public String getTargetToMergeFrom() {
         return targetToMergeFrom;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
-    public User getOwner() {
+    public String getOwner() {
         return owner;
     }
 
@@ -69,5 +78,12 @@ public class PullRequestObject {
 
     public boolean isOpenPullRequest(){
         return getStatus().equals(MagitUtils.OPEN_PULL_REQUEST);
+    }
+
+    @Override
+    public String toString() {
+        String[] s = {getOwner(), getPrMsg(), getStatus(), getBaseToMergeInto(),
+                getTargetToMergeFrom(),getRepoManagerMsg()};
+        return String.join(MagitUtils.DELIMITER,s);
     }
 }
