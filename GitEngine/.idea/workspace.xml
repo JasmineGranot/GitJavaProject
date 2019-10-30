@@ -6,82 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/LICENSE-MIT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/bower.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/component.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/basic/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/demo/basic/root.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/jstree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/jstree.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/40px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default-dark/throbber.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/40px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/dist/themes/default/throbber.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/gruntfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/jstree.jquery.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/intro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.changed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.checkbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.conditionalselect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.contextmenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.dnd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.massload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.sort.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.state.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.unique.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/jstree.wholerow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/misc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/outro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/sample.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/base.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/40px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/style.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default-dark/throbber.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/40px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/style.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/default/throbber.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/main.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/mixins.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/themes/responsive.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/src/vakata-jstree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/libs/qunit.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/libs/qunit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/unit/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/desktop/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/mobile/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/desktop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/desktop/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../3d/vakata-jstree-c9d7c14/test/visual/screenshots/mobile/mobile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page2/Page2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
-    </list>
+    <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +189,7 @@
       <workItem from="1572287323044" duration="1825000" />
       <workItem from="1572289192712" duration="80000" />
       <workItem from="1572294682378" duration="10567000" />
-      <workItem from="1572340704225" duration="8505000" />
+      <workItem from="1572340704225" duration="8582000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -527,7 +452,13 @@
       <option name="presentableId" value="LOCAL‎00038" />
       <updated>1572343792911</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎00039" summary="pull request not working, need to add scroll bar to page, added WC status">
+      <created>1572349288568</created>
+      <option name="number" value="LOCAL‎00039" />
+      <option name="presentableId" value="LOCAL‎00039" />
+      <updated>1572349288568</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -583,7 +514,8 @@
     <MESSAGE value="tried to do page 3" />
     <MESSAGE value="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml" />
     <MESSAGE value="pull request not working!" />
-    <option name="LAST_COMMIT_MESSAGE" value="pull request not working!" />
+    <MESSAGE value="pull request not working, need to add scroll bar to page, added WC status" />
+    <option name="LAST_COMMIT_MESSAGE" value="pull request not working, need to add scroll bar to page, added WC status" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
