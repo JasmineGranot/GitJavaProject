@@ -679,12 +679,12 @@ public class Magit {
         return res;
     }
 
-    public MagitStringResultObject approvePR(User user, String repoName, PullRequestObject pr) {
+    public MagitStringResultObject approvePR(User user, String repoName, PullRequestObject pr, UserManager um) {
         MagitStringResultObject res = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {
-                repo.approvePullRequest(pr);
+                repo.approvePullRequest(pr, um);
                 res.setIsHasError(false);
                 res.setData("Pull Request approved successfully!");
             } catch (Exception e) {

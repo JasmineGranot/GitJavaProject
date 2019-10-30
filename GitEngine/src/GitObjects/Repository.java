@@ -1741,22 +1741,23 @@ public class Repository {
 
         newFilePath.retainAll(oldFilePath);
         for (String path : newFilePath){
-            if (!oldFiles.get(path).equals(newFiles.get(path))){
-                changedFiles.add(path);
+            if(oldFiles.get(path) != null) {
+                if (!oldFiles.get(path).equals(newFiles.get(path))) {
+                    changedFiles.add(path);
+                }
             }
         }
         return changedFiles;
 
     }
 
-    public void approvePullRequest(PullRequestObject pr)
+    public void approvePullRequest(PullRequestObject pr, UserManager um)
             throws InvalidDataException, FileErrorException, IOException {
         Branch src = getBranchByName(pr.getTargetToMergeFrom());
         Branch target = getBranchByName(pr.getBaseToMergeInto());
 
         FFMerge(src, target);
         pr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
-        UserManager um = new UserManager();
         User owner = um.getUserByName(pr.getOwner());
         owner.addNotification(
                 new NotificationObject(

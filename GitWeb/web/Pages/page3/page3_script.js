@@ -311,21 +311,10 @@ function showWC(){
     });
 }
 
-function showWCStatus(files) {
-    var filesArea = $('#workingCopy');
+function showWCStatus() {
 
-    filesArea.empty();
-
-    $.each(files || [], function (index, file) {
-        var newFile = $(document.createElement('ul', { is : 'expanding-list' }));
-
-
-        newFile.text(file);
-        newFile.appendTo(filesArea);
-
-        $(newFile).click(function () {
-            alert(file);
-        });
+    $("#showWCStatus").click(function () {
+        window.open("../showWCStatus/ShowWCStatus.html", "Show Status");
     });
 }
 
@@ -385,14 +374,6 @@ function addBranchesToList(branches) {
     $('#comboBranches').append(output);
 }
 
-function openPullRequest() {
-    addPRToSession();
-
-    $("#prButton").click(function() {
-       window.open("../pullRequest/pullRequestPage.html", "Pull Request");
-    });
-}
-
 function addPRToSession(pr) {
     var prString = pr.owner + DELIMETER + pr.prMsg + DELIMETER + pr.status + DELIMETER + pr.baseToMergeInto +
         DELIMETER + pr.targetToMergeFrom + DELIMETER + pr.repoManagerMsg;
@@ -416,7 +397,8 @@ function ajaxUsersPullRequests() {
                 action: "getPullRequestsForUser"
             },
         success: function(pullRequests) {
-                updatePullRequestsForUser(pullRequests);
+            triggerGetPRs();
+            updatePullRequestsForUser(pullRequests);
         }
     });
 }
@@ -462,6 +444,7 @@ $(function() {
     triggerGetMsg();
     refreshBranches();
     triggerGetPRs();
+    ajaxUsersPullRequests();
 });
 
 

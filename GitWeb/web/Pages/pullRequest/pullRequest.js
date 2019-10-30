@@ -68,6 +68,7 @@ function approvePr() {
                 alert(approveObj.errorMSG);
             } else {
                 alert(approveObj.data);
+                window.close();
             }
         }
     });
@@ -90,6 +91,7 @@ function rejectPR() {
                 alert(declineObj.errorMSG);
             } else {
                 alert(declineObj.data);
+                window.close();
             }
         }
     });

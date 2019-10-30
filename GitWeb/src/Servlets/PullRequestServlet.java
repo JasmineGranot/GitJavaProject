@@ -46,7 +46,7 @@ public class PullRequestServlet extends HttpServlet {
         switch (action){
             case ("approvePR"):
             {
-                json = approvePR(currUser, repo, myMagit, pr);
+                json = approvePR(currUser, repo, myMagit, pr, userManager);
                 break;
             }
             case ("declinePR"):
@@ -86,9 +86,9 @@ public class PullRequestServlet extends HttpServlet {
         }
     }
 
-    private String approvePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {
+    private String approvePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr, UserManager um) {
         Gson gson = new Gson();
-        MagitStringResultObject prsObj = myMagit.approvePR(currUser, repo.getRepoName(), pr);
+        MagitStringResultObject prsObj = myMagit.approvePR(currUser, repo.getRepoName(), pr, um);
         return gson.toJson(prsObj);
     }
 

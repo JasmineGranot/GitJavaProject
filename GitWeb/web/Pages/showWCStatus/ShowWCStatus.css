@@ -1,9 +1,9 @@
 body{
-    font-family: Aharoni;
+    font-family: Calibri;
     width: 100%;
-    float: right;
+    float: left;
     display: inline-block;
-    text-align: center;
+    overflow-x: hidden;
 }
 
 #background {
@@ -19,13 +19,6 @@ body{
     width:100%;
     height:100%;
 }
-
-h4 {
-    font-size: 12px;
-    color: #52527a;
-    text-decoration: underline;
-}
-
 
 button {
     border-radius:5px;
@@ -49,30 +42,16 @@ button:active {
     top:1px;
 }
 
-h3 {
-    font-size: 16px;
-    color: #33334d;
-    text-decoration: underline;
+table {
+    border-collapse: collapse;
+    width: 95%;
+    color: #d9d9d9;
+    background-color: black;
+    font-size: 13.5px;
+    margin: 0 auto;
 }
 
-ul {
-    font-size: 10px;
-    color: #52527a;
-    list-style-position: outside;
-    list-style-type: none;
-    text-align: center;
-}
-
-label {
-    font-size: 12px;
-    color: #52527a;
-}
-
-.notifications {
-    font-size: 12px;
-    color: #28283e;
-    background-color: #c2c2d6;
-    border: 1px solid #28283e;
-    margin-left: 20%;
-    margin-right: 20%;
+table, th, td {
+    border: 1.5px solid #d9d9d9;
+    border-radius: 0.5em;
 }

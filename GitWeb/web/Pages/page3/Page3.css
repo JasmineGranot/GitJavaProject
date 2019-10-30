@@ -3,6 +3,7 @@ body{
 	width: 100%;
   	float: right;
 	display: inline-block;
+	overflow: auto;
 }
 
 #background {
@@ -164,12 +165,12 @@ table {
 	font-size: 13.5px;
 	position: center;
 	font-family: Calibri;
+	table-layout: auto;
 }
 
 table, th, td {
 	border: 1.5px solid #d9d9d9;
 	border-radius: 0.5em;
-	overflow: hidden;
 }
 
 .notifications.h4 {
@@ -192,5 +193,5 @@ table, th, td {
 }
 
 .scroll {
-	overflow: scroll;
+	overflow-y: scroll;
 }
