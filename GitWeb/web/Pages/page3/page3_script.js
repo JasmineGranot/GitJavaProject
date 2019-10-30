@@ -423,9 +423,6 @@ function updatePullRequestsForUser(pullRequests) {
     });
 }
 
-
-
-
 // ========================= On loading ================================
 function triggerGetMsg(){
     setTimeout(ajaxUsersNotificationsList, refreshRate);
