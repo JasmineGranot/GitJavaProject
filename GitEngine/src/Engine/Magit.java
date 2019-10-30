@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -551,8 +552,22 @@ public class Magit {
         ResultList<String> res = new ResultList<>();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
-            res.setRes(repo.getCurrentCommitFullFilesData());
-            res.setHasError(false);
+            try {
+                List<String> fullFileData = repo.getWcFiles();
+                List<String> files = new LinkedList<>();
+                for (String file : fullFileData) {
+                    String[] str = file.split(MagitUtils.DELIMITER);
+                    if (str.length > 0) {
+                        files.add(str[0]);
+                    }
+                }
+                res.setRes(files);
+                res.setHasError(false);
+            }
+            catch(Exception e) {
+                res.setHasError(true);
+                res.setErrorMsg("IOException in getting files from the system!");
+            }
         }
         else{
             res.setErrorMsg("Could not get all WC");

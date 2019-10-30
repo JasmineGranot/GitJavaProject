@@ -294,25 +294,6 @@ function showCommits(){
 }
 
 function showWC(){
-    $.ajax({
-        url: REPO_ACTIONS,
-        data:
-            {
-                action: "showWC",
-            },
-        success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
-            }
-            else {
-                showWCStatus(res.res);
-            }
-        }
-    });
-}
-
-function showWCStatus() {
-
     $("#showWCStatus").click(function () {
         window.open("../showWCStatus/ShowWCStatus.html", "Show Status");
     });

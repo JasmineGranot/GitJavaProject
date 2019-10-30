@@ -1151,6 +1151,13 @@ public class Repository {
 
     }
 
+    public List<String>getWcFiles() throws IOException {
+        Stream<Path> walk = walk(Paths.get(repoPath));
+        return walk.filter(x -> (!x.toAbsolutePath().toString().contains(".magit")) &&
+                (!x.toAbsolutePath().toString().equals(getRepoPath())))
+                .map(Path::toString).collect(Collectors.toList());
+    }
+
     private void getAllCurrentCommitDir(String rootSha1, String rootPath, List<String> commitFiles) {
         GitObjectsBase f = repoObjects.get(rootSha1);
         if (f != null && f.isFolder()) {

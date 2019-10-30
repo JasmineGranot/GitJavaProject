@@ -55,3 +55,15 @@ table, th, td {
     border: 1.5px solid #d9d9d9;
     border-radius: 0.5em;
 }
+
+.myTextarea{
+    overflow:scroll;
+    padding:5%;
+    width:100%;
+    font-size:14px;
+    align-self: center;
+    display:block;
+    border-radius:5px;
+    border:2px solid #47476b;
+    box-sizing: border-box;
+}
