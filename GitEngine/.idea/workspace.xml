@@ -7,309 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/GitEngine_jar/GitEngine.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Commons/jquery-2.0.3.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/JavaScriptFiles/context-path-helper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/loginPage/LoginPage.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/loginPage/LoginPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page2/Page2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page2/Page2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page2/fork.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page2/page2_script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page2/xmlUpload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page3/Page3.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page3/Page3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/page3/page3_script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/pullRequest/pullRequest.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/pullRequest/pullRequest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/pullRequest/pullRequestPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/resources/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/Pages/resources/wallpaper3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Engine/Magit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Exceptions/DataAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Exceptions/ErrorCreatingNewFileException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Exceptions/FileErrorException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Exceptions/InvalidDataException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Blob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Branch$BrancheData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Branch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Commit$CommitData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Commit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/FileDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/FileToMerge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/GitObjectsBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/NotificationObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/PullRequestObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Repository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/RepositoryWebData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/Sha1Obj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/GitObjects/UserManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/META-INF/GitEngine.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/META-INF/GitWeb.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MAGit.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitBlob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitBlobs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitBranches.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitFolders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitRepository$MagitRemoteReference.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitSingleBranch$PointedCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitSingleBranch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitSingleCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitSingleFolder$Items.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/MagitSingleFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/PrecedingCommits$PrecedingCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/PrecedingCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Parser/RootFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/CommitNode.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/ConflictResolver.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/ChangeRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Clone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Commit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Fetch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/LoadRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Merge.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/NewBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/NewRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Pull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Push.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/ResetBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/ShowStatus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/Trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/icons8-show-property-48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/Images/v.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/MainScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/MainScreenTest.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/MainScreenTest2.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/ShowCommitData.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/ShowMergeCase.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Resources/ShowStatusScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/ForkRepositoryServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/IndexDirect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/LoadXmlServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/LoginServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/LogoutServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/Page3Servlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/PullRequestServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/RefreshDataServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/RepoActionsNewServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Servlets/SystemServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/UIUtils/CommonUsed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/UIUtils/ServletUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/UIUtils/SessionUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/FindCurrentFileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/MagitStringResultObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/MagitUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/MergeResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/ResultList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/Utils/WorkingCopyChanges.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/XMLHandler/XMLHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/XMLHandler/XMLUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/XMLHandler/XMLValidationResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/classes/XMLHandler/XMLValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/AncestorFinder.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Engine/Magit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Exceptions/DataAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Exceptions/ErrorCreatingNewFileException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Exceptions/FileErrorException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Exceptions/InvalidDataException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Blob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Branch$BrancheData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Branch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Commit$CommitData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Commit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/FileDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/FileToMerge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/GitObjectsBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/NotificationObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/PullRequestObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Repository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/RepositoryWebData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/Sha1Obj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/GitObjects/UserManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/META-INF/GitEngine.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MAGit.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitBlob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitBlobs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitBranches.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitFolders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitRepository$MagitRemoteReference.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitSingleBranch$PointedCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitSingleBranch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitSingleCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitSingleFolder$Items.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/MagitSingleFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/PrecedingCommits$PrecedingCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/PrecedingCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Parser/RootFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/FindCurrentFileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/MagitStringResultObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/MagitUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/MergeResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/ResultList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/Utils/WorkingCopyChanges.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/XMLHandler/XMLHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/XMLHandler/XMLUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/XMLHandler/XMLValidationResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/XMLHandler/XMLValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/commons-codec-1.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/lib/gson-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Magit/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Engine/Magit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Exceptions/DataAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Exceptions/ErrorCreatingNewFileException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Exceptions/FileErrorException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Exceptions/InvalidDataException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Blob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Branch$BrancheData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Branch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Commit$CommitData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Commit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/FileDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/FileToMerge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/GitObjectsBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/NotificationObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/PullRequestObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Repository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/RepositoryWebData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/Sha1Obj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/GitObjects/UserManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/META-INF/GitEngine.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MAGit.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitBlob.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitBlobs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitBranches.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitFolders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitRepository$MagitRemoteReference.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitSingleBranch$PointedCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitSingleBranch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitSingleCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitSingleFolder$Items.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/MagitSingleFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/PrecedingCommits$PrecedingCommit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/PrecedingCommits.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Parser/RootFolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/FindCurrentFileState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/MagitStringResultObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/MagitUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/MergeResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/ResultList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/Utils/WorkingCopyChanges.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/XMLHandler/XMLHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/XMLHandler/XMLUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/XMLHandler/XMLValidationResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitEngine/XMLHandler/XMLValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/META-INF/GitWeb.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/CommitNode.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/ConflictResolver.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/ChangeRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Clone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Commit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Fetch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/LoadRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Merge.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/NewBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/NewRepo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Pull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Push.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/ResetBranch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/ShowStatus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/Trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/icons8-show-property-48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/Images/v.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/MainScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/MainScreenTest.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/MainScreenTest2.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/ShowCommitData.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/ShowMergeCase.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Resources/ShowStatusScreen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/ForkRepositoryServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/IndexDirect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/LoadXmlServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/LoginServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/LogoutServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/Page3Servlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/PullRequestServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/RefreshDataServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/RepoActionsNewServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/Servlets/SystemServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/UIUtils/CommonUsed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/UIUtils/ServletUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GitWeb/UIUtils/SessionUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -447,85 +149,47 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-end-line="6" />
+            <state relative-caret-position="220">
+              <caret line="60" column="48" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="48" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="166" column="66" selection-start-line="166" selection-start-column="61" selection-end-line="166" selection-end-column="66" />
+            <state relative-caret-position="889">
+              <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
               <folding>
-                <element signature="e#683#735#0" />
-                <element signature="method#processGetRequest#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#1524#2371#0" />
-                <element signature="e#1576#1690#1" />
-                <element signature="e#1733#1828#1" />
-                <element signature="e#1874#1959#1" />
-                <element signature="e#2001#2094#1" />
-                <element signature="e#2141#2240#1" />
-                <element signature="e#2284#2360#1" />
-                <element signature="e#2425#2492#0" />
-                <element signature="e#2515#2559#0" />
-                <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getHead#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getWC#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#4807#4902#1" />
-                <element signature="e#4942#5021#1" />
-                <element signature="e#5061#5153#1" />
-                <element signature="e#5198#5391#1" />
-                <element signature="e#5439#5551#1" />
-                <element signature="e#5605#5869#1" />
-                <element signature="e#6479#6607#1" />
-                <element signature="e#6672#6739#0" />
-                <element signature="e#6762#6806#0" />
-                <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#6998#7099#0" />
-                <element signature="e#7137#7181#0" />
-                <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#push#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#7971#8203#1" />
-                <element signature="e#8128#8193#1" />
-                <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#doGet#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#doPost#0;class#RepoActionsNewServlet#0" />
+                <element signature="method#deleteFile#0;class#FilesModifyingServlet#0" />
+                <element signature="method#changeFileData#0;class#FilesModifyingServlet#0" />
+                <element signature="method#addNewFolderToRepo#0;class#FilesModifyingServlet#0" />
+                <element signature="e#3205#3319#1" />
+                <element signature="method#addNewFileToRepo#0;class#FilesModifyingServlet#0" />
+                <element signature="method#getFileContentByPath#0;class#FilesModifyingServlet#0" />
+                <element signature="e#6308#6309#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
+        <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="88">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
@@ -535,42 +199,123 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="176">
+              <caret line="415" column="40" selection-start-line="415" selection-start-column="40" selection-end-line="415" selection-end-column="40" />
               <folding>
-                <element signature="e#670#671#0" expanded="true" />
-                <element signature="e#708#709#0" expanded="true" />
-                <element signature="e#916#917#0" expanded="true" />
+                <element signature="n#!!block;n#ajaxCurrentUser#0" />
+                <element signature="e#261#511#0" />
+                <element signature="e#316#372#0" />
+                <element signature="e#411#505#0" />
+                <element signature="n#!!block;n#ajaxUsersList#0" />
+                <element signature="e#555#754#0" />
+                <element signature="e#610#664#0" />
+                <element signature="e#700#748#0" />
+                <element signature="n#!!block;n#refreshUsersList#0" />
+                <element signature="e#1021#1287#0" />
+                <element signature="e#1095#1145#0" />
+                <element signature="n#!!block;n#ajaxUsersNotificationsList#0" />
+                <element signature="e#1435#1691#0" />
+                <element signature="e#1490#1554#0" />
+                <element signature="e#1597#1685#0" />
+                <element signature="n#!!block;n#refreshMessagesList#0" />
+                <element signature="e#1831#2308#0" />
+                <element signature="e#2213#2300#0" />
+                <element signature="n#!!block;n#ajaxDeleteNotification#0" />
+                <element signature="e#2371#2627#0" />
+                <element signature="e#2426#2520#0" />
+                <element signature="e#2578#2620#0" />
+                <element signature="n#!!block;n#updateRepoName#0" />
+                <element signature="e#2733#2937#0" />
+                <element signature="e#2788#2838#0" />
+                <element signature="e#2877#2931#0" />
+                <element signature="n#!!block;n#updateHeadBranchName#0" />
+                <element signature="e#2987#3414#0" />
+                <element signature="e#3042#3092#0" />
+                <element signature="e#3134#3408#0" />
+                <element signature="e#3175#3235#0" />
+                <element signature="e#3241#3320#0" />
+                <element signature="n#!!block;n#checkoutBranch#0" />
+                <element signature="e#3524#3975#0" />
+                <element signature="e#3579#3669#0" />
+                <element signature="e#3735#3969#0" />
+                <element signature="e#3778#3842#0" />
+                <element signature="e#3859#3959#0" />
+                <element signature="n#!!block;n#pull#0" />
+                <element signature="e#4009#4337#0" />
+                <element signature="e#4064#4111#0" />
+                <element signature="e#4170#4331#0" />
+                <element signature="e#4207#4263#0" />
+                <element signature="e#4269#4321#0" />
+                <element signature="n#!!block;n#push#0" />
+                <element signature="e#4371#4542#0" />
+                <element signature="e#4426#4473#0" />
+                <element signature="e#4525#4536#0" />
+                <element signature="e#4714#5254#0" />
+                <element signature="e#4731#5246#0" />
+                <element signature="e#4798#4935#0" />
+                <element signature="e#5005#5236#0" />
+                <element signature="e#5049#5115#0" />
+                <element signature="e#5121#5222#0" />
+                <element signature="n#!!block;n#deleteBranch#0" />
+                <element signature="e#5360#5609#0" />
+                <element signature="e#5415#5509#0" />
+                <element signature="e#5561#5603#0" />
+                <element signature="n#!!block;n#commit#0" />
+                <element signature="e#5734#6132#0" />
+                <element signature="e#5789#5874#0" />
+                <element signature="e#5941#6126#0" />
+                <element signature="e#5986#6050#0" />
+                <element signature="e#6056#6116#0" />
+                <element signature="n#!!block;n#showCommits#0" />
+                <element signature="e#6173#7437#0" />
+                <element signature="e#6228#6281#0" />
+                <element signature="e#6318#7431#0" />
+                <element signature="e#6352#6408#0" />
+                <element signature="e#6426#7421#0" />
+                <element signature="e#6856#7405#0" />
+                <element signature="e#6972#7045#0" />
+                <element signature="n#!!block;n#createPullRequest#0" />
+                <element signature="n#!!block;n#refreshBranches#0" />
+                <element signature="e#9147#9353#0" />
+                <element signature="e#9202#9256#0" />
+                <element signature="e#9295#9347#0" />
+                <element signature="n#!!block;n#addBranchesToList#0" />
+                <element signature="e#9504#9564#0" />
+                <element signature="n#!!block;n#openPullRequest#0" />
+                <element signature="e#9699#9781#0" />
+                <element signature="n#!!block;n#addPRToSession#0" />
+                <element signature="e#10012#10193#0" />
+                <element signature="e#10067#10165#0" />
+                <element signature="n#!!block;n#ajaxUsersPullRequests#0" />
+                <element signature="e#10246#10481#0" />
+                <element signature="e#10301#10365#0" />
+                <element signature="e#10407#10475#0" />
+                <element signature="n#!!block;n#updatePullRequestsForUser#0" />
+                <element signature="e#10618#11050#0" />
+                <element signature="e#10951#11042#0" />
+                <element signature="n#!!block;n#triggerGetPRs#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+            <state relative-caret-position="484">
+              <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+              <folding>
+                <element signature="n#!!block;n#showWC#0" />
+                <element signature="n#!!block;n#showWCStatus#0" />
+                <element signature="n#!!block;n#updateTextOfFile#0" />
+                <element signature="n#!!block;n#getTextFromFile#0" />
+                <element signature="n#!!block;n#addNewFile#0" />
+                <element signature="n#!!block;n#addNewFolder#0" />
+                <element signature="n#!!block;n#saveFile#0" />
+                <element signature="n#!!block;n#deleteFile#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -581,8 +326,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -609,15 +354,17 @@
         <option value="$PROJECT_DIR$/../GitWeb/src/UIUtils/SessionUtils.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" />
         <option value="$PROJECT_DIR$/src/GitObjects/Repository.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java" />
-        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" />
         <option value="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js" />
         <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
+        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html" />
+        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" />
+        <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java" />
+        <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js" />
       </list>
     </option>
   </component>
@@ -682,12 +429,6 @@
               <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
               <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GitWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Servlets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GitEngine" type="b2602c69:ProjectViewProjectNode" />
@@ -1181,11 +922,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572365706401</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml&#10;#&#9;GitWeb/web/Pages/page3/page3_script.js">
+      <created>1572371104929</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1572371104929</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32014000" />
+    <option name="totallyTimeSpent" value="40792000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1206,7 +954,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.22169812" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.22169812" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32876712" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -1219,7 +967,7 @@
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Run" order="10" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" visible="true" weight="0.1674277" />
+      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" visible="true" weight="0.33789954" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.32876712" />
@@ -1408,30 +1156,6 @@
           <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="141" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
-          <line>39</line>
-          <properties />
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
-          <line>60</line>
-          <properties />
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java</url>
-          <line>44</line>
-          <properties />
-          <option name="timeStamp" value="153" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
           <line>102</line>
@@ -1439,7 +1163,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js</url>
-          <line>418</line>
+          <line>382</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
@@ -1448,6 +1172,12 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>myMagit.getFilesChangesBetweenBranches(currUser, repo.getRepoName(),
+                pr.getBaseToMergeInto(), pr.getTargetToMergeFrom())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>json</expression-string>
         <language-id>JAVA</language-id>
@@ -1494,22 +1224,10 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>String[] vals = pr.split(&quot;;&quot;);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepositoryActionServlet.java" />
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/Pair.java" />
     <entry file="file://$PROJECT_DIR$/src/Utils/ResultList.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1563,13 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="83" column="19" lean-forward="true" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1630,192 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2156">
-          <caret line="438" column="22" lean-forward="true" selection-start-line="438" selection-start-column="22" selection-end-line="438" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#ajaxCurrentUser#0" />
-            <element signature="e#239#489#0" />
-            <element signature="e#294#350#0" />
-            <element signature="e#389#483#0" />
-            <element signature="n#!!block;n#ajaxUsersList#0" />
-            <element signature="e#533#732#0" />
-            <element signature="e#588#642#0" />
-            <element signature="e#678#726#0" />
-            <element signature="n#!!block;n#refreshUsersList#0" />
-            <element signature="e#999#1265#0" />
-            <element signature="e#1073#1123#0" />
-            <element signature="n#!!block;n#ajaxUsersNotificationsList#0" />
-            <element signature="e#1413#1669#0" />
-            <element signature="e#1468#1532#0" />
-            <element signature="e#1575#1663#0" />
-            <element signature="n#!!block;n#refreshMessagesList#0" />
-            <element signature="e#1809#2286#0" />
-            <element signature="e#2191#2278#0" />
-            <element signature="n#!!block;n#ajaxDeleteNotification#0" />
-            <element signature="e#2349#2605#0" />
-            <element signature="e#2404#2498#0" />
-            <element signature="e#2556#2598#0" />
-            <element signature="n#!!block;n#updateRepoName#0" />
-            <element signature="e#2711#2915#0" />
-            <element signature="e#2766#2816#0" />
-            <element signature="e#2855#2909#0" />
-            <element signature="n#!!block;n#updateHeadBranchName#0" />
-            <element signature="e#2965#3392#0" />
-            <element signature="e#3020#3070#0" />
-            <element signature="e#3112#3386#0" />
-            <element signature="e#3153#3213#0" />
-            <element signature="e#3219#3298#0" />
-            <element signature="n#!!block;n#checkoutBranch#0" />
-            <element signature="e#3502#3953#0" />
-            <element signature="e#3557#3647#0" />
-            <element signature="e#3713#3947#0" />
-            <element signature="e#3756#3820#0" />
-            <element signature="e#3837#3937#0" />
-            <element signature="n#!!block;n#pull#0" />
-            <element signature="e#3987#4315#0" />
-            <element signature="e#4042#4089#0" />
-            <element signature="e#4148#4309#0" />
-            <element signature="e#4185#4241#0" />
-            <element signature="e#4247#4299#0" />
-            <element signature="n#!!block;n#push#0" />
-            <element signature="e#4349#4520#0" />
-            <element signature="e#4404#4451#0" />
-            <element signature="e#4503#4514#0" />
-            <element signature="n#!!block;n#addBranch#0" />
-            <element signature="e#4692#5232#0" />
-            <element signature="e#4709#5224#0" />
-            <element signature="e#4776#4913#0" />
-            <element signature="e#4983#5214#0" />
-            <element signature="e#5027#5093#0" />
-            <element signature="e#5099#5200#0" />
-            <element signature="n#!!block;n#deleteBranch#0" />
-            <element signature="e#5338#5587#0" />
-            <element signature="e#5393#5487#0" />
-            <element signature="e#5539#5581#0" />
-            <element signature="n#!!block;n#commit#0" />
-            <element signature="e#5712#6110#0" />
-            <element signature="e#5767#5852#0" />
-            <element signature="e#5919#6104#0" />
-            <element signature="e#5964#6028#0" />
-            <element signature="e#6034#6094#0" />
-            <element signature="n#!!block;n#showCommits#0" />
-            <element signature="e#6151#7415#0" />
-            <element signature="e#6206#6259#0" />
-            <element signature="e#6296#7409#0" />
-            <element signature="e#6330#6386#0" />
-            <element signature="e#6404#7399#0" />
-            <element signature="e#6834#7383#0" />
-            <element signature="e#6950#7023#0" />
-            <element signature="n#!!block;n#showWC#0" />
-            <element signature="e#7452#7761#0" />
-            <element signature="e#7507#7556#0" />
-            <element signature="e#7590#7755#0" />
-            <element signature="e#7621#7673#0" />
-            <element signature="e#7691#7745#0" />
-            <element signature="n#!!block;n#showWCStatus#0" />
-            <element signature="e#7909#8142#0" />
-            <element signature="e#8098#8134#0" />
-            <element signature="n#!!block;n#createPullRequest#0" />
-            <element signature="e#8485#8535#0" />
-            <element signature="e#8545#9082#0" />
-            <element signature="e#8562#9074#0" />
-            <element signature="e#8629#8819#0" />
-            <element signature="e#8885#9064#0" />
-            <element signature="e#8924#8986#0" />
-            <element signature="e#8992#9050#0" />
-            <element signature="n#!!block;n#refreshBranches#0" />
-            <element signature="e#9125#9331#0" />
-            <element signature="e#9180#9234#0" />
-            <element signature="e#9273#9325#0" />
-            <element signature="n#!!block;n#addBranchesToList#0" />
-            <element signature="e#9482#9542#0" />
-            <element signature="e#9677#9759#0" />
-            <element signature="n#!!block;n#triggerGetMsg#0" />
-            <element signature="e#11249#11469#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-end-line="6" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="166" column="66" selection-start-line="166" selection-start-column="61" selection-end-line="166" selection-end-column="66" />
-          <folding>
-            <element signature="e#683#735#0" />
-            <element signature="method#processGetRequest#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#1524#2371#0" />
-            <element signature="e#1576#1690#1" />
-            <element signature="e#1733#1828#1" />
-            <element signature="e#1874#1959#1" />
-            <element signature="e#2001#2094#1" />
-            <element signature="e#2141#2240#1" />
-            <element signature="e#2284#2360#1" />
-            <element signature="e#2425#2492#0" />
-            <element signature="e#2515#2559#0" />
-            <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getHead#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getWC#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#4807#4902#1" />
-            <element signature="e#4942#5021#1" />
-            <element signature="e#5061#5153#1" />
-            <element signature="e#5198#5391#1" />
-            <element signature="e#5439#5551#1" />
-            <element signature="e#5605#5869#1" />
-            <element signature="e#6479#6607#1" />
-            <element signature="e#6672#6739#0" />
-            <element signature="e#6762#6806#0" />
-            <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#6998#7099#0" />
-            <element signature="e#7137#7181#0" />
-            <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#push#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#7971#8203#1" />
-            <element signature="e#8128#8193#1" />
-            <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#doGet#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#doPost#0;class#RepoActionsNewServlet#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -1828,10 +1353,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/LoginServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="161">
+          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequestPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -1957,10 +1489,231 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="807">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="166" column="66" selection-start-line="166" selection-start-column="61" selection-end-line="166" selection-end-column="66" />
+          <folding>
+            <element signature="e#683#735#0" />
+            <element signature="method#processGetRequest#0;class#RepoActionsNewServlet#0" />
+            <element signature="e#1524#2371#0" />
+            <element signature="e#1576#1690#1" />
+            <element signature="e#1733#1828#1" />
+            <element signature="e#1874#1959#1" />
+            <element signature="e#2001#2094#1" />
+            <element signature="e#2141#2240#1" />
+            <element signature="e#2284#2360#1" />
+            <element signature="e#2425#2492#0" />
+            <element signature="e#2515#2559#0" />
+            <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getHead#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getWC#0;class#RepoActionsNewServlet#0" />
+            <element signature="e#4807#4902#1" />
+            <element signature="e#4942#5021#1" />
+            <element signature="e#5061#5153#1" />
+            <element signature="e#5198#5391#1" />
+            <element signature="e#5439#5551#1" />
+            <element signature="e#5605#5869#1" />
+            <element signature="e#6479#6607#1" />
+            <element signature="e#6672#6739#0" />
+            <element signature="e#6762#6806#0" />
+            <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
+            <element signature="e#6998#7099#0" />
+            <element signature="e#7137#7181#0" />
+            <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#push#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
+            <element signature="e#7971#8203#1" />
+            <element signature="e#8128#8193#1" />
+            <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#doGet#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#doPost#0;class#RepoActionsNewServlet#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest/pullRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/Page3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="60" column="48" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/MagitStringResultObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="889">
+          <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+          <folding>
+            <element signature="method#deleteFile#0;class#FilesModifyingServlet#0" />
+            <element signature="method#changeFileData#0;class#FilesModifyingServlet#0" />
+            <element signature="method#addNewFolderToRepo#0;class#FilesModifyingServlet#0" />
+            <element signature="e#3205#3319#1" />
+            <element signature="method#addNewFileToRepo#0;class#FilesModifyingServlet#0" />
+            <element signature="method#getFileContentByPath#0;class#FilesModifyingServlet#0" />
+            <element signature="e#6308#6309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="415" column="40" selection-start-line="415" selection-start-column="40" selection-end-line="415" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!block;n#ajaxCurrentUser#0" />
+            <element signature="e#261#511#0" />
+            <element signature="e#316#372#0" />
+            <element signature="e#411#505#0" />
+            <element signature="n#!!block;n#ajaxUsersList#0" />
+            <element signature="e#555#754#0" />
+            <element signature="e#610#664#0" />
+            <element signature="e#700#748#0" />
+            <element signature="n#!!block;n#refreshUsersList#0" />
+            <element signature="e#1021#1287#0" />
+            <element signature="e#1095#1145#0" />
+            <element signature="n#!!block;n#ajaxUsersNotificationsList#0" />
+            <element signature="e#1435#1691#0" />
+            <element signature="e#1490#1554#0" />
+            <element signature="e#1597#1685#0" />
+            <element signature="n#!!block;n#refreshMessagesList#0" />
+            <element signature="e#1831#2308#0" />
+            <element signature="e#2213#2300#0" />
+            <element signature="n#!!block;n#ajaxDeleteNotification#0" />
+            <element signature="e#2371#2627#0" />
+            <element signature="e#2426#2520#0" />
+            <element signature="e#2578#2620#0" />
+            <element signature="n#!!block;n#updateRepoName#0" />
+            <element signature="e#2733#2937#0" />
+            <element signature="e#2788#2838#0" />
+            <element signature="e#2877#2931#0" />
+            <element signature="n#!!block;n#updateHeadBranchName#0" />
+            <element signature="e#2987#3414#0" />
+            <element signature="e#3042#3092#0" />
+            <element signature="e#3134#3408#0" />
+            <element signature="e#3175#3235#0" />
+            <element signature="e#3241#3320#0" />
+            <element signature="n#!!block;n#checkoutBranch#0" />
+            <element signature="e#3524#3975#0" />
+            <element signature="e#3579#3669#0" />
+            <element signature="e#3735#3969#0" />
+            <element signature="e#3778#3842#0" />
+            <element signature="e#3859#3959#0" />
+            <element signature="n#!!block;n#pull#0" />
+            <element signature="e#4009#4337#0" />
+            <element signature="e#4064#4111#0" />
+            <element signature="e#4170#4331#0" />
+            <element signature="e#4207#4263#0" />
+            <element signature="e#4269#4321#0" />
+            <element signature="n#!!block;n#push#0" />
+            <element signature="e#4371#4542#0" />
+            <element signature="e#4426#4473#0" />
+            <element signature="e#4525#4536#0" />
+            <element signature="e#4714#5254#0" />
+            <element signature="e#4731#5246#0" />
+            <element signature="e#4798#4935#0" />
+            <element signature="e#5005#5236#0" />
+            <element signature="e#5049#5115#0" />
+            <element signature="e#5121#5222#0" />
+            <element signature="n#!!block;n#deleteBranch#0" />
+            <element signature="e#5360#5609#0" />
+            <element signature="e#5415#5509#0" />
+            <element signature="e#5561#5603#0" />
+            <element signature="n#!!block;n#commit#0" />
+            <element signature="e#5734#6132#0" />
+            <element signature="e#5789#5874#0" />
+            <element signature="e#5941#6126#0" />
+            <element signature="e#5986#6050#0" />
+            <element signature="e#6056#6116#0" />
+            <element signature="n#!!block;n#showCommits#0" />
+            <element signature="e#6173#7437#0" />
+            <element signature="e#6228#6281#0" />
+            <element signature="e#6318#7431#0" />
+            <element signature="e#6352#6408#0" />
+            <element signature="e#6426#7421#0" />
+            <element signature="e#6856#7405#0" />
+            <element signature="e#6972#7045#0" />
+            <element signature="n#!!block;n#createPullRequest#0" />
+            <element signature="n#!!block;n#refreshBranches#0" />
+            <element signature="e#9147#9353#0" />
+            <element signature="e#9202#9256#0" />
+            <element signature="e#9295#9347#0" />
+            <element signature="n#!!block;n#addBranchesToList#0" />
+            <element signature="e#9504#9564#0" />
+            <element signature="n#!!block;n#openPullRequest#0" />
+            <element signature="e#9699#9781#0" />
+            <element signature="n#!!block;n#addPRToSession#0" />
+            <element signature="e#10012#10193#0" />
+            <element signature="e#10067#10165#0" />
+            <element signature="n#!!block;n#ajaxUsersPullRequests#0" />
+            <element signature="e#10246#10481#0" />
+            <element signature="e#10301#10365#0" />
+            <element signature="e#10407#10475#0" />
+            <element signature="n#!!block;n#updatePullRequestsForUser#0" />
+            <element signature="e#10618#11050#0" />
+            <element signature="e#10951#11042#0" />
+            <element signature="n#!!block;n#triggerGetPRs#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!block;n#showWC#0" />
+            <element signature="n#!!block;n#showWCStatus#0" />
+            <element signature="n#!!block;n#updateTextOfFile#0" />
+            <element signature="n#!!block;n#getTextFromFile#0" />
+            <element signature="n#!!block;n#addNewFile#0" />
+            <element signature="n#!!block;n#addNewFolder#0" />
+            <element signature="n#!!block;n#saveFile#0" />
+            <element signature="n#!!block;n#deleteFile#0" />
+          </folding>
         </state>
       </provider>
     </entry>
