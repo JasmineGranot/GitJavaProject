@@ -86,4 +86,5 @@ public class PullRequestObject {
                 getTargetToMergeFrom(),getRepoManagerMsg()};
         return String.join(MagitUtils.DELIMITER,s);
     }
+
 }

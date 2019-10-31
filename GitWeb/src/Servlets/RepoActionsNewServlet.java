@@ -164,6 +164,7 @@ public class RepoActionsNewServlet extends HttpServlet {
             case ("setPullRequestInSession"):{
                 String pr = request.getParameter("prObj");
                 PullRequestObject prObj = new PullRequestObject(pr);
+                currUser.setRealPRToClose(prObj);
                 UIUtils.SessionUtils.setPullRequest(request, prObj);
                 break;
             }

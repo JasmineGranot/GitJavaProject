@@ -155,4 +155,18 @@ public class User {
             }
         }
     }
+
+    public void setRealPRToClose(PullRequestObject prObj) {
+        for (PullRequestObject realPr : getUserPullRequests()){
+            if (realPr.getBaseToMergeInto().equals(prObj.getBaseToMergeInto())
+                    && realPr.getTargetToMergeFrom().equals(prObj.getTargetToMergeFrom())
+                    && realPr.getStatus().equals(prObj.getStatus())
+                    && realPr.getPrMsg().equals(prObj.getPrMsg())
+                    && realPr.getOwner().equals(prObj.getOwner())) {
+
+                realPr.setStatus(MagitUtils.CLOSED_PULL_REQUEST);
+            }
+        }
+
+    }
 }

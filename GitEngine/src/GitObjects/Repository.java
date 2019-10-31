@@ -583,7 +583,7 @@ public class Repository {
         for (String currentBranchPath : filesInBranchesFolder) {
             if (!currentBranchPath.equals("Head")){
                 String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(branchesPath, currentBranchPath));
-                Branch newBranch = new Branch(currentBranchPath, commitSha1, null);
+                Branch newBranch = new Branch(currentBranchPath, commitSha1, currentBranchPath);
                 repoBranches.add(newBranch);
             }
         }
@@ -1406,6 +1406,7 @@ public class Repository {
         AncestorFinder ancestorFinder = new AncestorFinder(this::sha1ToCommit);
         String ancestorSha1 = ancestorFinder.traceAncestor(source.getCommitSha1(), target.getCommitSha1());
         String mergeMsg;
+
         if(source.getCommitSha1().equals(ancestorSha1)) {
             resetCommitInBranch(target.getCommitSha1(), false);
             mergeMsg = String.format("Changed branch %s commit to branch %s commit successfully!",
@@ -1416,6 +1417,7 @@ public class Repository {
             mergeMsg = String.format("Changed branch %s commit to branch %s commit successfully!",
                     target.getName(), source.getName());
         }
+
         return mergeMsg;
     }
     // =========================== Clone =========================================
@@ -1598,26 +1600,34 @@ public class Repository {
                             MagitUtils.writeToFile(rtHeadPath, headBranch.getCommitSha1());
                             MagitUtils.writeToFile(MagitUtils.joinPaths(remoteRepo.BRANCHES_PATH, headName),
                                     headBranch.getCommitSha1());
+                            remoteBranch.setCommitSha1(headBranch.getCommitSha1());
+
                             trackedRepository.copyLocalRepoObjectsToRemote(this);
                         }
                         else {
                             String errorMsg = "Cannot push when remote branch and tracked branch are not synced.!";
                             throw new InvalidDataException(errorMsg);
                         }
-                    } else {
-                        trackedRepository.addBranch(headBranch.getName(), headBranch.getCommitSha1(), null);
+                    }
+                    else{
+                        trackedRepository.addBranch(headName, headBranch.getCommitSha1(), null);
                         headBranch.setTrackedBranch(headName);
+                        trackedRepository.copyLocalRepoObjectsToRemote(this);
                         // create RB in local
-                        Path newPath = Paths.get(BRANCHES_PATH,trackedRepository.getRepoName(), headName);
+                        Path newPath = Paths.get(BRANCHES_PATH, trackedRepository.getRepoName(), headName);
                         MagitUtils.writeToFile(newPath, headBranch.getCommitSha1());
 
                     }
                 }
-            }
-            else {
+            } else {
                 String errorMsg = "Cannot push data to remote repository! Changes were found.\nCommit first!";
                 throw new InvalidDataException(errorMsg);
             }
+
+        }
+        else{
+            String errorMsg = "Cannot push data to non forked repository!";
+            throw new InvalidDataException(errorMsg);
         }
     }
 
