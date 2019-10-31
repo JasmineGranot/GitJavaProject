@@ -68,6 +68,7 @@ function approvePr() {
                 alert(approveObj.errorMSG);
             } else {
                 alert(approveObj.data);
+                window.close();
             }
         }
     });
@@ -90,6 +91,7 @@ function rejectPR() {
                 alert(declineObj.errorMSG);
             } else {
                 alert(declineObj.data);
+                window.close();
             }
         }
     });
@@ -108,6 +110,7 @@ function getSrcBranch() {
         }
     });
 }
+
 function getTargetBranch() {
     $.ajax({
         url: PR_ACTIONS,
@@ -121,6 +124,7 @@ function getTargetBranch() {
         }
     });
 }
+
 function getMsg() {
     $.ajax({
         url: PR_ACTIONS,

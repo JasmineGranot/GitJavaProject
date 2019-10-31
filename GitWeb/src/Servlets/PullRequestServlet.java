@@ -46,13 +46,13 @@ public class PullRequestServlet extends HttpServlet {
         switch (action){
             case ("approvePR"):
             {
-                json = approvePR(currUser, repo, myMagit, pr);
+                json = approvePR(currUser, repo, myMagit, pr, userManager);
                 break;
             }
             case ("declinePR"):
             {
                 String msg = request.getParameter("declineMsg");
-                json = declinePR(currUser, repo, myMagit, pr, msg);
+                json = declinePR(currUser, repo, myMagit, pr, msg, userManager);
                 break;
             }
 
@@ -86,15 +86,16 @@ public class PullRequestServlet extends HttpServlet {
         }
     }
 
-    private String approvePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {
+    private String approvePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr, UserManager um) {
         Gson gson = new Gson();
-        MagitStringResultObject prsObj = myMagit.approvePR(currUser, repo.getRepoName(), pr);
+        MagitStringResultObject prsObj = myMagit.approvePR(currUser, repo.getRepoName(), pr, um);
         return gson.toJson(prsObj);
     }
 
-    private String declinePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr, String msg) {
+    private String declinePR(User currUser, Repository repo, Magit myMagit, PullRequestObject pr,
+                             String msg, UserManager um) {
         Gson gson = new Gson();
-        MagitStringResultObject prsObj = myMagit.declinePR(currUser, repo.getRepoName(),pr,  msg);
+        MagitStringResultObject prsObj = myMagit.declinePR(currUser, repo.getRepoName(),pr,  msg, um);
         return gson.toJson(prsObj);
     }
     private String getFilesDelta(User currUser, Repository repo, Magit myMagit, PullRequestObject pr) {

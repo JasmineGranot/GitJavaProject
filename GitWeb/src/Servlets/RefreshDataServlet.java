@@ -80,7 +80,7 @@ public class RefreshDataServlet extends HttpServlet {
     private String getUsersList(String usernameFromSession){
         Gson gson = new Gson();
         UserManager userManager = ServletUtils.getUserManager(getServletContext());
-        List<String> users = userManager.getAllOnlineUsers();
+        List<String> users = userManager.getAllUsersName();
         users.remove(usernameFromSession);
         return gson.toJson(users);
     }

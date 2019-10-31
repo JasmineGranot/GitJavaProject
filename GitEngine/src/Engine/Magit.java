@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -309,11 +310,6 @@ public class Magit {
                 resultObject.setIsHasError(true);
                 resultObject.setErrorMSG(msg);
             }
-            else if (repo.isCommitSha1PointedByRTB(sha1) && !toIgnoreRemoteBranchsSha1) {
-                msg = "The sha1 is currently pointed by a remote branch.";
-                resultObject.setIsHasError(true);
-                resultObject.setErrorMSG(msg);
-            }
             else {
                 repo.addBranch(branchName, sha1, null);
                 resultObject.setIsHasError(false);
@@ -359,8 +355,7 @@ public class Magit {
     }
 
     public MagitStringResultObject checkoutBranch(User user, String repositoryName,
-                                                  String branchName, boolean ignoreChanges)
-            throws DirectoryNotEmptyException{
+                                                  String branchName, boolean ignoreChanges) {
         String msg;
         MagitStringResultObject resultObject = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repositoryName);
@@ -375,9 +370,6 @@ public class Magit {
             resultObject.setIsHasError(false);
             msg = "Checkout was successful!";
             resultObject.setData(msg);
-        }
-        catch (DirectoryNotEmptyException e){
-            throw e;
         }
         catch (InvalidDataException e){
             msg = "Had an issue while trying to checkout branch!\nError message: " + e.getMessage();
@@ -551,8 +543,22 @@ public class Magit {
         ResultList<String> res = new ResultList<>();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
-            res.setRes(repo.getCurrentCommitFullFilesData());
-            res.setHasError(false);
+            try {
+                List<String> fullFileData = repo.getWcFiles();
+                List<String> files = new LinkedList<>();
+                for (String file : fullFileData) {
+                    String[] str = file.split(MagitUtils.DELIMITER);
+                    if (str.length > 0) {
+                        files.add(str[0]);
+                    }
+                }
+                res.setRes(files);
+                res.setHasError(false);
+            }
+            catch(Exception e) {
+                res.setHasError(true);
+                res.setErrorMsg("IOException in getting files from the system!");
+            }
         }
         else{
             res.setErrorMsg("Could not get all WC");
@@ -642,7 +648,7 @@ public class Magit {
             try {
                 repo.push();
                 res.setIsHasError(false);
-                res.setData("Pulled successfully!");
+                res.setData("Pushed successfully!");
             } catch (Exception e) {
                 res.setIsHasError(true);
                 String errorMessage = "Something went wrong while trying to pull!\n" +
@@ -679,12 +685,12 @@ public class Magit {
         return res;
     }
 
-    public MagitStringResultObject approvePR(User user, String repoName, PullRequestObject pr) {
+    public MagitStringResultObject approvePR(User user, String repoName, PullRequestObject pr, UserManager um) {
         MagitStringResultObject res = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {
-                repo.approvePullRequest(pr);
+                repo.approvePullRequest(pr, um);
                 res.setIsHasError(false);
                 res.setData("Pull Request approved successfully!");
             } catch (Exception e) {
@@ -701,12 +707,12 @@ public class Magit {
         return res;
     }
     public MagitStringResultObject declinePR(User user, String repoName, PullRequestObject pr,
-                                             String declineMsg) {
+                                             String declineMsg, UserManager um) {
         MagitStringResultObject res = new MagitStringResultObject();
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {
-                repo.declinePullRequest(pr, declineMsg);
+                repo.declinePullRequest(pr, declineMsg, um);
                 res.setIsHasError(false);
                 res.setData("Pull Request declined successfully!");
             } catch (Exception e) {

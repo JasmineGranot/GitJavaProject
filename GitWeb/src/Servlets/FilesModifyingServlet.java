@@ -1,6 +1,7 @@
 package Servlets;
 
 import Engine.Magit;
+import Exceptions.FileErrorException;
 import GitObjects.*;
 import UIUtils.ServletUtils;
 import Utils.MagitStringResultObject;
@@ -23,13 +24,11 @@ import java.io.PrintWriter;
 public class FilesModifyingServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        UserManager userManager = ServletUtils.getUserManager(getServletContext());
-        Magit myMagit = ServletUtils.getMagitObject(getServletContext());
         response.setContentType("application/json");
-
+        Magit myMagit = UIUtils.ServletUtils.getMagitObject(getServletContext());
+        UserManager userManager = ServletUtils.getUserManager(getServletContext());
         String usernameFromSession = UIUtils.SessionUtils.getUsername(request);
         User currUser = userManager.getUserByName(usernameFromSession);
-
         String repoName = UIUtils.SessionUtils.getCurrentRepository(request);
         Repository repo = userManager.getUserRepository(currUser, repoName);
 
@@ -45,14 +44,16 @@ public class FilesModifyingServlet extends HttpServlet {
             case ("addNewFile"):
             {
                 String path = request.getParameter("filePath");
-                json = addNewFileToRepo(path, repo);
+                String name = request.getParameter("fileName");
+                json = addNewFileToRepo(path, name);
                 break;
             }
 
             case ("addNewFolder"):
             {
                 String path = request.getParameter("filePath");
-                json = addNewFolderToRepo(path, repo);
+                String name = request.getParameter("fileName");
+                json = addNewFolderToRepo(path, name);
                 break;
             }
             case ("saveChangesInFile"):
@@ -60,7 +61,7 @@ public class FilesModifyingServlet extends HttpServlet {
                 String path = request.getParameter("filePath");
                 String text = request.getParameter("data");
 
-                json = changeFileData(repo, path, text);
+                json = changeFileData(path, text);
                 break;
             }
             case ("deleteFile"):
@@ -82,33 +83,44 @@ public class FilesModifyingServlet extends HttpServlet {
     private String deleteFile(String path, Repository repo) {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
-        String fullPath = MagitUtils.joinPaths(repo.getRepoPath(), path);
-        File fileToDelete = new File(fullPath);
-        if (!fileToDelete.exists()){
+        File fileToDelete = new File(path);
+        if (path.equals(repo.getRepoPath())){
             res.setIsHasError(true);
-            res.setErrorMSG(String.format("could not find file %s.", fileToDelete.getName()));
+            res.setErrorMSG("could not delete repository folder %s.");
         }
-        else{
-            if (fileToDelete.delete()){
-                res.setIsHasError(false);
-                res.setData("deleted file successfully");
-            }
-            else{
+        else {
+            if (!fileToDelete.exists()) {
                 res.setIsHasError(true);
-                res.setErrorMSG("file could not be deleatd");
+                res.setErrorMSG(String.format("could not find file %s.", fileToDelete.getName()));
+            } else {
+                try {
+                    MagitUtils.deleteFolder(path, false);
+                    res.setIsHasError(false);
+                    res.setData("deleted file successfully");
+                } catch (FileErrorException e) {
+                    res.setIsHasError(true);
+                    res.setErrorMSG("folder could not be deleted");
+                }
             }
         }
         return gson.toJson(res);
     }
 
-    private String changeFileData(Repository repo, String path, String text) {
+    private String changeFileData(String path, String text) {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
-        String fullPath = MagitUtils.joinPaths(repo.getRepoPath(), path);
         try {
-            MagitUtils.writeToFile(fullPath, text);
-            res.setData("file created successfully");
-            res.setIsHasError(false);
+            File newF = new File(path);
+            if(newF.isDirectory()){
+                res.setIsHasError(true);
+                res.setErrorMSG("Cannot change folder content");
+            }
+            else{
+                MagitUtils.writeToFile(path, text);
+                res.setData("File changed successfully");
+                res.setIsHasError(false);
+            }
+
         } catch (IOException e) {
             res.setIsHasError(true);
             res.setErrorMSG(String.format("IO Error: %s", e.getMessage()));
@@ -116,10 +128,10 @@ public class FilesModifyingServlet extends HttpServlet {
         return gson.toJson(res);
     }
 
-    private String addNewFolderToRepo(String path, Repository repo) {
+    private String addNewFolderToRepo(String path, String name) {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
-        String fullPath = MagitUtils.joinPaths(repo.getRepoPath(), path);
+        String fullPath = MagitUtils.joinPaths(path, name);
         File newFolder = new File(fullPath);
         if (newFolder.exists()){
             res.setIsHasError(true);
@@ -138,17 +150,23 @@ public class FilesModifyingServlet extends HttpServlet {
         return gson.toJson(res);
     }
 
-    private String addNewFileToRepo(String path, Repository repo) {
+    private String addNewFileToRepo(String path, String name) {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
-        String fullPath = MagitUtils.joinPaths(repo.getRepoPath(), path);
-        try {
-            MagitUtils.writeToFile(fullPath, "");
-            res.setData("file created successfully");
-            res.setIsHasError(false);
-        } catch (IOException e) {
+        File file = new File(path);
+        if(file.isFile()) {
             res.setIsHasError(true);
-            res.setErrorMSG(String.format("IO Error: %s", e.getMessage()));
+            res.setErrorMSG("Cannot add new file to an existing file!");
+        } else {
+            String fullPath = MagitUtils.joinPaths(path, name);
+            try {
+                MagitUtils.writeToFile(fullPath, "");
+                res.setData("file created successfully");
+                res.setIsHasError(false);
+            } catch (IOException e) {
+                res.setIsHasError(true);
+                res.setErrorMSG(String.format("IO Error: %s", e.getMessage()));
+            }
         }
         return gson.toJson(res);
     }
@@ -157,9 +175,17 @@ public class FilesModifyingServlet extends HttpServlet {
         Gson gson = new Gson();
         MagitStringResultObject res = new MagitStringResultObject();
         try {
-            String text = MagitUtils.readFileAsString(path);
-            res.setData(text);
-            res.setIsHasError(false);
+            File file = new File(path);
+            if(file.isFile()) {
+                String text = MagitUtils.readFileAsString(path);
+
+                res.setData(text);
+                res.setIsHasError(false);
+            }
+            else {
+                res.setIsHasError(false);
+                res.setData("");
+            }
         } catch (IOException e) {
             res.setIsHasError(true);
             res.setErrorMSG(String.format("IO Error: %s", e.getMessage()));

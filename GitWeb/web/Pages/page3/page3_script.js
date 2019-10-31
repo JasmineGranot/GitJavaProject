@@ -183,7 +183,12 @@ function push(){
                 action: "push",
             },
         type: 'POST',
-        success: function() {
+        success: function(pullObj) {
+            if (pullObj.haveError) {
+                alert(pullObj.errorMSG);
+            } else {
+                alert(pullObj.data);
+            }
         }
     });
 }
@@ -293,6 +298,12 @@ function showCommits(){
 
 }
 
+function showWC(){
+    $("#showWCStatus").click(function () {
+        window.open("../showWCStatus/ShowWCStatus.html", "Show Status");
+    });
+}
+
 function createPullRequest(){
     var srcBranch=prompt("Please enter the source branch:");
     var targetBranch=prompt("Please enter the target branch:");
@@ -349,14 +360,6 @@ function addBranchesToList(branches) {
     $('#comboBranches').append(output);
 }
 
-function openPullRequest() {
-    addPRToSession();
-
-    $("#prButton").click(function() {
-       window.open("../pullRequest/pullRequestPage.html", "Pull Request");
-    });
-}
-
 function addPRToSession(pr) {
     var prString = pr.owner + DELIMETER + pr.prMsg + DELIMETER + pr.status + DELIMETER + pr.baseToMergeInto +
         DELIMETER + pr.targetToMergeFrom + DELIMETER + pr.repoManagerMsg;
@@ -380,7 +383,8 @@ function ajaxUsersPullRequests() {
                 action: "getPullRequestsForUser"
             },
         success: function(pullRequests) {
-                updatePullRequestsForUser(pullRequests);
+            updatePullRequestsForUser(pullRequests);
+            triggerGetPRs();
         }
     });
 }
@@ -397,9 +401,9 @@ function updatePullRequestsForUser(pullRequests) {
         row.appendTo($(prSection));
         down.appendTo($(prSection));
 
-        addPRToSession(pr);
 
         $(row).click(function () {
+            addPRToSession(pr);
             window.open("../pullRequest/pullRequestPage.html", "Pull Request");
         });
     });
@@ -423,6 +427,7 @@ $(function() {
     triggerGetMsg();
     refreshBranches();
     triggerGetPRs();
+    ajaxUsersPullRequests();
 });
 
 

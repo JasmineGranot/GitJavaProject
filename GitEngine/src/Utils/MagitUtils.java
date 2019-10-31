@@ -1,5 +1,7 @@
 package Utils;
 
+import Exceptions.FileErrorException;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -202,6 +204,39 @@ public class MagitUtils {
             }
             if(os != null) {
                 os.close();
+            }
+        }
+    }
+
+    public static void deleteFolder(String filePath, boolean deleteMagit) throws FileErrorException {
+        deleteFolderRecursivly(filePath,deleteMagit);
+        File folder = new File(filePath);
+        folder.delete();
+    }
+
+    public static void deleteFolderRecursivly(String filePath, boolean deleteMagit) throws FileErrorException {
+        File root = new File(filePath);
+        String[] files = root.list();
+        String errorMsg;
+
+        if (files != null) {
+            for (String f : files) {
+                File childPath = new File(MagitUtils.joinPaths(filePath, f));
+                if (childPath.isDirectory()) {
+                    if (!childPath.getName().equals(".magit") || deleteMagit) {
+                        deleteFolderRecursivly(childPath.getAbsolutePath(), deleteMagit);
+                        if (!childPath.delete()) {
+                            errorMsg = "Had an issue deleting a file!";
+                            throw new FileErrorException(errorMsg);
+                        }
+                    }
+                }
+                else {
+                    if (!childPath.delete()) {
+                        errorMsg = "Had an issue deleting a file!";
+                        throw new FileErrorException(errorMsg);
+                    }
+                }
             }
         }
     }

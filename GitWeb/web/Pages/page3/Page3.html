@@ -40,11 +40,8 @@
               <h4>Notifications: </h4>
               <ul id="notifications" class="outside"></ul>
           </div>
-        <br><br>
-        
-        <button style="font-size:10px;" onclick="ajaxUsersPullRequests()">
-          Show my open PR's
-        </button><br><br>
+          <br><br>
+
           <div class="notifications">
               <h4>Open Pull Requests: </h4>
               <ul id="openPrs" class="outside"></ul>
@@ -52,24 +49,9 @@
       </div>
       
       <div class="centercolumn">
-      	<div class="middle">
-          <div class="top">
-              <table id="workingCopySection" class="workingCopyTable">
-                  <tr>
-                      <td id="workingCopy" style="width: 50%"></td>
-                      <td style="width: 50%">
-                          <textarea id="fileData"></textarea>
-                      </td>
-                  </tr>
-              </table>
-          </div>
-            <br><br><br>
-          <div>
-              <table id="commitSection">
-                  <tr id="insertCommitData"></tr>
-              </table>
-          </div>
-        </div>
+          <table id="commitSection">
+              <tr id="insertCommitData"></tr>
+          </table>
       </div>
       
       <div class="rightcolumn">
@@ -100,7 +82,7 @@
           Show Commit Data
         </button><br><br>
 
-        <button style="font-size: 10px; margin-left:30px" onclick="showWC()">
+        <button style="font-size: 10px; margin-left:30px" id="showWCStatus" onclick="showWC()">
           Show WC Status
         </button><br><br>
 

@@ -1,5 +1,7 @@
+var REPO_ACTIONS = "../../actionOnRepo";
+
 // =================== Updating Files in System ====================
-var FILE_CHANGING;
+var FILE_CHANGING = "../../fileChange";
 
 function showWC(){
     $.ajax({
@@ -9,8 +11,8 @@ function showWC(){
                 action: "showWC",
             },
         success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
+            if(res.haveError) {
+                alert(res.errorMSG);
                 $('#fileData').empty();
 
             }
@@ -23,30 +25,45 @@ function showWC(){
 
 function showWCStatus(files) {
     var filesArea = $('#workingCopy');
+    var textField = $('#fileData');
 
+    textField.val("");
     filesArea.empty();
 
     $.each(files || [], function (index, file) {
         var newFile = $(document.createElement('ul', { is : 'expanding-list' }));
-
-
         newFile.text(file);
+        newFile.attr("selected", "false");
+        newFile.css('font-weight', 'auto');
+        newFile.css('font-color', 'white');
         newFile.appendTo(filesArea);
 
         $(newFile).click(function () {
             var text = $('#fileData');
+            text.val("");
             text.attr("path", file);
-            updateTextOfFile(file);
+            newFile.attr("selected", "true");
+            newFile.css('font-weight', 'bold');
+            newFile.css('color', 'red');
+            getTextFromFile(file);
 
         });
     });
+
 }
 
-function updateTextOfFile(filePath){
-    let textToEnter = getTextFromFile(filePath);
+function updateTextOfFile(textToEnter){
     let textField = $('#fileData');
-    textField.empty();
-    textField.append(textToEnter);
+    var newFileButton = $('#newFile');
+    var newFolderButton = $('#newFolder');
+    var saveFileButton = $('#saveFile');
+    var deleteFileButton = $('#deleteFile');
+
+    textField.val(textToEnter);
+    newFileButton.attr('disabled', false);
+    newFolderButton.attr('disabled', false);
+    saveFileButton.attr('disabled', false);
+    deleteFileButton.attr('disabled', false);
 }
 
 function getTextFromFile(filePath){
@@ -58,31 +75,35 @@ function getTextFromFile(filePath){
                 filePath: filePath
             },
         success: function (res) {
-            if(res.harError) {
+            if(res.haveError) {
                 alert(res.errorMsg);
             }
             else {
-                return (res.res);
+                updateTextOfFile(res.data);
             }
         }
     });
 }
 
 function addNewFile(){
-    var filePath = prompt("Please enter the new path (relative to your repository)",
+    var fileName = prompt("Please enter the new file name",
         "new file.txt");
+    let textField = $('#fileData');
+    let filePath = textField.attr('path');
     $.ajax({
         url: FILE_CHANGING,
         data:
             {
                 action: "addNewFile",
-                filePath: filePath
+                filePath: filePath,
+                fileName: fileName
             },
         success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
+            if(res.haveError) {
+                alert(res.errorMSG);
             }
             else {
+                alert(res.data);
                 showWC();
             }
         }
@@ -90,21 +111,24 @@ function addNewFile(){
 }
 
 function addNewFolder(){
-    var filePath = prompt("Please enter the new folder path (relative to your repository)",
-        "folder 1");
+    var fileName = prompt("Please enter the new folder name");
+    let textField = $('#fileData');
+    let filePath = textField.attr("path");
     $.ajax({
         url: FILE_CHANGING,
         data:
             {
                 action: "addNewFolder",
-                filePath: filePath
+                filePath: filePath,
+                fileName: fileName,
             },
         success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
+            if(res.haveError) {
+                alert(res.errorMSG);
             }
             else {
                 alert(res.data);
+                showWC();
             }
         }
     });
@@ -112,8 +136,8 @@ function addNewFolder(){
 
 function saveFile(){
     let textField = $('#fileData');
-    let text = textField.text;
-    let file = textField.getAttribute("path");
+    let text = textField.val();
+    let file = textField.attr("path");
     $.ajax({
         url: FILE_CHANGING,
         data:
@@ -123,11 +147,12 @@ function saveFile(){
                 data: text
             },
         success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
+            if(res.haveError) {
+                alert(res.errorMSG);
             }
             else {
                 alert (res.data);
+                showWC();
             }
         }
     });
@@ -135,7 +160,7 @@ function saveFile(){
 
 function deleteFile(){
     let textField = $('#fileData');
-    let file = textField.getAttribute("path");
+    let file = textField.attr("path");
     $.ajax({
         url: FILE_CHANGING,
         data:
@@ -144,13 +169,13 @@ function deleteFile(){
                 filePath: file,
             },
         success: function (res) {
-            if(res.harError) {
-                alert(res.errorMsg);
+            if(res.haveError) {
+                alert(res.errorMSG);
             }
             else {
                 alert(res.data);
-                textField.empty();
                 textField.attr('path', null);
+                showWC();
             }
         }
     });

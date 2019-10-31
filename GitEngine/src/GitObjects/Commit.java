@@ -18,6 +18,7 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
     private String rootSha1 = null;
     private String last = null;
     private String last2 = null;
+    private String commitSha1 = null;
 
     public void setCommitCreator(String name) {
         commiter = name;
@@ -52,6 +53,14 @@ public class Commit extends GitObjectsBase implements CommitRepresentative {
 
     public String getRootSha1() {
         return rootSha1;
+    }
+
+    public void setCommitSha1(String sha1) {
+        commitSha1 = sha1;
+    }
+
+    public String getCommitSha1() {
+        return commitSha1;
     }
 
     public void setFirstPrecedingSha1(String lastCommit) {

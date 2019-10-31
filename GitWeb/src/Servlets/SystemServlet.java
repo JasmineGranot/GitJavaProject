@@ -25,7 +25,7 @@ public class SystemServlet extends HttpServlet implements ServletContextListener
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         try{
-            deleteWC(SERVER_PATH, true);
+            MagitUtils.deleteFolderRecursivly(SERVER_PATH, true);
             File serverFolder = new File(SERVER_PATH);
             serverFolder.delete();
         } catch (FileErrorException e) {
