@@ -2,16 +2,20 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="GitEngine:jar" />
       <artifact name="Magit" />
+      <artifact name="Magit archive" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d1fb53-a541-4046-891e-4beeaf225d2d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Magit_archive.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Magit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Magit.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GitEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GitEngine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/Magit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Magit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GitObjects/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GitObjects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GitObjects/RepositoryWebData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GitObjects/RepositoryWebData.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,20 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="1181" selection-start-line="1181" selection-end-line="1181" />
+            <state relative-caret-position="147">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="e#1064#1065#0" expanded="true" />
                 <element signature="e#1104#1105#0" expanded="true" />
-                <element signature="e#1139#1140#0" expanded="true" />
                 <element signature="e#1170#1171#0" expanded="true" />
                 <element signature="e#1445#1446#0" expanded="true" />
                 <element signature="e#1491#1492#0" expanded="true" />
                 <element signature="e#1540#1541#0" expanded="true" />
                 <element signature="e#1590#1591#0" expanded="true" />
+                <element signature="e#1653#1654#0" expanded="true" />
+                <element signature="e#1684#1685#0" expanded="true" />
                 <element signature="e#1625#1626#0" expanded="true" />
                 <element signature="e#1656#1657#0" expanded="true" />
                 <element signature="e#1842#1843#0" expanded="true" />
@@ -57,11 +62,29 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GitObjects/RepositoryWebData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="71" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="125" column="5" lean-forward="true" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="200">
+              <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -69,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="158" column="32" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="32" />
+            <state relative-caret-position="162">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
             </state>
           </provider>
         </entry>
@@ -78,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="362" column="9" selection-start-line="362" selection-start-column="9" selection-end-line="362" selection-end-column="9" />
+            <state relative-caret-position="134">
+              <caret line="420" column="10" lean-forward="true" selection-start-line="420" selection-start-column="10" selection-end-line="420" selection-end-column="10" />
               <folding>
                 <element signature="n#!!block;n#ajaxCurrentUser#0" />
                 <element signature="e#261#511#0" />
@@ -137,14 +160,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="166" column="39" selection-start-line="166" selection-start-column="39" selection-end-line="166" selection-end-column="39" />
+            <state relative-caret-position="206">
+              <caret line="90" column="98" selection-start-line="90" selection-start-column="42" selection-end-line="90" selection-end-column="98" />
               <folding>
                 <element signature="e#706#758#0" />
-                <element signature="method#processGetRequest#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#1547#2394#0" />
                 <element signature="e#1599#1713#1" />
-                <element signature="e#1756#1851#1" />
                 <element signature="e#1897#1982#1" />
                 <element signature="e#2024#2117#1" />
                 <element signature="e#2164#2263#1" />
@@ -152,7 +172,6 @@
                 <element signature="e#2448#2515#0" />
                 <element signature="e#2538#2582#0" />
                 <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
-                <element signature="method#getHead#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
@@ -163,16 +182,10 @@
                 <element signature="e#5221#5414#1" />
                 <element signature="e#5462#5574#1" />
                 <element signature="e#5628#5892#1" />
-                <element signature="e#6219#6392#1" />
-                <element signature="e#6446#6574#1" />
-                <element signature="e#6639#6706#0" />
-                <element signature="e#6729#6773#0" />
                 <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#push#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
-                <element signature="e#7804#8036#1" />
-                <element signature="e#7961#8026#1" />
                 <element signature="method#createPR#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
                 <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
@@ -186,7 +199,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
+            <state relative-caret-position="1364">
               <caret line="89" selection-start-line="89" selection-end-line="89" />
             </state>
           </provider>
@@ -195,7 +208,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1229">
+            <state relative-caret-position="924">
               <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
@@ -224,6 +237,9 @@
       <find>clo</find>
       <find>push</find>
       <find>clone</find>
+      <find>repoOw</find>
+      <find>repoOwner</find>
+      <find>XML</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -244,11 +260,12 @@
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/FilesModifyingServlet.java" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/WCFilesActions.js" />
         <option value="$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js" />
-        <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
-        <option value="$PROJECT_DIR$/src/GitObjects/Repository.java" />
         <option value="$PROJECT_DIR$/src/GitObjects/PullRequestObject.java" />
         <option value="$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java" />
         <option value="$PROJECT_DIR$/src/GitObjects/User.java" />
+        <option value="$PROJECT_DIR$/src/GitObjects/Repository.java" />
+        <option value="$PROJECT_DIR$/src/GitObjects/RepositoryWebData.java" />
+        <option value="$PROJECT_DIR$/src/Engine/Magit.java" />
       </list>
     </option>
   </component>
@@ -260,10 +277,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="26" />
-    <option name="y" value="132" />
-    <option name="width" value="1943" />
-    <option name="height" value="1103" />
+    <option name="x" value="25" />
+    <option name="y" value="130" />
+    <option name="width" value="1945" />
+    <option name="height" value="1105" />
   </component>
   <component name="ProjectId" id="1SmINsu2bSGHx3TV8KGiAm3XDu0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -275,6 +292,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="GitEngine" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\97250\Desktop\GitJavaProject\GitEngine" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -369,17 +397,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="GitEngine" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="C:\Users\97250\Desktop\GitJavaProject\GitEngine" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -389,7 +406,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitWeb/web/Pages/pullRequest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../3d/commons-codec-1.12.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15859374" />
@@ -529,7 +546,10 @@
       <workItem from="1572077488217" duration="21433000" />
       <workItem from="1572162313934" duration="18455000" />
       <workItem from="1572267857823" duration="4099000" />
-      <workItem from="1572511120407" duration="8122000" />
+      <workItem from="1572511120407" duration="8225000" />
+      <workItem from="1572519581982" duration="139000" />
+      <workItem from="1572520051599" duration="679000" />
+      <workItem from="1572621775478" duration="2632000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1571555239396</created>
@@ -823,11 +843,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572506444421</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Merge branch 'testingWebModule' of https://github.com/JasmineGranot/GitJavaProject into testingWebModule&#10;&#10;# Conflicts:&#10;#&#9;GitEngine/.idea/workspace.xml">
+      <created>1572519379809</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1572519379810</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54698000" />
+    <option name="totallyTimeSpent" value="58251000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -839,7 +866,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -848,12 +875,12 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.24123989" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.25267667" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32876712" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5005549" side_tool="true" weight="0.48901734" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.325723" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.325315" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32876712" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.53881276" />
@@ -861,7 +888,7 @@
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Run" order="10" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" visible="true" weight="0.37747335" />
+      <window_info active="true" anchor="bottom" id="Debug" order="11" sideWeight="0.49944505" visible="true" weight="0.3768614" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.32876712" />
@@ -982,7 +1009,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
-          <line>702</line>
+          <line>704</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
@@ -1045,6 +1072,36 @@
           <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
+          <line>237</line>
+          <properties />
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GitObjects/Repository.java</url>
+          <line>239</line>
+          <properties />
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Engine/Magit.java</url>
+          <line>249</line>
+          <properties />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Engine/Magit.java</url>
+          <line>128</line>
+          <properties />
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../GitWeb/web/Pages/page2/page2_script.js</url>
           <line>102</line>
@@ -1061,6 +1118,36 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
+        <expression-string>myMagit.getHeadBranchName(currUser, repo.getRepoName());</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>repo.getAllBranchesData().size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>myMagit.getHeadBranchName(currUser, repo.getRepoName())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>repo</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getActiveRepositories()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>repo.getRepoPullRequsetList()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
@@ -1073,36 +1160,6 @@
       </expression>
       <expression>
         <expression-string>currUser.getUserPullRequests()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>getRepoPathAsString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>headBranch</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Paths.get(BRANCHES_PATH, headBranch.getName())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>!isValidCommit(commitSha1)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>repoObjects</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>source</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -1234,13 +1291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14014">
-          <caret line="650" column="33" selection-start-line="650" selection-start-column="33" selection-end-line="650" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/SystemServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -1303,17 +1353,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/PullRequestServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1229">
+        <state relative-caret-position="924">
           <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/web/Pages/page3/page3_script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="362" column="9" selection-start-line="362" selection-start-column="9" selection-end-line="362" selection-end-column="9" />
+        <state relative-caret-position="134">
+          <caret line="420" column="10" lean-forward="true" selection-start-line="420" selection-start-column="10" selection-end-line="420" selection-end-column="10" />
           <folding>
             <element signature="n#!!block;n#ajaxCurrentUser#0" />
             <element signature="e#261#511#0" />
@@ -1367,87 +1431,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/PullRequestObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GitObjects/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="158" column="32" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="166" column="39" selection-start-line="166" selection-start-column="39" selection-end-line="166" selection-end-column="39" />
-          <folding>
-            <element signature="e#706#758#0" />
-            <element signature="method#processGetRequest#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#1547#2394#0" />
-            <element signature="e#1599#1713#1" />
-            <element signature="e#1756#1851#1" />
-            <element signature="e#1897#1982#1" />
-            <element signature="e#2024#2117#1" />
-            <element signature="e#2164#2263#1" />
-            <element signature="e#2307#2383#1" />
-            <element signature="e#2448#2515#0" />
-            <element signature="e#2538#2582#0" />
-            <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getHead#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#getWC#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#4830#4925#1" />
-            <element signature="e#4965#5044#1" />
-            <element signature="e#5084#5176#1" />
-            <element signature="e#5221#5414#1" />
-            <element signature="e#5462#5574#1" />
-            <element signature="e#5628#5892#1" />
-            <element signature="e#6219#6392#1" />
-            <element signature="e#6446#6574#1" />
-            <element signature="e#6639#6706#0" />
-            <element signature="e#6729#6773#0" />
-            <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#push#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
-            <element signature="e#7804#8036#1" />
-            <element signature="e#7961#8026#1" />
-            <element signature="method#createPR#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#doGet#0;class#RepoActionsNewServlet#0" />
-            <element signature="method#doPost#0;class#RepoActionsNewServlet#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RefreshDataServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="200">
+          <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GitObjects/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="1181" selection-start-line="1181" selection-end-line="1181" />
+        <state relative-caret-position="147">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#1064#1065#0" expanded="true" />
             <element signature="e#1104#1105#0" expanded="true" />
-            <element signature="e#1139#1140#0" expanded="true" />
             <element signature="e#1170#1171#0" expanded="true" />
             <element signature="e#1445#1446#0" expanded="true" />
             <element signature="e#1491#1492#0" expanded="true" />
             <element signature="e#1540#1541#0" expanded="true" />
             <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1653#1654#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
             <element signature="e#1625#1626#0" expanded="true" />
             <element signature="e#1656#1657#0" expanded="true" />
             <element signature="e#1842#1843#0" expanded="true" />
@@ -1466,13 +1470,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../GitWeb/src/Servlets/RepoActionsNewServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="90" column="98" selection-start-line="90" selection-start-column="42" selection-end-line="90" selection-end-column="98" />
+          <folding>
+            <element signature="e#706#758#0" />
+            <element signature="e#1599#1713#1" />
+            <element signature="e#1897#1982#1" />
+            <element signature="e#2024#2117#1" />
+            <element signature="e#2164#2263#1" />
+            <element signature="e#2307#2383#1" />
+            <element signature="e#2448#2515#0" />
+            <element signature="e#2538#2582#0" />
+            <element signature="method#getOpenPullRequestsForUser#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getRepo#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getBranches#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getCommits#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#getWC#0;class#RepoActionsNewServlet#0" />
+            <element signature="e#4830#4925#1" />
+            <element signature="e#4965#5044#1" />
+            <element signature="e#5084#5176#1" />
+            <element signature="e#5221#5414#1" />
+            <element signature="e#5462#5574#1" />
+            <element signature="e#5628#5892#1" />
+            <element signature="method#checkout#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#pull#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#push#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#addBranch#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#createPR#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#deleteBranch#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#createNewCommit#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#doGet#0;class#RepoActionsNewServlet#0" />
+            <element signature="method#doPost#0;class#RepoActionsNewServlet#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/Magit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="125" column="5" lean-forward="true" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GitObjects/RepositoryWebData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="71" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Magit</last-edited>
+          <last-edited>GitEngine:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1519,7 +1574,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>GitWeb</last-edited>
+          <last-edited>GitEngine</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

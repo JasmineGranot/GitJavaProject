@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Ex3/Magit/AncestorFinder.jar!/" />
+          <root url="jar://$MODULE_DIR$/../3d/AncestorFinder.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Ex3/Magit/commons-codec-1.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/../3d/commons-codec-1.12.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

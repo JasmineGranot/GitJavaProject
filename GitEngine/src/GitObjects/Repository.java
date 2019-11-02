@@ -29,6 +29,7 @@ public class Repository {
     private Repository trackedRepository;
     private String MAGIT_REPO_LOCATION = "c:\\magit-ex3";
     private List<PullRequestObject> repoPullRequsetList;
+    private boolean isEmpty;
 
 //  ====================================== Utils =======================================
 
@@ -52,7 +53,9 @@ public class Repository {
     private boolean isObjectInRepo(String id) {
         return repoObjects.containsKey(id);
     }
-
+    public boolean isRepoEmpty() {
+        return isEmpty;
+    }
     public String getRepoPath() {
         return repoPath;
     }
@@ -153,7 +156,6 @@ public class Repository {
         repoBranches = new LinkedList<>();
         currentCommit = null;
         headBranch = null;
-
         trackedRepository = null;
 
         repoPullRequsetList = new LinkedList<>();

@@ -9,10 +9,16 @@ public class RepositoryWebData {
 
     public RepositoryWebData(Repository repo) {
         name = repo.getRepoName();
-        activeBranch = repo.getHeadBranch().getName();
-        numOfBranches = String.valueOf(repo.getAllBranchesData().size());
-        lastCommitDate = repo.getLastCommit().getCommitDate() != null ? repo.getLastCommit().getCommitDate() : "";
         repoOwner = repo.getRepoOwner();
+        numOfBranches = String.valueOf(repo.getAllBranchesData().size());
+        if (repo.getAllBranchesData().size() == 0){
+            activeBranch = "";
+            lastCommitDate = "";
+        }
+        else{
+            activeBranch = repo.getHeadBranch().getName();
+            lastCommitDate = repo.getLastCommit().getCommitDate() != null ? repo.getLastCommit().getCommitDate() : "";
+        }
     }
 
     public String getName() {

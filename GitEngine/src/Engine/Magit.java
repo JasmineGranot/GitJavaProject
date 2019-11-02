@@ -130,10 +130,13 @@ public class Magit {
         Repository repo = getRepoForUser(user, repoName);
         if(repo != null) {
             try {
-                res.setData(repo.getHeadBranch().getName());
+                res.setData("");
+                if(repo.getAllBranchesData().size() != 0) {
+                    res.setData(repo.getHeadBranch().getName());
+                }
                 res.setIsHasError(false);
             } catch (Exception e) {
-                String errorMsg = "Something went wrong while trying to pull from remote repository!\n" +
+                String errorMsg = "Something went wrong while trying to get head branch!\n" +
                         "Error message: " + e.getMessage();
                 res.setIsHasError(true);
                 res.setErrorMSG(errorMsg);
