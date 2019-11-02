@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:list-style-type="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<script type="text/javascript" src="../../Commons/jquery-2.0.3.min.js"></script>
+  	<script type="text/javascript" src="xmlUpload.js"></script>
+  	<script type="text/javascript" src="fork.js"></script>
+	<script type="text/javascript" src="page2_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="Page2.css">
+
+</head>
+
+<body>
+  
+	<div id="background">
+		<img src="../resources/wallpaper3.jpg" class="stretch" alt="" />
+	</div>
+  
+	<div class="up">
+		<h1>M.A.Github</h1>
+	</div>
+
+	<div class="leftcolumn">
+		<form action="../../logout" method="get"><center>
+			<input type="submit" class="f90-logout-button" value="Logout">
+		</center></form>
+		<p><img class="userImage" src="../resources/user.png" alt="User"></p>
+		<p style="font-size: 15px">
+			<b>
+				<h2>User Name:
+					<label id="userName"></label>
+				</h2>
+			</b>
+		</p>
+
+		<div class="notifications">
+			<h4>Notifications: </h4>
+			<ul id="notifications" class="outside"></ul>
+		</div>
+		<br><br>
+	</div>
+
+
+	<div class="up2">
+		<nav>
+			<div class="middle">
+				<span>
+					<div class="button">
+						Load Repository
+						<input class="hide_file" id="FileInput" type="file" accept="text/xml" onchange="LoadFile(event)"></input>
+					</div>
+				</span>
+			</div>
+		</nav>
+	</div>
+		
+    <div class="centercolumn">
+		<div class="center">
+			<table class="table" id="userRepoTable">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col">Repository name</th>
+					<th scope="col">Repository's active branch</th>
+					<th scope="col">Number of branches in repository</th>
+					<th scope="col">Last commit date</th>
+				</tr>
+				</thead>
+				<tbody id="tableBody"></tbody>
+			</table>
+		</div>
+    </div>
+
+    <div class="rightcolumn">
+        <h4>Registered Users:</h4>
+		<div class="outside">
+			<ul id="userList" class="outside"></ul>
+		</div>
+    </div>
+	
+</body>
+</html>

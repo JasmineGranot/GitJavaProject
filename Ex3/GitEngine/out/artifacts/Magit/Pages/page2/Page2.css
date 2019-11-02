@@ -1,0 +1,195 @@
+body{
+	font-family: Aharoni;
+	width: 100%;
+  	float: right;
+	display: inline-block;
+}
+
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+h1 {
+	font-family:aharoni;
+	font-size:200%;
+	color: #c2c2d6; 
+	text-shadow: 10px 5px 5px black;
+}
+
+h4 {
+	color: #47476b;
+	text-decoration: underline;
+}
+
+h2 {
+	font-size: 16px;
+	text-decoration: underline;
+	color: #33334d
+}
+
+.leftcolumn{
+      	width:25%;
+      	height: 100%;
+      	position: fixed;
+      	top: 5%;
+        text-align: center;
+	color: #7575a3;
+}
+        
+.centercolumn {
+        width: 60%; 
+        height: 100%; 
+        position:fixed; 
+        top:55%; 
+	left: 15%;
+        text-align: center;
+	color: #7575a3;
+}
+        
+.rightcolumn {
+        width: 100%; 
+        height: 100%; 
+        position:fixed; 
+        top:5%;
+        left:85%;
+		right: 5%;
+		color: #7575a3;
+		float: right;
+}
+        
+.center {
+        width: 100%;
+        font-size: 15px;
+        text-align: center;
+	margin-left: 10%;
+	color: #7575a3;
+}
+        
+        
+.middle {
+        margin-top: 5%;
+        margin-left: 15%;
+        margin-right: 0%;
+		color: #47476b;
+		text-decoration: underline;
+}
+        
+.up,.down {
+        position: fixed;
+        left: 0%;
+        right: 0%;
+        height: 50%;
+}
+        
+.up {
+        top:0%;
+	text-align: center;
+	font-size: 40px;
+}
+        
+.down {
+	bottom:0%;
+}
+
+table {
+  	border-collapse: collapse;
+	width: 100%;
+	color: #d9d9d9;
+	background-color: black;
+}
+
+table, th, td {
+      	border: 1.5px solid #d9d9d9;
+		border-radius: 1em;
+		overflow: hidden;
+}
+
+.up2 {
+	width: 60%; 
+        height: 100%; 
+        position:fixed; 
+        top:25%; 
+        left:15%;
+        text-align: center;
+}
+
+.userImage {
+  	border: 2px solid #47476b;
+  	border-radius: 4px;
+  	padding: 10px;
+  	width: 10%;
+	margin-left: 5px;
+}
+
+.button {
+	box-shadow: 0px 5px 14px -7px #276873;
+	background:linear-gradient(to bottom, #f0f0f5 5%, #9494b8 100%);
+	background-color:#29293d;
+	border-radius:10px;
+	display:inline-block;
+	cursor:pointer;
+	color:white;
+	font-family:Aharoni;
+	font-size:12px;
+	font-weight:bold;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.button:hover {
+	background:linear-gradient(to bottom, #9494b8 5%, #f0f0f5 100%);
+	background-color:#29293d;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+
+.hide_file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 14px;
+    width: 100%;
+    
+}
+
+.f90-logout-button {
+	font-size:10px;
+	color: #34344c
+}
+
+.notifications.h4 {
+	font-size: 15px;
+	text-decoration: underline;
+}
+
+.notifications {
+	font-size: 12px;
+	color: #28283e;
+	background-color: #c2c2d6;
+	border: 1px solid #28283e;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+.outside {
+	list-style-position: outside;
+	list-style-type: none;
+	text-align: left;
+}
