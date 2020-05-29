@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="Magit">
+    <output-path>$PROJECT_DIR$/out/artifacts/Magit</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="GitWeb" />
+          <element id="module-output" name="GitEngine" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="gson-2.1" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Ex3/Magit/AncestorFinder.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Ex3/Magit/commons-codec-1.12.jar" />
+          <element id="module-output" name="GitEngine" />
+          <element id="file-copy" path="$PROJECT_DIR$/../3d/commons-codec-1.12.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../3d/AncestorFinder.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="GitWeb/web/Web" />
+    </root>
+  </artifact>
+</component>

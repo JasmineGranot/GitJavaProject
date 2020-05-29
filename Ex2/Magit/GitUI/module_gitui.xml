@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gitui" default="compile.module.gitui">
+  <dirname property="module.gitui.basedir" file="${ant.file.module_gitui}"/>
+  
+  <property name="module.jdk.home.gitui" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gitui" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gitui" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gitui" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="gitui.output.dir" value="${module.gitui.basedir}/../out/production/GitUI"/>
+  <property name="gitui.testoutput.dir" value="${module.gitui.basedir}/../out/test/GitUI"/>
+  
+  <path id="gitui.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gitui.module.production.classpath">
+    <path refid="${module.jdk.classpath.gitui}"/>
+    <pathelement location="${gitengine.output.dir}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+    <path refid="library.fxgraph-0.0.3.classpath"/>
+  </path>
+  
+  <path id="gitui.runtime.production.module.classpath">
+    <pathelement location="${gitui.output.dir}"/>
+    <path refid="gitengine.runtime.production.module.classpath"/>
+    <path refid="library.fxgraph-0.0.3.classpath"/>
+  </path>
+  
+  <path id="gitui.module.classpath">
+    <path refid="${module.jdk.classpath.gitui}"/>
+    <pathelement location="${gitui.output.dir}"/>
+    <pathelement location="${gitengine.testoutput.dir}"/>
+    <pathelement location="${gitengine.output.dir}"/>
+    <path refid="library.commons-codec-1.12.classpath"/>
+    <pathelement location="${basedir}/fxgraph-0.0.3.jar"/>
+    <path refid="library.ancestorfinder.classpath"/>
+    <path refid="library.fxgraph-0.0.3.classpath"/>
+  </path>
+  
+  <path id="gitui.runtime.module.classpath">
+    <pathelement location="${gitui.testoutput.dir}"/>
+    <pathelement location="${gitui.output.dir}"/>
+    <path refid="gitengine.runtime.module.classpath"/>
+    <path refid="library.fxgraph-0.0.3.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gitui">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gitui">
+    <patternset refid="excluded.from.module.gitui"/>
+  </patternset>
+  
+  <path id="gitui.module.sourcepath">
+    <dirset dir="${module.gitui.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gitui" depends="compile.module.gitui.production,compile.module.gitui.tests" description="Compile module GitUI"/>
+  
+  <target name="compile.module.gitui.production" depends="register.custom.compilers,compile.module.gitengine" description="Compile module GitUI; production classes">
+    <mkdir dir="${gitui.output.dir}"/>
+    <javac2 destdir="${gitui.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gitui}/javac">
+      <compilerarg line="${compiler.args.gitui}"/>
+      <bootclasspath refid="gitui.module.bootclasspath"/>
+      <classpath refid="gitui.module.production.classpath"/>
+      <src refid="gitui.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gitui"/>
+    </javac2>
+    
+    <copy todir="${gitui.output.dir}">
+      <fileset dir="${module.gitui.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gitui.tests" depends="register.custom.compilers,compile.module.gitui.production" description="compile module GitUI; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.gitui" description="cleanup module">
+    <delete dir="${gitui.output.dir}"/>
+    <delete dir="${gitui.testoutput.dir}"/>
+  </target>
+</project>

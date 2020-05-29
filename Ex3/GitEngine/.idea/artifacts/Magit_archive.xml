@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="Magit archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/Magit_archive</output-path>
+    <root id="archive" name="Magit archive.war">
+      <element id="artifact" artifact-name="Magit" />
+    </root>
+  </artifact>
+</component>

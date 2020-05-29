@@ -55,9 +55,18 @@ class Repository {
     }
 
     String getRemoteRepoPath(String localRepoPath) {
-        return localAndRemote.get(localRepoPath);
+        return localAndRemote.get(getRemotePathByLocal(localRepoPath));
     }
 
+    String getRemotePathByLocal(String localPath){
+        String smallCaseToFind = localPath.toLowerCase();
+        for (String repoPath: localAndRemote.keySet()){
+            if (repoPath.toLowerCase().equals(smallCaseToFind)){
+                return repoPath;
+            }
+        }
+        return null;
+    }
     private boolean isObjectInRepo(String id) {
         return currentObjects.containsKey(id);
     }
@@ -78,7 +87,7 @@ class Repository {
     }
 
     private String getRootSha1() { // goes to branches->head x then branches->x->lastCommit y and then objects->y
-            return currentCommit.getRootSha1();
+        return currentCommit.getRootSha1();
     }
 
     private void setRepoName(String name){
@@ -152,7 +161,7 @@ class Repository {
 
     }
 
-//  =========================== Creating New Repo ==================================
+    //  =========================== Creating New Repo ==================================
     void createNewRepository(String newRepositoryPath, String repoName, boolean addMaster)
             throws DataAlreadyExistsException, ErrorCreatingNewFileException, IOException {
         String errorMsg;
@@ -512,10 +521,9 @@ class Repository {
         }
 
         if(!localAndRemote.isEmpty()) {
-            remoteRepository = localAndRemote.get(newRepo);
+            remoteRepository = getRemoteRepoPath(newRepo);
         }
         // patch for windows choosing file..
-        newRepo = newRepo.replace("C:", "c:");
         setRootPath(newRepo);
         updateMainPaths();
         loadObjectsFromRepo();
@@ -627,17 +635,7 @@ class Repository {
     private void loadBranchesObjectsFromBranchs () throws IOException, ErrorCreatingNewFileException{
         String branchesPath = BRANCHES_PATH;
         File branchesFolder = new File(branchesPath);
-        String remoteBranchFolder = Paths.get(branchesFolder.getAbsolutePath(), repoName.getValue()).toString();
-        File isRemoteRepo = new File(remoteBranchFolder);
-        String[] filesInBranchesFolder;
-        if(isRemoteRepo.exists())
-        {
-            filesInBranchesFolder = isRemoteRepo.list();
-            branchesPath = Paths.get(branchesFolder.getAbsolutePath(), repoName.getValue()).toString();
-        }
-        else {
-            filesInBranchesFolder = branchesFolder.list();
-        }
+        String[] filesInBranchesFolder = branchesFolder.list();
         String errorMsg;
 
         if(filesInBranchesFolder == null){
@@ -645,16 +643,17 @@ class Repository {
             throw new ErrorCreatingNewFileException(errorMsg);
         }
         for (String currentBranchPath : filesInBranchesFolder) {
-            if (!currentBranchPath.equals("Head")){
-                String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(branchesPath, currentBranchPath));
-                Branch newBranch = new Branch(currentBranchPath, commitSha1);
-                currentBranchs.add(newBranch);
-                if(newBranch.getName().getValue().equals(getCurrentBranchInRepo()) ||
-                        newBranch.getName().getValue().equals(currentBranch.getName().getValue())) {
-                    currentBranchesNames.add(newBranch.getName().getValue().concat(" (Head)"));
-                }
-                else {
-                    currentBranchesNames.add(newBranch.getName().getValue());
+            if (new File(MagitUtils.joinPaths(branchesPath, currentBranchPath)).isFile()) {
+                if (!currentBranchPath.equals("Head")) {
+                    String commitSha1 = MagitUtils.readFileAsString(MagitUtils.joinPaths(branchesPath, currentBranchPath));
+                    Branch newBranch = new Branch(currentBranchPath, commitSha1);
+                    currentBranchs.add(newBranch);
+                    if (newBranch.getName().getValue().equals(getCurrentBranchInRepo()) ||
+                            newBranch.getName().getValue().equals(currentBranch.getName().getValue())) {
+                        currentBranchesNames.add(newBranch.getName().getValue().concat(" (Head)"));
+                    } else {
+                        currentBranchesNames.add(newBranch.getName().getValue());
+                    }
                 }
             }
         }
@@ -845,13 +844,13 @@ class Repository {
     }
 
     private String getCurrentBranchInRepo() throws IOException{
-       String currentBranchInRepo;
-       Path branchs = Paths.get(BRANCHES_PATH, "Head");
-       File headFile = new File(branchs.toString());
-       BufferedReader reader = new BufferedReader(new FileReader(headFile));
-       currentBranchInRepo = reader.readLine();
-       reader.close();
-       return currentBranchInRepo;
+        String currentBranchInRepo;
+        Path branchs = Paths.get(BRANCHES_PATH, "Head");
+        File headFile = new File(branchs.toString());
+        BufferedReader reader = new BufferedReader(new FileReader(headFile));
+        currentBranchInRepo = reader.readLine();
+        reader.close();
+        return currentBranchInRepo;
     }
 
     void checkoutBranch(String newBranchName, boolean ignoreChanges)
@@ -1452,43 +1451,63 @@ class Repository {
 
     // =========================== Clone =========================================
 
-    void clone(String remote, String local, String repoName)
+    void clone(String remote, String local, String repoName, String newRepoName)
             throws IOException, FileErrorException {
         List<String> headContent = new LinkedList<>();
         String content = "";
         localAndRemote.put(local, remote);
 
-        cloneRepository(remote, local, repoName, local, headContent);
-
-        if(!headContent.isEmpty()) {
-            content = headContent.get(0);
-        }
-
-        File head = new File(Paths.get(MagitUtils.joinPaths(local, ".magit\\Branches\\Head")).toString());
-        if(!head.exists()) {
-            if (head.createNewFile()) {
-                Writer out1 = new BufferedWriter(
-                        new OutputStreamWriter(
-                                new FileOutputStream(head), StandardCharsets.UTF_8));
-                out1.write(content);
-                out1.flush();
-                out1.close();
-                isRemoteTrackingBranchInLocalRepo.put(Paths.get(MagitUtils.joinPaths(
-                        local, ".magit\\Branches\\"), content).toString(), true);
-            }
-        }
-
-        String headSha1 = addRTBHeadBranchToRepo(Paths.get(MagitUtils.joinPaths
-                (remote, ".magit\\Branches")).toString(), content,
-                Paths.get(MagitUtils.joinPaths(local, ".magit\\Branches")).toString());
-
-        if (headSha1 != null) {
-            loadWCFromCommitSha1(headSha1, local);
-        }
+        cloneRepository(remote, local, repoName, newRepoName);
 
     }
 
-    private void cloneRepository(String remote, String local, String repoName, String localUnchanged, List<String> headContent)
+    private void copyBranchsForClone(String remotePath, String localPath, String remoteName) throws IOException {
+        File remoteFolder = new File(remotePath);
+        File[] remoteFolderFiles = remoteFolder.listFiles();
+        for (File currentFile : remoteFolderFiles) {
+            File currentLocalFile = new File(MagitUtils.joinPaths(localPath, remoteName, currentFile.getName()));
+            if (currentFile.isFile() && !currentFile.getName().contains("Head")) {
+                MagitUtils.copyFile(currentFile, currentLocalFile);
+            }
+            else if(currentFile.getName().contains("Head")){
+                String headName = MagitUtils.readFileAsString(currentFile.getAbsolutePath());
+                MagitUtils.copyFile(new File(MagitUtils.joinPaths(remotePath, headName)),
+                        new File (MagitUtils.joinPaths(localPath, headName)));
+                MagitUtils.copyFile(currentFile,
+                        new File (MagitUtils.joinPaths(localPath, currentFile.getName())));
+                isRemoteTrackingBranchInLocalRepo.put(MagitUtils.joinPaths(localPath, headName), true);
+            }
+        }
+    }
+    private void cloneRepository(String remotePath, String localPath, String remoteName, String newRepoName) throws IOException {
+        File remoteFolder = new File(remotePath);
+        File[] remoteFolderFiles = remoteFolder.listFiles();
+
+        // handle remote branchs
+        if (remotePath.toLowerCase().equals(BRANCHES_PATH.toLowerCase())){
+            File newRemoteFolder = new File(MagitUtils.joinPaths(localPath, remoteName));
+            if (newRemoteFolder.mkdir()){
+                copyBranchsForClone(remotePath, localPath, remoteName);
+            }
+        }
+        else
+        {
+            for (File currentFile: remoteFolderFiles){
+                File currentLocalFile = new File (MagitUtils.joinPaths(localPath, currentFile.getName()));
+
+                if(currentFile.isFile()){
+                    MagitUtils.copyFile(currentFile, currentLocalFile);
+                }
+                else {
+                    if (currentLocalFile.mkdir()) {
+                        cloneRepository(currentFile.getAbsolutePath(), currentLocalFile.getAbsolutePath(), remoteName, newRepoName);
+                    }
+                }
+            }
+        }
+    }
+
+    /*private void cloneRepository(String remote, String local, String repoName, String localUnchanged, List<String> headContent)
             throws IOException, FileErrorException {
         File remoteFolder = new File(remote);
         File[] remoteFolderFiles = remoteFolder.listFiles();
@@ -1508,7 +1527,12 @@ class Repository {
                         }
                         File newFile = new File(newPath);
                         if (newFile.mkdir()) {
-                            cloneRepository(remoteFolderFile.getAbsolutePath(), newPath, repoName, localUnchanged, headContent);
+                            for (File currentBranch : remoteFolderFile.listFiles()) {
+                                if (currentBranch.isFile()) {
+                                    cloneRepository(currentBranch.getAbsolutePath(),
+                                            newPath, repoName, localUnchanged, headContent);
+                                }
+                            }
                         }
                     } else {
                         String newPath = Paths.get(local, remoteFolderFile.getName()).toString();
@@ -1550,7 +1574,7 @@ class Repository {
                 }
             }
         }
-    }
+    }*/
 
     private String addRTBHeadBranchToRepo(String remoteWithBranchPath, String content, String localWithBranchPath)
             throws IOException{
@@ -1578,7 +1602,7 @@ class Repository {
 
     // =========================== Fetch =========================================
     void fetch(String remoteRepoName) throws IOException, FileErrorException {
-        String remoteRepository = localAndRemote.get(rootPath.getValue());
+        String remoteRepository = getRemoteRepoPath(rootPath.getValue());
         copyRemoteRepositoryBranchesToLocal(remoteRepository, rootPath.getValue(), remoteRepoName);
         copyRemoteRepositoryObjectsToLocal(remoteRepository, rootPath.getValue());
     }
@@ -1596,20 +1620,21 @@ class Repository {
         if (remoteFolderFiles != null) {
             for (File curr : remoteFolderFiles) {
                 File newBranch = new File(Paths.get(local.getAbsolutePath(), curr.getName()).toString());
-                if (!newBranch.exists()) {
-                    if (newBranch.createNewFile()) {
-                        String branchData = MagitUtils.readFileAsString(curr.getAbsolutePath());
-                        MagitUtils.writeToFile(newBranch.getAbsolutePath(),
-                                branchData);
-                        isRemoteTrackingBranchInLocalRepo.put(newBranch.getAbsolutePath(), true);
-                        currentBranchesNames.add(curr.getName());
-                        currentBranchs.add(new Branch(curr.getName(), branchData));
+                if (curr.isFile()) {
+                    if (!newBranch.exists()) {
+                        if (newBranch.createNewFile()) {
+                            String branchData = MagitUtils.readFileAsString(curr.getAbsolutePath());
+                            MagitUtils.writeToFile(newBranch.getAbsolutePath(),
+                                    branchData);
+                            isRemoteTrackingBranchInLocalRepo.put(newBranch.getAbsolutePath(), true);
+                            currentBranchesNames.add(curr.getName());
+                            currentBranchs.add(new Branch(curr.getName(), branchData));
+                        }
+                    } else {
+                        File remoteBranch = new File(Paths.get(remote.getAbsolutePath(), curr.getName()).toString());
+                        String branchContent = MagitUtils.readFileAsString(remoteBranch.getAbsolutePath());
+                        MagitUtils.writeToFile(newBranch.getAbsolutePath(), branchContent);
                     }
-                }
-                else {
-                    File remoteBranch = new File(Paths.get(remote.getAbsolutePath(), curr.getName()).toString());
-                    String branchContent = MagitUtils.readFileAsString(remoteBranch.getAbsolutePath());
-                    MagitUtils.writeToFile(newBranch.getAbsolutePath(), branchContent);
                 }
             }
         }
@@ -1658,7 +1683,7 @@ class Repository {
 
     void push(String remoteRepoName) throws IOException, InvalidDataException, FileErrorException {
         boolean isTracking = isRemoteTrackingBranchInLocalRepo.get(currentBranch.getName().getValue());
-        String remoteRepo = localAndRemote.get(rootPath.getValue());
+        String remoteRepo = getRemoteRepoPath(rootPath.getValue());
         if (remoteRepo != null && isTracking) {
             WorkingCopyChanges isWcHasOpenChanges = isWorkingCopyIsChanged();
             if (!isWcHasOpenChanges.isChanged()) {
@@ -1705,7 +1730,7 @@ class Repository {
 
     void pull(String remoteRepoName) throws IOException, InvalidDataException, FileErrorException, DataAlreadyExistsException {
 
-        String remoteRepo = localAndRemote.get(rootPath.getValue());
+        String remoteRepo = getRemoteRepoPath(rootPath.getValue());
         if (remoteRepo != null) {
             WorkingCopyChanges isWcHasOpenChanges = isWorkingCopyIsChanged();
             if (!isWcHasOpenChanges.isChanged()) {

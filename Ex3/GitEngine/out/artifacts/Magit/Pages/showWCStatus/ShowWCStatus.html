@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show WC Status</title>
+    <script type="text/javascript" src="../../Commons/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="ShowWCStatus.js"></script>
+    <link rel="stylesheet" type="text/css" href="ShowWCStatus.css">
+</head>
+<body>
+
+<div id="background">
+    <img src="../resources/wallpaper3.jpg" class="stretch" alt="" />
+</div>
+
+<table id="workingCopySection" style="alignment: center">
+    <tr>
+        <td id="workingCopy" style="width: 50%"></td>
+        <td style="width: 50%">
+            <div>
+                <textarea id="fileData" class="myTextarea"></textarea>
+            </div>
+            <div>
+                <button id="newFile" onclick="addNewFile()" disabled>Add New File</button>
+                <button id="newFolder" onclick="addNewFolder()" disabled>Add New Folder</button>
+                <button id="saveFile" onclick="saveFile()" disabled>Save File Content</button>
+                <button id="deleteFile" onclick="deleteFile()" disabled>Delete</button>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

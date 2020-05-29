@@ -1,0 +1,69 @@
+body{
+    font-family: Calibri;
+    width: 100%;
+    float: left;
+    display: inline-block;
+    overflow-x: hidden;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+button {
+    border-radius:5px;
+    border:0.65px solid #5d5d89;
+    display:inline-block;
+    cursor:pointer;
+    color: #33334d;
+    font-family:Aharoni;
+    font-size:10px;
+    font-weight:bold;
+    padding:5px 15px;
+    text-decoration:none;
+}
+
+button:hover {
+    background-color:transparent;
+}
+
+button:active {
+    position:relative;
+    top:1px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    color: #d9d9d9;
+    background-color: black;
+    font-size: 13.5px;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 1.5px solid #d9d9d9;
+    border-radius: 0.5em;
+}
+
+.myTextarea{
+    overflow:scroll;
+    padding:5%;
+    width:100%;
+    font-size:14px;
+    align-self: center;
+    display:block;
+    border-radius:5px;
+    border:2px solid #47476b;
+    box-sizing: border-box;
+}

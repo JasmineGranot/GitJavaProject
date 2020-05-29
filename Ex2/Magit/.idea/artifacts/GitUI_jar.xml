@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact name="GitUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GitUI_jar</output-path>
+    <root id="root">
+      <element id="archive" name="GitUI.jar">
+        <element id="module-output" name="GitUI" />
+        <element id="module-output" name="GitEngine" />
+      </element>
+      <element id="library" level="project" name="AncestorFinder" />
+      <element id="library" level="project" name="fxgraph-0.0.3" />
+      <element id="file-copy" path="$PROJECT_DIR$/fxgraph-0.0.3.jar" />
+      <element id="library" level="project" name="commons-codec-1.12" />
+    </root>
+  </artifact>
+</component>
